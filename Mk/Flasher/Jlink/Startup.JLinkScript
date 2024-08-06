@@ -1,0 +1,93 @@
+/**
+*
+* Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+*
+* This file is part of Mk.
+*
+* Mk is free software. Redistribution and use in source and binary forms, with or
+* without modification, are permitted provided that the following conditions are
+* met:
+*
+*    1. Redistributions of source code must retain the above copyright notice,
+*       this list of conditions and the following disclaimer.
+*    2. Redistributions in binary form must reproduce the above copyright notice,
+*       this list of conditions and the following disclaimer in the documentation
+*       and/or other materials provided with the distribution.
+*    3. Neither the name of the copyright holder nor the names of its contributors
+*       may be used to endorse or promote products derived from this software
+*       without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+* ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+* INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+* BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+* DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+* LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+* OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+* ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+* @file startup.JLinkScript
+* @brief Implémentation du fichier de prelaunch 'JLink'.
+* @date 10 mai. 2020
+*
+*/
+
+/*
+
+Ce script est exécuté en spécifiant les options suivantes dans la vue 'DebugConfiguration
+GDB SEGGER J-LINK DEBUGGING - Debugger - J-LINK GDB Server Setup - Other Options' :
+  -jlinkscriptfile <path>\Startup.JLinkScript
+
+L'option -JLinkDevicesXMLPath <path> permet de spécifier le répertoire où est situé le fichier
+JLinkDevices.xml décrivant l'organisation mémoire du composant et le driver à utiliser pour
+flasher les composantes externes (qspi, etc).
+
+Les paragraphes "4.5 Command line options" et "7.13 J-Link script files" du document 'J-Link User Manual 6.70' ont
+été utilisés pour rédiger ce script.
+
+Des informations complémentaires sont disponibles ici : https://wiki.segger.com/STM32F746_Discovery
+
+*/
+
+int AfterResetTarget(void) {
+  
+  /* Le but du script ci-dessous est de configurer le composant pour permettre à la sonde */
+  /* JLink de flasher la mémoire QSPI. */
+  /* La mémoire QSPI doit obligatoirement être en configurée en mode 1 FIL */
+  
+  /* Activation de l'horloge des ports GPIO */  
+  JLINK_MEM_WriteU32(0x40023830, 0x000007FF); /* AHB1ENR */
+  /* Activation de l'horloge QSPI */
+  JLINK_MEM_WriteU32(0x40023838, 0x00000002); /* AHB3ENR */
+  
+  /* Reset QSPI */
+  JLINK_MEM_WriteU32(0x40023818, 0x00000002); /* AHB3RSTR */
+  JLINK_MEM_WriteU32(0x40023818, 0x00000000); /* AHB3RSTR */
+  
+  /* GPIOB - PB2, PB6 */
+  JLINK_MEM_WriteU32(0x40020420, 0x0A000900); /* AFRL */
+  JLINK_MEM_WriteU32(0x40020400, 0x00002020); /* MODER */
+  JLINK_MEM_WriteU32(0x40020408, 0x00003030); /* OSPEED */
+  JLINK_MEM_WriteU32(0x40020404, 0x00000000); /* OTYPER */
+  JLINK_MEM_WriteU32(0x4002040C, 0x00001010); /* PUPDR */
+  
+  /* GPIOF - PF6, PF7, PF8, PF9 */
+  JLINK_MEM_WriteU32(0x40021424, 0x000000AA); /* AFRH */
+  JLINK_MEM_WriteU32(0x40021420, 0x99000000); /* AFRL */
+  JLINK_MEM_WriteU32(0x40021400, 0x000AA000); /* MODER */
+  JLINK_MEM_WriteU32(0x40021408, 0x000FF000); /* OSPEED */
+  JLINK_MEM_WriteU32(0x40021404, 0x00000000); /* OTYPER */
+  JLINK_MEM_WriteU32(0x4002140C, 0x00055000); /* PUPDR */
+  
+  /* Initialisation périphérique QSPI */
+  JLINK_MEM_WriteU32(0xA0001000, 0x03000300); /* CR */
+  JLINK_MEM_WriteU32(0xA0001004, 0x00180000); /* DCR */
+  JLINK_MEM_WriteU32(0xA0001000, 0x03000301); /* CR */
+  JLINK_MEM_WriteU32(0xA0001014, 0x0D002503); /* CCR */
+  
+  return 0;
+      
+}
+
