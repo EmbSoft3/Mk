@@ -67,7 +67,7 @@ SYMBOL_BASE_ADDR := 0x002C0000
 # Artefacts
 ################################################################################
 
-BUILD_ARTIFACT_NAME := MikeOs
+BUILD_ARTIFACT_NAME := Mk
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
@@ -92,7 +92,7 @@ ANALYZER_OPTIONS := -fanalyzer
 
 # Debugging Options
 DEBUG_OPTIONS :=
-ifneq ($(MAKECMDGOALS),Debug)
+ifeq ($(MAKECMDGOALS),Debug)
 DEBUG_OPTIONS := -g3 -ggdb -fno-eliminate-unused-debug-symbols
 endif
 
@@ -100,7 +100,7 @@ endif
 STRIP_OPTIONS := -s
 
 # Optimization Options
-OPTIMIZATION_OPTIONS := -O0 -fno-inline-functions -fno-short-enums -fno-move-loop-invariants
+OPTIMIZATION_OPTIONS := -Ofast -fno-inline-functions -fno-short-enums -fno-move-loop-invariants
 
 # Options to Request or Suppress Warnings 
 WARN_OPTIONS := -Wpedantic -pedantic-errors -Werror -Wall -Wextra -Wdouble-promotion -Wnull-dereference -Wshift-negative-value -Wswitch-default -Wswitch-enum -Wswitch-bool \
