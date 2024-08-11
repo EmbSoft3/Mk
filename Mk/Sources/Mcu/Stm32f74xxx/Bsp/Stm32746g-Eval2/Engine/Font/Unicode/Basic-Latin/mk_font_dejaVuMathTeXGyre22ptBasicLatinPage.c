@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontDejaVuMathTeXGyre22ptBasicLatinPage;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontDejaVuMathTeXGyre22ptBasicLatinPage;
  * @brief Déclaration de la police g_mkFontDejaVuMathTeXGyre22ptBasicLatinPage.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontDejaVuMathTeXGyre22ptBasicLatinPage [ 6322 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontDejaVuMathTeXGyre22ptBasicLatinPage [ 6322 ] =
 {
    // @0 ' ' (2 pixels wide)
    0x00, //
@@ -3025,12 +3025,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontDejaVuMathTeXGyre22ptBasicLatinPage 
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontDejaVuMathTeXGyre22ptBasicLatinPageDescriptor;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontDejaVuMathTeXGyre22ptBasicLatinPageDescriptor;
  * @brief Déclaration de la police g_mkFontDejaVuMathTeXGyre22ptBasicLatinPageDescriptor.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontDejaVuMathTeXGyre22ptBasicLatinPageDescriptor [ 97 ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontDejaVuMathTeXGyre22ptBasicLatinPageDescriptor [ 97 ] [ 2 ] =
 {
    {2, 0},        //
    {4, 29},       // !

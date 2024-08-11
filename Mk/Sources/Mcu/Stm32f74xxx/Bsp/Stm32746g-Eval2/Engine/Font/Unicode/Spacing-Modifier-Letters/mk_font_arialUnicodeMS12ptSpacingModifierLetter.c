@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptSpacingModifierLetterPage;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptSpacingModifierLetterPage;
  * @brief Déclaration de la police ArialUnicodeMS12ptSpacingModifierLetter.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptSpacingModifierLetterPage [ 1680 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptSpacingModifierLetterPage [ 1680 ] =
 {
    // @0 'ʰ' (3 pixels wide)
    0x00, //
@@ -1889,12 +1889,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptSpacingModifierLet
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptSpacingModifierLetterPageDescriptor;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptSpacingModifierLetterPageDescriptor;
  * @brief Déclaration de la police ArialUnicodeMS12ptSpacingModifierLetter.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptSpacingModifierLetterPageDescriptor [ 80  ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptSpacingModifierLetterPageDescriptor [ 80  ] [ 2 ] =
 {
    {3, 0},        // ʰ
    {3, 21},       // ʱ

@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptCurrencySymbolPage;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptCurrencySymbolPage;
  * @brief Déclaration de la police ArialUnicodeMS12ptCurrencySymbol
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptCurrencySymbolPage [ 1785 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptCurrencySymbolPage [ 1785 ] =
 {
    // @0 '₠' (9 pixels wide)
    0x00, 0x00, //
@@ -1153,12 +1153,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptCurrencySymbolPage
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptCurrencySymbolPageDescriptor;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptCurrencySymbolPageDescriptor;
  * @brief Déclaration de la police ArialUnicodeMS12ptCurrencySymbol.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptCurrencySymbolPageDescriptor [ 48 ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptCurrencySymbolPageDescriptor [ 48 ] [ 2 ] =
 {
    {9, 0},        // ₠
    {8, 42},       // ₡

@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed11ptSpacingModifierLetterPage;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed11ptSpacingModifierLetterPage;
  * @brief Déclaration de la police ConsolasFixed11ptCombiningDiacriticalMarks.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed11ptCombiningDiacriticalMarksPage [ 2016 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed11ptCombiningDiacriticalMarksPage [ 2016 ] =
 {
    // @13248 '̀' (8 pixels wide)
    0x00, //
@@ -2289,12 +2289,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed11ptCombiningDiacritica
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed11ptSpacingModifierLetterPageDescriptor;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed11ptSpacingModifierLetterPageDescriptor;
  * @brief Déclaration de la police ConsolasFixed11ptCombiningDiacriticalMarks.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed11ptCombiningDiacriticalMarksPageDescriptor [ 112 ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed11ptCombiningDiacriticalMarksPageDescriptor [ 112 ] [ 2 ] =
 {
    {8, 0},        // ̀
    {8, 18},       // ́

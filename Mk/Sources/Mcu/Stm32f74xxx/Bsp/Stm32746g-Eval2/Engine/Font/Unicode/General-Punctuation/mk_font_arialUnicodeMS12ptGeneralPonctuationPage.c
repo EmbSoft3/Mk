@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptGeneralPonctuationPage;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptGeneralPonctuationPage;
  * @brief Déclaration de la police ArialUnicodeMS12ptGeneralPonctuation.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptGeneralPonctuationPage [ 3255 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptGeneralPonctuationPage [ 3255 ] =
 {
    // @0 ' ' (2 pixels wide)
    0x00, //
@@ -2625,12 +2625,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptGeneralPonctuation
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptGeneralPonctuationPageDescriptor;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptGeneralPonctuationPageDescriptor;
  * @brief Déclaration de la police ArialUnicodeMS12ptGeneralPonctuation.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptGeneralPonctuationPageDescriptor [ 112 ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptGeneralPonctuationPageDescriptor [ 112 ] [ 2 ] =
 {
    {2, 0},        //
    {2, 21},       //

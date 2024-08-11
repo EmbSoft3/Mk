@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptSpacingModifierLetterPage;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed10ptSpacingModifierLetterPage;
  * @brief Déclaration de la police ConsolasFixed10ptSpacingModifierLetter.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptSpacingModifierLetterPage [ 1200 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed10ptSpacingModifierLetterPage [ 1200 ] =
 {
    // @9840 'ʰ' (8 pixels wide)
    0x00, //
@@ -1409,12 +1409,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptSpacingModifierLett
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed10ptSpacingModifierLetterPageDescriptor;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed10ptSpacingModifierLetterPageDescriptor;
  * @brief Déclaration de la police ConsolasFixed10ptSpacingModifierLetter.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed10ptSpacingModifierLetterPageDescriptor [ 80  ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed10ptSpacingModifierLetterPageDescriptor [ 80  ] [ 2 ] =
 {
    {8, 0},        // ʰ
    {8, 15},       // ʱ

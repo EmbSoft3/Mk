@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptMathematicalOperatorPage;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed10ptMathematicalOperatorPage;
  * @brief Déclaration de la police ConsolasFixed10ptMathematicalOperator.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptMathematicalOperatorPage [ 3840 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed10ptMathematicalOperatorPage [ 3840 ] =
 {
    // @130080 '∀' (8 pixels wide)
    0x00, //
@@ -4401,12 +4401,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptMathematicalOperato
 };
 
 /**
-* @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed10ptMathematicalOperatorPageDescriptor;
+* @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed10ptMathematicalOperatorPageDescriptor;
 * @brief Déclaration de la police ConsolasFixed10ptMathematicalOperator.
 *
 */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed10ptMathematicalOperatorPageDescriptor [ 256 ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed10ptMathematicalOperatorPageDescriptor [ 256 ] [ 2 ] =
 {
    {8, 0},        // ∀
    {8, 15},       // ∁

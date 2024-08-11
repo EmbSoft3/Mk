@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptLatinExtendedBPage;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptLatinExtendedBPage;
  * @brief Déclaration de la police ArialUnicodeMS12ptLatinExtendedB.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptLatinExtendedBPage [ 6510 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptLatinExtendedBPage [ 6510 ] =
 {
    // @0 'ƀ' (8 pixels wide)
    0x00, //
@@ -4833,12 +4833,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptLatinExtendedBPage
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptLatinExtendedBPageDescriptor;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptLatinExtendedBPageDescriptor;
  * @brief Déclaration de la police ArialUnicodeMS12ptLatinExtendedB.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptLatinExtendedBPageDescriptor [ 208 ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptLatinExtendedBPageDescriptor [ 208 ] [ 2 ] =
 {
    {8, 0},        // ƀ
    {10, 21},      // Ɓ

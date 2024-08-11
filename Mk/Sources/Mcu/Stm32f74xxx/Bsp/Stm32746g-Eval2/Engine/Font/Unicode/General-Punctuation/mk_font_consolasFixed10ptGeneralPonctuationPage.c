@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptGeneralPonctuationPage;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed10ptGeneralPonctuationPage;
  * @brief Déclaration de la police ConsolasFixed10ptGeneralPonctuation.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptGeneralPonctuationPage [ 1680 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed10ptGeneralPonctuationPage [ 1680 ] =
 {
    // @122400 ' ' (8 pixels wide)
    0x00, //
@@ -1953,12 +1953,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptGeneralPonctuationP
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed10ptGeneralPonctuationPageDescriptor;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed10ptGeneralPonctuationPageDescriptor;
  * @brief Déclaration de la police ConsolasFixed10ptGeneralPonctuation.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed10ptGeneralPonctuationPageDescriptor [ 112 ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed10ptGeneralPonctuationPageDescriptor [ 112 ] [ 2 ] =
 {
    {8, 0},        //
    {8, 15},       //

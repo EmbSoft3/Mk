@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed11ptCurrencySymbolPage [ 734 ];
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed11ptCurrencySymbolPage [ 734 ];
  * @brief Déclaration de la police g_mkFontConsolasFixed11ptCurrencySymbolPage
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed11ptCurrencySymbolPage [ 864 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed11ptCurrencySymbolPage [ 864 ] =
 {
    // @149760 '₠' (8 pixels wide)
    0x00, //
@@ -1009,12 +1009,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed11ptCurrencySymbolPage 
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed11ptCurrencySymbolPageDescriptor [ 48 ] [ 2 ];
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed11ptCurrencySymbolPageDescriptor [ 48 ] [ 2 ];
  * @brief Déclaration de la police g_mkFontConsolasFixed11ptCurrencySymbolPageDescriptor.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed11ptCurrencySymbolPageDescriptor [ 48 ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed11ptCurrencySymbolPageDescriptor [ 48 ] [ 2 ] =
 {
    {8, 0},        // ₠
    {8, 18},       // ₡

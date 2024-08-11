@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptMathematicalOperatorPage;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptMathematicalOperatorPage;
  * @brief Déclaration de la police ArialUnicodeMS12ptMathematicalOperator.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptMathematicalOperatorPage [ 6993 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptMathematicalOperatorPage [ 6993 ] =
 {
    // @0 '∀' (9 pixels wide)
    0x00, 0x00, //
@@ -5937,12 +5937,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptMathematicalOperat
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptMathematicalOperatorPageDescriptor;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptMathematicalOperatorPageDescriptor;
  * @brief Déclaration de la police ArialUnicodeMS12ptMathematicalOperator.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptMathematicalOperatorPageDescriptor [ 256 ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptMathematicalOperatorPageDescriptor [ 256 ] [ 2 ] =
 {
    {9, 0},        // ∀
    {8, 42},       // ∁

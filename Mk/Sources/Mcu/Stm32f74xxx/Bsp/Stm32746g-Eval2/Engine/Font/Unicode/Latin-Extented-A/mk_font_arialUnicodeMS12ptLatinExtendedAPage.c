@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptLatinExtendedAPage;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptLatinExtendedAPage;
  * @brief Déclaration de la police ArialUnicodeMS12ptLatinExtendedA.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptLatinExtendedAPage [ 3528 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptLatinExtendedAPage [ 3528 ] =
 {
    // @0 'Ā' (11 pixels wide)
    0x00, 0x00, //
@@ -2993,12 +2993,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptLatinExtendedAPage
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptLatinExtendedAPageDescriptor;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptLatinExtendedAPageDescriptor;
  * @brief Déclaration de la police ArialUnicodeMS12ptLatinExtendedA.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptLatinExtendedAPageDescriptor [ 128 ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptLatinExtendedAPageDescriptor [ 128 ] [ 2 ] =
 {
    {11, 0},       // Ā
    {7, 42},       // ā

@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptCombiningDiacriticalMarksPage;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptCombiningDiacriticalMarksPage;
  * @brief Déclaration de la police ArialUnicodeMS12ptCombiningDiacriticalMarks.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptCombiningDiacriticalMarksPage [ 2394 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontArialUnicodeMS12ptCombiningDiacriticalMarksPage [ 2394 ] =
 {
    // @0 '̀' (2 pixels wide)
    0x00, //
@@ -2625,12 +2625,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontArialUnicodeMS12ptCombiningDiacritic
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptCombiningDiacriticalMarksPageDescriptor;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptCombiningDiacriticalMarksPageDescriptor;
  * @brief Déclaration de la police ArialUnicodeMS12ptCombiningDiacriticalMarks.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontArialUnicodeMS12ptCombiningDiacriticalMarksPageDescriptor [ 112 ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontArialUnicodeMS12ptCombiningDiacriticalMarksPageDescriptor [ 112 ] [ 2 ] =
 {
    {2, 0},     // ̀
    {3, 21},       // ́

@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptLatinExtendedBPage;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed10ptLatinExtendedBPage;
  * @brief Déclaration de la police ConsolasFixed10ptLatinExtendedB.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptLatinExtendedBPage [ 3120 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed10ptLatinExtendedBPage [ 3120 ] =
 {
    // @5280 'ƀ' (8 pixels wide)
     0x00, //
@@ -3585,12 +3585,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptLatinExtendedBPage 
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed10ptLatinExtendedBPageDescriptor;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed10ptLatinExtendedBPageDescriptor;
  * @brief Déclaration de la police ConsolasFixed10ptLatinExtendedB.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed10ptLatinExtendedBPageDescriptor [ 208 ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed10ptLatinExtendedBPageDescriptor [ 208 ] [ 2 ] =
 {
    {8, 0},        // ƀ
    {8, 15},       // Ɓ

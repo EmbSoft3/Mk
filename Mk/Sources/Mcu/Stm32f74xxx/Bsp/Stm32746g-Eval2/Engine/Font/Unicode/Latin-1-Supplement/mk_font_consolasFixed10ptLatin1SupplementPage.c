@@ -40,12 +40,12 @@
 #include "mk_engine_api.h"
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptLatin1SupplementPage
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed10ptLatin1SupplementPage
  * @brief Déclaration de la police ConsolasFixed10ptLatin1Supplement.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptLatin1SupplementPage [ 1920 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint8_t g_mkFontConsolasFixed10ptLatin1SupplementPage [ 1920 ] =
 {
    // @1440 '' (8 pixels wide)
    0x00, //
@@ -2225,12 +2225,12 @@ K_MK_PRIVILEGED_QSPI_MEMORY uint8_t g_mkFontConsolasFixed10ptLatin1SupplementPag
 };
 
 /**
- * @fn K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed10ptLatin1SupplementPageDescriptor;
+ * @fn K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed10ptLatin1SupplementPageDescriptor;
  * @brief Déclaration de la police ConsolasFixed10ptLatin1Supplement.
  *
  */
 
-K_MK_PRIVILEGED_QSPI_MEMORY uint16_t g_mkFontConsolasFixed10ptLatin1SupplementPageDescriptor [ 128 ] [ 2 ] =
+K_MK_PRIVILEGED_FONT_MEMORY uint16_t g_mkFontConsolasFixed10ptLatin1SupplementPageDescriptor [ 128 ] [ 2 ] =
 {
    {8, 0},     // 
    {8, 15},       // 

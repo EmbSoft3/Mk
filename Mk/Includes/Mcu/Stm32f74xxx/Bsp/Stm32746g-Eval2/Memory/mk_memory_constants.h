@@ -63,6 +63,16 @@
 #define K_MK_PRIVILEGED_DMA_MEMORY __attribute__ ((section(".mk_privileged_dma_memory"), aligned(4), used))
 
 /**
+ * @def K_MK_PRIVILEGED_FONT_MEMORY
+ * @brief Cette constante définit la zone mémoire où les polices de caractères doivent être allouées. \n
+ *        L'adresse de cette section peut être modifiée dans le fichier d'édition de lien.
+ *        On utilise l'attribut ('.rodata') plutôt que 'const' afin de pouvoir changer la localisation des polices
+ *        de caractères plus simplement.
+ */
+
+#define K_MK_PRIVILEGED_FONT_MEMORY __attribute__ ((section(".rodata"), aligned(4), used))
+
+/**
  * @def K_MK_PRIVILEGED_QSPI_MEMORY
  * @brief Cette constante définit la zone mémoire où les données priviligiées QSPI doivent être allouées. \n
  *        L'adresse de cette section peut être modifiée dans le fichier d'édition de lien.
