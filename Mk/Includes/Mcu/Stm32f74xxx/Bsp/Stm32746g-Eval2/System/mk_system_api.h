@@ -94,7 +94,6 @@
  *
  */
 
-
 #include "mk_dma_isr_private.h"
 #include "mk_display_private.h"
 #include "mk_i2c_isr_private.h"
@@ -105,6 +104,15 @@
 #include "mk_micron_n25q512a_constants.h"
 #include "mk_micron_n25q512a_types.h"
 #include "mk_main.h"
+
+/**
+ *
+ */
+
+#include "mk_qspi_types.h"
+#include "mk_qspi_isr_private.h"
+#include "mk_qspi_private.h"
+#include "mk_qspi.h"
 
 /**
  *

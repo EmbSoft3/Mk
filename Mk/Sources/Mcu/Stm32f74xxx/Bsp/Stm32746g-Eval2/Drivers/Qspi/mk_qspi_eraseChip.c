@@ -1,8 +1,8 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
 *
-* This file is part of Mk.
+* This file is part of mk.
 *
 * Mk is free software. Redistribution and use in source and binary forms, with or
 * without modification, are permitted provided that the following conditions are
@@ -28,9 +28,9 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi_interrupt.c
-* @brief Définition de la fonction mk_system_qspi_interrupt.
-* @date 9 mai 2020
+* @file mk_qspi_eraseChip.c
+* @brief Définition de la fonction mk_qspi_eraseChip.
+* @date 9 août 2024
 *
 */
 
@@ -42,12 +42,26 @@
  * @endinternal
  */
 
-void mk_qspi_interrupt ( void )
+T_mkCode mk_qspi_eraseChip ( uint32_t p_mode )
 {
-   /* Cette interruption n'est pas appelée en mode 'MemoryMapped'. */
+   /* Déclaration de la variable de retour */
+   T_mkCode l_result = K_MK_OK;
+
+   /* Déclaration des variables de travail */
+   uint32_t l_counter, l_addr = 0;
+
+   /* Pour le nombre de secteurs dans la mémoire */
+   for ( l_counter = 0 ; ( l_counter < K_MK_MICRON_N25Q512A_SECTOR_NUMBER ) && ( l_result == K_MK_OK ) ; l_counter++ )
+   {
+   	/* Effacement des secteurs de la mémoire */
+      l_result = mk_qspi_erase ( p_mode, l_addr );
+
+      /* Actualisation de l'adresse du secteur */
+      l_addr += K_MK_MICRON_N25Q512A_SECTOR_SIZE;
+   }
 
    /* Retour */
-   return;
+   return ( l_result );
 }
 
 

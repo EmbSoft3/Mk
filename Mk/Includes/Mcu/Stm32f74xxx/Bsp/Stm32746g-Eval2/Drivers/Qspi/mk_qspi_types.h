@@ -1,8 +1,8 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
 *
-* This file is part of Mk.
+* This file is part of mk.
 *
 * Mk is free software. Redistribution and use in source and binary forms, with or
 * without modification, are permitted provided that the following conditions are
@@ -28,26 +28,33 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi_interrupt.c
-* @brief Définition de la fonction mk_system_qspi_interrupt.
-* @date 9 mai 2020
+* @file mk_qspi_types.h
+* @brief Déclaration des types dédiés à la mémoire QSPI.
+* @date 9 août 2024
 *
 */
 
-#include "mk_qspi_api.h"
+#ifndef MK_QSPI_TYPES_H
+#define MK_QSPI_TYPES_H
 
 /**
- * @internal
- * @brief
- * @endinternal
+ * @struct T_mkQSPIMode
+ * @brief Déclaration de l'énumération T_mkQSPIMode.
+ *
  */
 
-void mk_qspi_interrupt ( void )
+typedef enum T_mkQSPIMode
 {
-   /* Cette interruption n'est pas appelée en mode 'MemoryMapped'. */
+   K_MK_QSPI_MODE_SINGLE = 0x00000100,       /*!< Identifiant du mode 1 fil */
+   K_MK_QSPI_MODE_DUAL   = 0x00000200,       /*!< Identifiant du mode 2 fils */
+   K_MK_QSPI_MODE_QUAD   = 0x00000300        /*!< Identifiant du mode 4 fils */
 
-   /* Retour */
-   return;
-}
+} T_mkQSPIMode;
+
+/**
+ *
+ */
+
+#endif
 
 

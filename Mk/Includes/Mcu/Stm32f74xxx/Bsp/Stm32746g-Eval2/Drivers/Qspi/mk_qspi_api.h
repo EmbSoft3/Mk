@@ -1,8 +1,8 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
 *
-* This file is part of Mk.
+* This file is part of mk.
 *
 * Mk is free software. Redistribution and use in source and binary forms, with or
 * without modification, are permitted provided that the following conditions are
@@ -28,26 +28,43 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi_interrupt.c
-* @brief Définition de la fonction mk_system_qspi_interrupt.
-* @date 9 mai 2020
+* @file mk_qspi_api.h
+* @brief Ce fichier contient les directives 'include' utilisées.
+* @date 9 août 2024
 *
 */
 
-#include "mk_qspi_api.h"
+#ifndef MK_QSPI_API_H
+#define MK_QSPI_API_H
 
 /**
- * @internal
- * @brief
- * @endinternal
+ *
  */
 
-void mk_qspi_interrupt ( void )
-{
-   /* Cette interruption n'est pas appelée en mode 'MemoryMapped'. */
+#include "mk_types.h"
+#include "mk_peripheral_qspi_constants.h"
+#include "mk_peripheral_qspi.h"
 
-   /* Retour */
-   return;
-}
+/**
+ *
+ */
 
+#include "mk_micron_n25q512a_constants.h"
+#include "mk_micron_n25q512a_types.h"
+
+/**
+ *
+ */
+
+#include "mk_qspi_types.h"
+#include "mk_qspi_isr_private.h"
+#include "mk_qspi_private.h"
+#include "mk_qspi.h"
+#include "mk_utils.h"
+
+/**
+ *
+ */
+
+#endif
 
