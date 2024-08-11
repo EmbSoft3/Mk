@@ -42,31 +42,6 @@
  * @endinternal
  */
 
-static T_mkCode mk_home_createPong ( void )
-{
-   /* Déclaration de la variable de retour */
-   T_mkCode l_result;
-
-   /* Déclaration d'un pointeur d'application */
-   T_mkApplication* l_application;
-
-   /* Récupération de l'adresse de la partition système */
-   T_mkVolume* l_volume = mk_supervisor_getVolume ( );
-
-   /* Installation de l'application Pong */
-   l_result = mk_application_installDynamic ( &l_application, ( T_str8 ) "mk/apps/pong/pongGameRelease_V10.elf",
-                                              K_MK_NULL, l_volume, K_MK_NULL );
-
-   /* Retour */
-   return ( l_result );
-}
-
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
 static T_mkCode mk_home_createShell ( void )
 {
    /* Déclaration de la variable de retour */
@@ -92,71 +67,13 @@ static T_mkCode mk_home_createShell ( void )
  * @endinternal
  */
 
-static T_mkCode mk_home_createColorScreen ( void )
-{
-   /* Déclaration de la variable de retour */
-   T_mkCode l_result;
-
-   /* Déclaration d'un pointeur d'application */
-   T_mkApplication* l_application;
-
-   /* Récupération de l'adresse de la partition système */
-   T_mkVolume* l_volume = mk_supervisor_getVolume ( );
-
-   /* Installation de l'application ColorScreen */
-   l_result = mk_application_installDynamic ( &l_application, ( T_str8 ) "mk/apps/colorScreen/colorScreenRelease_V10.elf",
-                                            ( T_mkAddr ) "FFFF00FF", l_volume, K_MK_NULL );
-
-   /* Retour */
-   return ( l_result );
-}
-
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
-static T_mkCode mk_home_createBlinkLed ( void )
-{
-   /* Déclaration de la variable de retour */
-   T_mkCode l_result;
-
-   /* Déclaration d'un pointeur d'application */
-   T_mkApplication* l_application;
-
-   /* Récupération de l'adresse de la partition système */
-   T_mkVolume* l_volume = mk_supervisor_getVolume ( );
-
-   /* Installation de l'application BlinkLed */
-   l_result = mk_application_installDynamic ( &l_application, ( T_str8 ) "mk/apps/blinkLed/blinkLedRelease_V10.elf",
-                                              ( T_mkAddr ) "500", l_volume, K_MK_NULL );
-
-   /* Retour */
-   return ( l_result );
-}
-
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
 T_mkCode mk_home_install ( void )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
 
    /* Installation des applications dynamiques */
-   l_result  = mk_home_createPong ( );
-   l_result |= mk_home_createShell ( );
-   l_result |= mk_home_createBlinkLed ( );
-   l_result |= mk_home_createColorScreen ( );
-   l_result |= mk_home_createColorScreen ( );
-   l_result |= mk_home_createColorScreen ( );
-   l_result |= mk_home_createColorScreen ( );
-   l_result |= mk_home_createColorScreen ( );
-   l_result |= mk_home_createColorScreen ( );
+   l_result = mk_home_createShell ( );
 
    /* Retour */
    return ( l_result );

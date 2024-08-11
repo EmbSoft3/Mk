@@ -99,7 +99,7 @@
  * @brief Définition du chemin du fichier stockant l'arrière plan de la vue principale.
  */
 
-#define K_MK_HOME_MAINVIEW_BACKGROUND_PATH ( T_str8 ) "mk/apps/home/mk_background.bmp"
+#define K_MK_HOME_MAINVIEW_BACKGROUND_PATH ( T_str8 ) "mk/apps/home/mk_home_background.bmp"
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_WIDTH

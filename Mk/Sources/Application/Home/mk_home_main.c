@@ -95,7 +95,7 @@ void mk_home_main ( T_mkAddr p_param )
          ( T_str8 ) "MkSoft",
          ( T_str8 ) "1.0.0",
          ( T_str8 ) "Le gestionnaire d'application du système.",
-         ( T_str8 ) "mk/apps/home/mk_application.bmp",
+         ( T_str8 ) K_MK_HOME_MANAGERVIEW_APPLICATION_ICON_PATH,
          K_MK_NULL
    };
 

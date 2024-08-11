@@ -137,11 +137,18 @@
  */
 
 /**
- * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_PATH
- * @brief Définition du chemin de l'icône présente dans la vue.
+ * @def K_MK_HOME_MANAGERVIEW_APPLICATION_ICON_PATH
+ * @brief Définition du chemin de l'icône APPLICATION présente dans la vue.
  */
 
-#define K_MK_HOME_MANAGERVIEW_STATUS_ICON_PATH ( T_str8 ) "mk/apps/home/mk_system_status.bmp"
+#define K_MK_HOME_MANAGERVIEW_APPLICATION_ICON_PATH ( T_str8 ) "mk/apps/home/mk_home_application.bmp"
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_PATH
+ * @brief Définition du chemin de l'icône STATUS présente dans la vue.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_STATUS_ICON_PATH ( T_str8 ) "mk/apps/home/mk_home_status.bmp"
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_WIDTH
