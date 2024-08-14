@@ -96,11 +96,15 @@ SECTIONS
     { 
        *( .rodata ) 
     } > K_FLASH_ITCM
-         
-            
+
+    /* Mapping de la section "mk_privileged_font_memory" */
+    .mk_privileged_font_memory : ALIGN ( 4 )
+    {
+       *( .mk_privileged_font_memory )
+    } > K_FLASH_ITCM
+
     /* ********************************************************************* */
-         
-          
+
     /* Mapping de la section "mk_unprivileged_memory" */
     /* Attention, les sections non privilégiée doivent être juxtaposée et */
     /* délimité par les constantes K_UNPRIVILEGED_MEMORY_START_ADDR et */

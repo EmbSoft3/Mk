@@ -70,7 +70,7 @@
  *        de caractères plus simplement.
  */
 
-#define K_MK_PRIVILEGED_FONT_MEMORY __attribute__ ((section(".rodata"), aligned(4), used))
+#define K_MK_PRIVILEGED_FONT_MEMORY __attribute__ ((section(".mk_privileged_font_memory"), aligned(4), used))
 
 /**
  * @def K_MK_PRIVILEGED_QSPI_MEMORY
