@@ -56,7 +56,7 @@ programming file. To learn more about the mechanisms involved, see the wiki of
 my repository [sym2srec](https://github.com/MkSoft-MacLewis/Sym2srec/wiki)).
 
 Actually, the dynamic loader built into **Mk** loads external programming files 
-(.elf) into 32KB memory pages of external RAM memory.
+(.elf) into 64KB memory pages of external RAM memory.
 
 The size of the programs may seem restrictive and it is. However, **Mk** offers 
 two features to overcome this:
@@ -71,7 +71,7 @@ two features to overcome this:
 
 ## Build
 
-Mk can be built using the [makefile](Mk/make/makefile) file on the repository.
+Mk can be built using the [makefile](Mk/Make/makefile) file on the repository.
 The variable **TOOLCHAIN_PATH** must be updated with the path of the ARM
 toolchain.
 
@@ -129,7 +129,7 @@ Mk is free software; It is distributed in the hope that it will be useful.
 There is NO warranty; not even for MERCHANTABILITY or 
 FITNESS FOR A PARTICULAR PURPOSE.
 
-The content of this repository is bound by the [BSD-3-Clause](LICENSE.txt) license.
+The content of this repository is bound by the [BSD-3-Clause](LICENSE) license.
 
 
 
