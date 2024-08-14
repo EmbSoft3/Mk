@@ -137,6 +137,19 @@ static T_mkCode mk_supervisor_handleApplicationKeyboardInputs ( T_mkSupervisor* 
             p_supervisor->load.backgroundEnabled = K_MK_TRUE;
          }
       }
+
+      /* Sinon si un screenshot doit être réalisé */
+      else if ( ( p_ctrlId & 0xFF ) == K_MK_KEYBOARD_PRINTSCREEN )
+      {
+         /* Enregistrement d'un screenhot sur le système de stockage */
+         l_result = mk_display_screenshot ( );
+      }
+
+      /* Sinon */
+      else
+      {
+         /* Ne rien faire */
+      }
    }
 
    /* Sinon */

@@ -207,8 +207,21 @@ static T_mkCode mk_home_manager_paintGroup ( T_mkButtonImage* p_buttonImage, T_s
       mk_vect2d_setCoord ( &l_topLeft, p_x + 220.0f, p_y );
       mk_vect2d_setCoord ( &l_bottomRight, p_x + 270.0f, p_y + 90.0f );
 
-      /* Dessin du second texte du groupe (valeur) */
-      l_result = mk_graphics_drawString ( p_buttonImage->field.layer, l_topLeft, l_bottomRight, p_strcount, &l_style, K_MK_NULL );
+      /* Effacement de la valeur précédente */
+      l_result = mk_graphics_drawRect ( p_buttonImage->field.layer, K_MK_GRAPHICS_SOLID, l_topLeft, l_bottomRight, K_MK_COLOR_ARGB_BLACK );
+
+      /* Si aucune erreur ne s'est produite */
+      if ( l_result == K_MK_OK )
+      {
+         /* Dessin du second texte du groupe (valeur) */
+         l_result = mk_graphics_drawString ( p_buttonImage->field.layer, l_topLeft, l_bottomRight, p_strcount, &l_style, K_MK_NULL );
+      }
+
+      /* Sinon */
+      else
+      {
+         /* Ne rien faire */
+      }
    }
 
    /* Sinon */

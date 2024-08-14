@@ -435,7 +435,7 @@ static T_mkCode mk_home_initLayer ( T_mkHomeApplication* p_home )
       /* Initialisation des layers */
       mk_layer_init ( &p_home->view.layer.layers );
       mk_layer_set ( &p_home->view.layer.layers, K_MK_LAYER_BOTH_VISIBLE );
-      mk_layer_setAlpha ( &p_home->view.layer.layers, 220, 255 );
+      mk_layer_setAlpha ( &p_home->view.layer.layers, 255, 255 );
 
       /* Ajout du layer dans le container */
       l_result = mk_container_addField ( p_home->view.layer.container, &p_home->view.layer.layers.field, K_MK_NULL );

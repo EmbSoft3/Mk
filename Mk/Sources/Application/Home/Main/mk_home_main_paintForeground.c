@@ -47,25 +47,8 @@ T_mkCode mk_home_main_paintForeground ( T_mkContainer* p_container, T_mkField* p
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
 
-   /* Déclaration des vecteurs de travail */
-   T_mkVect2D l_v1 = { K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_X, K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_Y };
-   T_mkVect2D l_v2 = { K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_BOTTOMRIGHT_X, K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_BOTTOMRIGHT_Y };
-
    /* Exécution de la fonction de peinture par défaut */
    l_result = mk_screen_defaultPainter ( p_container, p_field, p_frameNumber );
-
-   /* Si aucune erreur ne s'est produite */
-   if ( l_result == K_MK_OK )
-   {
-      /* Dessin d'un rectangle arrondi */
-      l_result = mk_graphics_drawRect ( p_field->layer, K_MK_GRAPHICS_SOLID, l_v1, l_v2, K_MK_COLOR_ARGB_TRANSPARENT_BLACK );
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Ne rien faire */
-   }
 
    /* Retour */
    return ( l_result);

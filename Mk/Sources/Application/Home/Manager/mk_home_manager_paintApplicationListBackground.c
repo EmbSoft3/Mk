@@ -60,7 +60,7 @@ T_mkCode mk_home_manager_paintApplicationListBackground ( T_mkContainer* p_conta
       mk_vect2d_setCoord ( &l_bottomRight, p_field->position.x + ( real32_t ) p_field->dimension.width - 1, p_field->position.y + ( real32_t ) p_field->dimension.height - 1 );
 
       /* Exécution de la fonction de peinture par défaut */
-      l_result = mk_graphics_drawRect ( p_field->layer, K_MK_GRAPHICS_SOLID, p_field->position, l_bottomRight, K_MK_GRAPHICS_BACKGROUND );
+      l_result = mk_graphics_drawRect ( p_field->layer, K_MK_GRAPHICS_SOLID, p_field->position, l_bottomRight, K_MK_COLOR_ARGB_BLACK );
 
       /* Si aucune erreur ne s'est produite */
       if ( l_result == K_MK_OK )
