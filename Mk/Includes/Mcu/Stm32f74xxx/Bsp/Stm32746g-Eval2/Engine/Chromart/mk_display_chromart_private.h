@@ -337,6 +337,25 @@ T_mkCode mk_chromart_drawRoundRect ( T_mkChromartRequest* p_request );
 T_mkCode mk_chromart_load ( T_mkTask* p_task, T_mkChromartRequest* p_request );
 
 /**
+ * @fn T_mkCode mk_chromart_screenshot ( void );
+ * @brief Cette fonction enregistre un screenshot sur le système de fichier.
+ *
+ * @return Cette fonction retourne une des valeurs suivantes :
+ *         \li \ref K_MK_OK               : le screenshot a été enregistré sur le système de fichier.
+ *         \li \ref K_MK_ERROR_PARAM      : le screenshot n'a pas été enregistré sur le système de fichier car au moins un paramètre est invalide.
+ *         \li \ref K_MK_ERROR_ISR        : le screenshot n'a pas été enregistré sur le système de fichier car la fonction a été exécutée depuis un vecteur d'interruption.
+ *         \li \ref K_MK_ERROR_MALLOC     : le screenshot n'a pas été enregistré sur le système de fichier car une erreur d'allocation dynamique s'est produite.
+ *         \li \ref K_MK_ERROR_TIMEOUT    : le screenshot n'a pas été enregistré sur le système de fichier car un timeout s'est produit.
+ *         \li \ref K_MK_ERROR_COMM       : le screenshot n'a pas été enregistré sur le système de fichier car une erreur de communication s'est produite.
+ *         \li \ref K_MK_ERROR_UNEXPECTED : le screenshot n'a pas été enregistré sur le système de fichier car une erreur inattendue s'est produite.
+ *         \li \ref K_MK_ERROR_CORRUPTED  : le screenshot n'a pas été enregistré sur le système de fichier car le fichier est corrompu (table des clusters).
+ *         \li \ref K_MK_ERROR_RIGHT      : le screenshot n'a pas été enregistré sur le système de fichier car une tâche non privilégiée ne possède pas suffisamment de droits.
+ *
+ */
+
+T_mkCode mk_chromart_screenshot ( void );
+
+/**
  * @fn void mk_chromart_alpha ( T_mkTask* p_task, T_mkChromartRequest* p_request );
  * @brief Cette fonction configure la valeur alpha des layers de premier et d'arrière plan.
  * @param[in] p_request Ce paramètre contient l'adresse d'une structure de type \ref T_mkChromartRequest. Les attributs suivants sont utilisés :\n

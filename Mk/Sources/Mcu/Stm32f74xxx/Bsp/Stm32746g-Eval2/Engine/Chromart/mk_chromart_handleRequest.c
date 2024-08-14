@@ -119,10 +119,16 @@ T_mkCode mk_chromart_handleRequest ( T_mkTask* p_task, T_mkChromartRequest* p_re
       l_result = mk_chromart_load ( p_task, p_request );
    }
 
-   /* Sinon si la requête est de type LAYER */
+   /* Sinon si la requête est de type ALPHA */
    else if ( p_request->id == K_MK_DISPLAY_REQUEST_CHROMART_ALPHA )
    {
       mk_chromart_alpha ( p_request );
+   }
+
+   /* Sinon si la requête est de type SCREENSHOT */
+   else if ( p_request->id == K_MK_DISPLAY_REQUEST_CHROMART_SCREENSHOT )
+   {
+      l_result = mk_chromart_screenshot ( );
    }
 
    /* Sinon */

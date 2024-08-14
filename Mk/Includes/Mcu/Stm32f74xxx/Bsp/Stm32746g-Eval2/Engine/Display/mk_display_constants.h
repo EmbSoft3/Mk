@@ -54,6 +54,26 @@
 #define K_MK_DISPLAY_HEIGHT 480
 
 /**
+ * @def K_MK_DISPLAY_RESOLUTION_X
+ * @brief Définition de la résolution X de l'écran (en pixel/m). \n
+ *        Cette constante peut être modifiée par l'utilisateur.
+ */
+
+#define K_MK_DISPLAY_RESOLUTION_X 5555
+
+/**
+ * @def K_MK_DISPLAY_RESOLUTION_Y
+ * @brief Définition de la résolution Y de l'écran (en pixel/m).\n
+ *        Cette constante peut être modifiée par l'utilisateur.
+ */
+
+#define K_MK_DISPLAY_RESOLUTION_Y 5555
+
+/**
+ *
+ */
+
+/**
  * @def K_MK_DISPLAY_LTDC_HSYNC_PULSE_WITDH
  * @brief Définition de la durée du pulse de synchronisation (en multiple de l'horloge pixel - ClockPixel).\n
  *        Constante propre au TFT AM-640480G5TNQW-T00H. Elle peut être modifiée par l'utilisateur.

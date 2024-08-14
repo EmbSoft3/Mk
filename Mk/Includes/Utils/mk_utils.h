@@ -114,14 +114,35 @@ uint32_t mk_utils_tick ( uint32_t p_refTick, uint32_t p_tick );
  * @param[in] randomNumber Ce paramètre contient l'adresse où doit être stocké le nombre aléatoire.
  *
  * @return Cette fonction retourne une des valeurs suivantes :
- *         \li (  0 ) : la fonction s'est exécutée sans rencontrée d'erreur
- *         \li ( -1 ) : la fonction ne s'est pas exécutée car le paramètre est invalide
- *         \li ( -2 ) : la fonction ne peut pas fournir de nombre aléatoire car une erreur inattendue s'est produite
- *         \li ( -3 ) : la fonction ne peut pas fournir de nombre aléatoire car le périphérique RNG est en cours de génération du nombre.
+ *         \li (  0 ) : la fonction s'est exécutée sans rencontrée d'erreur.
+ *         \li ( -1 ) : la fonction ne s'est pas exécutée car au moins un paramètre est invalide.
+ *         \li ( -2 ) : la fonction ne peut pas fournir de nombre aléatoire car une erreur inattendue s'est produite.
+ *         \li ( -3 ) : la fonction ne peut pas fournir de nombre aléatoire car le périphérique RNG est en cours de génération d'un nombre.
  *
  */
 
 int32_t mk_utils_rand ( uint32_t* randomNumber );
+
+/**
+ * @fn int32_t mk_utils_getRandomString ( T_str8 p_randomString, T_str8 p_prefix, T_str8 p_suffix );
+ * @brief Cette fonction retourne une chaine de caractères aléatoire au format suivant : [p_prefix][p_ramdomString<4words>][p_suffix].
+ *
+ * @param[out] p_randomString Ce paramètre contient l'adresse d'une chaine de caractères ASCII de taille : \n
+ *                            strlen ( p_prefix ) + strlen ( p_suffix ) + 16 octets + 1 octets ('\0')
+ * @param[in]  p_prefix       Ce paramètre contient l'adresse de la chaine de caractères ASCII contenant le préfix à insérer
+ *                            dans la chaine de destination.
+ * @param[in]  p_suffix       Ce paramètre contient l'adresse de la chaine de caractères ASCII contenant le suffix à insérer
+ *                            dans la chaine de destination.
+ *
+ * @return Cette fonction retourne une des valeurs suivantes :
+ *         \li (  0 ) : la fonction s'est exécutée sans rencontrée d'erreur.
+ *         \li ( -1 ) : la fonction ne s'est pas exécutée car au moins un paramètre est invalide.
+ *         \li ( -2 ) : la fonction ne peut pas fournir de nombre aléatoire car une erreur inattendue s'est produite.
+ *         \li ( -3 ) : la fonction ne peut pas fournir de nombre aléatoire car le périphérique RNG est en cours de génération d'un nombre.
+ *
+ */
+
+int32_t mk_utils_getRandomString ( T_str8 p_randomString, T_str8 p_prefix, T_str8 p_suffix );
 
 /**
  *

@@ -570,6 +570,18 @@ void ltdc_setFrameAddr ( void_t p_layer, uint32_t p_addr );
 void ltdc_setClut ( void_t p_layer, uint32_t p_index, uint32_t p_rgb );
 
 /**
+ * @fn uint32_t ltdc_getConstantAlpha ( void_t p_layer );
+ * @brief Cette fonction retourne la valeur du canal alpha d'un des deux layers.
+ * @param[in] p_layer Ce paramètre contient l'identifiant du layer. Les constantes suivantes peuvent être utilisées : \n
+ *                    \ref K_LTDC_LAYER1 et \ref K_LTDC_LAYER2
+ *
+ * @return Cette fonction retourne la valeur du canal alpha d'un des deux layers (entre 0 et 255).
+ *
+ */
+
+uint32_t ltdc_getConstantAlpha ( void_t p_layer );
+
+/**
  * @fn uint32_t ltdc_getCurrentPosition ( void );
  * @brief Cette fonction retourne la position du curseur XY courante.
  * @return Cette fonction retourne une valeur sur 32 bits. Les bits 31 à 16 contient la position X et les bits

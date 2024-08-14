@@ -107,6 +107,10 @@ static void mk_display_initScreen ( void )
    mk_display_setWidth ( K_MK_DISPLAY_WIDTH );
    mk_display_setHeight ( K_MK_DISPLAY_HEIGHT );
 
+   /* Configuration des résolutions de l'écran sur les axes X et Y */
+   mk_display_setResolutionX ( K_MK_DISPLAY_RESOLUTION_X );
+   mk_display_setResolutionY ( K_MK_DISPLAY_RESOLUTION_Y );
+
    /* Configuration de la taille des pixels des layers de premier et d'arrière plan. */
    /* L'arrière plan est au format ARGB888 pour réduire le flux de données nécessaires au périphérique LTDC. */
    g_mkDisplay.screen.bytesPerPixel [ K_MK_GRAPHICS_FOREGROUND ] = K_MK_DISPLAY_ARGB8888;

@@ -189,6 +189,8 @@ struct T_mkDisplayScreen
 {
    uint32_t width;                                                      /*!< Ce membre contient la largeur de l'écran [en pixel]. */
    uint32_t height;                                                     /*!< Ce membre contient la hauteur de l'écran [en pixel]. */
+   uint32_t resolutionX;                                                /*!< Ce membre contient la résolution de l'écran sur l'axe X [en pixel/m]. */
+   uint32_t resolutionY;                                                /*!< Ce membre contient la résolution de l'écran sur l'axe Y [en pixel/m]. */
    uint32_t bytesPerPixel [ 2 ];                                        /*!< Ce membre contient la résolution (\ref K_MK_DISPLAY_RGB888 ou \ref K_MK_DISPLAY_ARGB8888) des pixels du premier plan (\ref K_MK_GRAPHICS_FOREGROUND) et de l'arrière plan (\ref K_MK_GRAPHICS_BACKGROUND). */
 };
 

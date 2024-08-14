@@ -157,9 +157,23 @@ T_mkCode mk_display_exitCritical ( void );
 T_mkCode mk_display_refreshFields ( void );
 
 /**
+ * @fn T_mkCode mk_display_screenshot ( uint32_t p_layer, uint32_t* p_bitmap, T_mkVect2D p_v1, uint32_t p_column, uint32_t p_row );
+ * @brief Cette fonction enregistre un screenshot sur le système de fichier.
+ *
+ * @return Cette fonction retourne une des valeurs suivantes :
+ *         \li \ref K_MK_OK            : le screenshot a été enregistré sur le système de fichier.
+ *         \li \ref K_MK_ERROR_PARAM   : le screenshot n'a pas été enregistré sur le système de fichier car au moins un paramètre est invalide.
+ *         \li \ref K_MK_ERROR_ISR     : le screenshot n'a pas été enregistré sur le système de fichier car la fonction a été exécutée depuis un vecteur d'interruption.
+ *         \li \ref K_MK_ERROR_TIMEOUT : le screenshot n'a pas été enregistré sur le système de fichier car un timeout s'est produit.
+ *
+ */
+
+T_mkCode mk_display_screenshot ( void );
+
+/**
  * @fn void mk_display_setWidth ( uint32_t p_width );
  * @brief Cette fonction configure la largeur de l'écran.
- * @param[in] p_width Ce paramètre contient la largeur de l'écran [en pixel]. Il évolue entre 0 et \ref K_MK_DISPLAY_WIDTH.
+ * @param[in] p_width Ce paramètre contient la largeur de l'écran [en pixel].
  * @return Sans objet.
  *
  */
@@ -169,12 +183,32 @@ void mk_display_setWidth ( uint32_t p_width );
 /**
  * @fn void mk_display_setHeight ( uint32_t p_height );
  * @brief Cette fonction configure la hauteur de l'écran.
- * @param[in] p_height Ce paramètre définie la hauteur de l'écran [en pixel]. Il évolue entre 0 et \ref K_MK_DISPLAY_HEIGHT.
+ * @param[in] p_height Ce paramètre définie la hauteur de l'écran [en pixel].
  * @return Sans objet.
  *
  */
 
 void mk_display_setHeight ( uint32_t p_height );
+
+/**
+ * @fn void mk_display_setResolutionX ( uint32_t p_resolutionX );
+ * @brief Cette fonction configure la résolution de l'écran sur l'axe X.
+ * @param[in] p_resolutionX Ce paramètre définie la résolution de l'écran sur l'axe X [en pixel/m].
+ * @return Sans objet.
+ *
+ */
+
+void mk_display_setResolutionX ( uint32_t p_resolutionX );
+
+/**
+ * @fn void mk_display_setResolutionY ( uint32_t p_resolutionY );
+ * @brief Cette fonction configure la résolution de l'écran sur l'axe Y.
+ * @param[in] p_resolutionY Ce paramètre définie la résolution de l'écran sur l'axe Y [en pixel/m].
+ * @return Sans objet.
+ *
+ */
+
+void mk_display_setResolutionY ( uint32_t p_resolutionY );
 
 /**
  * @fn uint32_t mk_display_getWidth ( void );
@@ -193,6 +227,24 @@ uint32_t mk_display_getWidth ( void );
  */
 
 uint32_t mk_display_getHeight ( void );
+
+/**
+ * @fn uint32_t mk_display_getResolutionX ( void );
+ * @brief Cette fonction retourne la résolution de l'écran sur l'axe X.
+ * @return Cette fonction retourne la résolution de l'écran sur l'axe X [en pixel/m].
+ *
+ */
+
+uint32_t mk_display_getResolutionX ( void );
+
+/**
+ * @fn uint32_t mk_display_getResolutionY ( void );
+ * @brief Cette fonction retourne la résolution de l'écran sur l'axe Y.
+ * @return Cette fonction retourne la résolution de l'écran sur l'axe Y [en pixel/m].
+ *
+ */
+
+uint32_t mk_display_getResolutionY ( void );
 
 /**
  * @fn uint32_t mk_display_getFramerate ( void );

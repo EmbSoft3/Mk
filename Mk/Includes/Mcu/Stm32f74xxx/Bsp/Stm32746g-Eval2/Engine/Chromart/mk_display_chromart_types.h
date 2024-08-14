@@ -56,7 +56,8 @@ typedef enum T_mkChromartRequestType
    K_MK_DISPLAY_REQUEST_CHROMART_TRIANGLE = 0x9,            /*!< Définition de l'identifiant de la requête de type Triangle. */
    K_MK_DISPLAY_REQUEST_CHROMART_ROUNDRECT = 0xA,           /*!< Définition de l'identifiant de la requête de type RoundRect. */
    K_MK_DISPLAY_REQUEST_CHROMART_ALPHA = 0xB,               /*!< Définition de l'identifiant de la requête de type Alpha. */
-   K_MK_DISPLAY_REQUEST_CHROMART_PLOT = 0xC                 /*!< Définition de l'identifiant de la requête de type Plot. */
+   K_MK_DISPLAY_REQUEST_CHROMART_PLOT = 0xC,                /*!< Définition de l'identifiant de la requête de type Plot. */
+   K_MK_DISPLAY_REQUEST_CHROMART_SCREENSHOT = 0xD           /*!< Définition de l'identifiant de la requête de type Screenshot. */
 } T_mkChromartRequestType;
 
 /**

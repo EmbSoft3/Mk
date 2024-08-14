@@ -57,6 +57,10 @@ void mk_display_frameInterrupt ( void )
       ltdc_setFrameAddr ( K_LTDC_LAYER1, ( uint32_t ) g_mkDisplay.pnt.currentBufferPrinted->next->addr [ K_MK_GRAPHICS_BACKGROUND ] );
       ltdc_setFrameAddr ( K_LTDC_LAYER2, ( uint32_t ) g_mkDisplay.pnt.currentBufferPrinted->next->addr [ K_MK_GRAPHICS_FOREGROUND ] );
 
+      /* Réinitialisation des drapeaux des buffers */
+      g_mkDisplay.pnt.currentBufferPrinted->status.foregroundLayer = 0;
+      g_mkDisplay.pnt.currentBufferPrinted->status.backgroundLayer = 0;
+
       /* Actualisation de l'adresse du buffer affiché */
       g_mkDisplay.pnt.currentBufferPrinted = g_mkDisplay.pnt.currentBufferPrinted->next;
 
@@ -88,10 +92,6 @@ void mk_display_frameInterrupt ( void )
          /* Désactivation du layer */
          ltdc_disableLayer ( K_LTDC_LAYER1 );
       }
-
-      /* Réinitialisation des drapeaux des buffers précédement affichés */
-      g_mkDisplay.pnt.currentBufferPrinted->status.foregroundLayer = 0;
-      g_mkDisplay.pnt.currentBufferPrinted->status.backgroundLayer = 0;
 
       /* Réinitialisation du drapeau de validité */
       g_mkDisplay.pnt.currentBufferPrinted->validity = 0;
