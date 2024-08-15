@@ -101,6 +101,9 @@ STRIP_OPTIONS := -s
 
 # Optimization Options
 OPTIMIZATION_OPTIONS := -Ofast -fno-inline-functions -fno-short-enums -fno-move-loop-invariants
+ifeq ($(MAKECMDGOALS),Debug)
+OPTIMIZATION_OPTIONS := -O0 -fno-inline-functions -fno-short-enums -fno-move-loop-invariants
+endif
 
 # Options to Request or Suppress Warnings 
 WARN_OPTIONS := -Wpedantic -pedantic-errors -Werror -Wall -Wextra -Wdouble-promotion -Wnull-dereference -Wshift-negative-value -Wswitch-default -Wswitch-enum -Wswitch-bool \
