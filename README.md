@@ -62,7 +62,7 @@ The size of the programs may seem restrictive and it is. However, **Mk** offers
 two features to overcome this:
  
  - The first is the use of external library. If the program is larger 
-   than 32KB, a new shared library can be added to the system.
+   than 64KB, a new shared library can be added to the system.
  - The second is intrinsic to the system. Since the **Mk** system symbols 
    (".symtab" and ".strtab") are stored in its own executable code, external 
    programs do not need to define the API functions in their code but can 
