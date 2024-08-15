@@ -117,7 +117,7 @@ features. Below is a list of features that will be added in the future :
  - Add file system access rights
  - Add sound to the graphics engine (USB isochronous transfers)
  - Add touch events to the graphics engine
- - Add an ethernet stack
+ - Add a TCP/IP stack
 
 This list is not exhaustive, and includes only the main features.
 
