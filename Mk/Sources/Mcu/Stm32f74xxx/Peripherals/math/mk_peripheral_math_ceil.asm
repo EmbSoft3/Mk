@@ -35,7 +35,7 @@
 */
 
 .cpu cortex-m7
-.fpu fpv5-d16
+.fpu fpv5-sp-d16
 .syntax unified
 
 /**

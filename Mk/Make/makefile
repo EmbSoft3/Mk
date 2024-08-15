@@ -85,7 +85,7 @@ LD_SCRIPT := -T "../Make/linker.ld"
 CDIAL_OPTIONS := -std=c18 -fno-asm -fno-builtin -fno-cond-mismatch -ffreestanding -fsigned-bitfields -fsigned-char -fsso-struct=little-endian
 
 # Arm Options
-ARM_OPTIONS := -mcpu=cortex-m7 -mthumb -mfloat-abi=hard -mfpu=fpv5-d16 -mno-unaligned-access -mlittle-endian
+ARM_OPTIONS := -mcpu=cortex-m7 -mthumb -mfloat-abi=hard -mfpu=fpv5-sp-d16 -mno-unaligned-access -mlittle-endian
 
 # Static Analyzer Options
 ANALYZER_OPTIONS := -fanalyzer
