@@ -71,8 +71,8 @@ static T_mkCode mk_supervisor_handleApplicationKeyboardInputs ( T_mkSupervisor* 
             /* Activation du focus */
             mk_field_setFocus ( &p_supervisor->console.foreground.prompt.field, K_MK_FIELD_STATE_IDLE );
 
-            /* Récupération de l'adresse de l'application principale */
-            l_currentApplication = mk_application_getMain ( );
+            /* Récupération de l'adresse de l'application courante */
+            l_currentApplication = mk_application_getCurrent ( );
 
             /* Transmission d'un événement à l'application en cours d'exécution */
             l_result = mk_application_post ( l_currentApplication, K_MK_EVENT_RESUME );
