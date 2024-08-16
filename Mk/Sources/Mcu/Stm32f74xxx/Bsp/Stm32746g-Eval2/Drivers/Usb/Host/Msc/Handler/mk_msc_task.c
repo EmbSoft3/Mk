@@ -113,7 +113,7 @@ void mk_msc_task ( T_mkAddr p_param )
       {
          /* Analyse de la boite de messages pour savoir si le gestionnaire USB a transmis l'adresse */
          /* d'un nouveau périphérique MSC */
-         l_result = mk_mail_pend ( K_MK_NULL, l_handler.messageArea->mail, ( T_mkAddr ) &l_message, K_MK_MSC_REFRESH_TIMEOUT );
+         l_result = mk_mail_pend ( K_MK_NULL, l_handler.messageArea->mail, ( T_mkAddr ) &l_message, 0 );
 
          /* Si un nouveau périphérique MSC vient d'être connecté */
          if ( l_result == K_MK_OK )
@@ -131,7 +131,7 @@ void mk_msc_task ( T_mkAddr p_param )
          /* Lancement de la séquence d'actualisation des périphériques MSC et gestion des requêtes utilisateurs */
          l_result |= mk_msc_handle ( &l_handler );
 
-         /* Attente 10 ms */
+         /* Attente 100 ms */
          /* La fonction 'delay' est utilisée pour moduler la durée d'attente en fonction */
          /* de la durée d'attente de la requête */
          /*l_result |= mk_task_delay ( K_MK_MSC_REFRESH_TIMEOUT );*/
