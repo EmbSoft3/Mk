@@ -32,9 +32,36 @@
 * @brief Définition de la fonction mk_home_install.
 * @date 8 oct. 2023
 *
+* @todo Implémenter l'installation des applications dans un fichier d'initialisation (.ini).
+*
 */
 
 #include "mk_home_api.h"
+
+/**
+ * @internal
+ * @brief
+ * @endinternal
+ */
+
+static T_mkCode mk_home_createPong ( void )
+{
+   /* Déclaration de la variable de retour */
+   T_mkCode l_result;
+
+   /* Déclaration d'un pointeur d'application */
+   T_mkApplication* l_application;
+
+   /* Récupération de l'adresse de la partition système */
+   T_mkVolume* l_volume = mk_supervisor_getVolume ( );
+
+   /* Installation de l'application Pong */
+   l_result = mk_application_installDynamic ( &l_application, ( T_str8 ) "mk/apps/pong/pongGameRelease.elf",
+                                              K_MK_NULL, l_volume, K_MK_NULL );
+
+   /* Retour */
+   return ( l_result );
+}
 
 /**
  * @internal
@@ -54,8 +81,33 @@ static T_mkCode mk_home_createShell ( void )
    T_mkVolume* l_volume = mk_supervisor_getVolume ( );
 
    /* Installation de l'application Pong */
-   l_result = mk_application_installDynamic ( &l_application, ( T_str8 ) "mk/apps/shell/shellRelease_V10.elf",
+   l_result = mk_application_installDynamic ( &l_application, ( T_str8 ) "mk/apps/shell/shellRelease.elf",
                                               K_MK_NULL, l_volume, K_MK_NULL );
+
+   /* Retour */
+   return ( l_result );
+}
+
+/**
+ * @internal
+ * @brief
+ * @endinternal
+ */
+
+static T_mkCode mk_home_createBlinkLed ( void )
+{
+   /* Déclaration de la variable de retour */
+   T_mkCode l_result;
+
+   /* Déclaration d'un pointeur d'application */
+   T_mkApplication* l_application;
+
+   /* Récupération de l'adresse de la partition système */
+   T_mkVolume* l_volume = mk_supervisor_getVolume ( );
+
+   /* Installation de l'application BlinkLed */
+   l_result = mk_application_installDynamic ( &l_application, ( T_str8 ) "mk/apps/blinkLed/blinkLedRelease.elf",
+                                              ( T_mkAddr ) "1000", l_volume, K_MK_NULL );
 
    /* Retour */
    return ( l_result );
@@ -73,7 +125,9 @@ T_mkCode mk_home_install ( void )
    T_mkCode l_result = K_MK_OK;
 
    /* Installation des applications dynamiques */
-   l_result = mk_home_createShell ( );
+   l_result  = mk_home_createPong ( );
+   l_result |= mk_home_createShell ( );
+   l_result |= mk_home_createBlinkLed ( );
 
    /* Retour */
    return ( l_result );
