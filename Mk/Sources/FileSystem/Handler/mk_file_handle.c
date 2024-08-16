@@ -172,7 +172,7 @@ static T_mkCode mk_file_searchVolume ( T_mkFileMessage* p_message, T_mkDisk* p_d
       for ( ; ( l_result == K_MK_OK ) && ( l_volume != K_MK_NULL ) ; )
       {
          /* Concaténation du nom de la partition dans la variable de travail */
-         mk_utils_strcat ( ( T_str8 ) &l_strBuf [ l_length ], ( T_str8 ) l_volume->name.str, ( T_str8 ) "/" );
+         mk_utils_strcat ( ( T_str8 ) &l_strBuf [ l_length ], ( T_str8 ) l_volume->name.str, ( T_str8 ) "" );
 
          /* Récupération de la longueur de la chaine de caractères */
          l_length = mk_utils_strlen ( ( T_str8 ) l_strBuf );
@@ -181,11 +181,32 @@ static T_mkCode mk_file_searchVolume ( T_mkFileMessage* p_message, T_mkDisk* p_d
          /* la chaine de caractères utilisateur */
          l_ret = mk_utils_strcomp ( ( T_str8 ) l_strBuf, l_filePath, 0, l_length );
 
+         /* Concaténation du nom de la partition dans la variable de travail */
+         mk_utils_strcat ( ( T_str8 ) &l_strBuf [ l_length ], ( T_str8 ) "/", ( T_str8 ) "" );
+
+         /* Réalisation d'une comparaison entre le nom de la partition et */
+         /* la chaine de caractères utilisateur (ajout d'un slash) */
+         l_ret |= mk_utils_strcomp ( ( T_str8 ) l_strBuf, l_filePath, 0, l_length + 1 );
+
          /* Si la partition est la partition recherchée */
          if ( l_ret == 1 )
          {
-            /* Actualisation de la valeur des paramètres de la requête */
-            p_message->argument3 = &l_filePath [ l_length ];
+            /* Si la chaine de caractères contient le chemin du répertoire racine (ex: /dsk0/vol0) */
+            if ( l_filePath [ l_length ] == '\0' )
+            {
+               /* Actualisation du chemin du fichier */
+               p_message->argument3 = &l_filePath [ l_length ];
+            }
+
+            /* Sinon */
+            else
+            {
+               /* Actualisation du chemin du fichier */
+               /* Il faut prendre en compte le '/' additionnel (ex: /dsk0/vol0/chemin) */
+               p_message->argument3 = &l_filePath [ l_length + 1 ];
+            }
+
+            /* Actualisation de l'adresse du volume */
             p_message->argument1 = l_volume;
          }
 
@@ -1592,7 +1613,7 @@ static T_mkCode mk_file_handleSizeRequest ( T_mkFileMessage* p_message, T_mkTask
 static T_mkCode mk_file_handleTypeRequest ( T_mkFileMessage* p_message, T_mkTask* p_task, T_mkCallbackParam* p_callbackParam )
 {
    /* Déclaration de la variable de retour */
-   T_mkCode l_result;
+   T_mkCode l_result = K_MK_OK;
 
    /* Déclaration d'une structure d'information */
    T_mkFileInfo l_info;
@@ -1623,19 +1644,29 @@ static T_mkCode mk_file_handleTypeRequest ( T_mkFileMessage* p_message, T_mkTask
       /* Si le fichier est stocké dans une partition FAT32 */
       if ( l_file->volume->type == K_MK_VOLUME_TYPE_FAT32 )
       {
-         /* Exécution de la requête demandée par l'utilisateur en utilisant le driver FAT */
-         l_result = mk_fat_getInfo ( l_file, &l_info );
-
-         /* Si le fichier est un répertoire */
-         if ( ( l_info.fat.attribute & K_MK_FS_ATTRIBUTE_DIRECTORY ) == K_MK_FS_ATTRIBUTE_DIRECTORY )
+         /* Si le fichier est un répertoire racine */
+         if ( l_file->flag.rootDirectory == 1 )
          {
-            l_localType = K_MK_FS_TYPE_DIRECTORY;
+            l_localType = K_MK_FS_TYPE_ROOTDIRECTORY;
          }
 
          /* Sinon */
          else
          {
-            l_localType = K_MK_FS_TYPE_FILE;
+            /* Exécution de la requête demandée par l'utilisateur en utilisant le driver FAT */
+            l_result = mk_fat_getInfo ( l_file, &l_info );
+
+            /* Si le fichier est un répertoire */
+            if ( ( l_info.fat.attribute & K_MK_FS_ATTRIBUTE_DIRECTORY ) == K_MK_FS_ATTRIBUTE_DIRECTORY )
+            {
+               l_localType = K_MK_FS_TYPE_DIRECTORY;
+            }
+
+            /* Sinon */
+            else
+            {
+               l_localType = K_MK_FS_TYPE_FILE;
+            }
          }
 
          /* Si une fonction de rappel a été référencée */

@@ -52,6 +52,7 @@
  *                              La chaine "/disk3/vol0/path/fileName.txt" ouvre le fichier "path/fileName.txt" du disque 3, partition 0.
  *                              \n Les champs /dsk[n]/vol[k]/ peuvent être omis si l'accès est réalisé sur le disque système. Par exemple la chaine "path/sys.ini"
  *                              ouvre le fichier sys.ini présent dans le répertoire "path" de la partition système.
+ *                              \n Lorsque le paramètre p_filePath ne contient que l'adresse d'une partition (par exemple"/dsk0/vol0"), l'adresse du répertoire racine est renvoyée.
  *
  * @param[in]     p_mode        Ce paramètre contient le mode d'ouverture du fichier. Les constantes suivantes peuvent être utilisées :
  *                              \li \ref K_MK_FS_OPEN_EXISTING         : la fonction ouvre le fichier s'il existe, sinon elle retourne une erreur. Le pointeur de fichier est placé au début du fichier.
@@ -697,7 +698,7 @@ T_mkCode mk_file_getSize ( T_mkFile* p_file, uint32_t* p_lowFileSize, uint32_t* 
  * @brief Cette fonction retourne le type d'un fichier.
  *
  * @param[in]  p_file     Ce paramètre contient l'adresse d'un fichier de type \ref T_mkFile.
- * @param[out] p_type     Ce paramètre contient le type du fichier (\ref K_MK_FS_TYPE_DIRECTORY ou \ref K_MK_FS_TYPE_FILE).
+ * @param[out] p_type     Ce paramètre contient le type du fichier (\ref T_mkFileType).
  * @param[in]  p_callback Ce paramètre contient l'adresse d'une fonction de rappel.
  *
  * @return Cette fonction retourne une des valeurs suivantes :

@@ -44,9 +44,25 @@
 
 static void mk_shell_initVariables ( T_mkShell* p_shell )
 {
+   /* Déclaration des variables de travail */
+   T_mkDisk* l_disk = K_MK_NULL;
+   T_mkVolume* l_volume = K_MK_NULL;
+
+   /* Récupération de l'adresse de la partition système */
+   l_volume = mk_supervisor_getVolume ( );
+
+   /* Récupération de l'adresse du disque système */
+   l_disk = ( T_mkDisk* ) l_volume->disk;
+
    /* Initialisation du buffer contenant le chemin du répertoire courant */
    _writeBytes ( &p_shell->currentDirectory, 0, K_MK_FILE_MAX_NAME_LENGTH + 1 );
-   _copy ( &p_shell->currentDirectory, ( T_str8 ) K_MK_SHELL_EXTERNAL_COMMAND_PATH, 20 );
+
+   /* Création de la chaine de caractères contenant le répertoire courant */
+   mk_utils_strcat ( ( T_str8 ) p_shell->currentDirectory, ( T_str8 ) "/", l_disk->name.id );
+   mk_utils_strcat ( ( T_str8 ) p_shell->currentDirectory, ( T_str8 ) p_shell->currentDirectory, ( T_str8 ) "/" );
+   mk_utils_strcat ( ( T_str8 ) p_shell->currentDirectory, ( T_str8 ) p_shell->currentDirectory, l_volume->name.str );
+   mk_utils_strcat ( ( T_str8 ) p_shell->currentDirectory, ( T_str8 ) p_shell->currentDirectory, ( T_str8 ) "/" );
+   mk_utils_strcat ( ( T_str8 ) p_shell->currentDirectory, ( T_str8 ) p_shell->currentDirectory, K_MK_SHELL_EXTERNAL_COMMAND_PATH );
 
    /* Initialisation de la variable d'état */
    p_shell->reg.cmdInProgress = K_MK_SHELL_CMD_END;

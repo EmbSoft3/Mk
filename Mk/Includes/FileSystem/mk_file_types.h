@@ -95,7 +95,8 @@ typedef enum T_mkFileEof
 typedef enum T_mkFileType
 {
    K_MK_FS_TYPE_DIRECTORY = 0,                                 /*!< Définition d'un code indiquant que l'instance d'un fichier de type \ref T_mkFile est un répertoire. */
-   K_MK_FS_TYPE_FILE = 1                                       /*!< Définition d'un code indiquant que l'instance d'un fichier de type \ref T_mkFile est un fichier. */
+   K_MK_FS_TYPE_FILE = 1,                                      /*!< Définition d'un code indiquant que l'instance d'un fichier de type \ref T_mkFile est un fichier. */
+   K_MK_FS_TYPE_ROOTDIRECTORY = 2                              /*!< Définition d'un code indiquant que l'instance d'un fichier de type \ref T_mkFile est un répertoire racine. */
 } T_mkFileType;
 
 /**
@@ -178,7 +179,8 @@ struct T_mkFileFlag
    unsigned_t shared:1;                                        /*!< Ce membre contient un drapeau indiquant que le fichier est partagé. */
    unsigned_t deleted:1;                                       /*!< Ce membre contient un drapeau indiquant que le fichier a été supprimé. */
    unsigned_t modified:1;                                      /*!< Ce membre contient un drapeau indiquant que le fichier a été modifié. */
-   unsigned_t reserved:27;                                     /*!< Ce champ est reservé. */
+   unsigned_t rootDirectory:1;                                 /*!< Ce membre contient un drapeau indiquant que le fichier est le répertoire racine. */
+   unsigned_t reserved:26;                                     /*!< Ce champ est reservé. */
 };
 
 /**

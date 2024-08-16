@@ -45,6 +45,7 @@
  * @param[in,out] p_file        Ce paramètre contient l'adresse d'un fichier de type \ref T_mkFile.
  * @param[in]     p_filePath    Ce paramètre contient l'adresse d'une chaine de caractères UTF8 stockant le chemin et le nom du fichier. La chaine
  *                              de caractères ne doit pas dépasser \ref K_MK_FILE_MAX_NAME_LENGTH octets.
+ *                              Lorsque la chaine prend la valeur "", l'instance du répertoire racine est renvoyée.
  * @param[in]     p_baseCluster Ce paramètre contient le cluster d'un répertoire.
  * @param[in]     p_mode        Ce paramètre contient le mode d'ouverture du fichier. Les constantes suivantes peuvent être utilisées :
  *                              \li \ref K_MK_FS_OPEN_EXISTING         : la fonction ouvre le fichier s'il existe, sinon elle retourne une erreur. Le pointeur de fichier est placé au début du fichier.

@@ -98,6 +98,52 @@ static T_mkFileMode mk_fat_setAccessMode ( T_mkFile* p_file, uint32_t p_mode )
  * @endinternal
  */
 
+static T_mkCode mk_fat_getRootDirectoryHandle ( T_mkFile* p_file, uint32_t p_baseCluster )
+{
+   /* Déclaration de la variable de retour */
+   T_mkCode l_result = K_MK_OK;
+
+   /* Déclaration d'un gestionnaire de travail */
+   T_mkFATHandler l_handler = {
+         0,                                           /* Index de l'entrée recherchée */
+         0,                                           /* Checksum contenu dans l'entrée courante. */
+         0,                                           /* Padding */
+         0,                                           /* Index de l'entrée courante par rapport au secteur. */
+         0,                                           /* Index de l'entrée courante par rapport au début du cluster. */
+         K_MK_FAT_VIRTUAL_ENTRY_DEFAULT,              /* Index de l'entrée virtuelle par rapport au début du cluster. */
+         0,                                           /* Nombre d'entrées étendues du fichier. */
+         0,                                           /* Bloc de données où est localisé l'entrée. */
+         p_baseCluster,                               /* Cluster où est localisé l'entrée. */
+         K_MK_FAT_VIRTUAL_CLUSTER_DEFAULT,            /* Cluster où est localisé l'entrée virtuelle. */
+         0,                                           /* Adresse du premier cluster de données du fichier. */
+         0,                                           /* Index du secteur dans le cluster. */
+         0,                                           /* Index du répertoire analysé. */
+         p_baseCluster,                               /* Cluster de la première entrée du répertoire. */
+         0,                                           /* Adresse du secteur courant. */
+         p_baseCluster,                               /* Adresse du cluster courant. */
+         0,                                           /* Longueur courante du nom de fichier en cours d'analyse. */
+         ( K_MK_FAT_ENTRY_FOUND + 1 )                 /* Variable d'état générale. */
+   };
+
+   /* Initialisation des attributs du fichier */
+   /* On retourne la première entrée de la rootDirectory */
+   l_handler.firstDataCluster = p_baseCluster;
+   l_result = mk_fat_utils_setFile ( p_file, &l_handler, 0 );
+
+   /* Actualisation du registre de statut du fichier pour indiquer que */
+   /* ce fichier est une instance du répertoire racine. */
+   p_file->flag.rootDirectory = 1;
+
+   /* Retour */
+   return ( l_result );
+}
+
+/**
+ * @internal
+ * @brief
+ * @endinternal
+ */
+
 T_mkCode mk_fat_open ( T_mkVolume* p_volume, T_mkFile* p_file, T_str8 p_filePath, uint32_t p_baseCluster, T_mkFileMode p_mode )
 {
    /* Déclaration de la variable de retour */
@@ -137,8 +183,19 @@ T_mkCode mk_fat_open ( T_mkVolume* p_volume, T_mkFile* p_file, T_str8 p_filePath
          /* Configuration des droits d'accès */
          p_mode = mk_fat_setAccessMode ( p_file, p_mode );
 
-         /* Recherche du fichier */
-         l_result = mk_fat_utils_findFile ( p_file, p_filePath, ( T_str8 ) l_fileName, p_baseCluster, 0 );
+         /* Si le répertoire racine doit être renvoyé */
+         if ( p_filePath [ 0 ] == 0 )
+         {
+            /* Récupération de l'instance du répertoire racine */
+            l_result = mk_fat_getRootDirectoryHandle ( p_file, p_baseCluster );
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Recherche du fichier */
+            l_result = mk_fat_utils_findFile ( p_file, p_filePath, ( T_str8 ) l_fileName, p_baseCluster, 0 );
+         }
 
          /* Si le fichier a été trouvé */
          if ( l_result == K_MK_OK )

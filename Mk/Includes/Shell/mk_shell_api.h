@@ -185,6 +185,7 @@
 #include "mk_supervisor_types.h"
 #include "mk_supervisor_data.h"
 #include "mk_supervisor_private.h"
+#include "mk_supervisor.h"
 
 /**
  *

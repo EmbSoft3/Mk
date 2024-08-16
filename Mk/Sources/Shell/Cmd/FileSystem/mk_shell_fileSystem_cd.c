@@ -55,7 +55,7 @@ static void mk_shell_fileSystem_handleSpecialCharacters ( T_str8 p_path, T_mkFon
    l_numberOfDirectory = mk_utils_utfcount ( p_path, '/', ( uint32_t ) p_font );
 
    /* Si au moins 3 répertoires sont présents dans le chemin (/dsk0/vol0/<path>) */
-   if ( l_numberOfDirectory > 3 )
+   if ( l_numberOfDirectory >= 3 )
    {
       /* Actualisation du nombre de répertoires */
       l_numberOfDirectory = ( uint32_t ) ( l_numberOfDirectory - 1 );
@@ -234,7 +234,7 @@ T_mkCode mk_shell_fileSystem_cd ( T_mkShell* p_shell, T_mkConsole* p_console, T_
             if ( l_result == K_MK_OK )
             {
                /* Si le fichier est un répertoire */
-               if ( l_type == K_MK_FS_TYPE_DIRECTORY )
+               if ( ( l_type == K_MK_FS_TYPE_DIRECTORY ) || ( l_type == K_MK_FS_TYPE_ROOTDIRECTORY ) )
                {
                   /* Actualisation de la valeur du répertoire courant */
                   _copy ( p_shell->currentDirectory, l_directoryPath, K_MK_FILE_MAX_NAME_LENGTH + 1 );
@@ -298,7 +298,7 @@ T_mkCode mk_shell_fileSystem_cd ( T_mkShell* p_shell, T_mkConsole* p_console, T_
                if ( l_result == K_MK_OK )
                {
                   /* Si le fichier est un répertoire */
-                  if ( l_type == K_MK_FS_TYPE_DIRECTORY )
+                  if ( ( l_type == K_MK_FS_TYPE_DIRECTORY ) || ( l_type == K_MK_FS_TYPE_ROOTDIRECTORY ) )
                   {
                      /* Récupération de la longueur du chemin */
                      l_pathLength = mk_utils_utfsize ( ( T_str8 ) l_path, ( uint32_t ) p_console->foreground.prompt.style.fontEncoding );
