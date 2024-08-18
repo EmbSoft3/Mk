@@ -153,7 +153,7 @@ static T_mkCode mk_file_searchVolume ( T_mkFileMessage* p_message, T_mkDisk* p_d
    char8_t l_strBuf [ 28 ] = { '/', '\0' };
 
    /* Déclaration des variables de travail */
-   uint32_t l_length = 0, l_ret = 0;
+   uint32_t l_diskLength = 0, l_volumeLength = 0, l_ret = 0;
 
    /* Le but est de récupérer l'instance de la partition spécifiée par l'utilisateur */
    /* Pour le nombre de disques connectés au système */
@@ -163,7 +163,7 @@ static T_mkCode mk_file_searchVolume ( T_mkFileMessage* p_message, T_mkDisk* p_d
       mk_utils_strcat ( ( T_str8 ) &l_strBuf [ 1 ], ( T_str8 ) p_disk->name.id, ( T_str8 ) "/" );
 
       /* Récupération de la longueur de la chaine de caractères */
-      l_length = mk_utils_strlen ( ( T_str8 ) l_strBuf );
+      l_diskLength = mk_utils_strlen ( ( T_str8 ) l_strBuf );
 
       /* Récupération de l'adresse de la première partition du disque */
       l_result = mk_disk_getFirstVolume ( p_disk, &l_volume );
@@ -172,30 +172,30 @@ static T_mkCode mk_file_searchVolume ( T_mkFileMessage* p_message, T_mkDisk* p_d
       for ( ; ( l_result == K_MK_OK ) && ( l_volume != K_MK_NULL ) ; )
       {
          /* Concaténation du nom de la partition dans la variable de travail */
-         mk_utils_strcat ( ( T_str8 ) &l_strBuf [ l_length ], ( T_str8 ) l_volume->name.str, ( T_str8 ) "" );
+         mk_utils_strcat ( ( T_str8 ) &l_strBuf [ l_diskLength ], ( T_str8 ) l_volume->name.str, ( T_str8 ) "" );
 
          /* Récupération de la longueur de la chaine de caractères */
-         l_length = mk_utils_strlen ( ( T_str8 ) l_strBuf );
+         l_volumeLength = mk_utils_strlen ( ( T_str8 ) l_strBuf );
 
          /* Réalisation d'une comparaison entre le nom de la partition et */
          /* la chaine de caractères utilisateur */
-         l_ret = mk_utils_strcomp ( ( T_str8 ) l_strBuf, l_filePath, 0, l_length );
+         l_ret = mk_utils_strcomp ( ( T_str8 ) l_strBuf, l_filePath, 0, l_volumeLength );
 
          /* Concaténation du nom de la partition dans la variable de travail */
-         mk_utils_strcat ( ( T_str8 ) &l_strBuf [ l_length ], ( T_str8 ) "/", ( T_str8 ) "" );
+         mk_utils_strcat ( ( T_str8 ) &l_strBuf [ l_volumeLength ], ( T_str8 ) "/", ( T_str8 ) "" );
 
          /* Réalisation d'une comparaison entre le nom de la partition et */
          /* la chaine de caractères utilisateur (ajout d'un slash) */
-         l_ret |= mk_utils_strcomp ( ( T_str8 ) l_strBuf, l_filePath, 0, l_length + 1 );
+         l_ret |= mk_utils_strcomp ( ( T_str8 ) l_strBuf, l_filePath, 0, l_volumeLength + 1 );
 
          /* Si la partition est la partition recherchée */
          if ( l_ret == 1 )
          {
             /* Si la chaine de caractères contient le chemin du répertoire racine (ex: /dsk0/vol0) */
-            if ( l_filePath [ l_length ] == '\0' )
+            if ( l_filePath [ l_volumeLength ] == '\0' )
             {
                /* Actualisation du chemin du fichier */
-               p_message->argument3 = &l_filePath [ l_length ];
+               p_message->argument3 = &l_filePath [ l_volumeLength ];
             }
 
             /* Sinon */
@@ -203,7 +203,7 @@ static T_mkCode mk_file_searchVolume ( T_mkFileMessage* p_message, T_mkDisk* p_d
             {
                /* Actualisation du chemin du fichier */
                /* Il faut prendre en compte le '/' additionnel (ex: /dsk0/vol0/chemin) */
-               p_message->argument3 = &l_filePath [ l_length + 1 ];
+               p_message->argument3 = &l_filePath [ l_volumeLength + 1 ];
             }
 
             /* Actualisation de l'adresse du volume */
