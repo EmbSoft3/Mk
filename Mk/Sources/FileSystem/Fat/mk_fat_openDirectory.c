@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2021 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2021-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -44,6 +44,9 @@
 
 static T_mkFileMode mk_fat_setAccessMode ( T_mkFile* p_file, uint32_t p_mode )
 {
+   /* Récupération de l'adresse du disque */
+   T_mkDisk* l_disk = ( T_mkDisk* ) p_file->volume->disk;
+
    /* Si le fichier est partagé */
    if ( ( p_mode & K_MK_FS_OPEN_SHARED ) == K_MK_FS_OPEN_SHARED )
    {
@@ -75,6 +78,19 @@ static T_mkFileMode mk_fat_setAccessMode ( T_mkFile* p_file, uint32_t p_mode )
    {
       /* Actualisation du flag "write" */
       p_file->flag.write = 1;
+   }
+
+   /* Sinon */
+   else
+   {
+      /* Ne rien faire */
+   }
+
+   /* Si le disque stockant le fichier est protégé en écriture */
+   if ( ( l_disk->status.main & K_MK_DISK_WRITE_PROTECT ) == K_MK_DISK_WRITE_PROTECT )
+   {
+      /* Actualisation du flag "writeProtect" */
+      p_file->flag.writeProtect = 1;
    }
 
    /* Sinon */
@@ -131,12 +147,29 @@ T_mkCode mk_fat_openDirectory ( T_mkVolume* p_volume, T_mkFile* p_file, uint32_t
             /* Récupération du descripteur de fichier */
             l_result = mk_fat_utils_getFileEntryDescriptor ( p_file, &l_fileEntryDescriptor );
 
-            /* Si l'utilisateur souhaite ouvrir le répertoire en écriture alors qu'il est en lecture seule */
-            if ( ( l_result == K_MK_OK ) && ( ( l_fileEntryDescriptor.attribute & K_MK_FAT_READ_ONLY ) == K_MK_FAT_READ_ONLY ) &&
-                  ( p_file->flag.write == 1 ) )
+            /* Si aucune erreur ne s'est produite */
+            if ( l_result == K_MK_OK )
             {
-               /* Actualisation de la variable de retour */
-               l_result = K_MK_ERROR_DENIED;
+               /* Si l'utilisateur souhaite ouvrir le répertoire en écriture alors qu'il est en lecture seule */
+               if ( ( ( l_fileEntryDescriptor.attribute & K_MK_FAT_READ_ONLY ) == K_MK_FAT_READ_ONLY ) && ( p_file->flag.write == 1 ) )
+               {
+                  /* Actualisation de la variable de retour */
+                  l_result = K_MK_ERROR_DENIED;
+               }
+
+               /* Sinon si le disque est protégé en écriture */
+               else if ( ( p_file->flag.writeProtect == 1 ) && ( p_file->flag.write == 1 ) )
+               {
+                  /* Actualisation de la variable de retour */
+                  l_result = K_MK_ERROR_WRITE_PROTECT;
+               }
+
+               /* Sinon */
+               else
+               {
+                  /* Ne rien faire */
+               }
+
             }
 
             /* Sinon */
@@ -144,6 +177,9 @@ T_mkCode mk_fat_openDirectory ( T_mkVolume* p_volume, T_mkFile* p_file, uint32_t
             {
                /* Ne rien faire */
             }
+
+
+
          }
 
          /* Sinon */

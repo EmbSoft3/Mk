@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -108,6 +108,7 @@ T_mkCode mk_fat_open ( T_mkVolume* p_volume, T_mkFile* p_file, T_str8 p_filePath
  *         \li \ref K_MK_ERROR_CORRUPTED     : le fichier n'a pas été ouvert car le fichier est corrompu (table des clusters FAT).
  *         \li \ref K_MK_ERROR_UNEXPECTED    : le fichier n'a pas été ouvert car le système n'a pas pu fournir une valeur de calendrier cohérente.
  *         \li \ref K_MK_ERROR_COLLISION     : le fichier n'a pas été ouvert car le nombre de collisions max dans la détermination d'un nom de fichier court a été atteint.
+ *         \li \ref K_MK_ERROR_WRITE_PROTECT : le fichier n'a pas été ouvert car le disque est protégé en écriture.
  *         \li \ref K_MK_ERROR_RIGHT         : le fichier n'a pas été ouvert car une tâche de type non privilégié ne possède pas suffisamment de droits.
  *         \li \ref K_MK_ERROR_NOT_FOUND     : le fichier n'a pas été ouvert car il n'existe pas.
  *         \li \ref K_MK_ERROR_DENIED        : le fichier n'a pas été ouvert car un fichier en lecture seul ne peut pas être ouvert en écriture.

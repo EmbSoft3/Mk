@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -46,6 +46,9 @@
 
 static T_mkFileMode mk_fat_setAccessMode ( T_mkFile* p_file, uint32_t p_mode )
 {
+   /* Récupération de l'adresse du disque */
+   T_mkDisk* l_disk = ( T_mkDisk* ) p_file->volume->disk;
+
    /* Si le fichier est partagé */
    if ( ( p_mode & K_MK_FS_OPEN_SHARED ) == K_MK_FS_OPEN_SHARED )
    {
@@ -77,6 +80,19 @@ static T_mkFileMode mk_fat_setAccessMode ( T_mkFile* p_file, uint32_t p_mode )
    {
       /* Actualisation du flag "write" */
       p_file->flag.write = 1;
+   }
+
+   /* Sinon */
+   else
+   {
+      /* Ne rien faire */
+   }
+
+   /* Si le disque stockant le fichier est protégé en écriture */
+   if ( ( l_disk->status.main & K_MK_DISK_WRITE_PROTECT ) == K_MK_DISK_WRITE_PROTECT )
+   {
+      /* Actualisation du flag "writeProtect" */
+      p_file->flag.writeProtect = 1;
    }
 
    /* Sinon */
@@ -149,9 +165,6 @@ T_mkCode mk_fat_open ( T_mkVolume* p_volume, T_mkFile* p_file, T_str8 p_filePath
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
 
-   /* Déclaration d'une instance de disque */
-   T_mkDisk* l_disk = K_MK_NULL;
-
    /* Déclaration d'un descripteur de fichier */
    T_mkFATEntryDescriptor l_fileEntryDescriptor;
 
@@ -173,9 +186,6 @@ T_mkCode mk_fat_open ( T_mkVolume* p_volume, T_mkFile* p_file, T_str8 p_filePath
       {
          /* Référencement du volume dans le fichier */
          p_file->volume = p_volume;
-
-         /* Récupération de l'adresse du disque */
-         l_disk = p_file->volume->disk;
 
          /* Réinitialisation de la structure T_mkFile */
          _writeWords ( &p_file->descriptor, 0, sizeof ( T_mkFileDescriptor ) >> 2 );
@@ -214,7 +224,7 @@ T_mkCode mk_fat_open ( T_mkVolume* p_volume, T_mkFile* p_file, T_str8 p_filePath
                }
 
                /* Sinon si le disque est protégé en écriture */
-               else if ( ( l_disk->status.main & K_MK_DISK_WRITE_PROTECT ) == K_MK_DISK_WRITE_PROTECT )
+               else if ( p_file->flag.writeProtect == 1 )
                {
                   /* Actualisation de la variable de retour */
                   l_result = K_MK_ERROR_WRITE_PROTECT;
@@ -275,7 +285,7 @@ T_mkCode mk_fat_open ( T_mkVolume* p_volume, T_mkFile* p_file, T_str8 p_filePath
          else if ( l_result == K_MK_ERROR_NOT_FOUND )
          {
             /* Si le disque n'est pas protégé en écriture */
-            if ( ( l_disk->status.main & K_MK_DISK_WRITE_PROTECT ) != K_MK_DISK_WRITE_PROTECT )
+            if ( p_file->flag.writeProtect == 0 )
             {
                /* Réinitialisation de la variable de retour */
                l_result = K_MK_OK;
@@ -350,6 +360,7 @@ T_mkCode mk_fat_open ( T_mkVolume* p_volume, T_mkFile* p_file, T_str8 p_filePath
    /* Retour */
    return ( l_result );
 }
+
 
 
 

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -180,7 +180,8 @@ struct T_mkFileFlag
    unsigned_t deleted:1;                                       /*!< Ce membre contient un drapeau indiquant que le fichier a été supprimé. */
    unsigned_t modified:1;                                      /*!< Ce membre contient un drapeau indiquant que le fichier a été modifié. */
    unsigned_t rootDirectory:1;                                 /*!< Ce membre contient un drapeau indiquant que le fichier est le répertoire racine. */
-   unsigned_t reserved:26;                                     /*!< Ce champ est reservé. */
+   unsigned_t writeProtect:1;                                  /*!< Ce membre contient un drapeau indiquant que le disque stockant le fichier est protégé en écriture. */
+   unsigned_t reserved:25;                                     /*!< Ce champ est reservé. */
 };
 
 /**

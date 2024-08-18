@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2021 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2021-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -50,17 +50,11 @@ T_mkCode mk_fat_chmod ( T_mkFile* p_file, uint8_t p_attribute )
    /* Déclaration d'une variable contenant les attributs du fichier à modifier */
    T_mkFATEntryDescriptor l_entryDescriptor;
 
-   /* Déclaration d'une instance de disque */
-   T_mkDisk* l_disk = K_MK_NULL;
-
    /* Si le paramètre est valide */
    if ( p_file != K_MK_NULL )
    {
-      /* Récupération de l'adresse du disque */
-      l_disk = p_file->volume->disk;
-
       /* Si le disque n'est pas protégé en écriture */
-      if ( ( l_disk->status.main & K_MK_DISK_WRITE_PROTECT ) != K_MK_DISK_WRITE_PROTECT )
+      if ( p_file->flag.writeProtect == 0 )
       {
          /* Récupération des attributs du fichier */
          l_result = mk_fat_utils_getFileEntryDescriptor ( p_file, &l_entryDescriptor );

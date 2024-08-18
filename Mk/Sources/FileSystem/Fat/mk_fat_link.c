@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2021 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2021-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -47,17 +47,11 @@ T_mkCode mk_fat_link ( T_mkFile* p_file, T_str8 p_filePath, uint32_t p_baseClust
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
 
-   /* Déclaration d'une instance de disque */
-   T_mkDisk* l_disk = K_MK_NULL;
-
    /* Si les paramètres sont valides */
    if ( ( p_file != K_MK_NULL ) && ( p_filePath != K_MK_NULL ) )
    {
-      /* Récupération de l'adresse du disque */
-      l_disk = p_file->volume->disk;
-
       /* Si le disque n'est pas protégé en écriture */
-      if ( ( l_disk->status.main & K_MK_DISK_WRITE_PROTECT ) != K_MK_DISK_WRITE_PROTECT )
+      if ( p_file->flag.writeProtect == 0 )
       {
          /* Vérification de la validité de la chaine de caractères */
          l_result = mk_fat_utils_checkInvalidName ( p_filePath );

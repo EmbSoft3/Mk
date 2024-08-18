@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2021 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2021-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -56,8 +56,8 @@ T_mkCode mk_fat_close ( T_mkFile* p_file )
    /* Si le paramètre est valide */
    if ( p_file != K_MK_NULL )
    {
-      /* Si le fichier n'a pas été supprimé */
-      if ( p_file->flag.deleted == 0 )
+      /* Si le fichier n'a pas été supprimé et si le disque n'est pas protégé en écriture */
+      if ( ( p_file->flag.deleted == 0 ) && ( p_file->flag.writeProtect == 0 ) )
       {
          /* Lors de la fermeture du fichier, on actualise le champ "LastAccessDate" sans condition */
          /* Les champs "LastModifiedDate" et "LastModifiedTime" sont modifiés uniquement si une opération d'écriture */
