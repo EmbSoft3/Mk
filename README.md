@@ -53,7 +53,7 @@ protected resources like sending frame on I2C buf, writing a GPIO and more ...
 
 To enable external code execution, all **Mk** symbols have been stored in the 
 programming file. To learn more about the mechanisms involved, see the wiki of 
-my repository [sym2srec](https://github.com/MkSoft-MacLewis/Sym2srec/wiki)).
+my repository [sym2srec](https://github.com/EmbSoft3/Sym2srec/wiki)).
 
 Actually, the dynamic loader built into **Mk** loads external programming files 
 (.elf) into 64KB memory pages of external RAM memory.
