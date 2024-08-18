@@ -89,11 +89,8 @@ static T_mkCode mk_editField_handleRightArrow ( T_mkEditField* p_editField )
             /* Actualisation de l'index de la prochaine ligne */
             p_editField->windowFirstRowIndex = ( p_editField->windowFirstRowIndex + 1 );
 
-            /* Actualisation de l'adresse de base de la fenêtre */
-            p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, K_MK_NULL );
-
-            /* Actualisation de l'offset de base de la fenêtre */
-            p_editField->windowBaseOffset = ( uint32_t ) ( ( T_str8 ) p_editField->windowBaseAddr - ( T_str8 ) p_editField->strAddr );
+            /* Actualisation de l'adresse et de l'offset de la fenêtre */
+            p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, &p_editField->windowBaseOffset );
          }
 
          /* Sinon */
@@ -167,11 +164,8 @@ static T_mkCode mk_editField_handleLeftArrow ( T_mkEditField* p_editField )
             /* Actualisation de l'offset de la prochaine ligne */
             p_editField->windowFirstRowIndex = ( p_editField->windowFirstRowIndex - 1 );
 
-            /* Actualisation de l'adresse de base de la fenêtre */
-            p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, K_MK_NULL );
-
-            /* Actualisation de l'offset de base de la fenêtre */
-            p_editField->windowBaseOffset = ( uint32_t ) ( ( T_str8 ) p_editField->windowBaseAddr - ( T_str8 ) p_editField->strAddr );
+            /* Actualisation de l'adresse et de l'offset de la fenêtre */
+            p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, &p_editField->windowBaseOffset );
          }
 
          /* Sinon */
@@ -257,11 +251,8 @@ static T_mkCode mk_editField_handleDownArrow ( T_mkEditField* p_editField )
             /* Actualisation de l'offset de la prochaine ligne */
             p_editField->windowFirstRowIndex = ( p_editField->windowFirstRowIndex + 1 );
 
-            /* Actualisation de l'adresse de base de la fenêtre */
-            p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, K_MK_NULL );
-
-            /* Actualisation de l'offset de base de la fenêtre */
-            p_editField->windowBaseOffset = ( uint32_t ) ( ( T_str8 ) p_editField->windowBaseAddr - ( T_str8 ) p_editField->strAddr );
+            /* Actualisation de l'adresse et de l'offset de la fenêtre */
+            p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, &p_editField->windowBaseOffset );
          }
 
          /* Sinon */
@@ -339,10 +330,7 @@ static T_mkCode mk_editField_handleUpArrow ( T_mkEditField* p_editField )
          p_editField->windowFirstRowIndex = ( p_editField->windowFirstRowIndex - 1 );
 
          /* Actualisation de l'adresse de base de la fenêtre */
-         p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, K_MK_NULL );
-
-         /* Actualisation de l'offset de base de la fenêtre */
-         p_editField->windowBaseOffset = ( uint32_t ) ( ( T_str8 ) p_editField->windowBaseAddr - ( T_str8 ) p_editField->strAddr );
+         p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, &p_editField->windowBaseOffset );
       }
 
       /* Sinon */
@@ -436,11 +424,8 @@ static T_mkCode mk_editField_handleWheelDown ( T_mkEditField* p_editField )
          /* Actualisation de l'offset de la prochaine ligne */
          p_editField->windowFirstRowIndex = ( p_editField->windowFirstRowIndex + 1 );
 
-         /* Actualisation de l'adresse de base de la fenêtre */
-         p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, K_MK_NULL );
-
-         /* Actualisation de l'offset de base de la fenêtre */
-         p_editField->windowBaseOffset = ( uint32_t ) ( ( T_str8 ) p_editField->windowBaseAddr - ( T_str8 ) p_editField->strAddr );
+         /* Actualisation de l'adresse et de l'offset de la fenêtre */
+         p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, &p_editField->windowBaseOffset );
       }
 
       /* Sinon */
@@ -511,11 +496,8 @@ static T_mkCode mk_editField_handleWheelUp ( T_mkEditField* p_editField )
          /* Actualisation de l'offset de la prochaine ligne */
          p_editField->windowFirstRowIndex = ( p_editField->windowFirstRowIndex - 1 );
 
-         /* Actualisation de l'adresse de base de la fenêtre */
-         p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, K_MK_NULL );
-
-         /* Actualisation de l'offset de base de la fenêtre */
-         p_editField->windowBaseOffset = ( uint32_t ) ( ( T_str8 ) p_editField->windowBaseAddr - ( T_str8 ) p_editField->strAddr );
+         /* Actualisation de l'adresse et de l'offset de la fenêtre */
+         p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, &p_editField->windowBaseOffset );
       }
 
       /* Sinon */
@@ -525,7 +507,7 @@ static T_mkCode mk_editField_handleWheelUp ( T_mkEditField* p_editField )
          p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, &p_editField->cursorBaseOffset );
 
          /* Actualisation de l'offset de base de la fenêtre */
-         p_editField->windowBaseOffset = ( uint32_t ) ( ( T_str8 ) p_editField->windowBaseAddr - ( T_str8 ) p_editField->strAddr );
+         p_editField->windowBaseOffset = ( uint32_t ) p_editField->cursorBaseOffset;
       }
    }
 
@@ -586,7 +568,7 @@ static T_mkCode mk_editField_handlePageUp ( T_mkEditField* p_editField )
       p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, &p_editField->cursorBaseOffset );
 
       /* Actualisation de l'offset de base de la fenêtre */
-      p_editField->windowBaseOffset = ( uint32_t ) ( ( T_str8 ) p_editField->windowBaseAddr - ( T_str8 ) p_editField->strAddr );
+      p_editField->windowBaseOffset = ( uint32_t ) p_editField->cursorBaseOffset;
    }
 
    /* Sinon */
@@ -645,7 +627,7 @@ static T_mkCode mk_editField_handlePageDown ( T_mkEditField* p_editField )
          p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, &p_editField->cursorBaseOffset );
 
          /* Actualisation de l'offset de base de la fenêtre */
-         p_editField->windowBaseOffset = ( uint32_t ) ( ( T_str8 ) p_editField->windowBaseAddr - ( T_str8 ) p_editField->strAddr );
+         p_editField->windowBaseOffset = ( uint32_t ) p_editField->cursorBaseOffset;
       }
 
       /* Sinon */

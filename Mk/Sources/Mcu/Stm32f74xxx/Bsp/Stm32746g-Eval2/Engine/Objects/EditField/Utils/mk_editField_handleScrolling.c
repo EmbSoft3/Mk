@@ -51,7 +51,7 @@ T_mkCode mk_editField_handleScrolling ( T_mkEditField* p_editField )
    l_result = mk_editField_handleEnd ( p_editField );
 
    /* Actualisation de la position du curseur */
-   p_editField->cursorBaseOffset = mk_utils_utfsize ( ( T_str8 ) p_editField->strAddr, p_editField->style.fontEncoding );
+   p_editField->cursorBaseOffset = mk_utils_utflen ( ( T_str8 ) p_editField->strAddr, p_editField->style.fontEncoding );
 
    /* Retour */
    return ( l_result );

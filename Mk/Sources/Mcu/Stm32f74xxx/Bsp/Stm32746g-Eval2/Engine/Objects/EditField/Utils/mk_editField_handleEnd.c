@@ -79,7 +79,7 @@ T_mkCode mk_editField_handleEnd ( T_mkEditField* p_editField )
          p_editField->windowBaseAddr = mk_editField_getWindowAddr ( p_editField, l_2DiTopLeft, l_2DiBottomRight, p_editField->strAddr, p_editField->windowFirstRowIndex, &p_editField->cursorBaseOffset );
 
          /* Actualisation de l'offset de base de la fenêtre */
-         p_editField->windowBaseOffset = ( uint32_t ) ( ( T_str8 ) p_editField->windowBaseAddr - ( T_str8 ) p_editField->strAddr );
+         p_editField->windowBaseOffset = ( uint32_t ) p_editField->cursorBaseOffset;
       }
 
       /* Sinon */

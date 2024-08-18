@@ -49,8 +49,8 @@ T_mkCode mk_console_strcat ( T_mkConsole* p_console, T_str8 p_str )
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
 
-   /* Déclaration d'une variable stockant la longueur de la chaine de caractères */
-   uint32_t l_length = 0;
+   /* Déclaration des variables stockant la longueur des chaines de caractères */
+   uint32_t l_baseLength = 0, l_length = 0;
 
    /* Récupération de l'adresse de la chaine de caractères */
    T_str8 l_baseAddr = p_console->foreground.window.strAddr;
@@ -71,13 +71,12 @@ T_mkCode mk_console_strcat ( T_mkConsole* p_console, T_str8 p_str )
       /* Sinon, si la chaine de caractères peut être concaténée dans le buffer */
       else if ( ( p_console->foreground.window.cursorBaseOffset + l_length ) < ( uint32_t ) ( p_console->window.bufSize - 1 ) )
       {
+         /* Récupération de la longueur de la chaine de caractères de la boite d'édition */
+         l_baseLength = mk_utils_utfsize ( p_console->foreground.window.strAddr, p_console->foreground.window.style.fontEncoding );
+
          /* Réalisation de la copie */
          /* On utilise cursorBaseOffset car la fenêtre est protégée en écriture */
-         _copy ( &l_baseAddr [ p_console->foreground.window.cursorBaseOffset ], p_str, l_length );
-
-         /* Actualisation de l'adresse du prochain caractère à stocker */
-         /* Cette fonction peut être exécutée en parallèle du painter (pas besoin d'allouer une section critique) */
-         p_console->foreground.window.cursorBaseOffset += l_length;
+         _copy ( &l_baseAddr [ l_baseLength ], p_str, l_length );
       }
 
       /* Sinon */
