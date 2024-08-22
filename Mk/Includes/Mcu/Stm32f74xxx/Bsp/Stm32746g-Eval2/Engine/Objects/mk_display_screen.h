@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -78,6 +78,23 @@ void mk_screen_setChild ( T_mkScreen* p_screen, T_mkAddr p_child );
  */
 
 void mk_screen_setLayer ( T_mkScreen* p_screen, uint32_t p_layer );
+
+/**
+ * @fn void mk_screen_setZIndex ( T_mkScreen* p_screen, uint32_t p_zIndex );
+ * @brief Cette fonction configure l'indice de profondeur d'un écran.
+ *
+ * @param[out] p_screen Ce paramètre contient l'adresse d'un écran de type \ref T_mkScreen.
+ * @param[in]  p_zIndex Ce paramètre contient l'indice de profondeur de l'écran. Il évolue de [0 à 0xFFFFFFFF].
+ *                      La valeur 0 indique que l'écran doit être dessiné en premier, la valeur 0xFFFFFFFF indique
+ *                      qu'il doit être dessiné en dernier.
+ *                      Si deux objets dans un container possèdent le même indice de profondeur, l'objet dessiné
+ *                      en premier est le dernier objet ajouté dans le container.
+ *
+ * @return Sans objet.
+ *
+ */
+
+void mk_screen_setZIndex ( T_mkScreen* p_screen, uint32_t p_zIndex );
 
 /**
  * @fn void mk_screen_setVisibility ( T_mkScreen* p_screen, uint32_t p_visibility );

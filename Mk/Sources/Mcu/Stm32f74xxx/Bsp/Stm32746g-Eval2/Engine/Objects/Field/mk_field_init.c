@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -55,6 +55,7 @@ void mk_field_init ( T_mkField* p_field )
       p_field->userVisibility = K_MK_FIELD_INVISIBLE;
       p_field->activity = K_MK_FIELD_INACTIF;
       p_field->layer = K_MK_GRAPHICS_FOREGROUND;
+      p_field->zIndex = 0;
 
       /* Configuration de l'adresse des fonctions d'écoute et de peinture */
       p_field->listener = K_MK_NULL;

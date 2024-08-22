@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -110,6 +110,23 @@ void mk_progressBar_setDimension ( T_mkProgressBar* p_progressBar, uint32_t p_wi
  */
 
 void mk_progressBar_setLayer ( T_mkProgressBar* p_progressBar, uint32_t p_layer );
+
+/**
+ * @fn void mk_progressBar_setZIndex ( T_mkProgressBar* p_progressBar, uint32_t p_zIndex );
+ * @brief Cette fonction configure l'indice de profondeur d'une barre de progression.
+ *
+ * @param[out] p_progressBar Ce paramètre contient l'adresse d'une barre de progression de type \ref T_mkProgressBar.
+ * @param[in]  p_zIndex      Ce paramètre contient l'indice de profondeur de la barre de progression. Il évolue de [0 à 0xFFFFFFFF].
+ *                           La valeur 0 indique que la barre doit être dessinée en premier, la valeur 0xFFFFFFFF indique
+ *                           qu'elle doit être dessinée en dernier.
+ *                           Si deux objets dans un container possèdent le même indice de profondeur, l'objet dessiné
+ *                           en premier est le dernier objet ajouté dans le container.
+ *
+ * @return Sans objet.
+ *
+ */
+
+void mk_progressBar_setZIndex ( T_mkProgressBar* p_progressBar, uint32_t p_zIndex );
 
 /**
  * @fn void mk_progressBar_setVisibility ( T_mkProgressBar* p_progressBar, uint32_t p_visibility );

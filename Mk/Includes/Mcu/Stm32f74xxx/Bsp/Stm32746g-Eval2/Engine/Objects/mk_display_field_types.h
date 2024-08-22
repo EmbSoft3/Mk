@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -89,6 +89,7 @@ struct T_mkField
    uint32_t userVisibility;            /*!< Ce membre contient la visibilité du champ (\ref K_MK_FIELD_VISIBLE ou \ref K_MK_FIELD_INVISIBLE). Il permet d'activer ou désactiver l'exécution de la fonction de peinture. Ce membre est dédié à l'utilisateur. */
    uint32_t activity;                  /*!< Ce membre contient l'activité du champ (\ref K_MK_FIELD_ACTIF ou \ref K_MK_FIELD_INACTIF). Il permet d'activer ou désactiver l'exécution de la fonction d'écoute. */
    uint32_t layer;                     /*!< Ce membre contient le layer où le champ est dessiné (\ref K_MK_GRAPHICS_FOREGROUND ou \ref K_MK_GRAPHICS_BACKGROUND). */
+   uint32_t zIndex;                    /*!< Ce membre contient la valeur de l'indice de profondeur du champ dans son container. Il évolue de [0 à 0xFFFFFFFF]. */
    uint32_t frameNumber;               /*!< Ce membre contient l'index de la frame en cours de dessin. Il évolue entre [0 et \ref K_MK_DISPLAY_FRAMERATE - 1]. */
    T_mkVect2D position;                /*!< Ce membre contient les coordonnées [x, y] du champ [en pixel]. */
    T_mkFieldDimension dimension;       /*!< Ce membre contient les dimensions [width, height] du champ [en pixel]. */

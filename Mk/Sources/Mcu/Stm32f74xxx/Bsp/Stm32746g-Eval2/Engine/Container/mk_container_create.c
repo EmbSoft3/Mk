@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2022 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2022-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -42,7 +42,7 @@
  * @endinternal
  */
 
-T_mkCode mk_container_create ( T_mkContainer** p_container, T_mkListener p_listener, T_mkCallback* p_callback )
+T_mkCode mk_container_create ( T_mkContainer** p_container, uint32_t p_zIndex, T_mkListener p_listener, T_mkCallback* p_callback )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
@@ -60,6 +60,7 @@ T_mkCode mk_container_create ( T_mkContainer** p_container, T_mkListener p_liste
       /* Initialisation des champs de la requête */
       l_request.content.container.container = ( T_mkAddr ) ( p_container );
       l_request.content.container.listener = p_listener;
+      l_request.content.container.zIndex = p_zIndex;
       l_request.content.container.result = &l_requestResult;
       l_request.content.container.callback = p_callback;
 

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -47,6 +47,9 @@ T_mkCode mk_container_add ( T_mkSemaphore* p_semaphore, T_mkContainer* p_contain
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
 
+   /* Déclaration des pointeurs de champs */
+   T_mkField* l_currentField = K_MK_NULL, *l_previousField = K_MK_NULL;
+
    /* Les containers sont des objets partagés. */
    /* Tant que le signal de synchronisation n'a pas été reçu, laisser */
    /* la main à une autre tâche */
@@ -55,15 +58,13 @@ T_mkCode mk_container_add ( T_mkSemaphore* p_semaphore, T_mkContainer* p_contain
    /* Si la synchronisation a réussi */
    if ( l_result == K_MK_OK )
    {
-      /* Le champ est ajouté en fin de liste */
-      p_field->next = K_MK_NULL;
-
       /* Si la liste est vide */
       if ( p_container->first == K_MK_NULL )
       {
          /* La liste contient un seul élement, les pointeurs 'next' et */
          /* 'previous' doivent pointer sur la valeur nulle. */
          p_field->previous = K_MK_NULL;
+         p_field->next = K_MK_NULL;
 
          /* Configuration des pointeurs de début et de fin de liste */
          p_container->first = p_field;
@@ -73,13 +74,52 @@ T_mkCode mk_container_add ( T_mkSemaphore* p_semaphore, T_mkContainer* p_contain
       /* Sinon */
       else
       {
-         /* Actualisation du pointeur 'previous' du nouvel élément */
-         p_field->previous = p_container->last;
-         /* Actualisation du pointeur 'next' de l'élement précédent */
-         p_container->last->next = p_field;
+         /* Récupération de l'adresse du premier champ dans le container */
+         l_currentField = p_container->first;
 
-         /* Le nouvel élément est situé en fin de liste */
-         p_container->last = p_field;
+         /* On place le champ dans la liste en fonction de son indice de profondeur. */
+         /* Si deux champs possèdent le même indice, on place le nouveau champ en tête. */
+         /* Il sera alors dessiné en premier. */
+         while ( ( l_currentField != K_MK_NULL ) && ( p_field->zIndex > l_currentField->zIndex ) )
+         {
+            /* Passage au prochain champ */
+            l_previousField = l_currentField;
+            l_currentField = l_currentField->next;
+         }
+
+         /* Actualisation des pointeurs du nouvel élément */
+         p_field->previous = l_previousField;
+         p_field->next = l_currentField;
+
+         /* Si le pointeur de liste doit être actualisé */
+         /* Le champ a été inséré en tête de liste */
+         if ( l_previousField == K_MK_NULL )
+         {
+            /* Configuration du pointeur de début de liste */
+            p_container->first = p_field;
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Le précédent champ pointe sur le nouveau champ */
+            l_previousField->next = p_field;
+         }
+
+         /* Si le pointeur de fin de liste doit être actualisé */
+         /* Le champ a été inséré en fin de liste */
+         if ( l_currentField == K_MK_NULL )
+         {
+            /* Configuration du pointeur de fin de liste */
+            p_container->last = p_field;
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Le prochain champ doit pointer sur le nouveau champ */
+            l_currentField->previous = p_field;
+         }
       }
 
       /* Libération de la ressource */
@@ -95,6 +135,4 @@ T_mkCode mk_container_add ( T_mkSemaphore* p_semaphore, T_mkContainer* p_contain
    /* Retour */
    return ( l_result );
 }
-
-
 

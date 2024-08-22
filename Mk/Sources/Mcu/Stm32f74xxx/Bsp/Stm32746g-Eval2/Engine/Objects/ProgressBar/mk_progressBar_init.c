@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -58,6 +58,9 @@ void mk_progressBar_init ( T_mkProgressBar* p_progressBar )
 
       /* Configuration du layer */
       mk_field_setLayer ( &p_progressBar->field, K_MK_GRAPHICS_FOREGROUND );
+
+      /* Configuration de l'index de profondeur */
+      mk_field_setZIndex ( &p_progressBar->field, 1 );
 
       /* Configuration de la position du champ */
       mk_field_setPosition ( &p_progressBar->field, 0, 0 );

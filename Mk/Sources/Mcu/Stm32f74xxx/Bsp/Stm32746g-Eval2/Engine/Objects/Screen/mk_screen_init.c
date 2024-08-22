@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -58,6 +58,9 @@ void mk_screen_init ( T_mkScreen* p_screen )
 
       /* Configuration du layer */
       mk_field_setLayer ( &p_screen->field, K_MK_GRAPHICS_FOREGROUND );
+
+      /* Configuration de l'index de profondeur */
+      mk_field_setZIndex ( &p_screen->field, 0 );
 
       /* Configuration de l'adresse de la fonction de peinture */
       mk_field_setPainter ( &p_screen->field, mk_screen_defaultPainter );

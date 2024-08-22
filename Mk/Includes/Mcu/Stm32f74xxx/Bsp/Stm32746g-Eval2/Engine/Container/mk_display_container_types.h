@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -61,6 +61,7 @@ typedef enum T_mkContainerRequestType
 struct T_mkContainer
 {
    uint32_t type;                                           /*!< Ce membre contient le type du container (\ref K_MK_TYPE_PRIVILEGED ou \ref K_MK_TYPE_DEFAULT). */
+   uint32_t zIndex;                                         /*!< Ce membre contient la valeur de l'indice de profondeur du container dans la factory. Il évolue de [0 à 0xFFFFFFFF]. */
    T_mkAddr factory;                                        /*!< Ce membre contient l'adresse de la factory (\ref T_mkFactory) propriétaire du container. */
    T_mkAddr owner;                                          /*!< Ce membre contient l'adresse de l'application propriétaire du container. */
    T_mkField* first;                                        /*!< Ce membre contient l'adresse du premier champ appartenant au container (premier élément de liste). */
@@ -79,6 +80,7 @@ typedef struct T_mkContainerRequest T_mkContainerRequest;
 struct T_mkContainerRequest
 {
    uint32_t id;                                             /*!< Ce membre contient l'identifiant de la requête (\ref T_mkContainerRequestType). */
+   uint32_t zIndex;                                         /*!< Ce membre contient l'indice de profondeur du container. Il évolue de [0 à 0xFFFFFFFF]. */
    T_mkAddr container;                                      /*!< Ce membre contient l'adresse du container de type \ref T_mkContainer objet de la requête. */
    T_mkAddr field;                                          /*!< Ce membre contient l'adresse du champ de type \ref T_mkField objet de la requête. */
    T_mkListener listener;                                   /*!< Ce membre contient l'adresse de la fonction d'écoute du container. */

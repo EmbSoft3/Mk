@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -52,7 +52,8 @@ void mk_container_init ( T_mkContainer* p_container, uint32_t p_type );
 
 /**
  * @fn T_mkCode mk_container_add ( T_mkSemaphore* p_semaphore, T_mkContainer* p_container, T_mkField* p_field );
- * @brief Cette fonction ajoute un champ dans un container de type \ref T_mkContainer. Le champ est ajouté en fin de liste.
+ * @brief Cette fonction ajoute un champ dans un container de type \ref T_mkContainer. La position du champ dans le container est déterminé
+ *        par son indice de profondeur (zIndex).
  *
  * @param[in]     p_semaphore Ce paramètre contient l'adresse du sémaphore gérant les accès concurrent sur les containers.
  * @param[in,out] p_container Ce paramètre contient l'adresse d'un container de type \ref T_mkContainer.

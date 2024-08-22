@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -39,10 +39,15 @@
 #define MK_DISPLAY_CONTAINER_H
 
 /**
- * @fn T_mkCode mk_container_create ( T_mkContainer** p_container, T_mkListener p_listener, T_mkCallback* p_callback );
+ * @fn T_mkCode mk_container_create ( T_mkContainer** p_container, uint32_t p_zIndex, T_mkListener p_listener, T_mkCallback* p_callback );
  * @brief Cette fonction alloue un nouveau container de type \ref T_mkContainer.
  *
  * @param[in,out] p_container Ce paramètre contient l'adresse du container alloué.
+ * @param[in]     p_zIndex    Ce paramètre contient l'indice de profondeur du container. Il évolue de [0 à 0xFFFFFFFF].
+ *                            La valeur 0 indique que le container doit être dessiné en premier, la valeur 0xFFFFFFFF indique
+ *                            qu'il doit être dessiné en dernier.
+ *                            Si deux containers dans une factory possèdent le même indice de profondeur, le container dessiné
+ *                            en premier est le dernier container ajouté dans la factory.
  * @param[in]     p_listener  Ce paramètre contient l'adresse de la fonction d'écoute du container.
  *                            Il peut prendre la valeur \ref K_MK_NULL lorsqu'aucune fonction d'écoute n'est nécessaire.
  * @param[in]     p_callback  Ce paramètre contient l'adresse d'une fonction de rappel.
@@ -62,7 +67,7 @@
  *
  */
 
-T_mkCode mk_container_create ( T_mkContainer** p_container, T_mkListener p_listener, T_mkCallback* p_callback );
+T_mkCode mk_container_create ( T_mkContainer** p_container, uint32_t p_zIndex, T_mkListener p_listener, T_mkCallback* p_callback );
 
 /**
  * @fn T_mkCode mk_container_delete ( T_mkContainer* p_container, T_mkCallback* p_callback );

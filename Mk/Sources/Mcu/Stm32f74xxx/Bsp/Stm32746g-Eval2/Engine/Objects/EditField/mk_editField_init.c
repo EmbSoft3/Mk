@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2022 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2022-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -64,6 +64,9 @@ void mk_editField_init ( T_mkEditField* p_editField )
 
       /* Configuration du layer */
       mk_field_setLayer ( &p_editField->field, K_MK_GRAPHICS_FOREGROUND );
+
+      /* Configuration de l'index de profondeur */
+      mk_field_setZIndex ( &p_editField->field, 1 );
 
       /* Configuration de l'adresse de la fonction de peinture */
       mk_field_setPainter ( &p_editField->field, mk_editField_defaultPainter );

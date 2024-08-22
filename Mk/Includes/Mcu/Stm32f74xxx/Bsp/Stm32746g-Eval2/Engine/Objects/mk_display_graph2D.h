@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -110,6 +110,23 @@ void mk_graph2D_setDimension ( T_mkGraph2D* p_graph2D, uint32_t p_width, uint32_
  */
 
 void mk_graph2D_setLayer ( T_mkGraph2D* p_graph2D, uint32_t p_layer );
+
+/**
+ * @fn void mk_graph2D_setZIndex ( T_mkGraph2D* p_graph2D, uint32_t p_zIndex );
+ * @brief Cette fonction configure l'indice de profondeur d'un graphique.
+ *
+ * @param[out] p_graph2D Ce paramètre contient l'adresse d'un graphique de type \ref T_mkGraph2D.
+ * @param[in]  p_zIndex  Ce paramètre contient l'indice de profondeur du graphique. Il évolue de [0 à 0xFFFFFFFF].
+ *                       La valeur 0 indique que le graphique doit être dessiné en premier, la valeur 0xFFFFFFFF indique
+ *                       qu'il doit être dessiné en dernier.
+ *                       Si deux objets dans un container possèdent le même indice de profondeur, l'objet dessiné
+ *                       en premier est le dernier objet ajouté dans le container.
+ *
+ * @return Sans objet.
+ *
+ */
+
+void mk_graph2D_setZIndex ( T_mkGraph2D* p_graph2D, uint32_t p_zIndex );
 
 /**
  * @fn void mk_graph2D_setVisibility ( T_mkGraph2D* p_graph2D, uint32_t p_visibility );

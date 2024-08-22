@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2022 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2022-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -111,6 +111,23 @@ void mk_buttonImage_setDimension ( T_mkButtonImage* p_buttonImage, uint32_t p_wi
  */
 
 void mk_buttonImage_setLayer ( T_mkButtonImage* p_buttonImage, uint32_t p_layer );
+
+/**
+ * @fn void mk_buttonImage_setZIndex ( T_mkButtonImage* p_buttonImage, uint32_t p_zIndex );
+ * @brief Cette fonction configure l'indice de profondeur d'un bouton image.
+ *
+ * @param[out] p_buttonImage  Ce paramètre contient l'adresse d'un bouton image de type \ref T_mkButtonImage.
+ * @param[in]  p_zIndex       Ce paramètre contient l'indice de profondeur du bouton image. Il évolue de [0 à 0xFFFFFFFF].
+ *                            La valeur 0 indique que le bouton doit être dessiné en premier, la valeur 0xFFFFFFFF indique
+ *                            qu'il doit être dessiné en dernier.
+ *                            Si deux objets dans un container possèdent le même indice de profondeur, l'objet dessiné
+ *                            en premier est le dernier objet ajouté dans le container.
+ *
+ * @return Sans objet.
+ *
+ */
+
+void mk_buttonImage_setZIndex ( T_mkButtonImage* p_buttonImage, uint32_t p_zIndex );
 
 /**
  * @fn void mk_buttonImage_setVisibility ( T_mkButtonImage* p_buttonImage, uint32_t p_visibility );

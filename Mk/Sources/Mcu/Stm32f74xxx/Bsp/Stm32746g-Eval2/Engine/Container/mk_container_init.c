@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -46,6 +46,9 @@ void mk_container_init ( T_mkContainer* p_container, uint32_t p_type )
 {
    /* Configuration du type du container */
    p_container->type = p_type;
+
+   /* Configuration de l'indice de profondeur */
+   p_container->zIndex = 0;
 
    /* Configuration de l'adresse de la factory propriétaire du container */
    p_container->factory = K_MK_NULL;

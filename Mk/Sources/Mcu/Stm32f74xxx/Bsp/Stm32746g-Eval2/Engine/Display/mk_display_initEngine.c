@@ -1,6 +1,6 @@
  /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -151,6 +151,10 @@ static void mk_display_initContainer ( void )
    /* Initialisation des containers alloués */
    mk_container_init ( g_mkDisplay.frontendContainer, K_MK_TYPE_PRIVILEGED );
    mk_container_init ( g_mkDisplay.criticalContainer, K_MK_TYPE_PRIVILEGED );
+
+   /* Configuration de l'indice de profondeur des containers */
+   g_mkDisplay.frontendContainer->zIndex = 0xFFFFFFFF;
+   g_mkDisplay.criticalContainer->zIndex = 0xFFFFFFFF;
 
    /* Retour */
    return;

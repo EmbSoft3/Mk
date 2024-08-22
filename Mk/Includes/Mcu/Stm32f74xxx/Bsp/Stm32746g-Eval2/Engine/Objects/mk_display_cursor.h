@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -110,6 +110,23 @@ void mk_cursor_setDimension ( T_mkCursor* p_cursor, uint32_t p_width, uint32_t p
  */
 
 void mk_cursor_setLayer ( T_mkCursor* p_cursor, uint32_t p_layer );
+
+/**
+ * @fn void mk_cursor_setZIndex ( T_mkCursor* p_cursor, uint32_t p_zIndex );
+ * @brief Cette fonction configure l'indice de profondeur d'un curseur.
+ *
+ * @param[out] p_cursor  Ce paramètre contient l'adresse d'un curseur de type \ref T_mkCursor.
+ * @param[in]  p_zIndex  Ce paramètre contient l'indice de profondeur du curseur. Il évolue de [0 à 0xFFFFFFFF].
+ *                       La valeur 0 indique que le curseur doit être dessiné en premier, la valeur 0xFFFFFFFF indique
+ *                       qu'il doit être dessiné en dernier.
+ *                       Si deux objets dans un container possèdent le même indice de profondeur, l'objet dessiné
+ *                       en premier est le dernier objet ajouté dans le container.
+ *
+ * @return Sans objet.
+ *
+ */
+
+void mk_cursor_setZIndex ( T_mkCursor* p_cursor, uint32_t p_zIndex );
 
 /**
  * @fn void mk_cursor_setVisibility ( T_mkCursor* p_cursor, uint32_t p_visibility );

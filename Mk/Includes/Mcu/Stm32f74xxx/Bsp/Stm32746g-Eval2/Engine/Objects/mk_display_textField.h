@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2022 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2022-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -110,6 +110,23 @@ void mk_textField_setDimension ( T_mkTextField* p_textField, uint32_t p_width, u
  */
 
 void mk_textField_setLayer ( T_mkTextField* p_textField, uint32_t p_layer );
+
+/**
+ * @fn void mk_textField_setZIndex ( T_mkTextField* p_textField, uint32_t p_zIndex );
+ * @brief Cette fonction configure l'indice de profondeur d'une boite de texte.
+ *
+ * @param[out] p_textField Ce paramètre contient l'adresse d'une boite de texte de type \ref T_mkTextField.
+ * @param[in]  p_zIndex    Ce paramètre contient l'indice de profondeur de la boite de texte. Il évolue de [0 à 0xFFFFFFFF].
+ *                         La valeur 0 indique que la boite doit être dessinée en premier, la valeur 0xFFFFFFFF indique
+ *                         qu'elle doit être dessinée en dernier.
+ *                         Si deux objets dans un container possèdent le même indice de profondeur, l'objet dessiné
+ *                         en premier est le dernier objet ajouté dans le container.
+ *
+ * @return Sans objet.
+ *
+ */
+
+void mk_textField_setZIndex ( T_mkTextField* p_textField, uint32_t p_zIndex );
 
 /**
  * @fn void mk_textField_setVisibility ( T_mkTextField* p_textField, uint32_t p_visibility );

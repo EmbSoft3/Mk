@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -64,6 +64,9 @@ void mk_cursor_init ( T_mkCursor* p_cursor )
 
       /* Configuration du layer */
       mk_field_setLayer ( &p_cursor->field, K_MK_GRAPHICS_FOREGROUND );
+
+      /* Configuration de l'index de profondeur */
+      mk_field_setZIndex ( &p_cursor->field, 1 );
 
       /* Configuration de l'adresse de la fonction de peinture */
       mk_field_setPainter ( &p_cursor->field, mk_cursor_defaultPainter );

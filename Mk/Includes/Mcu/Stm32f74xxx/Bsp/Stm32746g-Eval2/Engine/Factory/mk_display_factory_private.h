@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -52,7 +52,8 @@ void mk_factory_init ( T_mkFactory* p_factory );
 
 /**
  * @fn T_mkCode mk_factory_add ( T_mkSemaphore* p_semaphore, T_mkFactory* p_factory, T_mkContainer* p_container );
- * @brief Cette fonction ajoute un container dans une factory de type \ref T_mkFactory. Le container est ajoutée en fin de liste.
+ * @brief Cette fonction ajoute un container dans une factory de type \ref T_mkFactory. La position du container dans la factory est déterminée
+ *        par son indice de profondeur (zIndex).
  *
  * @param[in]     p_semaphore Ce paramètre contient l'adresse du sémaphore gérant les accès concurrent sur les containers.
  * @param[in,out] p_factory   Ce paramètre contient l'adresse d'une factory de type \ref T_mkFactory.

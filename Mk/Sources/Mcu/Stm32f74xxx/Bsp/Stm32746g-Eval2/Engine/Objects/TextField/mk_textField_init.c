@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2022 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2022-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -64,6 +64,9 @@ void mk_textField_init ( T_mkTextField* p_textField )
 
       /* Configuration du layer */
       mk_field_setLayer ( &p_textField->field, K_MK_GRAPHICS_FOREGROUND );
+
+      /* Configuration de l'index de profondeur */
+      mk_field_setZIndex ( &p_textField->field, 1 );
 
       /* Configuration de l'adresse de la fonction de peinture */
       mk_field_setPainter ( &p_textField->field, mk_textField_defaultPainter );

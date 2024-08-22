@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023-2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,9 +28,9 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_figure_init.c
-* @brief Définition de la fonction mk_figure_init.
-* @date 7 oct. 2023
+* @file mk_figure_setZIndex.c
+* @brief Définition de la fonction mk_figure_setZIndex.
+* @date 22 août 2024
 *
 */
 
@@ -42,25 +42,13 @@
  * @endinternal
  */
 
-void mk_figure_init ( T_mkFigure* p_figure )
+void mk_figure_setZIndex ( T_mkFigure* p_figure, uint32_t p_zIndex )
 {
    /* Si le paramètre est valide */
    if ( p_figure != K_MK_NULL )
    {
-      /* Réinitialisation de la structure */
-      _writeWords ( p_figure, 0, sizeof ( T_mkFigure ) >> 2 );
-
-      /* Initialisation du champ */
-      mk_field_init ( &p_figure->field );
-
-      /* Configuration de l'adresse du descendant (héritage) */
-      mk_field_setChild ( &p_figure->field, ( T_mkFigure* ) p_figure );
-
-      /* Configuration du layer */
-      mk_field_setLayer ( &p_figure->field, K_MK_GRAPHICS_FOREGROUND );
-
-      /* Configuration de l'index de profondeur */
-      mk_field_setZIndex ( &p_figure->field, 1 );
+      /* Configuration de l'attribut de la figure */
+      mk_field_setZIndex ( &p_figure->field, p_zIndex );
    }
 
    /* Sinon */
@@ -72,6 +60,4 @@ void mk_figure_init ( T_mkFigure* p_figure )
    /* Retour */
    return;
 }
-
-
 

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -110,6 +110,23 @@ void mk_figure_setDimension ( T_mkFigure* p_figure, uint32_t p_width, uint32_t p
  */
 
 void mk_figure_setLayer ( T_mkFigure* p_figure, uint32_t p_layer );
+
+/**
+ * @fn void mk_figure_setZIndex ( T_mkFigure* p_figure, uint32_t p_zIndex );
+ * @brief Cette fonction configure l'indice de profondeur d'une figure.
+ *
+ * @param[out] p_figure Ce paramètre contient l'adresse d'une figure de type \ref T_mkFigure.
+ * @param[in]  p_zIndex Ce paramètre contient l'indice de profondeur de la figure. Il évolue de [0 à 0xFFFFFFFF].
+ *                      La valeur 0 indique que la figure doit être dessinée en premier, la valeur 0xFFFFFFFF indique
+ *                      qu'elle doit être dessinée en dernier.
+ *                      Si deux objets dans un container possèdent le même indice de profondeur, l'objet dessiné
+ *                      en premier est le dernier objet ajouté dans le container.
+ *
+ * @return Sans objet.
+ *
+ */
+
+void mk_figure_setZIndex ( T_mkFigure* p_figure, uint32_t p_zIndex );
 
 /**
  * @fn void mk_figure_setVisibility ( T_mkFigure* p_figure, uint32_t p_visibility );

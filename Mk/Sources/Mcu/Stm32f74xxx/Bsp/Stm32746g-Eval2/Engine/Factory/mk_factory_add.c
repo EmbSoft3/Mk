@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -47,6 +47,9 @@ T_mkCode mk_factory_add ( T_mkSemaphore* p_semaphore, T_mkFactory* p_factory, T_
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
 
+   /* Déclaration des pointeurs de containers */
+   T_mkContainer* l_currentContainer = K_MK_NULL, *l_previousContainer = K_MK_NULL;
+
    /* Les containers sont des objets partagés. */
    /* Tant que le signal de synchronisation n'a pas été reçu, laisser */
    /* la main à une autre tâche */
@@ -55,15 +58,13 @@ T_mkCode mk_factory_add ( T_mkSemaphore* p_semaphore, T_mkFactory* p_factory, T_
    /* Si la synchronisation a réussi */
    if ( l_result == K_MK_OK )
    {
-      /* Le container est ajouté en fin de liste */
-      p_container->next = K_MK_NULL;
-
       /* Si la liste est vide */
       if ( p_factory->first == K_MK_NULL )
       {
          /* La liste contient un seul élement, les pointeurs 'next' et */
          /* 'previous' doivent pointer sur la valeur nulle. */
          p_container->previous = K_MK_NULL;
+         p_container->next = K_MK_NULL;
 
          /* Configuration des pointeurs de début et de fin de liste */
          p_factory->first = p_container;
@@ -73,13 +74,52 @@ T_mkCode mk_factory_add ( T_mkSemaphore* p_semaphore, T_mkFactory* p_factory, T_
       /* Sinon */
       else
       {
-         /* Actualisation du pointeur 'previous' du nouvel élément */
-         p_container->previous = p_factory->last;
-         /* Actualisation du pointeur 'next' de l'élement précédent */
-         p_factory->last->next = p_container;
+         /* Récupération de l'adresse du premier container dans la factory */
+         l_currentContainer = p_factory->first;
 
-         /* Le nouvel élément est situé en fin de liste */
-         p_factory->last = p_container;
+         /* On place le container dans la liste en fonction de son indice de profondeur. */
+         /* Si deux containers possèdent le même indice, on place le nouveau container en tête. */
+         /* Il sera alors dessiné en premier. */
+         while ( ( l_currentContainer != K_MK_NULL ) && ( p_container->zIndex > l_currentContainer->zIndex ) )
+         {
+            /* Passage au prochain container */
+            l_previousContainer = l_currentContainer;
+            l_currentContainer = l_currentContainer->next;
+         }
+
+         /* Actualisation des pointeurs du nouvel élément */
+         p_container->previous = l_previousContainer;
+         p_container->next = l_currentContainer;
+
+         /* Si le pointeur de liste doit être actualisé */
+         /* Le container a été inséré en tête de liste */
+         if ( l_previousContainer == K_MK_NULL )
+         {
+            /* Configuration du pointeur de début de liste */
+            p_factory->first = p_container;
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Le précédent container pointe sur le nouveau container */
+            l_previousContainer->next = p_container;
+         }
+
+         /* Si le pointeur de fin de liste doit être actualisé */
+         /* Le container a été inséré en fin de liste */
+         if ( l_currentContainer == K_MK_NULL )
+         {
+            /* Configuration du pointeur de fin de liste */
+            p_factory->last = p_container;
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Le prochain container doit pointer sur le nouveau container */
+            l_currentContainer->previous = p_container;
+         }
       }
 
       /* Libération de la ressource */

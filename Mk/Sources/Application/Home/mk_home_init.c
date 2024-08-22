@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -196,6 +196,7 @@ static void mk_home_initManagerFields ( T_mkHomeApplication* p_home )
    mk_buttonImage_setPosition ( &p_home->view.manager.status.button, K_MK_HOME_MANAGERVIEW_STATUSAREA_TOPLEFT_X , K_MK_HOME_MANAGERVIEW_STATUSAREA_TOPLEFT_Y );
    mk_buttonImage_setDimension ( &p_home->view.manager.status.button, K_MK_HOME_MANAGERVIEW_STATUSAREA_WIDTH, K_MK_HOME_MANAGERVIEW_STATUSAREA_HEIGHT );
    mk_buttonImage_setLayer ( &p_home->view.manager.status.button, K_MK_GRAPHICS_BACKGROUND );
+   mk_buttonImage_setZIndex ( &p_home->view.manager.status.button, 2 );
    mk_buttonImage_setBorderColor ( &p_home->view.manager.status.button, K_MK_COLOR_ARGB_DARKEST_GRAY );
    mk_buttonImage_setBorderVisibility ( &p_home->view.manager.status.button, K_MK_FIELD_VISIBLE );
    mk_buttonImage_setVisibility ( &p_home->view.manager.status.button, K_MK_FIELD_INVISIBLE );
@@ -215,6 +216,7 @@ static void mk_home_initManagerFields ( T_mkHomeApplication* p_home )
                                    K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_TOPLEFT_Y + ( real32_t ) ( l_counter * K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_HEIGHT ) );
       mk_buttonImage_setDimension ( &p_home->view.manager.applicationList.app [ l_counter ].button, K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_WIDTH, K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_HEIGHT );
       mk_buttonImage_setLayer ( &p_home->view.manager.applicationList.app [ l_counter ].button, K_MK_GRAPHICS_BACKGROUND );
+      mk_buttonImage_setZIndex ( &p_home->view.manager.applicationList.app [ l_counter ].button, 2 );
       mk_buttonImage_setBorderColor ( &p_home->view.manager.applicationList.app [ l_counter ].button, K_MK_COLOR_ARGB_DARKEST_GRAY );
       mk_buttonImage_setBorderVisibility ( &p_home->view.manager.applicationList.app [ l_counter ].button, K_MK_FIELD_VISIBLE );
       mk_buttonImage_setVisibility ( &p_home->view.manager.applicationList.app [ l_counter ].button, K_MK_FIELD_INVISIBLE );
@@ -254,7 +256,7 @@ static T_mkCode mk_home_initManagerView ( T_mkHomeApplication* p_home )
    uint32_t l_counter = 0;
 
    /* Initialisation du container du manager */
-   l_result = mk_container_create ( &p_home->view.manager.container, K_MK_NULL, K_MK_NULL );
+   l_result = mk_container_create ( &p_home->view.manager.container, 0xFFFFFFFF, K_MK_NULL, K_MK_NULL );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
@@ -330,7 +332,7 @@ static void mk_home_initMainFields ( T_mkHomeApplication* p_home )
    mk_screen_setListener ( &p_home->view.main.screen, mk_home_main_listenScreen );
    mk_screen_setPainter ( &p_home->view.main.screen, mk_home_main_paintForeground );
 
-   /* Initialisation de l'arrière plan image */
+   /* Initialisation de l'image d'arrière plan */
    mk_buttonImage_init ( &p_home->view.main.background );
    mk_buttonImage_setPosition ( &p_home->view.main.background, K_MK_HOME_MANAGERVIEW_WORKINGAREA_TOPLEFT_X , K_MK_HOME_MANAGERVIEW_WORKINGAREA_TOPLEFT_Y );
    mk_buttonImage_setDimension ( &p_home->view.main.background, mk_display_getWidth ( ), mk_display_getHeight ( ) );
@@ -350,6 +352,7 @@ static void mk_home_initMainFields ( T_mkHomeApplication* p_home )
       mk_buttonImage_setPosition ( &p_home->view.main.applicationList.app [ l_counter ].button, ( real32_t ) ( K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_X + l_dx ), ( real32_t ) ( K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_Y + 10 ) );
       mk_buttonImage_setDimension ( &p_home->view.main.applicationList.app [ l_counter ].button, K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_WIDTH, K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_HEIGHT );
       mk_buttonImage_setLayer ( &p_home->view.main.applicationList.app [ l_counter ].button, K_MK_GRAPHICS_FOREGROUND );
+      mk_buttonImage_setZIndex ( &p_home->view.main.applicationList.app [ l_counter ].button, 2 );
       mk_buttonImage_setBorderColor ( &p_home->view.main.applicationList.app [ l_counter ].button, K_MK_COLOR_ARGB_DARKEST_GRAY );
       mk_buttonImage_setBorderVisibility ( &p_home->view.main.applicationList.app [ l_counter ].button, K_MK_FIELD_VISIBLE );
       mk_buttonImage_setVisibility ( &p_home->view.main.applicationList.app [ l_counter ].button, K_MK_FIELD_INVISIBLE );
@@ -387,7 +390,7 @@ static T_mkCode mk_home_initMainView ( T_mkHomeApplication* p_home )
    uint32_t l_counter = 0;
 
    /* Initialisation du container de la vue principale */
-   l_result = mk_container_create ( &p_home->view.main.container, mk_home_main_listenApplication, K_MK_NULL );
+   l_result = mk_container_create ( &p_home->view.main.container, 0xFFFFFFFF, mk_home_main_listenApplication, K_MK_NULL );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
@@ -427,7 +430,7 @@ static T_mkCode mk_home_initLayer ( T_mkHomeApplication* p_home )
    T_mkCode l_result;
 
    /* Initialisation du container du manager */
-   l_result = mk_container_create ( &p_home->view.layer.container, K_MK_NULL, K_MK_NULL );
+   l_result = mk_container_create ( &p_home->view.layer.container, 0xFFFFFFFF, K_MK_NULL, K_MK_NULL );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
@@ -510,11 +513,9 @@ T_mkCode mk_home_init ( T_mkHomeApplication* p_home )
    if ( l_result == K_MK_OK )
    {
       /* Ajout des container dans une factory du moteur graphique */
-      l_result  = mk_factory_addContainer ( p_home->view.main.container, K_MK_NULL );
+      l_result = mk_factory_addContainer ( p_home->view.layer.container, K_MK_NULL );
       l_result |= mk_factory_addContainer ( p_home->view.manager.container, K_MK_NULL );
-
-      /* Ajout du container de configuration des layers en dernière position */
-      l_result |= mk_factory_addContainer ( p_home->view.layer.container, K_MK_NULL );
+      l_result |= mk_factory_addContainer ( p_home->view.main.container, K_MK_NULL );
    }
 
    /* Sinon */

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -58,6 +58,9 @@ void mk_graph2D_init ( T_mkGraph2D* p_graph2D )
 
       /* Configuration du layer */
       mk_field_setLayer ( &p_graph2D->field, K_MK_GRAPHICS_FOREGROUND );
+
+      /* Configuration de l'index de profondeur */
+      mk_field_setZIndex ( &p_graph2D->field, 1 );
 
       /* Configuration de la position du champ */
       mk_field_setPosition ( &p_graph2D->field, 0, 0 );

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2022 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2022-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -178,6 +178,9 @@ static T_mkCode mk_container_handleCreateRequest ( T_mkTask* p_task, T_mkContain
 
             /* Configuration de la tâche propriétaire du container */
             l_container->owner = p_task->owner;
+
+            /* Configuration de l'indice de profondeur du container */
+            l_container->zIndex = p_request->zIndex;
 
             /* Configuration de la fonction d'écoute du container */
             l_container->listener = p_request->listener;
