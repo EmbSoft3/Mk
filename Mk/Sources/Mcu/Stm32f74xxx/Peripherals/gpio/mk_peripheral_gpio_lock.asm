@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -50,27 +50,27 @@
 .global _gpio_lock
 _gpio_lock:
 
-	/* Détermination de l'offset du registre GPIO_LCKR */
-	ADD R0, R0, #0x1C
+   /* Détermination de l'offset du registre GPIO_LCKR */
+   ADD R0, R0, #0x1C
 
-	/* Création de la première clé */
-	/* Remise à 0 des bits 31 à 16 de "p_port" */
-	UXTH R1, R1
+   /* Création de la première clé */
+   /* Remise à 0 des bits 31 à 16 de "p_port" */
+   UXTH R1, R1
 
-	/* Création de la seconde clé */
-	MOV R2, R1
-	ORR R2, R2, #0x10000
+   /* Création de la seconde clé */
+   MOV R2, R1
+   ORR R2, R2, #0x10000
 
-	/* Vérrouillage de la configuration */
-	/* La séquence est décrite dans le datasheet du composant */
-	STR R2, [R0]
-	STR R1, [R0]
-	STR R2, [R0]
-	LDR R1, [R0]
+   /* Vérrouillage de la configuration */
+   /* La séquence est décrite dans le datasheet du composant */
+   STR R2, [R0]
+   STR R1, [R0]
+   STR R2, [R0]
+   LDR R1, [R0]
 
-	/* Chargement du résultat */
-	LDR R0, [R0]
-	LSR R0, R0, #16
+   /* Chargement du résultat */
+   LDR R0, [R0]
+   LSR R0, R0, #16
 
-	/* Retour */
-	BX LR
+   /* Retour */
+   BX LR

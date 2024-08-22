@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -51,14 +51,14 @@
 .global _writeField
 _writeField:
 
-	/* Chargement de la valeur pointée par "p_addr" */
-	LDR R3, [R0]
+   /* Chargement de la valeur pointée par "p_addr" */
+   LDR R3, [R0]
 
-	/* Calcul de la valeur de sortie */
-	BIC R3, R3, R1
-	ORR R3, R3, R2
-	STR R3, [R0]
+   /* Calcul de la valeur de sortie */
+   BIC R3, R3, R1
+   ORR R3, R3, R2
+   STR R3, [R0]
 
-	/* Retour */
-	BX LR
+   /* Retour */
+   BX LR
 

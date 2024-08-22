@@ -67,7 +67,7 @@ _mk_chromart_drawCharacterFast24BPP:
 
     PUSH { R4-R11 }
 
-	/* Enregistrement du nombre d'octets par pixel */
+    /* Enregistrement du nombre d'octets par pixel */
     MOV R10, #0x3
     /* Enregistrement du MSB de la valeur du pixel */
     MOV R11, R2, LSR #0x10
@@ -142,7 +142,7 @@ _mk_chromart_drawCharacterFast24BPP:
     ADD R8, R0, R8
     STRB R2, [ R8 ]
     STRBT R2, [ R8, #0x01 ]
-	STRB R11, [ R8, #0x02 ]
+    STRB R11, [ R8, #0x02 ]
 
     /* Détermination de la valeur du décalage */
     MOV R8, #0x1F

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -49,7 +49,7 @@
 .align 4
 .global _writeByte
 _writeByte:
-	STRB R1, [R0, #0x00]
-	BX LR
+   STRB R1, [R0, #0x00]
+   BX LR
 
 

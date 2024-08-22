@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -50,14 +50,14 @@
 .global _getField
 _getField:
 
-	/* Chargement de la valeur pointée par "p_addr" */
-	LDR R0, [R0]
+   /* Chargement de la valeur pointée par "p_addr" */
+   LDR R0, [R0]
 
-	/* Calcul de la valeur de sortie */
-	LSR R0, R0, R2
-	AND R0, R0, R1
+   /* Calcul de la valeur de sortie */
+   LSR R0, R0, R2
+   AND R0, R0, R1
 
-	/* Retour */
-	BX LR
+   /* Retour */
+   BX LR
 
 

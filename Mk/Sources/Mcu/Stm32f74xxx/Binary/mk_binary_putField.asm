@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -50,17 +50,17 @@
 .global _putField
 _putField:
 
-	/* Réalisation des opération de décalage sur "p_mask" et "p_value" */
-	LSL R1, R1, R3
-	LSL R2, R2, R3
+   /* Réalisation des opération de décalage sur "p_mask" et "p_value" */
+   LSL R1, R1, R3
+   LSL R2, R2, R3
 
-	/* Chargement de la valeur pointée par "p_addr" */
-	LDR R3, [R0]
+   /* Chargement de la valeur pointée par "p_addr" */
+   LDR R3, [R0]
 
-	/* Calcul de la valeur de sortie */
-	BIC R1, R3, R1
-	ORR R1, R1, R2
-	STR R1, [R0]
+   /* Calcul de la valeur de sortie */
+   BIC R1, R3, R1
+   ORR R1, R1, R2
+   STR R1, [R0]
 
-	/* Retour */
-	BX LR
+   /* Retour */
+   BX LR

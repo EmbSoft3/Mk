@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -114,8 +114,8 @@ _mk_scheduler_load:
 
     /* Test si le registre de contrôle du timerSystème indique la présence */
     /* d'un débordement */
-	/* Note : le périphérique systick décompte de la valeur */
-	/* g_mkScheduler.load.timerRegister à la valeur 0 */
+    /* Note : le périphérique systick décompte de la valeur */
+    /* g_mkScheduler.load.timerRegister à la valeur 0 */
     SUBS R4, R4, #0x00010000
     BNE 1f
 
@@ -163,12 +163,12 @@ _mk_scheduler_load:
     ADD R5, R5, R4
     STR R5, [ R0, #K_MK_SCHEDULER_US_TICK_REGISTER_SUM ]
 
-	/* Note */
-	/* La valeur de g_mkScheduler.load.usTickRegister est actualisée à la fin */
-	/* de la fonction */
+    /* Note */
+    /* La valeur de g_mkScheduler.load.usTickRegister est actualisée à la fin */
+    /* de la fonction */
 
     /* Récupération de la valeur des compteurs */
-    LDR R4, [ R0, #K_MK_SCHEDULER_CYCLE_REGISTER ]     	  /* Nombre de ticks écoulé dans le cycle de calcul (g_mkScheduler.load.cycleRegister) */
+    LDR R4, [ R0, #K_MK_SCHEDULER_CYCLE_REGISTER ]        /* Nombre de ticks écoulé dans le cycle de calcul (g_mkScheduler.load.cycleRegister) */
     LDR R5, [ R0, #K_MK_SCHEDULER_CURRENT_TICK_REGISTER ] /* Valeur du tick courant (g_mkScheduler.tickRegister) */
     LDR R6, [ R0, #K_MK_SCHEDULER_TICK_REGISTER ]         /* Valeur du dernier tick mémorisé (g_mkScheduler.load.tickRegister) */
 
@@ -210,7 +210,7 @@ _mk_scheduler_load:
 
     /* Enregistrement du temps d'exécution de la tâche de repos */
     /* dans la variable destinée à l'utilisateur */
-	/* g_mkScheduler.idle.load.lastValue = g_mkScheduler.idle.load.value */
+    /* g_mkScheduler.idle.load.lastValue = g_mkScheduler.idle.load.value */
     ADD R5, R0, #K_MK_SCHEDULER_OFFSET_IDLE_TASK
     ADD R5, #K_MK_SCHEDULER_TASK_LAST_LOAD_OFFSET
     LDR R6, [ R5, #0x04 ]

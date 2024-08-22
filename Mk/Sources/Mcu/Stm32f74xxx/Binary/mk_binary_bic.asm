@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -49,8 +49,8 @@
 .align 4
 .global _bic
 _bic:
-	LDR R2, [R0]
-	BIC R2, R2, R1
-	STR R2, [R0]
-	BX LR
+   LDR R2, [R0]
+   BIC R2, R2, R1
+   STR R2, [R0]
+   BX LR
 

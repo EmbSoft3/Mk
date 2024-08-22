@@ -53,7 +53,7 @@ T_mkCode mk_qspi_eraseChip ( uint32_t p_mode )
    /* Pour le nombre de secteurs dans la mémoire */
    for ( l_counter = 0 ; ( l_counter < K_MK_MICRON_N25Q512A_SECTOR_NUMBER ) && ( l_result == K_MK_OK ) ; l_counter++ )
    {
-   	/* Effacement des secteurs de la mémoire */
+      /* Effacement des secteurs de la mémoire */
       l_result = mk_qspi_erase ( p_mode, l_addr );
 
       /* Actualisation de l'adresse du secteur */

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -50,10 +50,10 @@
 .global _getByte
 _getByte:
 
-	/* Lecture de l'octet de destination */
-	LDRB R0, [R0, R1]
+   /* Lecture de l'octet de destination */
+   LDRB R0, [R0, R1]
 
-	/* Retour */
-	BX LR
+   /* Retour */
+   BX LR
 
 

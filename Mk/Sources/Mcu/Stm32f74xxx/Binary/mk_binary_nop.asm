@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -49,6 +49,6 @@
 .align 4
 .global _nop
 _nop:
-	NOP
-	BX LR
+   NOP
+   BX LR
 

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -50,9 +50,9 @@
 .global _setByte
 _setByte:
 
-	/* Ecriture de l'octet de destination */
-	STRB R2, [R0, R1]
+   /* Ecriture de l'octet de destination */
+   STRB R2, [R0, R1]
 
-	/* Retour */
-	BX LR
+   /* Retour */
+   BX LR
 
