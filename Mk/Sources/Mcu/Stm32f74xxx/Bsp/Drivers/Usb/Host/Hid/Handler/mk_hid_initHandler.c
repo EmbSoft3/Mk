@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -56,8 +56,8 @@ static T_mkCode mk_hid_handleSignal ( void )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Attente de l'intialisation du dispatcher et du terminal USB */
-      l_result = mk_event_wait ( g_mkTermioSync.event, K_MK_EVENT_AND | K_MK_TERMIO_FLAG_USBHS | K_MK_TERMIO_FLAG_DISPATCHER, &l_event, K_MK_TERMIO_INIT_TIMEOUT );
+      /* Attente de l'intialisation du dispatcher */
+      l_result = mk_event_wait ( g_mkTermioSync.event, K_MK_EVENT_AND | K_MK_TERMIO_FLAG_DISPATCHER, &l_event, K_MK_TERMIO_INIT_TIMEOUT );
    }
 
    /* Sinon */
