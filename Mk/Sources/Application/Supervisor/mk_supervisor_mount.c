@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -136,6 +136,9 @@ T_mkCode mk_supervisor_mount ( T_mkSupervisor* p_supervisor )
 
    /* Déclaration d'un compteur */
    uint32_t l_counter = 0;
+
+   /* Initialisation du pointeur de partition système */
+   g_mkSystemVolume = K_MK_NULL;
 
    /* Attente tant qu'aucun terminal de gestion du système de fichiers n'est initialisé */
    l_result = mk_supervisor_waitFileSystemEvent ( p_supervisor );
