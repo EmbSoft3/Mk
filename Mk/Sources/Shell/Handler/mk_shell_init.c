@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -97,7 +97,8 @@ static T_mkCode mk_shell_allocPage ( T_mkShell* p_shell )
    /* Sinon */
    else
    {
-      /* Ne rien faire */
+      /* Le pointeur de page doit pointer sur la valeur nulle */
+      p_shell->page.baseAddr = K_MK_NULL;
    }
 
    /* Retour */

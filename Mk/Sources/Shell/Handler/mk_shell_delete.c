@@ -42,15 +42,38 @@
  * @endinternal
  */
 
+
 T_mkCode mk_shell_delete ( T_mkShell* p_shell )
 {
    /* Déclaration de la variable de retour */
-   T_mkCode l_result;
+   T_mkCode l_result = K_MK_OK;
 
-   /* Suppression d'une page mémoire */
-   l_result = mk_page_free ( K_MK_PAGE_ID_SMALL, &p_shell->page.baseAddr );
+   /* Si la page mémoire doit être désallouée */
+   if ( p_shell->page.baseAddr != K_MK_NULL )
+   {
+      /* Suppression d'une page mémoire */
+      l_result = mk_page_free ( K_MK_PAGE_ID_SMALL, p_shell->page.baseAddr );
+
+      /* Si aucune erreur ne s'est produite */
+      if ( l_result == K_MK_OK )
+      {
+         /* Le pointeur de page doit pointer sur la valeur nulle */
+         p_shell->page.baseAddr = K_MK_NULL;
+      }
+
+      /* Sinon */
+      else
+      {
+         /* Ne rien faire */
+      }
+   }
+
+   /* Sinon */
+   else
+   {
+      /* Ne rien faire */
+   }
 
    /* Retour */
    return ( l_result );
 }
-
