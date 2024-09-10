@@ -1,6 +1,6 @@
 # Mk Software
 
-**Mk** is a tiny operating system designed to run on the **STM32F746g-Eval2** 
+**Mk** is a tiny operating system designed to run on the **STM32F746G-DISCO REV.C** 
 board.
 **Mk** has been designed from scratch. It provides a software ecosystem that 
 can be integrated with the **STM32F75xxx** and **STM32F74xxx** MCU family.
@@ -95,7 +95,7 @@ shortly with a description and explanation of how the operating system works.
 
 ## Screenshots
 
-Below are some screenshots of the system :
+Below are some screenshots of the system (made with **STM32F746g-Eval2 board**) :
 
 ![startup](Screenshots/screenshot_startup.bmp "startup")
 
