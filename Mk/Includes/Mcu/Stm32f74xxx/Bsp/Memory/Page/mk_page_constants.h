@@ -49,7 +49,7 @@
  * @brief Définition de la taille de la mémoire externe SRAM [en octets].
  */
 
-#define K_MK_PAGE_SRAM_SIZE 0x200000
+#define K_MK_PAGE_SRAM_SIZE 0
 
 /**
  * @def K_MK_PAGE_SRAM_BLOCK_SIZE
@@ -76,7 +76,7 @@
  *        1 * K_MK_DISPLAY_FRAME_BUFFER_SIZE => mémoire dédiées à l'allocation des applications.
  */
 
-#define K_MK_PAGE_SDRAM_SIZE ( ( 0x800000 - ( ( 2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE ) + K_MK_DISPLAY_FRAME_BUFFER_SIZE ) ) * 4 )
+#define K_MK_PAGE_SDRAM_SIZE ( ( ( uint32_t ) 0x200000 - ( ( 2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE ) + K_MK_DISPLAY_FRAME_BUFFER_SIZE ) ) * 4 )
 
 /**
  * @def K_MK_PAGE_SDRAM_BLOCK_SIZE
@@ -84,6 +84,13 @@
  */
 
 #define K_MK_PAGE_SDRAM_BLOCK_SIZE ( K_MK_DISPLAY_FRAME_BUFFER_SIZE * 4 )
+
+/**
+ * @def K_MK_PAGE_SDRAM_SMALL_BLOCK_SIZE
+ * @brief Définition de la taille réduite des pages mémoire pouvant être allouées dans la mémoire SDRAM [en octets].
+ */
+
+#define K_MK_PAGE_SDRAM_SMALL_BLOCK_SIZE 65536
 
 /**
  *

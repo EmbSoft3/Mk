@@ -54,7 +54,7 @@ T_mkCode mk_gpio_get ( uint32_t p_port, uint32_t p_pinNumber, uint32_t* p_value 
    T_mkGPIOHandler* l_handler;
 
    /* Déclaration d'une variable de travail */
-   T_mkAddr l_addrTable [ ] = { 0, K_GPIOA, K_GPIOB, K_GPIOC,
+   T_mkAddr l_addrTable [ ] = { K_GPIOA, K_GPIOB, K_GPIOC,
          K_GPIOD, K_GPIOE, K_GPIOF, K_GPIOG, K_GPIOH, K_GPIOI, K_GPIOJ, K_GPIOK };
 
    /* Si les paramètres sont valides */
@@ -66,40 +66,18 @@ T_mkCode mk_gpio_get ( uint32_t p_port, uint32_t p_pinNumber, uint32_t* p_value 
       /* Si aucune erreur ne s'est produite */
       if ( ( l_result == K_MK_OK ) && ( l_handler != K_MK_NULL ) )
       {
-         /* Si une broche du périphérique MFX doit être configurée */
-         if ( p_port == K_MK_GPIO_EXPANDER )
+         /* Si le numéro de la broche est valide */
+         if ( p_pinNumber < K_GPIO_NUMBER_OF_PINS_PER_PORT )
          {
-            /* Si le numéro de la broche est valide */
-            if ( p_pinNumber < MK_GPIO_EXPANDER_NUMBER_OF_PINS )
-            {
-               /* Récupération de la valeur de la broche */
-               *p_value = ( uint32_t ) ( ( ( l_handler->ctrl.expander.current ) >> ( p_pinNumber ) ) & 0x1 );
-            }
-
-            /* Sinon */
-            else
-            {
-               /* Actualisation de la variable de retour */
-               l_result = K_MK_ERROR_PARAM;
-            }
+            /* Récupération de la valeur de la broche */
+            *p_value = gpio_get ( l_addrTable [ p_port ], p_pinNumber );
          }
 
          /* Sinon */
          else
          {
-            /* Si le numéro de la broche est valide */
-            if ( p_pinNumber < K_GPIO_NUMBER_OF_PINS_PER_PORT )
-            {
-               /* Récupération de la valeur de la broche */
-               *p_value = gpio_get ( l_addrTable [ p_port ], p_pinNumber );
-            }
-
-            /* Sinon */
-            else
-            {
-               /* Actualisation de la variable de retour */
-               l_result = K_MK_ERROR_PARAM;
-            }
+            /* Actualisation de la variable de retour */
+            l_result = K_MK_ERROR_PARAM;
          }
       }
 

@@ -49,21 +49,21 @@
  * @brief Définition de la position TOP_LEFT [y] de la zone de travail.
  */
 
-#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_Y 340
+#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_Y 140
 
 /**
  * @def K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_BOTTOMRIGHT_X
  * @brief Définition de la position BOTTOM_RIGHT [x] de la zone de travail.
  */
 
-#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_BOTTOMRIGHT_X 639
+#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_BOTTOMRIGHT_X 479
 
 /**
  * @def K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_Y
  * @brief Définition de la position BOTTOM_RIGHT [y] de la zone de travail.
  */
 
-#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_BOTTOMRIGHT_Y 479
+#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_BOTTOMRIGHT_Y 271
 
 /**
  *
@@ -74,7 +74,7 @@
  * @brief Définition du nombre de boutons pouvant être dessinés dans la zone d'affichage des applications.
  */
 
-#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_NUMBER 5
+#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_NUMBER 3
 
 /**
  * @def K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_WIDTH
@@ -106,14 +106,14 @@
  * @brief Définition de la largeur de l'arrière plan [en pixels].
  */
 
-#define K_MK_HOME_MAINVIEW_BACKGROUND_WIDTH 640
+#define K_MK_HOME_MAINVIEW_BACKGROUND_WIDTH 480
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_HEIGHT
  * @brief Définition de la hauteur de l'arrière plan [en pixels].
  */
 
-#define K_MK_HOME_MAINVIEW_BACKGROUND_HEIGHT 480
+#define K_MK_HOME_MAINVIEW_BACKGROUND_HEIGHT 272
 
 
 /**

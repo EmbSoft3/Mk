@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,27 +28,29 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_expander_data.h
-* @brief Déclaration des données dédiées au périphérique MFX.
-* @date 21 déc. 2020
+* @file mk_shell_delete.c
+* @brief Définition de la fonction mk_shell_delete.
+* @date 10 sept. 2024
 *
 */
 
-#ifndef MK_GPIO_EXPANDER_DATA_H
-#define MK_GPIO_EXPANDER_DATA_H
+#include "mk_shell_api.h"
 
 /**
- * @fn const uint8_t g_expanderSettingTable [ MK_GPIO_EXPANDER_NUMBER_OF_PINS ] [ 4 ];
- * @brief Déclaration de la table de configuration du périphérique MFX.
- *
+ * @internal
+ * @brief
+ * @endinternal
  */
 
-extern const uint8_t g_expanderSettingTable [ MK_GPIO_EXPANDER_NUMBER_OF_PINS ] [ 4 ];
+T_mkCode mk_shell_delete ( T_mkShell* p_shell )
+{
+   /* Déclaration de la variable de retour */
+   T_mkCode l_result;
 
-/**
- *
- */
+   /* Suppression d'une page mémoire */
+   l_result = mk_page_free ( K_MK_PAGE_ID_SMALL, &p_shell->page.baseAddr );
 
-#endif
-
+   /* Retour */
+   return ( l_result );
+}
 

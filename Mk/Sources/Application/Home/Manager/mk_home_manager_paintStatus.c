@@ -86,8 +86,8 @@ static T_mkCode mk_home_manager_paintGroupName ( T_mkButtonImage* p_buttonImage,
    T_mkVect2D l_topLeft, l_bottomRight;
 
    /* Configuration de position de la bordure haute */
-   mk_vect2d_setCoord ( &l_topLeft, p_x + 125.0f, p_y + 23 );
-   mk_vect2d_setCoord ( &l_bottomRight, p_x + ( real32_t ) p_buttonImage->field.dimension.width - 15.0f, p_y + 23 );
+   mk_vect2d_setCoord ( &l_topLeft, p_x + 125.0f, p_y + 18 );
+   mk_vect2d_setCoord ( &l_bottomRight, p_x + ( real32_t ) p_buttonImage->field.dimension.width - 15.0f, p_y + 18 );
 
    /* Dessin de la bordure haute */
    l_result = mk_graphics_drawLine ( p_buttonImage->field.layer, l_topLeft, l_bottomRight, p_color );
@@ -96,8 +96,8 @@ static T_mkCode mk_home_manager_paintGroupName ( T_mkButtonImage* p_buttonImage,
    if ( l_result == K_MK_OK )
    {
       /* Configuration des vecteurs position */
-      mk_vect2d_setCoord ( &l_topLeft, p_x + 10.0f, p_y + 10.0f );
-      mk_vect2d_setCoord ( &l_bottomRight, p_x + 40.0f, p_y + 30.0f );
+      mk_vect2d_setCoord ( &l_topLeft, p_x + 10.0f, p_y + 5.0f );
+      mk_vect2d_setCoord ( &l_bottomRight, p_x + 40.0f, p_y + 25.0f );
 
       /* Si le groupe possède une image */
       if ( ( p_buttonImage->bitmap != K_MK_NULL ) && ( p_buttonImage->bitmap->file != K_MK_NULL ) && ( p_buttonImage->bitmap->baseAddr != K_MK_NULL ) )
@@ -124,8 +124,8 @@ static T_mkCode mk_home_manager_paintGroupName ( T_mkButtonImage* p_buttonImage,
    if ( ( l_result == K_MK_OK ) && ( p_string != K_MK_NULL ) )
    {
       /* Configuration de la position du texte */
-      mk_vect2d_setCoord ( &l_topLeft, p_x + 50.0f, p_y + 10.0f );
-      mk_vect2d_setCoord ( &l_bottomRight, p_x + ( real32_t ) p_buttonImage->field.dimension.width - 1.0f, p_y + 40.0f );
+      mk_vect2d_setCoord ( &l_topLeft, p_x + 50.0f, p_y + 5.0f );
+      mk_vect2d_setCoord ( &l_bottomRight, p_x + ( real32_t ) p_buttonImage->field.dimension.width - 1.0f, p_y + 35.0f );
 
       /* Dessin du texte */
       l_result = mk_graphics_drawString ( p_buttonImage->field.layer, l_topLeft, l_bottomRight, p_string, p_buttonImage->style, K_MK_NULL );
@@ -164,7 +164,7 @@ static T_mkCode mk_home_manager_paintGroup ( T_mkButtonImage* p_buttonImage, T_s
    mk_vect2d_setCoord ( &l_bottomRight, p_x + 17.0f, p_y + 20.0f );
 
    /* Dessin d'un rectangle arrondi */
-   l_result = mk_graphics_drawRoundRect ( p_buttonImage->field.layer, K_MK_GRAPHICS_SOLID, l_topLeft, l_bottomRight, 3, K_MK_COLOR_ARGB_DARKEST_GRAY );
+   l_result = mk_graphics_drawRoundRect ( p_buttonImage->field.layer, K_MK_GRAPHICS_SOLID, l_topLeft, l_bottomRight, 3, 0xFF505050 );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
@@ -188,7 +188,7 @@ static T_mkCode mk_home_manager_paintGroup ( T_mkButtonImage* p_buttonImage, T_s
    {
       /* Configuration des vecteurs position */
       mk_vect2d_setCoord ( &l_topLeft, p_x + 55.0f, p_y );
-      mk_vect2d_setCoord ( &l_bottomRight, p_x + 180.0f, p_y + 90.0f );
+      mk_vect2d_setCoord ( &l_bottomRight, p_x + 140.0f, p_y + 25.0f );
 
       /* Dessin du premier texte du groupe (statut) */
       l_result = mk_graphics_drawString ( p_buttonImage->field.layer, l_topLeft, l_bottomRight, p_string, p_buttonImage->style, K_MK_NULL );
@@ -204,8 +204,8 @@ static T_mkCode mk_home_manager_paintGroup ( T_mkButtonImage* p_buttonImage, T_s
    if ( l_result == K_MK_OK )
    {
       /* Configuration des vecteurs position */
-      mk_vect2d_setCoord ( &l_topLeft, p_x + 220.0f, p_y );
-      mk_vect2d_setCoord ( &l_bottomRight, p_x + 270.0f, p_y + 90.0f );
+      mk_vect2d_setCoord ( &l_topLeft, p_x + 140.0f, p_y );
+      mk_vect2d_setCoord ( &l_bottomRight, p_x + 200.0f, p_y + 25.0f );
 
       /* Effacement de la valeur précédente */
       l_result = mk_graphics_drawRect ( p_buttonImage->field.layer, K_MK_GRAPHICS_SOLID, l_topLeft, l_bottomRight, K_MK_COLOR_ARGB_BLACK );
@@ -273,19 +273,6 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Dessin du groupe "Memory" */
-      l_result = mk_home_manager_paintGroupName ( l_buttonImage, ( T_str8 ) "Memory", K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 120.0f, l_color );
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Ne rien faire */
-   }
-
-   /* Si aucune erreur ne s'est produite */
-   if ( l_result == K_MK_OK )
-   {
       /* Récupération du nombre d'applications allouées */
       p_home->view.manager.status.appsNumber = g_mkDisplay.handler.applicationPool->count;
 
@@ -293,7 +280,7 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
       mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strApps, p_home->view.manager.status.appsNumber, K_MK_DISPLAY_APPLICATION_NUMBER );
 
       /* Dessin du nombre d'application dans le groupe Handle */
-      l_result = mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Application", ( T_str8 ) p_home->view.manager.status.strApps, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 50.0f, l_color );
+      l_result = mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Apps", ( T_str8 ) p_home->view.manager.status.strApps, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 15.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 40.0f, l_color );
    }
 
    /* Sinon */
@@ -312,7 +299,7 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
       mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strTask, p_home->view.manager.status.taskNumber, K_MK_SCHEDULER_MAX_NUMBER_OF_TASKS );
 
       /* Dessin du nombre de tâches dans le groupe Handle */
-      l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Task", ( T_str8 ) p_home->view.manager.status.strTask, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 80.0f, l_color );
+      l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Task", ( T_str8 ) p_home->view.manager.status.strTask, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 15.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 65.0f, l_color );
    }
 
    /* Sinon */
@@ -331,26 +318,7 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
       mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strSdram, p_home->view.manager.status.sdramPageNumber, K_MK_PAGE_SDRAM_SIZE / K_MK_PAGE_SDRAM_BLOCK_SIZE );
 
       /* Dessin du nombre de pages allouées dans le groupe Memory */
-      l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Sdram", ( T_str8 ) p_home->view.manager.status.strSdram, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 170.0f, l_color );
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Ne rien faire */
-   }
-
-   /* Si aucune erreur ne s'est produite */
-   if ( l_result == K_MK_OK )
-   {
-      /* Récupération du nombre de pages mémoire SRAM allouées */
-      p_home->view.manager.status.sramPageNumber = g_mkSRAMHandler.pool->count;
-
-      /* Conversion du nombre de page SRAM allouées en chaine de caractères */
-      mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strSram, p_home->view.manager.status.sramPageNumber, K_MK_PAGE_SRAM_SIZE / K_MK_PAGE_SRAM_BLOCK_SIZE );
-
-      /* Dessin du nombre de pages allouées dans le groupe Memory */
-      l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Sram", ( T_str8 ) p_home->view.manager.status.strSram, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 200.0f, l_color );
+      l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Sdram", ( T_str8 ) p_home->view.manager.status.strSdram, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 15.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 100.0f, l_color );
    }
 
    /* Sinon */
@@ -381,8 +349,7 @@ T_mkCode mk_home_manager_paintStatus ( T_mkContainer* p_container, T_mkField* p_
    T_mkHomeApplication* l_home = ( T_mkHomeApplication* ) mk_application_getArg ( l_application );
 
    /* Si le contenu du champ doit être actualisé */
-   if ( ( l_home->view.manager.status.sramPageNumber  != g_mkSRAMHandler.pool->count ) ||
-        ( l_home->view.manager.status.sdramPageNumber != g_mkSDRAMHandler.pool->count ) ||
+   if ( ( l_home->view.manager.status.sdramPageNumber != g_mkSDRAMHandler.pool->count ) ||
         ( l_home->view.manager.status.taskNumber != g_mkTaskPool.pool.count ) ||
         ( l_home->view.manager.status.appsNumber != g_mkDisplay.handler.applicationPool->count ) )
    {

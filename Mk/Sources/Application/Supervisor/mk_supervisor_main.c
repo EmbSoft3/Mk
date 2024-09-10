@@ -243,7 +243,7 @@ static T_mkCode mk_supervisor_initAsciiArt ( T_mkSupervisor* p_supervisor )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      l_result  = mk_console_puts ( &p_supervisor->console, ( T_str8 ) "\nMkSoft for STM32746g-Eval2 board.\n");
+      l_result  = mk_console_puts ( &p_supervisor->console, ( T_str8 ) "\nMkSoft for STM32746g-DISCO (REV.C) board.\n");
       l_result |= mk_console_puts ( &p_supervisor->console, ( T_str8 ) "Copyright (C) 2024 RENARD Mathieu. All rights reserved.\n" );
       l_result |= mk_console_puts ( &p_supervisor->console, ( T_str8 ) "This is free software; see the source for copying conditions.  There is NO\n" );
       l_result |= mk_console_puts ( &p_supervisor->console, ( T_str8 ) "warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n" );

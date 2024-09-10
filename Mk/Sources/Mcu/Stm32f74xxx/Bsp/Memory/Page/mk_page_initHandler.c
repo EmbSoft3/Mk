@@ -42,37 +42,6 @@
  * @endinternal
  */
 
-static T_mkCode mk_page_initSRAMHandler ( void )
-{
-   /* Déclaration de la variable de retour */
-   T_mkCode l_result = K_MK_OK;
-
-   /* Initialisation de la zone mémoire dédiée au gestionnaire d'allocation dynamique */
-   l_result = mk_pool_initArea ( &g_mkSRAMHandler.area, ( uint32_t* ) K_MK_PAGE_SRAM_START_ADDR, K_MK_PAGE_SRAM_SIZE >> 2 );
-
-   /* Si aucune erreur ne s'est produite */
-   if ( l_result == K_MK_OK )
-   {
-      /* Initialisation du gestionnaire d'allocation dynamique */
-      l_result = mk_pool_create ( &g_mkSRAMHandler.area, &g_mkSRAMHandler.pool, K_MK_AREA_PROTECTED, K_MK_PAGE_SRAM_BLOCK_SIZE >> 2, K_MK_PAGE_SRAM_SIZE / K_MK_PAGE_SRAM_BLOCK_SIZE );
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Ne rien faire */
-   }
-
-   /* Retour */
-   return ( l_result );
-}
-
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
 static T_mkCode mk_page_initSDRAMHandler ( void )
 {
    /* Déclaration de la variable de retour */
@@ -104,19 +73,66 @@ static T_mkCode mk_page_initSDRAMHandler ( void )
  * @endinternal
  */
 
-T_mkCode mk_page_initHandler ( void )
+static T_mkCode mk_page_initSmallHandler ( void )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
 
-   /* Initialisation du gestionnaire d'allocation de la mémoire SRAM */
-   l_result = mk_page_initSRAMHandler ( );
+   /* Déclaration d'un pointeur de page */
+   T_mkAddr l_page;
+
+   /* Allocation d'une page mémoire */
+   l_result = mk_page_alloc ( K_MK_PAGE_ID_SDRAM, &l_page, 0 );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Initialisation du gestionnaire d'allocation de la mémoire SDRAM */
-      l_result = mk_page_initSDRAMHandler ( );
+      /* Initialisation de la zone mémoire dédiée au gestionnaire d'allocation dynamique */
+      l_result = mk_pool_initArea ( &g_mkSmallHandler.area, ( uint32_t* ) l_page, K_MK_PAGE_SDRAM_BLOCK_SIZE >> 2 );
+
+      /* Si aucune erreur ne s'est produite */
+      if ( l_result == K_MK_OK )
+      {
+         /* Initialisation du gestionnaire mémoire */
+         l_result = mk_pool_create ( &g_mkSmallHandler.area, &g_mkSmallHandler.pool, K_MK_AREA_PROTECTED, K_MK_PAGE_SDRAM_SMALL_BLOCK_SIZE >> 2, K_MK_PAGE_SDRAM_BLOCK_SIZE / K_MK_PAGE_SDRAM_SMALL_BLOCK_SIZE );
+      }
+
+      /* Sinon */
+      else
+      {
+         /* Ne rien faire */
+      }
+   }
+
+   /* Sinon */
+   else
+   {
+      /* Ne rien faire */
+   }
+
+   /* Retour */
+   return ( l_result );
+}
+
+/**
+ * @internal
+ * @brief
+ * @endinternal
+ */
+
+T_mkCode mk_page_initHandler ( void )
+{
+   /* Déclaration de la variable de retour */
+   T_mkCode l_result;
+
+   /* Initialisation du gestionnaire d'allocation de la mémoire SDRAM */
+   l_result = mk_page_initSDRAMHandler ( );
+
+   /* Si aucune erreur ne s'est produite */
+   if ( l_result == K_MK_OK )
+   {
+      /* Initialisation du gestionnaire d'allocation de la mémoire réduite */
+      l_result = mk_page_initSmallHandler ( );
    }
 
    /* Sinon */

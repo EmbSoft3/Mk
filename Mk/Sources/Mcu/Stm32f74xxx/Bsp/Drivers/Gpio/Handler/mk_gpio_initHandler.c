@@ -51,7 +51,7 @@ static T_mkCode mk_gpio_handleSignal ( void )
    uint32_t l_event = 0;
 
    /* Attente de l'intialisation du dispatcher et du terminal I2C1 */
-   l_result = mk_event_wait ( g_mkTermioSync.event, K_MK_EVENT_AND | K_MK_TERMIO_FLAG_I2C1 | K_MK_TERMIO_FLAG_DISPATCHER, &l_event, K_MK_TERMIO_INIT_TIMEOUT );
+   l_result = mk_event_wait ( g_mkTermioSync.event, K_MK_EVENT_AND | K_MK_TERMIO_FLAG_DISPATCHER, &l_event, K_MK_TERMIO_INIT_TIMEOUT );
 
    /* Retour */
    return ( l_result );
@@ -102,21 +102,14 @@ T_mkCode mk_gpio_initHandler ( T_mkGPIOHandler* p_handler )
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
 
-   /* Déclaration d'un compteur */
-   uint32_t l_counter = 0;
-
    /* Initialisation des identifiants de contrôle applicatif */
    p_handler->ctrl.layer.type = K_MK_CONTROL_GPIO;
    p_handler->ctrl.layer.id = 0;
-   p_handler->ctrl.expander.last = 0;
-   p_handler->ctrl.expander.current = 0;
 
-   /* Initialisation de la valeur du registre de valeur du périphérique MFX */
-   for ( l_counter = 0 ; l_counter < MK_GPIO_EXPANDER_NUMBER_OF_PINS ; l_counter++ )
-   {
-      /* Configuration de la valeur initiale de la GPIO */
-      p_handler->ctrl.expander.last |= ( uint32_t ) ( g_expanderSettingTable [ l_counter ] [ 3 ] << l_counter );
-   }
+   /* Initialisation des champs d'événements */
+   p_handler->ctrl.currentEvent = 0;
+   p_handler->ctrl.lastEvent = ( uint32_t ) ( g_mkGPIOSettingTable [ K_MK_GPIO_SDCARD_DETECT ] << K_MK_GPIO_SDCARD_DETECT ) |
+                               ( uint32_t ) ( g_mkGPIOSettingTable [ K_MK_GPIO_USER_PUSHBUTTON ] << K_MK_GPIO_USER_PUSHBUTTON );
 
    /* Initialisation de la messagerie du terminal */
    l_result = mk_gpio_initRequest ( p_handler );

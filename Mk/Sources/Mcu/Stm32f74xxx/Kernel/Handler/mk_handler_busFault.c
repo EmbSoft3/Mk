@@ -57,8 +57,7 @@ void mk_handler_busFault ( void )
       /* Boucle pour toujours */
       for ( ;; )
       {
-         /* Signalisation de l'erreur */
-         gpio_setLow ( K_GPIOF, 10 );
+
       }
    }
 

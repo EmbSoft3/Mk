@@ -47,18 +47,16 @@ T_mkCode mk_page_alloc ( T_mkPageIdentifier p_mkIdentifier, T_mkAddr* p_mkAddr, 
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_ERROR_PARAM;
 
-   /* Si une page de la mémoire SRAM doit être fournie */
-   if ( p_mkIdentifier == K_MK_PAGE_ID_SRAM )
+   /* Si une page de la mémoire SDRAM doit être fournie */
+   if ( p_mkIdentifier == K_MK_PAGE_ID_SDRAM )
    {
-      /* Allocation d'une page de mémoire dans la pool */
-      l_result = mk_pool_allocSafe ( g_mkSRAMHandler.pool, p_mkAddr, K_MK_POOL_NO_CLEAR, p_mkTick );
+      l_result = mk_pool_allocSafe ( g_mkSDRAMHandler.pool, p_mkAddr, K_MK_POOL_NO_CLEAR, p_mkTick );
    }
 
-   /* Sinon si une page de la mémoire SDRAM doit être fournie */
-   else if ( p_mkIdentifier == K_MK_PAGE_ID_SDRAM )
+   /* Sinon si une page réduite de la mémoire SDRAM doit être fournie */
+   else if ( p_mkIdentifier == K_MK_PAGE_ID_SMALL )
    {
-      /* Allocation d'une page de mémoire dans la pool */
-      l_result = mk_pool_allocSafe ( g_mkSDRAMHandler.pool, p_mkAddr, K_MK_POOL_NO_CLEAR, p_mkTick );
+      l_result = mk_pool_allocSafe ( g_mkSmallHandler.pool, p_mkAddr, K_MK_POOL_NO_CLEAR, p_mkTick );
    }
 
    /* Sinon */

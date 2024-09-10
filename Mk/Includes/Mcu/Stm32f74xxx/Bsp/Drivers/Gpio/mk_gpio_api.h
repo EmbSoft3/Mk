@@ -117,10 +117,6 @@
 #include "mk_gpio_data.h"
 #include "mk_gpio_isr_private.h"
 #include "mk_gpio_private.h"
-#include "mk_gpio_port_private.h"
-#include "mk_gpio_expander_constants.h"
-#include "mk_gpio_expander_data.h"
-#include "mk_gpio_expander_private.h"
 #include "mk_gpio.h"
 
 /**

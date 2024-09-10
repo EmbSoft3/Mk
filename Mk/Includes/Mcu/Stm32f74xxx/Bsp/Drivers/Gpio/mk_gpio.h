@@ -42,7 +42,7 @@
  * @brief Cette fonction configure une broche GPIO.
  *
  * @param[in] p_port      Ce paramètre contient l'identifiant d'un port GPIO. Une des constantes suivantes peut être utilisée :
- *                        \ref K_MK_GPIO_EXPANDER ou \ref K_MK_GPIO_PORTA jusqu'à \ref K_MK_GPIO_PORTK
+ *                        \ref K_MK_GPIO_PORTA jusqu'à \ref K_MK_GPIO_PORTK
  * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue de [0 à \ref MK_GPIO_EXPANDER_NUMBER_OF_PINS[
  *                        pour le périphérique MFX et de [0 à \ref K_GPIO_NUMBER_OF_PINS_PER_PORT[ pour les ports internes.
  * @param[in] p_setting   Ce paramètre contient les attributs de la broche à configurer :
@@ -75,7 +75,7 @@ T_mkCode mk_gpio_setup ( uint32_t p_port, uint32_t p_pinNumber, T_mkGPIOSetting*
  * @brief Cette fonction configure le niveau logique d'une broche GPIO.
  *
  * @param[in] p_port      Ce paramètre contient l'identifiant d'un port GPIO. Une des constantes suivantes peut être utilisée :
- *                        \ref K_MK_GPIO_EXPANDER ou \ref K_MK_GPIO_PORTA jusqu'à \ref K_MK_GPIO_PORTK
+ *                        \ref K_MK_GPIO_PORTA jusqu'à \ref K_MK_GPIO_PORTK
  * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue de [0 à \ref MK_GPIO_EXPANDER_NUMBER_OF_PINS[
  *                        pour le périphérique externe et de [0 à \ref K_GPIO_NUMBER_OF_PINS_PER_PORT[ pour les ports internes.
  * @param[in] p_value     Ce paramètre contient le niveau logique à positionner sur la broche. Une des constantes suivantes peut être utilisée : \n
@@ -105,7 +105,7 @@ T_mkCode mk_gpio_set ( uint32_t p_port, uint32_t p_pinNumber, uint32_t p_value, 
  * @brief Cette fonction retourne le niveau logique d'une broche GPIO.
  *
  * @param[in] p_port      Ce paramètre contient l'identifiant d'un port GPIO. Une des constantes suivantes peut être utilisée :
- *                        \ref K_MK_GPIO_EXPANDER ou \ref K_MK_GPIO_PORTA jusqu'à \ref K_MK_GPIO_PORTK
+ *                        \ref K_MK_GPIO_PORTA jusqu'à \ref K_MK_GPIO_PORTK
  * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue de [0 à \ref MK_GPIO_EXPANDER_NUMBER_OF_PINS[
  *                        pour le périphérique externe et de [0 à \ref K_GPIO_NUMBER_OF_PINS_PER_PORT[ pour les ports internes.
  * @param[out] p_value    Ce paramètre contient le niveau logique lu sur la broche. Il évolue entre [0 et 1].

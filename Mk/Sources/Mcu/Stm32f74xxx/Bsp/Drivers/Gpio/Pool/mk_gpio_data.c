@@ -45,7 +45,6 @@
 
 const uint32_t g_mkGPIOProtectionTable [ K_MK_GPIO_NUMBER_OF_PORTS ] = {
 
-      0xFFF0FFFF, /* K_MK_GPIO_EXPANDER */
       0xFFFFFFFF, /* K_MK_GPIO_PORTA */
       0xFFFFFFFF, /* K_MK_GPIO_PORTB */
       0xFFFFFFFF, /* K_MK_GPIO_PORTC */
@@ -57,6 +56,17 @@ const uint32_t g_mkGPIOProtectionTable [ K_MK_GPIO_NUMBER_OF_PORTS ] = {
       0xFFFFFFFF, /* K_MK_GPIO_PORTI */
       0xFFFFFFFF, /* K_MK_GPIO_PORTJ */
       0xFFFFFFFF, /* K_MK_GPIO_PORTK */
+};
+
+/**
+ * @fn const uint8_t g_mkGPIOSettingTable [ K_MK_GPIO_EVENT_NUMBER ];
+ * @brief Déclaration de la table de configuration du périphérique MFX.
+ *
+ */
+
+const uint8_t g_mkGPIOSettingTable [ K_MK_GPIO_EVENT_NUMBER ] = {
+      1, /* K_MK_GPIO_SDCARD_DETECT */
+      0, /* K_MK_GPIO_USER_PUSHBUTTON */
 };
 
 /**

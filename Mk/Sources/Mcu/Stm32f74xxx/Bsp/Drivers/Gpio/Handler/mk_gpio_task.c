@@ -43,6 +43,28 @@
  * @endinternal
  */
 
+static void mk_gpio_init ( void )
+{
+   /* Initialisation de la broche MMC_DETECT (K_MK_GPIO_SDCARD_DETECT) */
+   gpio_setMode  ( K_GPIOC, K_GPIO_INPUT, 13 );
+   gpio_speed    ( K_GPIOC, K_GPIO_MEDIUM_SPEED, 13 );
+   gpio_resistor ( K_GPIOC, K_GPIO_PULL_UP, 13 );
+
+   /* Initialisation de la broche B_USER (K_MK_GPIO_USER_PUSHBUTTON) */
+   gpio_setMode  ( K_GPIOI, K_GPIO_INPUT, 11 );
+   gpio_speed    ( K_GPIOI, K_GPIO_MEDIUM_SPEED, 11 );
+   gpio_resistor ( K_GPIOI, K_GPIO_PULL_OFF, 11 );
+
+   /* Retour */
+   return;
+}
+
+/**
+ * @internal
+ * @brief
+ * @endinternal
+ */
+
 static T_mkCode mk_gpio_dispatchGpioMessage ( T_mkGPIOHandler* p_handler )
 {
    /* Déclaration de la variable de retour */
@@ -80,7 +102,6 @@ static T_mkCode mk_gpio_dispatchGpioMessage ( T_mkGPIOHandler* p_handler )
    return ( l_result );
 }
 
-
 /**
  * @internal
  * @brief
@@ -107,43 +128,8 @@ static T_mkCode mk_gpio_initGPIOHandler ( T_mkTermio* p_termio, T_mkGPIOHandler*
       /* Si aucune erreur ne s'est produite */
       if ( l_result == K_MK_OK )
       {
-         /* Effectue */
-         do
-         {
-            /* Tentative d'initialisation du périphérique MFX */
-            l_result = mk_gpio_expander_init ( p_handler );
-
-            /* Si aucune erreur ne s'est produite */
-            if ( l_result == K_MK_OK )
-            {
-               /* Récupération de la valeur du port GPIO du périphérique MFX */
-               l_result = mk_gpio_expander_get ( p_handler, &p_handler->ctrl.expander.current );
-            }
-
-            /* Sinon */
-            else
-            {
-               /* Ne rien faire */
-            }
-
-            /* Attente 10 ms */
-            l_result |= mk_task_sleep ( K_MK_GPIO_REQUEST_TIMEOUT );
-
-         /* Tant que l'initialisation n'est pas terminée et tant qu'aucune erreur critique ne s'est produite */
-         } while ( ( l_result == K_MK_ERROR_TIMEOUT ) || ( l_result == K_MK_ERROR_COMM ) );
-
-         /* Si aucune erreur ne s'est produite */
-         if ( l_result == K_MK_OK )
-         {
-            /* Transmission d'un événement pour signaler la fin de l'initialisation du terminal GPIO */
-            l_result = mk_event_set ( g_mkTermioSync.event, K_MK_TERMIO_FLAG_GPIO );
-         }
-
-         /* Sinon */
-         else
-         {
-            /* Ne rien faire */
-         }
+         /* Transmission d'un événement pour signaler la fin de l'initialisation du terminal GPIO */
+         l_result = mk_event_set ( g_mkTermioSync.event, K_MK_TERMIO_FLAG_GPIO );
       }
 
       /* Sinon */
@@ -247,46 +233,37 @@ static T_mkCode mk_gpio_handleEvent ( T_mkGPIOHandler* p_handler )
    /* Tant qu'aucune erreur non critique ne s'est produite */
    while ( ( l_result == K_MK_OK ) || ( l_result == K_MK_ERROR_TIMEOUT ) || ( l_result == K_MK_ERROR_COMM ) )
    {
-      /* Récupération de la valeur du port GPIO du périphérique MFX */
-      l_result = mk_gpio_expander_get ( p_handler, &p_handler->ctrl.expander.current );
+      /* Lecture des broches GPIO qui doivent générer un événement */
+      p_handler->ctrl.currentEvent  = ( gpio_get ( K_GPIOC, 13 ) << K_MK_GPIO_SDCARD_DETECT ) ;
+      p_handler->ctrl.currentEvent |= ( gpio_get ( K_GPIOI, 11 ) << K_MK_GPIO_USER_PUSHBUTTON ) ;
 
-      /* Si aucune erreur ne s'est produite */
-      if ( l_result == K_MK_OK )
+      /* Si un changement d'état s'est produit */
+      if ( p_handler->ctrl.currentEvent != p_handler->ctrl.lastEvent )
       {
-         /* Si une transition s'est produite sur une broche du périphérique MFX */
-         if ( p_handler->ctrl.expander.last != p_handler->ctrl.expander.current )
-         {
-            /* Transmission d'un événement au dispatcher */
-            l_result = mk_gpio_dispatchGpioMessage ( p_handler );
+         /* Transmission d'un événement au dispatcher */
+         l_result = mk_gpio_dispatchGpioMessage ( p_handler );
 
-            /* Actualisation du registre */
-            p_handler->ctrl.expander.last = p_handler->ctrl.expander.current;
-         }
+         /* Actualisation de la valeur du registre */
+         p_handler->ctrl.lastEvent = p_handler->ctrl.currentEvent;
+      }
 
-         /* Sinon */
-         else
-         {
-            /* Ne rien faire */
-         }
+      /* Sinon */
+      else
+      {
+         /* Ne rien faire */
+      }
 
-         /* Analyse de la messagerie afin de récupérer les requêtes envoyées par l'utilisateur */
-         l_result = mk_mail_pend ( &l_task, p_handler->requestArea->request, ( T_mkAddr ) &l_message, K_MK_GPIO_REQUEST_TIMEOUT );
+      /* Analyse de la messagerie afin de récupérer les requêtes envoyées par l'utilisateur */
+      l_result = mk_mail_pend ( &l_task, p_handler->requestArea->request, ( T_mkAddr ) &l_message, K_MK_GPIO_REQUEST_TIMEOUT );
 
-         /* Si une requête est disponible */
-         if ( ( l_result == K_MK_OK ) && ( l_task != K_MK_NULL ) )
-         {
-            /* Traitement de la requête */
-            l_result = mk_gpio_handleRequest ( l_task, p_handler, &l_message, l_message.requestIdentifier );
+      /* Si une requête est disponible */
+      if ( ( l_result == K_MK_OK ) && ( l_task != K_MK_NULL ) )
+      {
+         /* Traitement de la requête */
+         l_result = mk_gpio_handleRequest ( l_task, p_handler, &l_message, l_message.requestIdentifier );
 
-            /* Gestion et déclenchement de la fonction de rappel si nécessaire */
-            l_result |= mk_gpio_handleCallback ( l_task, &l_message, l_result );
-         }
-
-         /* Sinon */
-         else
-         {
-            /* Ne rien faire */
-         }
+         /* Gestion et déclenchement de la fonction de rappel si nécessaire */
+         l_result |= mk_gpio_handleCallback ( l_task, &l_message, l_result );
       }
 
       /* Sinon */
@@ -319,6 +296,9 @@ void mk_gpio_task ( T_mkAddr p_param )
 
    /* Déclaration d'un gestionnaire de périphérique GPIO */
    T_mkGPIOHandler l_handler;
+
+   /* Initialisation des broches GPIO */
+   mk_gpio_init ( );
 
    /* Initialisation du gestionnaire GPIO */
    l_result = mk_gpio_initGPIOHandler ( l_termio, &l_handler );

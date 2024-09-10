@@ -60,7 +60,7 @@
  * @brief Définition du nombre de ports d'entrées-sorties.
  */
 
-#define K_MK_GPIO_NUMBER_OF_PORTS 12
+#define K_MK_GPIO_NUMBER_OF_PORTS 11
 
 /**
  *

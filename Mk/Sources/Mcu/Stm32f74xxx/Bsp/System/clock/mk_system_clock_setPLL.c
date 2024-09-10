@@ -60,14 +60,14 @@ void mk_system_clock_setPLL ( uint32_t p_source, uint32_t p_prescaler )
    /* Freq ( PLL_Q ) = freq ( VCO_OUT ) / Q = 432MHz / 9 = 48MHz */
    clock_setMainPLL ( 432, 2, 9 );
 
-   /* Configuration de la PLL SAI ( N = 273, P = 8, R = 3 et Q = 12 ) */
+   /* Configuration de la PLL SAI ( N = 108, P = 8, R = 3 et Q = 12 ) */
    /* La fréquence de sortie du VCO est égale à : */
-   /* Freq ( VCO_OUT ) = N * freq ( VCO_IN ) = 273 * 1MHz = 306MHz */
+   /* Freq ( VCO_OUT ) = N * freq ( VCO_IN ) = 108 * 1MHz = 108MHz */
    /* Les fréquences de sorties des SAI_P, SAI_Q et SAI_R sont égales à : */
-   /* Freq ( SAI_P ) = freq ( VCO_OUT ) / P = 273MHz / 8  = 34.125MHz */
-   /* Freq ( SAI_R ) = freq ( VCO_OUT ) / R = 273MHz / 3  = 91MHz */
-   /* Freq ( SAI_Q ) = freq ( VCO_OUT ) / Q = 273MHz / 12 = 22.75MHz */
-   clock_setSAIPLL ( 273, 3, 8, 12 );
+   /* Freq ( SAI_P ) = freq ( VCO_OUT ) / P = 108MHz / 8  = 13.5MHz */
+   /* Freq ( SAI_R ) = freq ( VCO_OUT ) / R = 108MHz / 3  = 36MHz */
+   /* Freq ( SAI_Q ) = freq ( VCO_OUT ) / Q = 108MHz / 12 = 9MHz */
+   clock_setSAIPLL ( 108, 3, 8, 12 );
 
    /* Configuration de la PLL I2S ( N = 112, P = 8, R = 7 et Q = 8 ) */
    /* La fréquence de sortie du VCO est égale à : */

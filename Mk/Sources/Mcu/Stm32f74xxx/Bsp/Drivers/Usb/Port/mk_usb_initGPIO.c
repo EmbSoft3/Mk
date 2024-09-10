@@ -47,7 +47,7 @@ static void mk_usb_initGPIOHSMode( void )
    /* Configuration du mode de fonctionnement des broches de contrôle du PHY ULPI */
    /* [NXT, DIR, CLK, STP et D0 à D7]. */
    gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 4 );              /* ULPI_NXT */
-   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 11 );             /* ULPI_DIR */
+   gpio_setMode ( K_GPIOC, K_GPIO_ALTERNATE, 2 );              /* ULPI_DIR */
    gpio_setMode ( K_GPIOA, K_GPIO_ALTERNATE, 5 );              /* ULPI_CLK */
    gpio_setMode ( K_GPIOC, K_GPIO_ALTERNATE, 0 );              /* ULPI_STP */
    gpio_setMode ( K_GPIOA, K_GPIO_ALTERNATE, 3 );              /* ULPI_D0 */
@@ -58,6 +58,10 @@ static void mk_usb_initGPIOHSMode( void )
    gpio_setMode ( K_GPIOB, K_GPIO_ALTERNATE, 12 );             /* ULPI_D5 */
    gpio_setMode ( K_GPIOB, K_GPIO_ALTERNATE, 13 );             /* ULPI_D6 */
    gpio_setMode ( K_GPIOB, K_GPIO_ALTERNATE, 5 );              /* ULPI_D7 */
+
+   /* Configuration du mode de fonctionnement de la broche HS_Overcurrent */
+   /* [USB_HS_Overcurrent] */
+   gpio_setMode ( K_GPIOE, K_GPIO_INPUT, 3 );                  /* USB_HS_Overcurrent */
 
    /* Retour */
    return;
@@ -74,7 +78,7 @@ static void mk_usb_initGPIOHSModeAlternate( void )
    /* Multiplexage des broches de contrôle du PHY ULPI */
    /* [NXT, DIR, CLK, STP et D0 à D7]. */
    gpio_alternate ( K_GPIOH, K_GPIO_AF10, 4 );                 /* ULPI_NXT */
-   gpio_alternate ( K_GPIOI, K_GPIO_AF10, 11 );                /* ULPI_DIR */
+   gpio_alternate ( K_GPIOC, K_GPIO_AF10, 2 );                 /* ULPI_DIR */
    gpio_alternate ( K_GPIOA, K_GPIO_AF10, 5 );                 /* ULPI_CLK */
    gpio_alternate ( K_GPIOC, K_GPIO_AF10, 0 );                 /* ULPI_STP */
    gpio_alternate ( K_GPIOA, K_GPIO_AF10, 3 );                 /* ULPI_D0 */
@@ -101,7 +105,7 @@ static void mk_usb_initGPIOHSSpeed( void )
    /* Configuration de la vitesse des broches de contrôle du PHY ULPI */
    /* [NXT, DIR, CLK, STP et D0 à D7]. */
    gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 4 );          /* ULPI_NXT */
-   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 11 );         /* ULPI_DIR */
+   gpio_speed ( K_GPIOC, K_GPIO_VERY_HIGH_SPEED, 2 );          /* ULPI_DIR */
    gpio_speed ( K_GPIOA, K_GPIO_VERY_HIGH_SPEED, 5 );          /* ULPI_CLK */
    gpio_speed ( K_GPIOC, K_GPIO_VERY_HIGH_SPEED, 0 );          /* ULPI_STP */
    gpio_speed ( K_GPIOA, K_GPIO_VERY_HIGH_SPEED, 3 );          /* ULPI_D0 */
@@ -112,6 +116,10 @@ static void mk_usb_initGPIOHSSpeed( void )
    gpio_speed ( K_GPIOB, K_GPIO_VERY_HIGH_SPEED, 12 );         /* ULPI_D5 */
    gpio_speed ( K_GPIOB, K_GPIO_VERY_HIGH_SPEED, 13 );         /* ULPI_D6 */
    gpio_speed ( K_GPIOB, K_GPIO_VERY_HIGH_SPEED, 5 );          /* ULPI_D7 */
+
+   /* Configuration de la vitesse de la broche HS_Overcurrent */
+   /* [USB_HS_Overcurrent] */
+   gpio_speed ( K_GPIOE, K_GPIO_LOW_SPEED, 3 );                /* USB_HS_Overcurrent */
 
    /* Retour */
    return;
@@ -128,7 +136,7 @@ static void mk_usb_initGPIOHSResistor( void )
    /* Configuration des résistances de tirage du PHY ULPI */
    /* [NXT, DIR, CLK, STP et D0 à D7]. */
    gpio_resistor ( K_GPIOH, K_GPIO_PULL_OFF, 4 );              /* ULPI_NXT */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_OFF, 11 );             /* ULPI_DIR */
+   gpio_resistor ( K_GPIOC, K_GPIO_PULL_OFF, 2 );              /* ULPI_DIR */
    gpio_resistor ( K_GPIOA, K_GPIO_PULL_OFF, 5 );              /* ULPI_CLK */
    gpio_resistor ( K_GPIOC, K_GPIO_PULL_OFF, 0 );              /* ULPI_STP */
    gpio_resistor ( K_GPIOA, K_GPIO_PULL_OFF, 3 );              /* ULPI_D0 */
@@ -139,6 +147,10 @@ static void mk_usb_initGPIOHSResistor( void )
    gpio_resistor ( K_GPIOB, K_GPIO_PULL_OFF, 12 );             /* ULPI_D5 */
    gpio_resistor ( K_GPIOB, K_GPIO_PULL_OFF, 13 );             /* ULPI_D6 */
    gpio_resistor ( K_GPIOB, K_GPIO_PULL_OFF, 5 );              /* ULPI_D7 */
+
+   /* Configuration des résistances de tirage de la broche HS_Overcurrent */
+   /* [USB_HS_Overcurrent] */
+   gpio_resistor ( K_GPIOE, K_GPIO_PULL_OFF, 3 );             /* USB_HS_Overcurrent */
 
    /* Retour */
    return;
@@ -153,18 +165,25 @@ static void mk_usb_initGPIOHSResistor( void )
 static void mk_usb_initGPIOFSMode ( void )
 {
    /* Configuration du mode de fonctionnement des broches USB_OTGFS */
-   /* [VBUS, DM, DP et ID]. */
-   gpio_setMode ( K_GPIOA, K_GPIO_INPUT, 9 );                  /* VBUS */
+   /* [POWER, OVERCURRENT, VBUS, DM, DP et ID]. */
+   gpio_setMode ( K_GPIOD, K_GPIO_OUTPUT, 5 );                 /* POWER */
+   gpio_setMode ( K_GPIOD, K_GPIO_INPUT, 4 );                  /* OVERCURRENT */
+   gpio_setMode ( K_GPIOJ, K_GPIO_INPUT, 12 );                 /* VBUS */
    gpio_setMode ( K_GPIOA, K_GPIO_ALTERNATE, 11 );             /* DM */
    gpio_setMode ( K_GPIOA, K_GPIO_ALTERNATE, 12 );             /* DP */
    gpio_setMode ( K_GPIOA, K_GPIO_ALTERNATE, 10 );             /* ID */
 
    /* Configuration de l'étage de sortie des broches USB_OTGFS */
-   /* [VBUS, DM, DP et ID]. */
-   gpio_pushPull ( K_GPIOA, 9 );                               /* VBUS */
+   /* [POWER, OVERCURRENT, VBUS, DM, DP et ID]. */
+   gpio_pushPull ( K_GPIOD, 5 );                               /* POWER */
+   gpio_pushPull ( K_GPIOD, 4 );                               /* OVERCURRENT */
+   gpio_pushPull ( K_GPIOJ, 12 );                              /* VBUS */
    gpio_pushPull ( K_GPIOA, 11 );                              /* DM */
    gpio_pushPull ( K_GPIOA, 12 );                              /* DP */
    gpio_pushPull ( K_GPIOA, 10 );                              /* ID */
+
+   /* Configuration du niveau de sortie de la broche USB_POWER */
+   gpio_setHigh ( K_GPIOD, 5 );                                 /* POWER */
 
    /* Retour */
    return;
@@ -197,8 +216,10 @@ static void mk_usb_initGPIOFSModeAlternate ( void )
 static void mk_usb_initGPIOFSSpeed ( void )
 {
    /* Configuration de la vitesse des broches USB_OTGFS */
-   /* [VBUS, DM, DP et ID]. */
-   gpio_speed ( K_GPIOA, K_GPIO_LOW_SPEED, 9 );                /* VBUS */
+   /* [POWER, OVERCURRENT, VBUS, DM, DP et ID]. */
+   gpio_speed ( K_GPIOD, K_GPIO_LOW_SPEED, 5 );                /* POWER */
+   gpio_speed ( K_GPIOD, K_GPIO_LOW_SPEED, 4 );                /* OVERCURRENT */
+   gpio_speed ( K_GPIOJ, K_GPIO_LOW_SPEED, 12 );               /* VBUS */
    gpio_speed ( K_GPIOA, K_GPIO_HIGH_SPEED, 11 );              /* DM */
    gpio_speed ( K_GPIOA, K_GPIO_HIGH_SPEED, 12 );              /* DP */
    gpio_speed ( K_GPIOA, K_GPIO_HIGH_SPEED, 10 );              /* ID */
@@ -216,8 +237,10 @@ static void mk_usb_initGPIOFSSpeed ( void )
 static void mk_usb_initGPIOFSResistor ( void )
 {
    /* Configuration des résistances de tirage des broches USB_OTGFS */
-   /* [VBUS, DM, DP et ID]. */
-   gpio_resistor ( K_GPIOA, K_GPIO_PULL_OFF, 9 );              /* VBUS */
+   /* [POWER, OVERCURRENT, VBUS, DM, DP et ID]. */
+   gpio_resistor ( K_GPIOD, K_GPIO_PULL_OFF, 5 );              /* POWER */
+   gpio_resistor ( K_GPIOD, K_GPIO_PULL_OFF, 4 );              /* OVERCURRENT */
+   gpio_resistor ( K_GPIOJ, K_GPIO_PULL_OFF, 12 );             /* VBUS */
    gpio_resistor ( K_GPIOA, K_GPIO_PULL_OFF, 11 );             /* DM */
    gpio_resistor ( K_GPIOA, K_GPIO_PULL_OFF, 12 );             /* DP */
    gpio_resistor ( K_GPIOA, K_GPIO_PULL_OFF, 10 );             /* ID */

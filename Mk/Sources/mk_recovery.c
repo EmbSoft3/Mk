@@ -47,10 +47,6 @@ void mk_recovery ( uint32_t p_hParam, uint32_t p_lParam )
    ( void ) p_hParam;
    ( void ) p_lParam;
 
-   /* Configuration et activation des voyants lumineux */
-   gpio_setMode ( K_GPIOF, K_GPIO_OUTPUT, 10 );
-   gpio_setLow ( K_GPIOF, 10 );
-
    for ( ;; )
    {
 

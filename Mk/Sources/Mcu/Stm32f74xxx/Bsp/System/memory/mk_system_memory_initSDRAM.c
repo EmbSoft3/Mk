@@ -79,8 +79,8 @@ static void mk_system_memory_initSDRAMFMC ( void )
    sdram_setBankNumber ( K_SDRAM_BANK1, K_SDRAM_FOUR_INTERNAL_BANKS );
 
    /* Configuration du bus de données et du bus d'adresse */
-   sdram_setDataBusWidth ( K_SDRAM_BANK1, K_SDRAM_DATABUS_32BITS );
-   sdram_setAddressBusWidth ( K_SDRAM_BANK1, K_SDRAM_ADDRESS_ROW_12BITS, K_SDRAM_ADDRESS_COLUMN_9BITS );
+   sdram_setDataBusWidth ( K_SDRAM_BANK1, K_SDRAM_DATABUS_16BITS );
+   sdram_setAddressBusWidth ( K_SDRAM_BANK1, K_SDRAM_ADDRESS_ROW_12BITS, K_SDRAM_ADDRESS_COLUMN_8BITS );
 
    /* Retour */
    return;

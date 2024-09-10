@@ -46,10 +46,18 @@ K_MK_PRIVILEGED_MEMORY T_mkPagehandler g_mkSRAMHandler;
 
 /**
  * @fn T_mkPagehandler g_mkSDRAMHandler;
- * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages dans la mémoire SDRAM.
+ * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages mémoire de taille standard dans la mémoire SDRAM.
  *
  */
 
 K_MK_PRIVILEGED_MEMORY T_mkPagehandler g_mkSDRAMHandler;
+
+/**
+ * @fn T_mkPagehandler g_mkSmallHandler;
+ * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages mémoire de taille réduite dans la mémoire SDRAM.
+ *
+ */
+
+K_MK_PRIVILEGED_MEMORY T_mkPagehandler g_mkSmallHandler;
 
 

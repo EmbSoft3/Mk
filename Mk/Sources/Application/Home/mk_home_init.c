@@ -58,7 +58,6 @@ static void mk_home_initVariables ( T_mkHomeApplication* p_home )
    p_home->view.manager.status.appsNumber = 0;
    p_home->view.manager.status.taskNumber = 0;
    p_home->view.manager.status.sdramPageNumber = 0;
-   p_home->view.manager.status.sramPageNumber = 0;
 
    /* Retour */
    return;
@@ -142,7 +141,7 @@ static void mk_home_initManagerFields ( T_mkHomeApplication* p_home )
    mk_graph2D_setActivity ( &p_home->view.manager.cpuLoad.graph, K_MK_FIELD_INACTIF );
    mk_graph2D_setPixelBuf ( &p_home->view.manager.cpuLoad.graph, p_home->view.manager.cpuLoad.buf, 64 );
    mk_graph2D_setBorderVisibility ( &p_home->view.manager.cpuLoad.graph, K_MK_FIELD_VISIBLE );
-   mk_graph2D_setBorderColor ( &p_home->view.manager.cpuLoad.graph, K_MK_COLOR_ARGB_DARKEST_GRAY );
+   mk_graph2D_setBorderColor ( &p_home->view.manager.cpuLoad.graph, 0xFF505050 );
    mk_graph2D_setBackgroundVisibility ( &p_home->view.manager.cpuLoad.graph, K_MK_FIELD_INVISIBLE );
    mk_graph2D_setBackgroundColor ( &p_home->view.manager.cpuLoad.graph, K_MK_COLOR_ARGB_DARKEST_GRAY );
    mk_graph2D_setForegroundVisibility ( &p_home->view.manager.cpuLoad.graph, K_MK_FIELD_VISIBLE );
@@ -150,15 +149,11 @@ static void mk_home_initManagerFields ( T_mkHomeApplication* p_home )
    mk_graph2D_setColor ( &p_home->view.manager.cpuLoad.graph, K_MK_COLOR_ARGB_YELLOW );
    mk_graph2D_setGrid ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_GRID_PRIMARY, 40, 40 );
    mk_graph2D_setGridLayer ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPHICS_BACKGROUND );
-   mk_graph2D_setGridColor ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_GRID_PRIMARY, K_MK_COLOR_ARGB_DARKEST_GRAY );
+   mk_graph2D_setGridColor ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_GRID_PRIMARY, 0xFF505050 );
    mk_graph2D_setGridVisibility ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_GRID_PRIMARY, K_MK_FIELD_INVISIBLE );
    mk_graph2D_setGrid ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_GRID_SECONDARY, 10, 10 );
-   mk_graph2D_setGridColor ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_GRID_SECONDARY, K_MK_COLOR_ARGB_DARKEST_GRAY );
+   mk_graph2D_setGridColor ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_GRID_SECONDARY, 0xFF505050 );
    mk_graph2D_setGridVisibility ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_GRID_SECONDARY, K_MK_FIELD_VISIBLE );
-   mk_graph2D_setText ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, ( T_str8 ) "CPU");
-   mk_graph2D_setTextLayer ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPHICS_BACKGROUND );
-   mk_graph2D_setTextArea ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, p_home->view.manager.cpuLoad.graph.field.position.x, p_home->view.manager.cpuLoad.graph.field.position.y + K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT + 10, K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH, 40 );
-   mk_graph2D_setTextStyle ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, K_MK_NULL );
 
    /* FrameRate */
    mk_graph2D_init ( &p_home->view.manager.frameRate.graph );
@@ -173,7 +168,7 @@ static void mk_home_initManagerFields ( T_mkHomeApplication* p_home )
    mk_graph2D_setActivity ( &p_home->view.manager.frameRate.graph, K_MK_FIELD_INACTIF );
    mk_graph2D_setPixelBuf ( &p_home->view.manager.frameRate.graph, p_home->view.manager.frameRate.buf, 64 );
    mk_graph2D_setBorderVisibility ( &p_home->view.manager.frameRate.graph, K_MK_FIELD_VISIBLE );
-   mk_graph2D_setBorderColor ( &p_home->view.manager.frameRate.graph, K_MK_COLOR_ARGB_DARKEST_GRAY );
+   mk_graph2D_setBorderColor ( &p_home->view.manager.frameRate.graph, 0xFF505050 );
    mk_graph2D_setBackgroundVisibility ( &p_home->view.manager.frameRate.graph, K_MK_FIELD_INVISIBLE );
    mk_graph2D_setBackgroundColor ( &p_home->view.manager.frameRate.graph, K_MK_COLOR_ARGB_DARKEST_GRAY );
    mk_graph2D_setForegroundVisibility ( &p_home->view.manager.frameRate.graph, K_MK_FIELD_VISIBLE );
@@ -181,15 +176,11 @@ static void mk_home_initManagerFields ( T_mkHomeApplication* p_home )
    mk_graph2D_setColor ( &p_home->view.manager.frameRate.graph, K_MK_COLOR_ARGB_YELLOW );
    mk_graph2D_setGrid ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_GRID_PRIMARY, 40, 40 );
    mk_graph2D_setGridLayer ( &p_home->view.manager.frameRate.graph, K_MK_GRAPHICS_BACKGROUND );
-   mk_graph2D_setGridColor ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_GRID_PRIMARY, K_MK_COLOR_ARGB_DARKEST_GRAY );
+   mk_graph2D_setGridColor ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_GRID_PRIMARY, 0xFF505050 );
    mk_graph2D_setGridVisibility ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_GRID_PRIMARY, K_MK_FIELD_INVISIBLE );
    mk_graph2D_setGrid ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_GRID_SECONDARY, 10, 10 );
-   mk_graph2D_setGridColor ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_GRID_SECONDARY, K_MK_COLOR_ARGB_DARKEST_GRAY );
+   mk_graph2D_setGridColor ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_GRID_SECONDARY, 0xFF505050 );
    mk_graph2D_setGridVisibility ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_GRID_SECONDARY, K_MK_FIELD_VISIBLE );
-   mk_graph2D_setText ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, ( T_str8 ) "Framerate");
-   mk_graph2D_setTextLayer ( &p_home->view.manager.frameRate.graph, K_MK_GRAPHICS_BACKGROUND );
-   mk_graph2D_setTextArea ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, p_home->view.manager.frameRate.graph.field.position.x, p_home->view.manager.frameRate.graph.field.position.y + K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT + 10, K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH, 40 );
-   mk_graph2D_setTextStyle ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, K_MK_NULL );
 
    /* Initialisation du bouton image */
    mk_buttonImage_init ( &p_home->view.manager.status.button );
@@ -197,7 +188,7 @@ static void mk_home_initManagerFields ( T_mkHomeApplication* p_home )
    mk_buttonImage_setDimension ( &p_home->view.manager.status.button, K_MK_HOME_MANAGERVIEW_STATUSAREA_WIDTH, K_MK_HOME_MANAGERVIEW_STATUSAREA_HEIGHT );
    mk_buttonImage_setLayer ( &p_home->view.manager.status.button, K_MK_GRAPHICS_BACKGROUND );
    mk_buttonImage_setZIndex ( &p_home->view.manager.status.button, 2 );
-   mk_buttonImage_setBorderColor ( &p_home->view.manager.status.button, K_MK_COLOR_ARGB_DARKEST_GRAY );
+   mk_buttonImage_setBorderColor ( &p_home->view.manager.status.button, 0xFF505050 );
    mk_buttonImage_setBorderVisibility ( &p_home->view.manager.status.button, K_MK_FIELD_VISIBLE );
    mk_buttonImage_setVisibility ( &p_home->view.manager.status.button, K_MK_FIELD_INVISIBLE );
    mk_buttonImage_setActivity ( &p_home->view.manager.status.button, K_MK_FIELD_INACTIF );

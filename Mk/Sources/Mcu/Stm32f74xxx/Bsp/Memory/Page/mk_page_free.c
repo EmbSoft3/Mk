@@ -47,18 +47,16 @@ T_mkCode mk_page_free ( T_mkPageIdentifier p_mkIdentifier, T_mkAddr p_mkAddr )
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_ERROR_PARAM;
 
-   /* Si une page de la mémoire SRAM doit être libérée */
-   if ( p_mkIdentifier == K_MK_PAGE_ID_SRAM )
+   /* Si une page de la mémoire SDRAM doit être libérée */
+   if ( p_mkIdentifier == K_MK_PAGE_ID_SDRAM )
    {
-      /* Libération de la page mémoire allouée */
-      l_result = mk_pool_freeSafe ( g_mkSRAMHandler.pool, p_mkAddr );
+      l_result = mk_pool_freeSafe ( g_mkSDRAMHandler.pool, p_mkAddr );
    }
 
-   /* Sinon si une page de la mémoire SDRAM doit être libérée */
-   else if ( p_mkIdentifier == K_MK_PAGE_ID_SDRAM )
+   /* Sinon si une page réduite de la mémoire SDRAM doit être libérée */
+   else if ( p_mkIdentifier == K_MK_PAGE_ID_SMALL )
    {
-      /* Libération de la page mémoire allouée */
-      l_result = mk_pool_freeSafe ( g_mkSDRAMHandler.pool, p_mkAddr );
+      l_result = mk_pool_freeSafe ( g_mkSmallHandler.pool, p_mkAddr );
    }
 
    /* Sinon */

@@ -67,6 +67,14 @@ extern uint32_t g_mkGPIOStackAddr [ K_MK_GPIO_STACK_SIZE ];
 extern const uint32_t g_mkGPIOProtectionTable [ K_MK_GPIO_NUMBER_OF_PORTS ];
 
 /**
+ * @fn const uint8_t g_mkGPIOSettingTable [ K_MK_GPIO_EVENT_NUMBER ];
+ * @brief Déclaration de la table de configuration du périphérique MFX.
+ *
+ */
+
+extern const uint8_t g_mkGPIOSettingTable [ K_MK_GPIO_EVENT_NUMBER ];
+
+/**
  *
  */
 

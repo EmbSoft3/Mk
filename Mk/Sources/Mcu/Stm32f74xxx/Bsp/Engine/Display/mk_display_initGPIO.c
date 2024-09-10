@@ -45,9 +45,11 @@
 static void mk_display_setGPIOMode ( void )
 {
    /* Configuration du mode des broches de contrôle de l'écran */
-   /* [HSYNC, VSYNC, CLK, DE]. */
-   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 12 );             /* HSYNC */
-   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 13 );             /* VSYNC */
+   /* [HSYNC, VSYNC, CLK, DE, LCD_DISP et LCD-BLCTRL]. */
+   gpio_setMode ( K_GPIOK, K_GPIO_OUTPUT, 3 );                 /* LCD-BLCTRL */
+   gpio_setMode ( K_GPIOI, K_GPIO_OUTPUT, 12 );                /* LCD_DISP */
+   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 10 );             /* HSYNC */
+   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 9 );              /* VSYNC */
    gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 14 );             /* CLK */
    gpio_setMode ( K_GPIOK, K_GPIO_ALTERNATE, 7 );              /* DE */
 
@@ -75,11 +77,11 @@ static void mk_display_setGPIOMode ( void )
 
    /* Configuration du mode des broches [B0:B7] de l'écran. */
    /* */
-   gpio_setMode ( K_GPIOJ, K_GPIO_ALTERNATE, 12 );             /* B0 */
+   gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 4 );              /* B0 */
    gpio_setMode ( K_GPIOJ, K_GPIO_ALTERNATE, 13 );             /* B1 */
    gpio_setMode ( K_GPIOJ, K_GPIO_ALTERNATE, 14 );             /* B2 */
    gpio_setMode ( K_GPIOJ, K_GPIO_ALTERNATE, 15 );             /* B3 */
-   gpio_setMode ( K_GPIOK, K_GPIO_ALTERNATE, 3 );              /* B4 */
+   gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 12 );             /* B4 */
    gpio_setMode ( K_GPIOK, K_GPIO_ALTERNATE, 4 );              /* B5 */
    gpio_setMode ( K_GPIOK, K_GPIO_ALTERNATE, 5 );              /* B6 */
    gpio_setMode ( K_GPIOK, K_GPIO_ALTERNATE, 6 );              /* B7 */
@@ -98,8 +100,8 @@ static void mk_display_setGPIOAlternateMode ( void )
 {
    /* Multiplexage des broches de contrôle de l'écran */
    /* [HSYNC, VSYNC, CLK, DE]. */
-   gpio_alternate ( K_GPIOI, K_GPIO_AF14, 12 );                /* HSYNC */
-   gpio_alternate ( K_GPIOI, K_GPIO_AF14, 13 );                /* VSYNC */
+   gpio_alternate ( K_GPIOI, K_GPIO_AF14, 10 );                /* HSYNC */
+   gpio_alternate ( K_GPIOI, K_GPIO_AF14, 9 );                 /* VSYNC */
    gpio_alternate ( K_GPIOI, K_GPIO_AF14, 14 );                /* CLK */
    gpio_alternate ( K_GPIOK, K_GPIO_AF14, 7 );                 /* DE */
 
@@ -127,11 +129,11 @@ static void mk_display_setGPIOAlternateMode ( void )
 
    /* Multiplexage des broches [B0:B7] de l'écran. */
    /* */
-   gpio_alternate ( K_GPIOJ, K_GPIO_AF14, 12 );                /* B0 */
+   gpio_alternate ( K_GPIOE, K_GPIO_AF14, 4 );                 /* B0 */
    gpio_alternate ( K_GPIOJ, K_GPIO_AF14, 13 );                /* B1 */
    gpio_alternate ( K_GPIOJ, K_GPIO_AF14, 14 );                /* B2 */
    gpio_alternate ( K_GPIOJ, K_GPIO_AF14, 15 );                /* B3 */
-   gpio_alternate ( K_GPIOK, K_GPIO_AF14, 3 );                 /* B4 */
+   gpio_alternate ( K_GPIOG, K_GPIO_AF9, 12 );                 /* B4 */
    gpio_alternate ( K_GPIOK, K_GPIO_AF14, 4 );                 /* B5 */
    gpio_alternate ( K_GPIOK, K_GPIO_AF14, 5 );                 /* B6 */
    gpio_alternate ( K_GPIOK, K_GPIO_AF14, 6 );                 /* B7 */
@@ -149,9 +151,11 @@ static void mk_display_setGPIOAlternateMode ( void )
 static void mk_display_setGPIOSpeed ( void )
 {
    /* Configuration de la vitesse des broches de contrôle */
-   /* de l'écran [HSYNC, VSYNC, CLK, DE]. */
-   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 12 );              /* HSYNC */
-   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 13 );              /* VSYNC */
+   /* de l'écran [HSYNC, VSYNC, CLK, DE, LCD_DISP et LCD-BLCTRL]. */
+   gpio_speed ( K_GPIOK, K_GPIO_LOW_SPEED, 3 );                     /* BLCTRL */
+   gpio_speed ( K_GPIOI, K_GPIO_LOW_SPEED, 12 );                    /* LCD_DISP */
+   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 10 );              /* HSYNC */
+   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 9 );               /* VSYNC */
    gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 14 );              /* CLK */
    gpio_speed ( K_GPIOK, K_GPIO_VERY_HIGH_SPEED, 7 );               /* DE */
 
@@ -179,11 +183,11 @@ static void mk_display_setGPIOSpeed ( void )
 
    /* Configuration de la vitesse des broches [B0:B7] de */
    /* l'écran. */
-   gpio_speed ( K_GPIOJ, K_GPIO_VERY_HIGH_SPEED, 12 );              /* B0 */
+   gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 4 );               /* B0 */
    gpio_speed ( K_GPIOJ, K_GPIO_VERY_HIGH_SPEED, 13 );              /* B1 */
    gpio_speed ( K_GPIOJ, K_GPIO_VERY_HIGH_SPEED, 14 );              /* B2 */
    gpio_speed ( K_GPIOJ, K_GPIO_VERY_HIGH_SPEED, 15 );              /* B3 */
-   gpio_speed ( K_GPIOK, K_GPIO_VERY_HIGH_SPEED, 3 );               /* B4 */
+   gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 12 );              /* B4 */
    gpio_speed ( K_GPIOK, K_GPIO_VERY_HIGH_SPEED, 4 );               /* B5 */
    gpio_speed ( K_GPIOK, K_GPIO_VERY_HIGH_SPEED, 5 );               /* B6 */
    gpio_speed ( K_GPIOK, K_GPIO_VERY_HIGH_SPEED, 6 );               /* B7 */
@@ -201,11 +205,13 @@ static void mk_display_setGPIOSpeed ( void )
 static void mk_display_setGPIOResistor ( void )
 {
    /* Configuration de la résistance de tirage des broches de contrôle */
-   /* de l'écran [HSYNC, VSYNC, CLK, DE]. */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_OFF, 12 );             /* HSYNC */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_OFF, 13 );             /* VSYNC */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_OFF, 14 );             /* CLK */
-   gpio_resistor ( K_GPIOK, K_GPIO_PULL_OFF, 7 );              /* DE */
+   /* de l'écran [HSYNC, VSYNC, CLK, LCD_DISP et LCD-BLCTRL]. */
+   gpio_resistor ( K_GPIOK, K_GPIO_PULL_OFF, 3 );              /* BLCTRL */
+   gpio_resistor ( K_GPIOI, K_GPIO_PULL_OFF, 12 );             /* LCD_DISP */
+   gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 10 );              /* HSYNC */
+   gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 9 );               /* VSYNC */
+   gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 14 );              /* CLK */
+   gpio_resistor ( K_GPIOK, K_GPIO_PULL_DOWN, 7 );             /* DE */
 
    /* Configuration de la résistance de tirage des broches [R0:R7] de */
    /* l'écran. */
@@ -231,11 +237,11 @@ static void mk_display_setGPIOResistor ( void )
 
    /* Configuration de la résistance de tirage des broches [B0:B7] de */
    /* l'écran. */
-   gpio_resistor ( K_GPIOJ, K_GPIO_PULL_OFF, 12 );             /* B0 */
+   gpio_resistor ( K_GPIOE, K_GPIO_PULL_OFF, 4 );              /* B0 */
    gpio_resistor ( K_GPIOJ, K_GPIO_PULL_OFF, 13 );             /* B1 */
    gpio_resistor ( K_GPIOJ, K_GPIO_PULL_OFF, 14 );             /* B2 */
    gpio_resistor ( K_GPIOJ, K_GPIO_PULL_OFF, 15 );             /* B3 */
-   gpio_resistor ( K_GPIOK, K_GPIO_PULL_OFF, 3 );              /* B4 */
+   gpio_resistor ( K_GPIOG, K_GPIO_PULL_OFF, 12 );             /* B4 */
    gpio_resistor ( K_GPIOK, K_GPIO_PULL_OFF, 4 );              /* B5 */
    gpio_resistor ( K_GPIOK, K_GPIO_PULL_OFF, 5 );              /* B6 */
    gpio_resistor ( K_GPIOK, K_GPIO_PULL_OFF, 6 );              /* B7 */
@@ -262,6 +268,10 @@ void mk_display_initGPIO ( void )
    mk_display_setGPIOAlternateMode ( );
    mk_display_setGPIOSpeed ( );
    mk_display_setGPIOResistor ( );
+
+   /* Activation du rétro-éclairage et de l'écran */
+   gpio_setHigh ( K_GPIOI, 12 );
+   gpio_setHigh ( K_GPIOK, 3 );
 
    /* Retour */
    return;

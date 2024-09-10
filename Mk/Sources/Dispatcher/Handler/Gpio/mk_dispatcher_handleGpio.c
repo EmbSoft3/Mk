@@ -48,7 +48,7 @@ static T_mkCode mk_dispatcher_handleGpioEvent ( T_mkDispatcherHandler* p_handler
    T_mkCode l_result = K_MK_OK;
 
    /* Déclaration des variables de travail */
-   uint32_t l_counter, l_lastValue = 0, l_currentValue = 0;
+   uint32_t l_lastValue = 0, l_currentValue = 0;
 
    /* Déclaration d'un message à destination de la tâche d'écoute */
    T_mkListenerMessage l_message;
@@ -58,83 +58,72 @@ static T_mkCode mk_dispatcher_handleGpioEvent ( T_mkDispatcherHandler* p_handler
    l_message.appCtrl   = p_gpio;                      /* Adresse du contrôle applicatif */
    l_message.tick      = p_message->tick;             /* Numéro du tick enregistré lors de la détection de l'événement */
 
-   /* Pour le nombre d'entrées à analyser */
-   for ( l_counter = 0 ; l_counter < MK_GPIO_EXPANDER_NUMBER_OF_PINS ; l_counter++ )
+   /* Configuration de l'identifiant du contrôle */
+   l_message.ctrlId = ( uint16_t ) K_MK_GPIO_SDCARD_DETECT;
+
+   /* Récupération de la valeur des entrées courante et passé */
+   l_lastValue = ( uint32_t ) ( ( p_gpio->lastEvent >> K_MK_GPIO_SDCARD_DETECT ) & 0x1 );
+   l_currentValue = ( uint32_t ) ( ( p_gpio->currentEvent >> K_MK_GPIO_SDCARD_DETECT ) & 0x1 );
+
+   /* Si l'entrée a changée d'état */
+   if ( l_lastValue != l_currentValue )
    {
-      /* Configuration de l'identifiant du contrôle */
-      l_message.ctrlId = ( uint16_t ) l_counter;
-
-      /* Récupération de la valeur des entrées courante et passé */
-      l_lastValue = ( uint32_t ) ( ( p_gpio->expander.last >> l_counter ) & 0x1 );
-      l_currentValue = ( uint32_t ) ( ( p_gpio->expander.current >> l_counter ) & 0x1 );
-
-      /* Si l'entrée concerne le joystick */
-      if ( l_counter <= K_MK_EXPANDER_JOYSTICK_UP )
+      /* Si l'état de la broche est différent de l'état de repos */
+      if ( l_currentValue != g_mkGPIOSettingTable [ K_MK_GPIO_SDCARD_DETECT ] )
       {
-         /* Si l'entrée a changée d'état */
-         if ( l_lastValue != l_currentValue )
-         {
-            /* Si l'état de la broche est différent de l'état de repos */
-            if ( l_currentValue != g_expanderSettingTable [ l_counter ] [ 3 ] )
-            {
-               /* Configuration de l'identifiant de l'événement à générer (PRESS ou RELEASE) */
-               l_message.ctrlEvt = K_MK_EVENT_PRESS;
-            }
-
-            /* Sinon */
-            else
-            {
-               /* Configuration de l'identifiant de l'événement à générer (PRESS ou RELEASE) */
-               l_message.ctrlEvt = K_MK_EVENT_RELEASE;
-            }
-
-            /* Transmission d'un message à la tâche d'écoute */
-            l_result = mk_mail_post ( p_handler->listenerArea->mail, ( T_mkAddr ) &l_message, K_MK_STATE_READY, K_MK_TASK_WAIT_FOREVER );
-         }
-
-         /* Sinon */
-         else
-         {
-            /* Ne rien faire */
-         }
-      }
-
-      /* Sinon si l'entrée concerne la carte SD */
-      else if ( l_counter == K_MK_EXPANDER_SDCARD_DETECT )
-      {
-         /* Si l'entrée a changée d'état */
-         if ( l_lastValue != l_currentValue )
-         {
-            /* Si l'état de la broche est différent de l'état de repos */
-            if ( l_currentValue != g_expanderSettingTable [ l_counter ] [ 3 ] )
-            {
-               /* Configuration de l'identifiant de l'événement à générer (K_MK_EVENT_CONNECT) */
-               l_message.ctrlEvt = K_MK_EVENT_CONNECT;
-            }
-
-            /* Sinon */
-            else
-            {
-               /* Configuration de l'identifiant de l'événement à générer (K_MK_EVENT_DISCONNECT) */
-               l_message.ctrlEvt = K_MK_EVENT_DISCONNECT;
-            }
-
-            /* Transmission d'un message à la tâche d'écoute */
-            l_result = mk_mail_post ( p_handler->listenerArea->mail, ( T_mkAddr ) &l_message, K_MK_STATE_READY, K_MK_TASK_WAIT_FOREVER );
-         }
-
-         /* Sinon */
-         else
-         {
-            /* Ne rien faire */
-         }
+         /* Configuration de l'identifiant de l'événement à générer (K_MK_EVENT_CONNECT) */
+         l_message.ctrlEvt = K_MK_EVENT_CONNECT;
       }
 
       /* Sinon */
       else
       {
-         /* Ne rien faire */
+         /* Configuration de l'identifiant de l'événement à générer (K_MK_EVENT_DISCONNECT) */
+         l_message.ctrlEvt = K_MK_EVENT_DISCONNECT;
       }
+
+      /* Transmission d'un message à la tâche d'écoute */
+      l_result = mk_mail_post ( p_handler->listenerArea->mail, ( T_mkAddr ) &l_message, K_MK_STATE_READY, K_MK_TASK_WAIT_FOREVER );
+   }
+
+   /* Sinon */
+   else
+   {
+      /* Ne rien faire */
+   }
+
+   /* Configuration de l'identifiant du contrôle */
+   l_message.ctrlId = ( uint16_t ) K_MK_GPIO_USER_PUSHBUTTON;
+
+   /* Récupération de la valeur des entrées courante et passé */
+   l_lastValue = ( uint32_t ) ( ( p_gpio->lastEvent >> K_MK_GPIO_USER_PUSHBUTTON ) & 0x1 );
+   l_currentValue = ( uint32_t ) ( ( p_gpio->currentEvent >> K_MK_GPIO_USER_PUSHBUTTON ) & 0x1 );
+
+   /* Si l'entrée a changée d'état */
+   if ( l_lastValue != l_currentValue )
+   {
+      /* Si l'état de la broche est différent de l'état de repos */
+      if ( l_currentValue != g_mkGPIOSettingTable [ K_MK_GPIO_USER_PUSHBUTTON ] )
+      {
+         /* Configuration de l'identifiant de l'événement à générer (PRESS ou RELEASE) */
+         l_message.ctrlEvt = K_MK_EVENT_PRESS;
+      }
+
+      /* Sinon */
+      else
+      {
+         /* Configuration de l'identifiant de l'événement à générer (PRESS ou RELEASE) */
+         l_message.ctrlEvt = K_MK_EVENT_RELEASE;
+      }
+
+      /* Transmission d'un message à la tâche d'écoute */
+      l_result = mk_mail_post ( p_handler->listenerArea->mail, ( T_mkAddr ) &l_message, K_MK_STATE_READY, K_MK_TASK_WAIT_FOREVER );
+   }
+
+   /* Sinon */
+   else
+   {
+      /* Ne rien faire */
    }
 
    /* Retour */

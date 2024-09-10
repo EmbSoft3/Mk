@@ -84,7 +84,7 @@ static T_mkCode mk_shell_allocPage ( T_mkShell* p_shell )
    T_mkCode l_result;
 
    /* Allocation d'une page mémoire */
-   l_result = mk_page_alloc ( K_MK_PAGE_ID_SRAM, &p_shell->page.baseAddr, 0 );
+   l_result = mk_page_alloc ( K_MK_PAGE_ID_SMALL, &p_shell->page.baseAddr, 0 );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )

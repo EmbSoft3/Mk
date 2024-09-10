@@ -46,7 +46,8 @@
 typedef enum T_mkPageIdentifier
 {
    K_MK_PAGE_ID_SRAM = 0,        /*!< Identifiant de la mémoire SRAM. */
-   K_MK_PAGE_ID_SDRAM = 1        /*!< Identifiant de la mémoire SDRAM. */
+   K_MK_PAGE_ID_SDRAM = 1,       /*!< Identifiant de la mémoire SDRAM (allocation d'une page de taille standard). */
+   K_MK_PAGE_ID_SMALL = 2        /*!< Identifiant de la mémoire SDRAM (allocation d'une page de taille réduite). */
 } T_mkPageIdentifier;
 
 /**

@@ -56,14 +56,14 @@
  * @brief Définition de la position BOTTOM_RIGHT [x] de la zone de travail.
  */
 
-#define K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_X 639
+#define K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_X 479
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_Y
  * @brief Définition de la position BOTTOM_RIGHT [y] de la zone de travail.
  */
 
-#define K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_Y 425
+#define K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_Y 255
 
 /**
  *
@@ -102,7 +102,7 @@
  * @brief Définition du nombre de boutons pouvant être dessinés dans la zone d'affichage des applications.
  */
 
-#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_NUMBER 5
+#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_NUMBER 3
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_WIDTH
@@ -215,6 +215,38 @@
  */
 
 /**
+ * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH
+ * @brief Définition de la largeur des graphiques [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH 90
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT
+ * @brief Définition de la hauteur des graphiques [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT 75
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_X
+ * @brief Définition de la position relative du graphique [x] par rapport à l'origine de la zone.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_X 20
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_Y
+ * @brief Définition de la position relative du graphique [y] par rapport à l'origine de la zone.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_Y 40
+
+/**
+ *
+ */
+
+/**
  * @def K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_TOPLEFT_X
  * @brief Définition de la position TOP_LEFT [x] de la zone d'affichage des graphiques.
  */
@@ -240,7 +272,7 @@
  * @brief Définition de la position BOTTOM_RIGHT [y] de la zone d'affichage des graphiques.
  */
 
-#define K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_BOTTOMRIGHT_Y ( K_MK_HOME_MANAGERVIEW_STATUSAREA_TOPLEFT_Y + 180 )
+#define K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_BOTTOMRIGHT_Y ( K_MK_HOME_MANAGERVIEW_STATUSAREA_TOPLEFT_Y + K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT + K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_Y + 10 )
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_WIDTH
@@ -255,38 +287,6 @@
  */
 
 #define K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_HEIGHT ( 1 + K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_BOTTOMRIGHT_Y - K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_TOPLEFT_Y )
-
-/**
- *
- */
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH
- * @brief Définition de la largeur des graphiques [en pixels].
- */
-
-#define K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH 125
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT
- * @brief Définition de la hauteur des graphiques [en pixels].
- */
-
-#define K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT 85
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_X
- * @brief Définition de la position relative du graphique [x] par rapport à l'origine de la zone.
- */
-
-#define K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_X ( ( ( 1 + K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_BOTTOMRIGHT_X - K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_TOPLEFT_X ) - ( 2 * K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH ) ) / 3 )
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_Y
- * @brief Définition de la position relative du graphique [y] par rapport à l'origine de la zone.
- */
-
-#define K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_Y 55
 
 /**
  *

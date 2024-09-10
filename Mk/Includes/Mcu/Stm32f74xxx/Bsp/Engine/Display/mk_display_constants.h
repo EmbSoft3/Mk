@@ -43,7 +43,7 @@
  *        Cette constante peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_DISPLAY_WIDTH 640
+#define K_MK_DISPLAY_WIDTH 480
 
 /**
  * @def K_MK_DISPLAY_HEIGHT
@@ -51,7 +51,7 @@
  *        Cette constante peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_DISPLAY_HEIGHT 480
+#define K_MK_DISPLAY_HEIGHT 272
 
 /**
  * @def K_MK_DISPLAY_RESOLUTION_X
@@ -59,7 +59,7 @@
  *        Cette constante peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_DISPLAY_RESOLUTION_X 5555
+#define K_MK_DISPLAY_RESOLUTION_X 5050
 
 /**
  * @def K_MK_DISPLAY_RESOLUTION_Y
@@ -67,7 +67,7 @@
  *        Cette constante peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_DISPLAY_RESOLUTION_Y 5555
+#define K_MK_DISPLAY_RESOLUTION_Y 5050
 
 /**
  *
@@ -79,7 +79,7 @@
  *        Constante propre au TFT AM-640480G5TNQW-T00H. Elle peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_DISPLAY_LTDC_HSYNC_PULSE_WITDH 20
+#define K_MK_DISPLAY_LTDC_HSYNC_PULSE_WITDH 1
 
 /**
  * @def K_MK_DISPLAY_LTDC_HBP_WIDTH
@@ -87,7 +87,7 @@
  *        Constante propre au TFT AM-640480G5TNQW-T00H. Elle peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_DISPLAY_LTDC_HBP_WIDTH 114
+#define K_MK_DISPLAY_LTDC_HBP_WIDTH 42
 
 /**
  * @def K_MK_DISPLAY_LTDC_HACTIVE_WIDTH
@@ -103,7 +103,7 @@
  *        Constante propre au TFT AM-640480G5TNQW-T00H. Elle peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_DISPLAY_LTDC_HFP_WIDTH 4
+#define K_MK_DISPLAY_LTDC_HFP_WIDTH 8
 
 /**
  * @def K_MK_DISPLAY_LTDC_VSYNC_PULSE_WITDH
@@ -111,7 +111,7 @@
  *        Constante propre au TFT AM-640480G5TNQW-T00H. Elle peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_DISPLAY_LTDC_VSYNC_PULSE_WITDH 3
+#define K_MK_DISPLAY_LTDC_VSYNC_PULSE_WITDH 2
 
 /**
  * @def K_MK_DISPLAY_LTDC_VBP_WIDTH
@@ -119,7 +119,7 @@
  *        Constante propre au TFT AM-640480G5TNQW-T00H. Elle peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_DISPLAY_LTDC_VBP_WIDTH 2
+#define K_MK_DISPLAY_LTDC_VBP_WIDTH 4
 
 /**
  * @def K_MK_DISPLAY_LTDC_VACTIVE_WIDTH
@@ -135,7 +135,7 @@
  *        Constante propre au TFT AM-640480G5TNQW-T00H. Elle peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_DISPLAY_LTDC_VFP_WIDTH 2
+#define K_MK_DISPLAY_LTDC_VFP_WIDTH 4
 
 /**
  * @def K_MK_DISPLAY_LTDC_DEFAULT_BACKGROUND
@@ -159,7 +159,7 @@
  *        Cette constante peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_DISPLAY_LTDC_FREQUENCY 22750000
+#define K_MK_DISPLAY_LTDC_FREQUENCY 9000000
 
 /**
  * @def K_MK_DISPLAY_SCANLINE
@@ -207,7 +207,7 @@
  *        Cette constante peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_DISPLAY_FRAME_BUFFER_NUMBER 8
+#define K_MK_DISPLAY_FRAME_BUFFER_NUMBER 4
 
 /**
  * @def K_MK_DISPLAY_FRAME_BUFFER_BANK1_BASE_ADDR

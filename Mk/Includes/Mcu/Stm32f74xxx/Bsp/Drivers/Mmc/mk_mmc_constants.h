@@ -51,11 +51,10 @@
 /**
  * @def K_MK_MMC_CARD_PORT_NUMBER
  * @brief Définition de l'identifiant du registre de configuration GPIO de la broche SDCARD_DETECT.
- * @note La broche est connectée sur le périphérique MFX (0=K_MK_GPIO_EXPANDER).
- *       Cette constante peut être modifiée par l'utilisateur.
+ *        Cette constante peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_MMC_CARD_PORT_NUMBER 0
+#define K_MK_MMC_CARD_PORT_NUMBER K_MK_GPIO_PORTC
 
 /**
  * @def K_MK_MMC_CARD_PIN_NUMBER
@@ -63,7 +62,7 @@
  * @note Cette constante peut être modifiée par l'utilisateur.
  */
 
-#define K_MK_MMC_CARD_PIN_NUMBER 15
+#define K_MK_MMC_CARD_PIN_NUMBER 13
 
 /**
  * @def K_MK_MMC_CARD_CONNECTED_STATE

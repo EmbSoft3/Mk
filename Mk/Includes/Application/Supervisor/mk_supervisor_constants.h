@@ -149,14 +149,14 @@
  * @brief Définition de la largeur de la fenêtre de la console.
  */
 
-#define K_MK_SUPERVISOR_CONSOLE_WINDOW_WIDTH 629
+#define K_MK_SUPERVISOR_CONSOLE_WINDOW_WIDTH 469
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_HEIGHT
  * @brief Définition de la hauteur de la fenêtre de la console.
  */
 
-#define K_MK_SUPERVISOR_CONSOLE_WINDOW_HEIGHT 436
+#define K_MK_SUPERVISOR_CONSOLE_WINDOW_HEIGHT 228
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_CACHE_SIZE
@@ -181,14 +181,14 @@
  * @brief Définition de la position Y du prompt de la console.
  */
 
-#define K_MK_SUPERVISOR_CONSOLE_PROMPT_Y 447
+#define K_MK_SUPERVISOR_CONSOLE_PROMPT_Y 238
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_WIDTH
  * @brief Définition de la largeur du prompt de la console.
  */
 
-#define K_MK_SUPERVISOR_CONSOLE_PROMPT_WIDTH 629
+#define K_MK_SUPERVISOR_CONSOLE_PROMPT_WIDTH 469
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_HEIGHT

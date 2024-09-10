@@ -38,20 +38,20 @@
 #define MK_PAGE_DATA_H
 
 /**
- * @fn T_mkPagehandler g_mkSRAMHandler;
- * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages dans la mémoire SRAM.
- *
- */
-
-extern T_mkPagehandler g_mkSRAMHandler;
-
-/**
  * @fn T_mkPagehandler g_mkSDRAMHandler;
- * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages dans la mémoire SDRAM.
+ * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages mémoire de taille standard dans la mémoire SDRAM.
  *
  */
 
 extern T_mkPagehandler g_mkSDRAMHandler;
+
+/**
+ * @fn T_mkPagehandler g_mkSmallHandler;
+ * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages mémoire de taille fixe dans la mémoire SDRAM.
+ *
+ */
+
+extern T_mkPagehandler g_mkSmallHandler;
 
 /**
  *

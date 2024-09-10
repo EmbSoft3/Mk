@@ -92,7 +92,7 @@ static T_mkCode mk_termio_createDriverTermio ( void )
    if ( l_result == K_MK_OK )
    {
       /* Création du terminal I2C */
-      l_result = mk_termio_create ( K_MK_NULL, K_MK_TERMIO_I2C1_ID, K_MK_TERMIO_TASK_PRIORITY,
+      l_result = mk_termio_create ( K_MK_NULL, K_MK_TERMIO_I2C3_ID, K_MK_TERMIO_TASK_PRIORITY,
                                     mk_i2c_task, g_mkI2CStackAddr, K_MK_I2C_STACK_SIZE );
 
       /* Si l'initialisation du terminal a réussi */

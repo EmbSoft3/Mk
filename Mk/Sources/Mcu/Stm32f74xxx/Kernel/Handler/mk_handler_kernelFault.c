@@ -57,8 +57,7 @@ void mk_handler_kernelFault ( T_mkSVCError p_mkCode, T_mkSVCObject* p_mkObject, 
       /* Boucle pour toujours */
       for ( ;; )
       {
-         /* Signalisation de l'erreur */
-         gpio_setLow ( K_GPIOF, 10 );
+
       }
    }
 

@@ -49,22 +49,13 @@ static void mk_system_memory_initFMCCtrlGPIOMode ( void )
    /* utilisées (en réserve pour une autre mémoire) */
    gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 8 );           /* SDCLK */
    gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 5 );           /* SDNWE */
-   gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 2 );           /* SDCKE<0> */
+   gpio_setMode ( K_GPIOC, K_GPIO_ALTERNATE, 3 );           /* SDCKE<0> */
    gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 3 );           /* SDNE<0> */
    gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 11 );          /* SDNRAS */
    gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 15 );          /* SDNCAS */
 
-   /* Configuration du mode des broches de pilotage du contrôleur */
-   /* SRAM. */
-   gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 7 );           /* NE1 */
-   gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 10 );          /* NE3 */
-   gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 4 );           /* NOE */
-   gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 5 );           /* NWE */
-
    /* Configuration du mode des broches partagées du périphérique */
    /* FMC. */
-   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 5 );           /* NBL<3> */
-   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 4 );           /* NBL<2> */
    gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 1 );           /* NBL<1> */
    gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 0 );           /* NBL<0> */
 
@@ -98,22 +89,6 @@ static void mk_system_memory_initFMCDataGPIOMode ( void )
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 8 );           /* D13 */
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 9 );           /* D14 */
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 10 );          /* D15 */
-   gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 8 );           /* D16 */
-   gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 9 );           /* D17 */
-   gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 10 );          /* D18 */
-   gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 11 );          /* D19 */
-   gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 12 );          /* D20 */
-   gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 13 );          /* D21 */
-   gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 14 );          /* D22 */
-   gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 15 );          /* D23 */
-   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 0 );           /* D24 */
-   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 1 );           /* D25 */
-   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 2 );           /* D26 */
-   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 3 );           /* D27 */
-   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 6 );           /* D28 */
-   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 7 );           /* D29 */
-   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 9 );           /* D30 */
-   gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 10 );          /* D31 */
 
    /* Retour */
    return;
@@ -142,18 +117,8 @@ static void mk_system_memory_initFMCAddrGPIOMode ( void )
    gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 15 );          /* A9 */
    gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 0 );           /* A10 */
    gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 1 );           /* A11 */
-   gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 2 );           /* ->A12 */
-   gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 3 );           /* ->A13 */
    gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 4 );           /* A14 - BA0 */
    gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 5 );           /* A15 - BA1 */
-   gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 11 );          /* A16 - CLE */
-   gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 12 );          /* A17 - ALE */
-   gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 13 );          /* A18 */
-   gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 3 );           /* A19 */
-   gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 4 );           /* A20 */
-   gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 5 );           /* A21 */
-   gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 6 );           /* A22 */
-   gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 2 );           /* A23 */
 
    /* Retour */
    return;
@@ -172,22 +137,13 @@ static void mk_system_memory_initFMCCtrlGPIOModeAlternate ( void )
    /* utilisées (en réserve pour une autre mémoire). */
    gpio_alternate ( K_GPIOG, K_GPIO_AF12, 8 );              /* SDCLK */
    gpio_alternate ( K_GPIOH, K_GPIO_AF12, 5 );              /* SDNWE */
-   gpio_alternate ( K_GPIOH, K_GPIO_AF12, 2 );              /* SDCKE<0> */
+   gpio_alternate ( K_GPIOC, K_GPIO_AF12, 3 );              /* SDCKE<0> */
    gpio_alternate ( K_GPIOH, K_GPIO_AF12, 3 );              /* SDNE<0> */
    gpio_alternate ( K_GPIOF, K_GPIO_AF12, 11 );             /* SDNRAS */
    gpio_alternate ( K_GPIOG, K_GPIO_AF12, 15 );             /* SDNCAS */
 
-   /* Multiplexage du mode des broches de pilotage du contrôleur */
-   /* SRAM. */
-   gpio_alternate ( K_GPIOD, K_GPIO_AF12, 7 );              /* NE1 */
-   gpio_alternate ( K_GPIOG, K_GPIO_AF12, 10 );             /* NE3 */
-   gpio_alternate ( K_GPIOD, K_GPIO_AF12, 4 );              /* NOE */
-   gpio_alternate ( K_GPIOD, K_GPIO_AF12, 5 );              /* NWE */
-
    /* Multiplexage des broches partagées du périphérique FMC. */
    /**/
-   gpio_alternate ( K_GPIOI, K_GPIO_AF12, 5 );              /* NBL<3> */
-   gpio_alternate ( K_GPIOI, K_GPIO_AF12, 4 );              /* NBL<2> */
    gpio_alternate ( K_GPIOE, K_GPIO_AF12, 1 );              /* NBL<1> */
    gpio_alternate ( K_GPIOE, K_GPIO_AF12, 0 );              /* NBL<0> */
 
@@ -221,22 +177,6 @@ static void mk_system_memory_initFMCDataGPIOModeAlternate ( void )
    gpio_alternate ( K_GPIOD, K_GPIO_AF12, 8 );              /* D13 */
    gpio_alternate ( K_GPIOD, K_GPIO_AF12, 9 );              /* D14 */
    gpio_alternate ( K_GPIOD, K_GPIO_AF12, 10 );             /* D15 */
-   gpio_alternate ( K_GPIOH, K_GPIO_AF12, 8 );              /* D16 */
-   gpio_alternate ( K_GPIOH, K_GPIO_AF12, 9 );              /* D17 */
-   gpio_alternate ( K_GPIOH, K_GPIO_AF12, 10 );             /* D18 */
-   gpio_alternate ( K_GPIOH, K_GPIO_AF12, 11 );             /* D19 */
-   gpio_alternate ( K_GPIOH, K_GPIO_AF12, 12 );             /* D20 */
-   gpio_alternate ( K_GPIOH, K_GPIO_AF12, 13 );             /* D21 */
-   gpio_alternate ( K_GPIOH, K_GPIO_AF12, 14 );             /* D22 */
-   gpio_alternate ( K_GPIOH, K_GPIO_AF12, 15 );             /* D23 */
-   gpio_alternate ( K_GPIOI, K_GPIO_AF12, 0 );              /* D24 */
-   gpio_alternate ( K_GPIOI, K_GPIO_AF12, 1 );              /* D25 */
-   gpio_alternate ( K_GPIOI, K_GPIO_AF12, 2 );              /* D26 */
-   gpio_alternate ( K_GPIOI, K_GPIO_AF12, 3 );              /* D27 */
-   gpio_alternate ( K_GPIOI, K_GPIO_AF12, 6 );              /* D28 */
-   gpio_alternate ( K_GPIOI, K_GPIO_AF12, 7 );              /* D29 */
-   gpio_alternate ( K_GPIOI, K_GPIO_AF12, 9 );              /* D30 */
-   gpio_alternate ( K_GPIOI, K_GPIO_AF12, 10 );             /* D31 */
 
    /* Retour */
    return;
@@ -265,18 +205,8 @@ static void mk_system_memory_initFMCAddrGPIOModeAlternate ( void )
    gpio_alternate ( K_GPIOF, K_GPIO_AF12, 15 );             /* A9 */
    gpio_alternate ( K_GPIOG, K_GPIO_AF12, 0 );              /* A10 */
    gpio_alternate ( K_GPIOG, K_GPIO_AF12, 1 );              /* A11 */
-   gpio_alternate ( K_GPIOG, K_GPIO_AF12, 2 );              /* A12 */
-   gpio_alternate ( K_GPIOG, K_GPIO_AF12, 3 );              /* A13 */
    gpio_alternate ( K_GPIOG, K_GPIO_AF12, 4 );              /* A14 - BA0 */
    gpio_alternate ( K_GPIOG, K_GPIO_AF12, 5 );              /* A15 - BA1 */
-   gpio_alternate ( K_GPIOD, K_GPIO_AF12, 11 );             /* A16 - CLE */
-   gpio_alternate ( K_GPIOD, K_GPIO_AF12, 12 );             /* A17 - ALE*/
-   gpio_alternate ( K_GPIOD, K_GPIO_AF12, 13 );             /* A18 */
-   gpio_alternate ( K_GPIOE, K_GPIO_AF12, 3 );              /* A19 */
-   gpio_alternate ( K_GPIOE, K_GPIO_AF12, 4 );              /* A20 */
-   gpio_alternate ( K_GPIOE, K_GPIO_AF12, 5 );              /* A21 */
-   gpio_alternate ( K_GPIOE, K_GPIO_AF12, 6 );              /* A22 */
-   gpio_alternate ( K_GPIOE, K_GPIO_AF12, 2 );              /* A23 */
 
    /* Retour */
    return;
@@ -295,22 +225,13 @@ static void mk_system_memory_initFMCCtrlGPIOSpeed ( void )
    /* utilisées (en réserve pour une autre mémoire). */
    gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 8 );            /* SDCLK */
    gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 5 );            /* SDNWE */
-   gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 2 );            /* SDCKE<0> */
+   gpio_speed ( K_GPIOC, K_GPIO_VERY_HIGH_SPEED, 3 );            /* SDCKE<0> */
    gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 3 );            /* SDNE<0> */
    gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 11 );           /* SDNRAS */
    gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 15 );           /* SDNCAS */
 
-   /* Configuration de la vitesse des broches partagées du contrôleur */
-   /* SDRAM. */
-   gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 7 );            /* NE1 */
-   gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 10 );           /* NE3 */
-   gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 4 );            /* NOE */
-   gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 5 );            /* NWE */
-
    /* Configuration de la vitesse des broches partagées du périphérique */
    /* FMC. */
-   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 5 );            /* NBL<3> */
-   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 4 );            /* NBL<2> */
    gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 1 );            /* NBL<1> */
    gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 0 );            /* NBL<0> */
 
@@ -344,22 +265,6 @@ static void mk_system_memory_initFMCDataGPIOSpeed ( void )
    gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 8 );            /* D13 */
    gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 9 );            /* D14 */
    gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 10 );           /* D15 */
-   gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 8 );            /* D16 */
-   gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 9 );            /* D17 */
-   gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 10 );           /* D18 */
-   gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 11 );           /* D19 */
-   gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 12 );           /* D20 */
-   gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 13 );           /* D21 */
-   gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 14 );           /* D22 */
-   gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 15 );           /* D23 */
-   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 0 );            /* D24 */
-   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 1 );            /* D25 */
-   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 2 );            /* D26 */
-   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 3 );            /* D27 */
-   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 6 );            /* D28 */
-   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 7 );            /* D29 */
-   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 9 );            /* D30 */
-   gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 10 );           /* D31 */
 
    /* Retour */
    return;
@@ -388,18 +293,8 @@ static void mk_system_memory_initFMCAddrGPIOSpeed ( void )
    gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 15 );           /* A9 */
    gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 0 );            /* A10 */
    gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 1 );            /* A11 */
-   gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 2 );            /* A12 */
-   gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 3 );            /* A13 */
    gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 4 );            /* A14 - BA0 */
    gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 5 );            /* A15 - BA1 */
-   gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 11 );           /* A16 - CLE */
-   gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 12 );           /* A17 - ALE*/
-   gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 13 );           /* A18 */
-   gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 3 );            /* A19 */
-   gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 4 );            /* A20 */
-   gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 5 );            /* A21 */
-   gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 6 );            /* A22 */
-   gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 2 );            /* A23 */
 
    /* Retour */
    return;
@@ -418,22 +313,13 @@ static void mk_system_memory_initFMCCtrlGPIOResistor ( void )
    /* ne sont pas utilisées (en réserve pour une autre mémoire). */
    gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 8 );            /* SDCLK */
    gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 5 );            /* SDNWE */
-   gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 2 );            /* SDCKE<0> */
+   gpio_resistor ( K_GPIOC, K_GPIO_PULL_UP, 3 );            /* SDCKE<0> */
    gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 3 );            /* SDNE<0> */
    gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 11 );           /* SDNRAS */
    gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 15 );           /* SDNCAS */
 
-   /* Configuration de la vitesse des broches partagées du contrôleur */
-   /* SDRAM. */
-   gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 7 );            /* NE1 */
-   gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 10 );           /* NE3 */
-   gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 4 );            /* NOE */
-   gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 5 );            /* NWE */
-
    /* Configuration de la résistances de sortie des broches partagées */
    /* du périphérique FMC. */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 5 );            /* NBL<3> */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 4 );            /* NBL<2> */
    gpio_resistor ( K_GPIOE, K_GPIO_PULL_UP, 1 );            /* NBL<1> */
    gpio_resistor ( K_GPIOE, K_GPIO_PULL_UP, 0 );            /* NBL<0> */
 
@@ -467,22 +353,6 @@ static void mk_system_memory_initFMCDataGPIOResistor ( void )
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 8 );            /* D13 */
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 9 );            /* D14 */
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 10 );           /* D15 */
-   gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 8 );            /* D16 */
-   gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 9 );            /* D17 */
-   gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 10 );           /* D18 */
-   gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 11 );           /* D19 */
-   gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 12 );           /* D20 */
-   gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 13 );           /* D21 */
-   gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 14 );           /* D22 */
-   gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 15 );           /* D23 */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 0 );            /* D24 */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 1 );            /* D25 */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 2 );            /* D26 */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 3 );            /* D27 */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 6 );            /* D28 */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 7 );            /* D29 */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 9 );            /* D30 */
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 10 );           /* D31 */
 
    /* Retour */
    return;
@@ -511,18 +381,8 @@ static void mk_system_memory_initFMCAddrGPIOResistor ( void )
    gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 15 );           /* A9 */
    gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 0 );            /* A10 */
    gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 1 );            /* A11 */
-   gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 2 );            /* A12 */
-   gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 3 );            /* A13 */
    gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 4 );            /* A14 - BA0 */
    gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 5 );            /* A15 - BA1 */
-   gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 11 );           /* A16 - CLE */
-   gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 12 );           /* A17 - ALE*/
-   gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 13 );           /* A18 */
-   gpio_resistor ( K_GPIOE, K_GPIO_PULL_UP, 3 );            /* A19 */
-   gpio_resistor ( K_GPIOE, K_GPIO_PULL_UP, 4 );            /* A20 */
-   gpio_resistor ( K_GPIOE, K_GPIO_PULL_UP, 5 );            /* A21 */
-   gpio_resistor ( K_GPIOE, K_GPIO_PULL_UP, 6 );            /* A22 */
-   gpio_resistor ( K_GPIOE, K_GPIO_PULL_UP, 2 );            /* A23 */
 
    /* Retour */
    return;
@@ -568,34 +428,34 @@ static void mk_system_memory_qspi_initGPIO ( void )
    /* Configuration du mode des broches de pilotage du périphérique QSPI<1>. */
    gpio_setMode ( K_GPIOB, K_GPIO_ALTERNATE, 2 );           /* CLK */
    gpio_setMode ( K_GPIOB, K_GPIO_ALTERNATE, 6 );           /* CS  */
-   gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 8 );           /* IO0 */
-   gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 9 );           /* IO1 */
-   gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 7 );           /* IO2 */
-   gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 6 );           /* IO3 */
+   gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 11 );          /* IO0 */
+   gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 12 );          /* IO1 */
+   gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 2 );           /* IO2 */
+   gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 13 );          /* IO3 */
 
    /* Multiplexage des broches de pilotage du périphérique QSPI<1>. */
    gpio_alternate ( K_GPIOB, K_GPIO_AF9, 2 );               /* CLK */
    gpio_alternate ( K_GPIOB, K_GPIO_AF10, 6 );              /* CS  */
-   gpio_alternate ( K_GPIOF, K_GPIO_AF10, 8 );              /* IO0 */
-   gpio_alternate ( K_GPIOF, K_GPIO_AF10, 9 );              /* IO1 */
-   gpio_alternate ( K_GPIOF, K_GPIO_AF9, 7 );               /* IO2 */
-   gpio_alternate ( K_GPIOF, K_GPIO_AF9, 6 );               /* IO3 */
+   gpio_alternate ( K_GPIOD, K_GPIO_AF9, 11 );              /* IO0 */
+   gpio_alternate ( K_GPIOD, K_GPIO_AF9, 12 );              /* IO1 */
+   gpio_alternate ( K_GPIOE, K_GPIO_AF9, 2 );               /* IO2 */
+   gpio_alternate ( K_GPIOD, K_GPIO_AF9, 13 );              /* IO3 */
 
    /* Configuration de la vitesse des broches de pilotage du périphérique QSPI<1> */
    gpio_speed ( K_GPIOB, K_GPIO_VERY_HIGH_SPEED, 2 );       /* CLK */
    gpio_speed ( K_GPIOB, K_GPIO_VERY_HIGH_SPEED, 6 );       /* CS  */
-   gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 8 );       /* IO0 */
-   gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 9 );       /* IO1 */
-   gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 7 );       /* IO2 */
-   gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 6 );       /* IO3 */
+   gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 11 );      /* IO0 */
+   gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 12 );      /* IO1 */
+   gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 2 );       /* IO2 */
+   gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 13 );      /* IO3 */
 
    /* Configuration du type de résistance des broches de pilotage du périphérique QSPI<1> */
    gpio_resistor ( K_GPIOB, K_GPIO_PULL_UP, 2 );            /* CLK */
    gpio_resistor ( K_GPIOB, K_GPIO_PULL_UP, 6 );            /* CS */
-   gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 8 );            /* IO0 */
-   gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 9 );            /* IO1 */
-   gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 7 );            /* IO2 */
-   gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 6 );            /* IO3 */
+   gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 11 );           /* IO0 */
+   gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 12 );           /* IO1 */
+   gpio_resistor ( K_GPIOE, K_GPIO_PULL_UP, 2 );            /* IO2 */
+   gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 13 );           /* IO3 */
 
    /* Retour */
    return;

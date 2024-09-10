@@ -53,9 +53,6 @@ T_sysCode mk_system_memory_init ( void )
    /* Initialisation des broches GPIO des mémoires */
    mk_system_memory_initGPIO ( );
 
-   /* Initialisation de ou des mémoires SRAM */
-   mk_system_memory_initSRAM ( );
-
    /* Initialisation de ou des mémoires SDRAM */
    l_ret = mk_system_memory_initSDRAM ( );
 
@@ -64,22 +61,6 @@ T_sysCode mk_system_memory_init ( void )
    {
       /* Actualisation de la variable de retour */
       l_result = K_SYS_ERROR_SDRAM;
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Ne rien faire */
-   }
-
-   /* Initialisation de ou des mémoires QSPI */
-   l_ret = mk_system_memory_initQSPI ( K_QSPI_INSTRUCTION_QUAD_MODE );
-
-   /* Si une erreur s'est produite */
-   if ( l_ret != K_QSPI_OK )
-   {
-      /* Actualisation de la variable de retour */
-      l_result = K_SYS_ERROR_QSPI;
    }
 
    /* Sinon */

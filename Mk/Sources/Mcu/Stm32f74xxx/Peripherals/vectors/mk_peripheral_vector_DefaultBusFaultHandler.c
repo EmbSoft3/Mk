@@ -44,9 +44,6 @@
 
 void vector_defaultBusFaultHandler ( void )
 {
-   /* Allumage d'un voyant lumineux */
-   gpio_setLow ( K_GPIOF, 10 );
-
    /* Boucle pour toujours */
    while ( 1 )
    {

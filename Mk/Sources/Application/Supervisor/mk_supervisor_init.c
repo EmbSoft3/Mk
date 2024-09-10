@@ -235,15 +235,15 @@ static T_mkCode mk_supervisor_initFigures ( T_mkSupervisor* p_supervisor )
 
    /* Initialisation de la figure affichant le framerate */
    mk_figure_init ( &p_supervisor->load.frameRate );
-   mk_figure_setPosition ( &p_supervisor->load.frameRate, 610, 10 );
-   mk_figure_setDimension ( &p_supervisor->load.frameRate, 30, 35 );
+   mk_figure_setPosition ( &p_supervisor->load.frameRate, 450, 0 );
+   mk_figure_setDimension ( &p_supervisor->load.frameRate, 30, 25 );
    mk_figure_setVisibility ( &p_supervisor->load.frameRate, K_MK_FIELD_VISIBLE );
    mk_figure_setPainter ( &p_supervisor->load.frameRate, mk_supervisor_paintFrameRate );
 
    /* Initialisation de la figure affichant la charge CPU */
    mk_figure_init ( &p_supervisor->load.cpu );
-   mk_figure_setPosition ( &p_supervisor->load.cpu, 610, 50 );
-   mk_figure_setDimension ( &p_supervisor->load.cpu, 30, 35 );
+   mk_figure_setPosition ( &p_supervisor->load.cpu, 450, 25 );
+   mk_figure_setDimension ( &p_supervisor->load.cpu, 30, 25 );
    mk_figure_setVisibility ( &p_supervisor->load.cpu, K_MK_FIELD_VISIBLE );
    mk_figure_setPainter ( &p_supervisor->load.cpu, mk_supervisor_paintCpuLoad );
 
