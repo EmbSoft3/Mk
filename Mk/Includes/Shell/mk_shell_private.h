@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -78,6 +78,21 @@ T_mkCode mk_shell_create ( void );
  */
 
 T_mkCode mk_shell_init ( T_mkShell* p_shell );
+
+/**
+ * @fn T_mkCode mk_shell_delete ( T_mkShell* p_shell );
+ * @brief Cette fonction supprime les données allouées par un gestionnaire de commandes de type \ref T_mkShell.
+ * @param[out] p_shell Ce paramètre contient l'adresse d'un gestionnaire de commandes de type \ref T_mkShell.
+ *
+ * @return Cette fonction retourne un des codes suivants :
+ *         \li \ref K_MK_OK           : la désallocation du gestionnaire de commandes a réussi.
+ *         \li \ref K_MK_ERROR_PARAM  : la désallocation du gestionnaire de commandes a échoué car au moins un paramètre est invalide.
+ *         \li \ref K_MK_ERROR_ISR    : la désallocation du gestionnaire de commandes a échoué car la fonction a été exécutée depuis un vecteur d'interruption.
+ *         \li \ref K_MK_ERROR_RIGHT  : la désallocation du gestionnaire de commandes a échoué car une tâche de type non privilégié ne possède pas suffisamment de droits.
+ *
+ */
+
+T_mkCode mk_shell_delete ( T_mkShell* p_shell );
 
 /**
  * @fn T_str8 mk_shell_removeDoubleQuote ( T_str8 p_str, T_mkFontUnicode p_fontEncoding );
