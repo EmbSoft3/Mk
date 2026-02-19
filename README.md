@@ -1,113 +1,152 @@
-# Mk Software
+# Mk
 
-**Mk** is a tiny operating system designed to run on the **STM32F746g-Eval2** 
-board.
-**Mk** has been designed from scratch. It provides a software ecosystem that 
-can be integrated with the **STM32F75xxx** and **STM32F74xxx** MCU family.
+**Mk** is a bare-metal operating system built from scratch for the **STM32F746G-Eval2** board.
+It targets the **STM32F74xxx** and **STM32F75xxx** MCU families and provides a complete software
+ecosystem: a preemptive kernel, a dynamic ELF loader, a FAT file system, a multitasking USB stack,
+a graphical engine with Unicode support, and an interactive shell — all written in C18 and ARM
+assembly, with no external dependencies.
 
-## Application Programming Interface (API)
+> ⚠️ This project is under active development. Some features and documentation sections are still
+> being completed.
 
-The API provided by **Mk** is still under development, but already offers the 
-following features:
+## Features
 
- - a multi-tasking system with rights management (Thread Vs Handler Mode),
- - a dynamic loader for loading external applications,
- - a built-in shell for native or external command execution,
- - a graphical engine supporting the execution of static or dynamic applications 
-   through painting or listening functions,
- - a set of graphic methods for drawing primitives (rectangle, circle, etc.), 
-   unicode character strings (ASCII, UTF8, UTF16 or UTF32) and images 
-   (BMP 24 and 32 bits),
- - a font manager for adding new fonts at runtime. Native fonts are embedded in 
-   non-volatile memory (FLASH or QSPI). New fonts can be integrated and 
-   referenced at runtime and are embedded in RAM memory,
- - an event management system that supports mouse, keyboard, joystick and so on 
-   (HID devices, GPIO triggers, Application event, ...),
- - a multi-tasking USB stack. Only the HUB, HID and MSC device classes 
-   are currently supported, but new classes can easily be added,
- - a multi-tasking file system that supports SD/MMC or MSC devices (USB Key, ...
-   ), multi-partition and concurrent access,
- - a synchronous and asynchronous function execution system,
- - a critical error (exception) management system with error reporting.
- 
-To eliminate the risk of memory fragmentation, no dynamic allocation of variable 
-size is performed by the system. The kernel provides a set of functions for 
-fixed-size allocations called **memory pool**.
+### Kernel
+- Preemptive, priority-based multitasking scheduler (fixed-priority, O(1) selection via CLZ)
+- Trusted Execution Environment (TEE) using the Cortex-M7 MPU:
+  - **Handler mode** (privileged): full access to protected memory and system resources
+  - **Thread mode** (unprivileged): restricted access — any violation triggers a fault and terminates the offending task
+- Synchronization primitives: mutex (with priority inheritance), semaphore, event flags, mailbox
+- Fixed-size memory pools — no variable-size dynamic allocation, eliminating heap fragmentation entirely
+- Synchronous and asynchronous callback execution system
+- Structured fault handling: HardFault, MemFault, BusFault, UsageFault, stack overflow detection
 
-## Trusted Execution Environment (TEE)   
+### Dynamic ELF Loader
+Mk can load and execute external `.elf` files at runtime, relocated into 64 KB pages of external
+SDRAM. Programs reference Mk's own API symbols directly via `extern` — the full kernel symbol table
+is embedded in the firmware at a fixed address — so external applications require no copy of the
+kernel API in their own binary. Shared libraries can be added to overcome the 64 KB page limit.
 
-The multi-tasking kernel was developed to provide a trusted execution 
-environment (TEE) for the user:
+See the [sym2srec](https://github.com/EmbSoft3/Sym2srec/wiki) tool for details on the symbol
+embedding mechanism.
 
-- **privileged or handler mode** : this execution mode has full rights and can 
-  be used to manipulate the system's protected memory.
-- **unprivileged or thread mode** : this execution mode has restricted rights 
-  and cannot manipulate the system's protected memory. Any attempt will 
-  trigger a software exception which causes the system to stop the faulty 
-  application.
+### File System
+- FAT32 with multi-partition support
+- Concurrent access from multiple tasks (per-volume mutex)
+- Full API: `open`, `close`, `read`, `write`, `seek`, `tell`, `eof`, `stat`, `rename`, `unlink`,
+  `chmod`, `expand`, `truncate`, directory browsing
+- Supports SD/MMC cards and USB Mass Storage Class (MSC) devices
 
-A gateway has been implemented to enable unprivileged tasks to make requests on 
-protected resources like sending frame on I2C buf, writing a GPIO and more ... 
+### USB Stack
+- Multitasking USB host stack built on the STM32F7 OTG peripheral
+- Supported device classes: HUB, HID (keyboard, mouse, joystick, gamepad), MSC
+- Designed for extensibility — new device classes can be added without modifying the core stack
 
-## Dynamic Loader
+### Graphical Engine
+- Hardware-accelerated 2D rendering via the Cortex-M7 ChromART (DMA2D) unit
+- Drawing primitives: rectangles, circles, lines, arcs
+- Image rendering: BMP 24-bit and 32-bit
+- Full Unicode text rendering: ASCII, UTF-8, UTF-16, UTF-32
+- Font manager: native fonts stored in FLASH/QSPI; additional fonts can be loaded at runtime into RAM
+- UI object library: buttons, text fields, edit fields, progress bars, 2D graphs, cursors, layers
+- Event-driven application model: painting callbacks and input-listening callbacks
 
-To enable external code execution, all **Mk** symbols have been stored in the 
-programming file. To learn more about the mechanisms involved, see the wiki of 
-my repository [sym2srec](https://github.com/EmbSoft3/Sym2srec/wiki)).
+### Shell
+Built-in interactive shell with support for both native and dynamically loaded commands:
 
-Actually, the dynamic loader built into **Mk** loads external programming files 
-(.elf) into 64KB memory pages of external RAM memory.
+| Command | Description |
+|---------|-------------|
+| `ls` | List directory contents |
+| `cd` | Change current directory |
+| `pwd` | Print working directory |
+| `lsdsk` | List mounted disks and partitions |
+| `launch` | Load and run an external `.elf` application |
+| `install` / `uninstall` | Install or remove an application |
+| `terminate` | Stop a running application |
+| `getapps` | List installed applications |
 
-The size of the programs may seem restrictive and it is. However, **Mk** offers 
-two features to overcome this:
- 
- - The first is the use of external library. If the program is larger 
-   than 64KB, a new shared library can be added to the system.
- - The second is intrinsic to the system. Since the **Mk** system symbols 
-   (".symtab" and ".strtab") are stored in its own executable code, external 
-   programs do not need to define the API functions in their code but can 
-   simply reference them with the *extern* keyword.
+---
 
+## Architecture
+
+Mk is organized into well-separated layers:
+
+```
+┌──────────────────────────────────────────────────────┐
+│                  Applications                        │  Home UI, Supervisor, Shell
+├──────────────────────────────────────────────────────┤
+│              Dispatcher / Event system               │  HID, GPIO, Disk events
+├──────────────────────────────────────────────────────┤
+│         File System │ ELF Loader │ USB Stack         │
+├──────────────────────────────────────────────────────┤
+│                  Kernel (RTOS)                       │  Scheduler, sync, pools
+├──────────────────────────────────────────────────────┤
+│          BSP / Graphical Engine / Drivers            │  STM32F7-specific HAL
+├──────────────────────────────────────────────────────┤
+│               Peripheral Abstraction                 │  GPIO, DMA, USB OTG, LTDC…
+└──────────────────────────────────────────────────────┘
+          STM32F746G — Cortex-M7 @ 216 MHz
+```
+
+---
 
 ## Build
 
-Mk can be built using the [makefile](Mk/Make/makefile) file on the repository.
-The variable **TOOLCHAIN_PATH** must be updated with the path of the ARM
-toolchain.
+### Requirements
 
-First, issue a **make clean** command then build the target with **make all**.
+- [GNU Arm Embedded Toolchain 10.3-2021.10](https://developer.arm.com/downloads/-/gnu-rm)
+- GNU Make 4.x
 
-Currently versions of compiler used are the followings:
+### Steps
 
-- **gcc** arm-none-eabi-gcc (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 
-  20210824 (release)
-- **g++** arm-none-eabi-g++ (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 
-  20210824 (release)
-- **make** GNU Make 4.4.1 Built for Windows32
+1. Open `Mk/Make/makefile` and set `TOOLCHAIN_PATH` to your ARM toolchain installation directory.
+2. Clean any previous build artifacts:
+   ```
+   make clean
+   ```
+3. Build the firmware:
+   ```
+   make all
+   ```
+   This produces `Mk.elf` (debug symbols) and `Mk-Strip.elf` (stripped, ready to flash), along with
+   `Mk.srec` containing the embedded symbol table.
 
-Please note, that by default, the application is compiled in release mode with 
-optimizations enabled (**-Ofast**).
+> **Note:** The default build configuration uses `-Ofast`. Use the `Debug` target for a `-O0`
+> build with full debug symbols:
+> ```
+> make Debug
+> ```
 
-## Usage
+### Compiler versions used
 
-Unfortunately, this section is still under development and will be updated 
-shortly with a description and explanation of how the operating system works.
+| Tool | Version |
+|------|---------|
+| `arm-none-eabi-gcc` | 10.3.1 20210824 (GNU Arm Embedded Toolchain 10.3-2021.10) |
+| `arm-none-eabi-g++` | 10.3.1 20210824 (GNU Arm Embedded Toolchain 10.3-2021.10) |
+| `make` | GNU Make 4.4.1 (Windows32) |
+
+### Flashing
+
+A J-Link script is provided in `Mk/Flasher/Jlink/`. Connect the STM32F746G-Eval2 board and run it
+with J-Link Commander.
+
+---
 
 ## Screenshots
 
-Below are some screenshots of the system :
+| Boot | Shell |
+|------|-------|
+| ![startup](Screenshots/screenshot_startup.bmp) | ![shell](Screenshots/screenshot_shell.bmp) |
 
-![startup](Screenshots/screenshot_startup.bmp "startup")
+| Home screen | File manager |
+|-------------|--------------|
+| ![home](Screenshots/screenshot_home.bmp) | ![manager](Screenshots/screenshot_manager.bmp) |
 
-![shell](Screenshots/screenshot_shell.bmp "shell")
+| File manager (2) | Pong |
+|------------------|------|
+| ![manager2](Screenshots/screenshot_manager_2.bmp) | ![pong](Screenshots/screenshot_pong.bmp) |
 
-![home](Screenshots/screenshot_home.bmp "home")
-
-![manager](Screenshots/screenshot_manager.bmp "manager")
-
-![manager](Screenshots/screenshot_manager_2.bmp "manager")
-
-![pong](Screenshots/screenshot_pong.bmp "pong")
+---
 
 ## Future developments
 
@@ -121,15 +160,25 @@ features. Below is a list of features that will be added in the future :
 
 This list is not exhaustive, and includes only the main features.
 
+---
+
+## Roadmap
+
+The following features are planned for future releases:
+
+- [ ] File system access rights
+- [ ] Touch input support in the graphical engine
+- [ ] Audio output via USB isochronous transfers
+- [ ] TCP/IP networking stack
+
+---
+
 ## License
 
-**Copyright (C)** 2024 **RENARD Mathieu**. All rights reserved.
+Copyright © 2024 **Mathieu Renard**. All rights reserved.
 
-Mk is free software; It is distributed in the hope that it will be useful.
-There is NO warranty; not even for MERCHANTABILITY or 
-FITNESS FOR A PARTICULAR PURPOSE.
-
-The content of this repository is bound by the [BSD-3-Clause](LICENSE) license.
+This project is licensed under the **BSD 3-Clause License** — see the [LICENSE](LICENSE) file for
+details.
 
 
 
