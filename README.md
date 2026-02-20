@@ -69,23 +69,45 @@ Built-in interactive shell with support for both native and dynamically loaded c
 
 ## Architecture
 
-Mk is organized into well-separated layers:
+Mk is organized into three layers: Foundation for core hardware and OS services, Subsystems for system services, and System Platform for applications and graphics.:
 
 ```
-┌──────────────────────────────────────────────────────┐
-│                  Applications                        │  Home UI, Supervisor, Shell
-├──────────────────────────────────────────────────────┤
-│              Dispatcher / Event system               │  HID, GPIO, Disk events
-├──────────────────────────────────────────────────────┤
-│         File System │ ELF Loader │ USB Stack         │
-├──────────────────────────────────────────────────────┤
-│                  Kernel (RTOS)                       │  Scheduler, sync, pools
-├──────────────────────────────────────────────────────┤
-│          BSP / Graphical Engine / Drivers            │  STM32F7-specific HAL
-├──────────────────────────────────────────────────────┤
-│               Peripheral Abstraction                 │  GPIO, DMA, USB OTG, LTDC…
-└──────────────────────────────────────────────────────┘
-          STM32F746G — Cortex-M7 @ 216 MHz
+╔═════════════════════════════════════════════════════════════════════╗
+║  SYSTEM PLATFORM  (Application)                                     ║
+║                                                                     ║
+║   ┌─────────────┐             ┌──────────┐              ┌────────┐  ║
+║   │  Supervisor │             │   Home   │              │ Shell  │  ║
+║   │   (faults)  │             │   screen)│              │        │  ║
+║   └─────────────┘             └──────────┘              └────────┘  ║
+╠═════════════════════════════════════════════════════════════════════╣
+║  SUBSYSTEMS                                                         ║
+║                                                                     ║
+║  ┌────────────┐   ┌──────────────┐   ┌───────────┐   ┌───────────┐  ║
+║  │ Dispatcher │   │  ELF Loader  │   │ FAT File  │   │   USB     │  ║
+║  │            │   │  + S-Record  │   │  System   │   │   Stack   │  ║
+║  │            │   │              │   │           │   |           |  ║
+║  │            │   │              │   │           │   |           |  ║
+║  └────────────┘   └──────────────┘   └───────────┘   └───────────┘  ║
+║                                                                     ║
+║  ┌───────────────────────────────────────────────────────────────┐  ║
+║  │  Graphical Engine (BSP Engine)                                │  ║
+║  │  ChromART · LCD · Containers · Objects · Fonts · Color · Vect │  ║
+║  └───────────────────────────────────────────────────────────────┘  ║
+╠═════════════════════════════════════════════════════════════════════╣
+║  FOUNDATION  (no dependency on anything above)                      ║
+║                                                                     ║
+║  ┌──────────────────────┐   ┌──────────────┐   ┌────────────────┐   ║
+║  │       Kernel         │   │ BSP Drivers  │   │  Binary · Math │   ║
+║  │  Scheduler · Mutex   │   │  GPIO · I2C  │   │  Vect 2D · ASM │   ║
+║  │  Event · Mail · Pool │   │  USB · MMC   │   │                │   ║
+║  │  SVC · TEE · MPU     │   │  QSPI        │   │                │   ║
+║  └──────────────────────┘   └──────────────┘   └────────────────┘   ║
+║                                                                     ║
+║  ┌──────────────────────────────────────────────────────────────┐   ║
+║  │  STM32F74xxx Peripherals — NVIC · FPU · DMA · RTC · SDRAM    │   ║
+║  └──────────────────────────────────────────────────────────────┘   ║
+╚═════════════════════════════════════════════════════════════════════╝
+                  STM32F746G — Cortex-M7 @ 216 MHz
 ```
 
 ---
