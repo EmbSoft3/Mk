@@ -1,6 +1,6 @@
 # Mk
-
-**Mk** is a bare-metal operating system built from scratch for the **STM32F746G-Eval2** board.
+**Mk** is a bare-metal operating system built from scratch for the **STM32F746G-Eval2** and 
+**STM32F746G-DISCO REV.C** boards.
 It targets the **STM32F74xxx** and **STM32F75xxx** MCU families and provides a complete software
 ecosystem: a preemptive kernel, a dynamic ELF loader, a FAT file system, a multitasking USB stack,
 a graphical engine with Unicode support, and an interactive shell — all written in C18 and ARM
@@ -15,7 +15,8 @@ assembly, with no external dependencies.
 - Preemptive, priority-based multitasking scheduler (fixed-priority, O(1) selection via CLZ)
 - Trusted Execution Environment (TEE) using the Cortex-M7 MPU:
   - **Handler mode** (privileged): full access to protected memory and system resources
-  - **Thread mode** (unprivileged): restricted access — any violation triggers a fault and terminates the offending task
+  - **Thread mode (privileged)**: used by kernel and system tasks — full memory access, unrestricted use of protected instructions (MSR/MRS on BASEPRI, etc.)
+  - **Thread mode (unprivileged)**: used by user applications — restricted memory access enforced by the MPU; any violation triggers a fault and terminates the offending task
 - Synchronization primitives: mutex (with priority inheritance), semaphore, event flags, mailbox
 - Fixed-size memory pools — no variable-size dynamic allocation, eliminating heap fragmentation entirely
 - Synchronous and asynchronous callback execution system
@@ -113,6 +114,13 @@ Mk is organized into three layers: Foundation for core hardware and OS services,
 ---
 
 ## Build
+
+### Hardware targets
+
+| Branch | Board | MCU |
+|--------|-------|-----|
+| `main` | STM32F746G-Eval2 | STM32F746NG |
+| `stm32f746g-disco` | STM32F746G-DISCO REV.C | STM32F746NG |
 
 ### Requirements
 
