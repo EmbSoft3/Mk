@@ -2,30 +2,29 @@
 
 Configure the SD card as follows:
 
- - Create one or more FAT32 partitions. 
- - The name of the main partition must be **MK_SYSTEM**.
- - A minimum of 512MB for each partition is required. Supported cluster sizes range from 512 to 65536 bytes.
+- Create one or more FAT32 partitions.
+- The main partition must be named **MK_SYSTEM**.
+- A minimum size of **512 MB per partition** is required.
+- Supported cluster sizes range from **512 to 65,536 bytes**.
 
 ### Example
 
-Below is an example of a possible organization with the main partition and two optional partitions :
+Below is an example of a possible layout with the main partition and two optional partitions:
 
-- Main partition (**mandatory**) : **MK_SYSTEM**
+- Main partition (**mandatory**): **MK_SYSTEM**
 
->- mk
-
->>- apps
->>- shell
->>- supervisor
->>- ...
-
->- ...
-
-- User partition 1 (**optional**) : **NO NAME CONSTRAINT**
+> mk  
+>> apps  
+>> shell  
+>> supervisor  
+>> ...  
 
 > ...
 
-- User partition 2 (**optional**) : **NO NAME CONSTRAINT**
+- User partition 1 (**optional**): **no name constraint**
 
 > ...
 
+- User partition 2 (**optional**): **no name constraint**
+
+> ...
