@@ -1,2 +1,2 @@
-This directory contains external shell commands.
+This directory contains external shell command executables.
 
