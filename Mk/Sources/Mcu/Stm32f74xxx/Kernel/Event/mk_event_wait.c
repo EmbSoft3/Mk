@@ -116,7 +116,7 @@ T_mkCode mk_event_wait ( T_mkEvent* p_mkEvent, uint32_t p_mkInFlag, uint32_t* p_
          l_right = _mk_scheduler_privileged ( );
 
          /* Si la tâche possède les droits suffisants pour réaliser l'appel système */
-         if ( ( l_isr != K_MK_ISR_NO ) || ( l_right == K_MK_MODE_HANDLER ) || ( ( l_right == K_MK_MODE_THREAD ) &&
+         if ( ( l_right == K_MK_MODE_HANDLER ) || ( ( l_right == K_MK_MODE_THREAD ) &&
             ( ( p_mkEvent->type & K_MK_AREA_PROTECTED ) == K_MK_AREA_UNPROTECTED ) ) )
          {
             /* Réinitialisation du résultat */
