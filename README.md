@@ -3,7 +3,7 @@
 **STM32F746G-DISCO REV.C** boards.
 It targets the **STM32F74xxx** and **STM32F75xxx** MCU families and provides a complete software
 ecosystem: a preemptive kernel, a dynamic ELF loader, a FAT file system, a multitasking USB stack,
-a graphical engine with Unicode support, and an interactive shell — all written in C18 and ARM
+a graphical engine with Unicode support, and an interactive shell — all written in C and ARM
 assembly, with no external dependencies.
 
 > ⚠️ This project is under active development. Some features and documentation sections are still
