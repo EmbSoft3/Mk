@@ -75,6 +75,6 @@ jobs:
         with:
           name: firmware
           path: |
-            **/*.elf
-            **/*.map
-            **/*.srec
+            Mk/Make/*.elf
+            Mk/Make/*.map
+            Mk/Make/*.srec
