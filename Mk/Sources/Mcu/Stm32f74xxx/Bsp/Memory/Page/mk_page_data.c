@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -37,19 +37,19 @@
 #include "mk_memory_api.h"
 
 /**
- * @fn T_mkPagehandler g_mkSRAMHandler;
- * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages dans la mémoire SRAM.
+ * @fn T_mkPagehandler g_mkSmallPageHandler;
+ * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages de petite taille.
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkPagehandler g_mkSRAMHandler;
+K_MK_PRIVILEGED_MEMORY T_mkPagehandler g_mkSmallPageHandler;
 
 /**
- * @fn T_mkPagehandler g_mkSDRAMHandler;
- * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages dans la mémoire SDRAM.
+ * @fn T_mkPagehandler g_mkLargePageHandler;
+ * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages de grande taille.
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkPagehandler g_mkSDRAMHandler;
+K_MK_PRIVILEGED_MEMORY T_mkPagehandler g_mkLargePageHandler;
 
 

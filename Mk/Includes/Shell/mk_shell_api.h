@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -70,6 +70,12 @@
 #include "mk_scheduler_constants.h"
 #include "mk_scheduler_types.h"
 #include "mk_memory_constants.h"
+
+/**
+ *
+ */
+
+#include "mk_bsp_constants.h"
 
 /**
  *

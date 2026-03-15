@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -325,10 +325,10 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
    if ( l_result == K_MK_OK )
    {
       /* Récupération du nombre de pages mémoire SDRAM allouées */
-      p_home->view.manager.status.sdramPageNumber = g_mkSDRAMHandler.pool->count;
+      p_home->view.manager.status.sdramPageNumber = g_mkLargePageHandler.pool->count;
 
       /* Conversion en chaine de caractères */
-      mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strSdram, p_home->view.manager.status.sdramPageNumber, K_MK_PAGE_SDRAM_SIZE / K_MK_PAGE_SDRAM_BLOCK_SIZE );
+      mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strSdram, p_home->view.manager.status.sdramPageNumber, K_MK_PAGE_LARGE_SIZE / K_MK_PAGE_LARGE_BLOCK_SIZE );
 
       /* Dessin du nombre de pages allouées dans le groupe Memory */
       l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Sdram", ( T_str8 ) p_home->view.manager.status.strSdram, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 170.0f, l_color );
@@ -344,10 +344,10 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
    if ( l_result == K_MK_OK )
    {
       /* Récupération du nombre de pages mémoire SRAM allouées */
-      p_home->view.manager.status.sramPageNumber = g_mkSRAMHandler.pool->count;
+      p_home->view.manager.status.sramPageNumber = g_mkSmallPageHandler.pool->count;
 
       /* Conversion du nombre de page SRAM allouées en chaine de caractères */
-      mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strSram, p_home->view.manager.status.sramPageNumber, K_MK_PAGE_SRAM_SIZE / K_MK_PAGE_SRAM_BLOCK_SIZE );
+      mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strSram, p_home->view.manager.status.sramPageNumber, K_MK_PAGE_SMALL_SIZE / K_MK_PAGE_SMALL_BLOCK_SIZE );
 
       /* Dessin du nombre de pages allouées dans le groupe Memory */
       l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Sram", ( T_str8 ) p_home->view.manager.status.strSram, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 200.0f, l_color );
@@ -381,8 +381,8 @@ T_mkCode mk_home_manager_paintStatus ( T_mkContainer* p_container, T_mkField* p_
    T_mkHomeApplication* l_home = ( T_mkHomeApplication* ) mk_application_getArg ( l_application );
 
    /* Si le contenu du champ doit être actualisé */
-   if ( ( l_home->view.manager.status.sramPageNumber  != g_mkSRAMHandler.pool->count ) ||
-        ( l_home->view.manager.status.sdramPageNumber != g_mkSDRAMHandler.pool->count ) ||
+   if ( ( l_home->view.manager.status.sramPageNumber  != g_mkSmallPageHandler.pool->count ) ||
+        ( l_home->view.manager.status.sdramPageNumber != g_mkLargePageHandler.pool->count ) ||
         ( l_home->view.manager.status.taskNumber != g_mkTaskPool.pool.count ) ||
         ( l_home->view.manager.status.appsNumber != g_mkDisplay.handler.applicationPool->count ) )
    {

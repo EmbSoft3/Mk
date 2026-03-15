@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -54,9 +54,9 @@ T_mkCode mk_page_initHandler ( void );
 
 /**
  * @fn T_mkCode mk_page_alloc ( T_mkPageIdentifier p_mkIdentifier, T_mkAddr* p_mkAddr, uint32_t p_mkTick );
- * @brief Cette fonction alloue une page mémoire dans la mémoire identifiée par le paramètre 'p_mkIdentifier'.
+ * @brief Cette fonction alloue une page mémoire du type défini par le paramètre 'p_mkIdentifier'.
  *
- * @param[in]  p_mkIdentifier Ce paramètre contient l'identifiant de la mémoire où l'allocation doit être réalisée (\ref K_MK_PAGE_ID_SRAM ou \ref K_MK_PAGE_ID_SDRAM).
+ * @param[in]  p_mkIdentifier Ce paramètre contient l'identifiant de la mémoire où l'allocation doit être réalisée (\ref K_MK_PAGE_ID_SMALL ou \ref K_MK_PAGE_ID_LARGE).
  * @param[out] p_mkAddr       Ce paramètre contient l'adresse de la page allouée.
  * @param[in]  p_mkTick       Ce paramètre contient la valeur du timeout. Il peut prendre les valeurs suivantes :
  *                            \li 0x0 - la fonction retourne immédiatement,
@@ -77,10 +77,10 @@ T_mkCode mk_page_alloc ( T_mkPageIdentifier p_mkIdentifier, T_mkAddr* p_mkAddr, 
 
 /**
  * @fn T_mkCode mk_page_free ( T_mkPageIdentifier p_mkIdentifier, T_mkAddr* p_mkAddr );
- * @brief Cette fonction désalloue une page mémoire dans la mémoire identifiée par le paramètre 'p_mkIdentifier'. La page doit obligatoirement avoir été allouée avec
+ * @brief Cette fonction désalloue une page mémoire du type défini par le paramètre 'p_mkIdentifier'. La page doit obligatoirement avoir été allouée avec
  *        la fonction \ref mk_page_alloc.
  *
- * @param[in] p_mkIdentifier Ce paramètre contient l'identifiant de la mémoire où l'allocation doit être réalisée (\ref K_MK_PAGE_ID_SRAM ou \ref K_MK_PAGE_ID_SDRAM).
+ * @param[in] p_mkIdentifier Ce paramètre contient l'identifiant de la mémoire où l'allocation doit être réalisée (\ref K_MK_PAGE_ID_SMALL ou \ref K_MK_PAGE_ID_LARGE).
  * @param[in] p_mkAddr       Ce paramètre contient l'adresse du bloc de mémoire alloué.
  *
  * @return Cette fonction retourne un des codes suivants:

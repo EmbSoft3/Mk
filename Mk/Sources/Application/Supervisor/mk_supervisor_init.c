@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -107,8 +107,8 @@ static T_mkCode mk_supervisor_initMemoryPage ( T_mkSupervisor* p_supervisor )
    T_mkCode l_result;
 
    /* Allocation des pages mémoire */
-   l_result  = mk_page_alloc ( K_MK_PAGE_ID_SDRAM, &p_supervisor->page.baseAddr, 0 );
-   l_result |= mk_page_alloc ( K_MK_PAGE_ID_SDRAM, &p_supervisor->page.reportAddr, 0 );
+   l_result  = mk_page_alloc ( K_MK_PAGE_ID_LARGE, &p_supervisor->page.baseAddr, 0 );
+   l_result |= mk_page_alloc ( K_MK_PAGE_ID_LARGE, &p_supervisor->page.reportAddr, 0 );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )

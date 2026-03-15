@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -143,6 +143,12 @@
 #include "mk_file.h"
 #include "mk_fat_private.h"
 #include "mk_fat_utils_private.h"
+
+/**
+ *
+ */
+
+#include "mk_bsp_constants.h"
 
 /**
  *

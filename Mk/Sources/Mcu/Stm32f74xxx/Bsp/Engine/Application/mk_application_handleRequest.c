@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -286,7 +286,7 @@ static T_mkCode mk_application_handleLaunchRequest ( T_mkTask* p_task, T_mkAppli
          if ( ( l_result == K_MK_OK ) && ( p_request->application->descriptor.gfxPage == K_MK_TRUE ) )
          {
             /* Allocation d'une page mémoire graphique */
-            l_result = mk_page_alloc ( K_MK_PAGE_ID_SDRAM, &p_request->application->page.gfxAddr, 0 );
+            l_result = mk_page_alloc ( K_MK_PAGE_ID_LARGE, &p_request->application->page.gfxAddr, 0 );
          }
 
          /* Sinon */
@@ -299,7 +299,7 @@ static T_mkCode mk_application_handleLaunchRequest ( T_mkTask* p_task, T_mkAppli
          if ( ( l_result == K_MK_OK ) && ( p_request->application->descriptor.memPage == K_MK_TRUE ) )
          {
             /* Allocation d'une page mémoire standard */
-            l_result = mk_page_alloc ( K_MK_PAGE_ID_SRAM, &p_request->application->page.memAddr, 0 );
+            l_result = mk_page_alloc ( K_MK_PAGE_ID_SMALL, &p_request->application->page.memAddr, 0 );
          }
 
          /* Sinon */
@@ -368,7 +368,7 @@ static T_mkCode mk_application_handleLaunchRequest ( T_mkTask* p_task, T_mkAppli
          if ( ( l_result != K_MK_OK ) && ( p_request->application->page.gfxAddr != K_MK_NULL ) )
          {
             /* Libération de la mémoire allouée */
-            l_result = mk_page_free ( K_MK_PAGE_ID_SDRAM, p_request->application->page.gfxAddr );
+            l_result = mk_page_free ( K_MK_PAGE_ID_LARGE, p_request->application->page.gfxAddr );
          }
 
          /* Sinon */
@@ -381,7 +381,7 @@ static T_mkCode mk_application_handleLaunchRequest ( T_mkTask* p_task, T_mkAppli
          if ( ( l_result != K_MK_OK ) && ( p_request->application->page.memAddr != K_MK_NULL ) )
          {
             /* Libération de la mémoire allouée */
-            l_result = mk_page_free ( K_MK_PAGE_ID_SRAM, p_request->application->page.memAddr );
+            l_result = mk_page_free ( K_MK_PAGE_ID_SMALL, p_request->application->page.memAddr );
          }
 
          /* Sinon */

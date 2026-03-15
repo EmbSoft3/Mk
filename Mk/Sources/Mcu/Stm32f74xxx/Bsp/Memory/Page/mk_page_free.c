@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -48,17 +48,17 @@ T_mkCode mk_page_free ( T_mkPageIdentifier p_mkIdentifier, T_mkAddr p_mkAddr )
    T_mkCode l_result = K_MK_ERROR_PARAM;
 
    /* Si une page de la mémoire SRAM doit être libérée */
-   if ( p_mkIdentifier == K_MK_PAGE_ID_SRAM )
+   if ( p_mkIdentifier == K_MK_PAGE_ID_SMALL )
    {
       /* Libération de la page mémoire allouée */
-      l_result = mk_pool_freeSafe ( g_mkSRAMHandler.pool, p_mkAddr );
+      l_result = mk_pool_freeSafe ( g_mkSmallPageHandler.pool, p_mkAddr );
    }
 
    /* Sinon si une page de la mémoire SDRAM doit être libérée */
-   else if ( p_mkIdentifier == K_MK_PAGE_ID_SDRAM )
+   else if ( p_mkIdentifier == K_MK_PAGE_ID_LARGE )
    {
       /* Libération de la page mémoire allouée */
-      l_result = mk_pool_freeSafe ( g_mkSDRAMHandler.pool, p_mkAddr );
+      l_result = mk_pool_freeSafe ( g_mkLargePageHandler.pool, p_mkAddr );
    }
 
    /* Sinon */

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -109,7 +109,7 @@ T_mkCode mk_application_release ( T_mkApplication* p_application )
       if ( ( l_result == K_MK_OK ) && ( p_application->page.gfxAddr != K_MK_NULL ) )
       {
          /* Libération de la mémoire */
-         l_result |= mk_page_free ( K_MK_PAGE_ID_SDRAM, p_application->page.gfxAddr );
+         l_result |= mk_page_free ( K_MK_PAGE_ID_LARGE, p_application->page.gfxAddr );
       }
 
       /* Sinon */
@@ -122,7 +122,7 @@ T_mkCode mk_application_release ( T_mkApplication* p_application )
       if ( ( l_result == K_MK_OK ) && ( p_application->page.memAddr != K_MK_NULL ) )
       {
          /* Libération de la mémoire */
-         l_result |= mk_page_free ( K_MK_PAGE_ID_SRAM, p_application->page.memAddr );
+         l_result |= mk_page_free ( K_MK_PAGE_ID_SMALL, p_application->page.memAddr );
       }
 
       /* Sinon */

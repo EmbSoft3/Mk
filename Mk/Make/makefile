@@ -48,6 +48,21 @@ endif
 FIND_DIRS = $(shell $(FIND) $(1) -mindepth 1 -type d)
 
 ################################################################################
+# Board
+################################################################################
+
+# Board selection (default: EVAL2)
+BOARD ?= EVAL2
+
+ifeq ($(BOARD),EVAL2)
+  BOARD_DEFINE   := -DMK_BOARD_EVAL2
+else ifeq ($(BOARD),DISCO_REV_C)
+  BOARD_DEFINE   := -DMK_BOARD_DISCO_REV_C
+else
+  $(error Unknown BOARD=$(BOARD). Use EVAL2 or DISCO_REV_C)
+endif
+
+################################################################################
 # Path
 ################################################################################
 
@@ -192,7 +207,7 @@ H_FLAGS = $(foreach dir, $(INCLUDE_DIRECTORIES), $(addprefix -I, $(dir)))
 
 # C flags — -MMD -MP auto-generate dependency files (.d)
 C_FLAGS := -x c $(CDIAL_OPTIONS) $(ARM_OPTIONS) $(ANALYZER_OPTIONS) \
-           $(OPTIMIZATION_OPTIONS) $(WARN_OPTIONS) \
+           $(OPTIMIZATION_OPTIONS) $(WARN_OPTIONS) $(BOARD_DEFINE) \
            -fmessage-length=0 -nostdinc -fstack-usage \
            -MMD -MP
 

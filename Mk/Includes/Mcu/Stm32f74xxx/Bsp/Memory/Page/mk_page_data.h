@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -38,20 +38,20 @@
 #define MK_PAGE_DATA_H
 
 /**
- * @fn T_mkPagehandler g_mkSRAMHandler;
- * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages dans la mémoire SRAM.
+ * @fn T_mkPagehandler g_mkSmallPageHandler;
+ * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages de petite taille.
  *
  */
 
-extern T_mkPagehandler g_mkSRAMHandler;
+extern T_mkPagehandler g_mkSmallPageHandler;
 
 /**
- * @fn T_mkPagehandler g_mkSDRAMHandler;
- * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages dans la mémoire SDRAM.
+ * @fn T_mkPagehandler g_mkLargePageHandler;
+ * @brief Déclaration du gestionnaire dédié à l'allocation dynamique des pages de grande taille.
  *
  */
 
-extern T_mkPagehandler g_mkSDRAMHandler;
+extern T_mkPagehandler g_mkLargePageHandler;
 
 /**
  *

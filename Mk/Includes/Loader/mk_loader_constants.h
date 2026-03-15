@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -42,7 +42,7 @@
  * @brief Définition de taille des pages mémoire utilisées pour charger les applications dynamiques [en octets].
  */
 
-#define K_MK_LOADER_MEMORY_PAGE_SIZE K_MK_PAGE_SRAM_BLOCK_SIZE
+#define K_MK_LOADER_MEMORY_PAGE_SIZE K_MK_PAGE_SMALL_BLOCK_SIZE
 
 /**
  * @def K_MK_LOADER_LIBRARY_ITEM_NUMBER

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -447,7 +447,7 @@ T_mkCode mk_chromart_screenshot ( void )
    uint32_t* l_page = K_MK_NULL;
 
    /* Allocation d'une page mémoire graphique */
-   l_result = mk_page_alloc ( K_MK_PAGE_ID_SDRAM, ( T_mkAddr* ) &l_page, 0 );
+   l_result = mk_page_alloc ( K_MK_PAGE_ID_LARGE, ( T_mkAddr* ) &l_page, 0 );
 
    /* Si aucune erreur ne s'est produite */
    if ( ( l_result == K_MK_OK ) && ( l_page != K_MK_NULL ) )
@@ -485,7 +485,7 @@ T_mkCode mk_chromart_screenshot ( void )
       }
 
       /* Désallocation de la page mémoire */
-      l_result |= mk_page_free ( K_MK_PAGE_ID_SDRAM, l_page );
+      l_result |= mk_page_free ( K_MK_PAGE_ID_LARGE, l_page );
    }
 
    /* Sinon */

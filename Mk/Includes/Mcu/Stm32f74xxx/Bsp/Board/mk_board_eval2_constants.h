@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,67 +28,61 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_page_constants.h
-* @brief DÃ©claration des constantes dÃ©diÃ©es Ã  la pagination mÃ©moire.
-* @date 10 avr. 2023
+* @file mk_board_discoRevC_constants.h
+* @brief Déclaration des constantes dédiées à la board EVAL2.
+* @date 15 mars 2026
 *
 */
 
-#ifndef MK_PAGE_CONSTANTS_H
-#define MK_PAGE_CONSTANTS_H
+#ifndef MK_BOARD_EVAL2_CONSTANTS_H
+#define MK_BOARD_EVAL2_CONSTANTS_H
 
 /**
- * @def K_MK_PAGE_SMALL_START_ADDR
- * @brief DÃ©finition de l'adresse de dÃ©but de la mÃ©moire stockant les petites pages mÃ©moire (SRAM, SDRAM, ...).
+ * @def K_MK_BSP_PAGE_SMALL_START_ADDR
+ * @brief Définition de l'adresse de début de la mémoire stockant les petites pages mémoire (SRAM, SDRAM, ...).
  */
 
-#define K_MK_PAGE_SMALL_START_ADDR K_MK_BSP_PAGE_SMALL_START_ADDR
+#define K_MK_BSP_PAGE_SMALL_START_ADDR 0x68000000
 
 /**
- * @def K_MK_PAGE_SMALL_SIZE
- * @brief DÃ©finition de la taille de la mÃ©moire permettant d'allouer les petites pages mÃ©moire [en octets].
+ * @def K_MK_BSP_PAGE_SMALL_SIZE
+ * @brief Définition de la taille de la mémoire permettant d'allouer les petites pages mémoire [en octets].
  */
 
-#define K_MK_PAGE_SMALL_SIZE K_MK_BSP_PAGE_SMALL_SIZE
+#define K_MK_BSP_PAGE_SMALL_SIZE 0x200000
 
 /**
- * @def K_MK_PAGE_SMALL_BLOCK_SIZE
- * @brief DÃ©finition de la taille des petites pages mÃ©moire [en octets].
+ * @def K_MK_BSP_PAGE_SMALL_BLOCK_SIZE
+ * @brief Définition de la taille des petites pages mémoire [en octets].
  */
 
-#define K_MK_PAGE_SMALL_BLOCK_SIZE K_MK_BSP_PAGE_SMALL_BLOCK_SIZE
+#define K_MK_BSP_PAGE_SMALL_BLOCK_SIZE 0x10000
 
 /**
- *
+ * @def K_MK_BSP_PAGE_LARGE_START_ADDR
+ * @brief Définition de l'adresse de début de la mémoire stockant les grandes page mémoire (SDRAM).
  */
 
-/**
- * @def K_MK_PAGE_LARGE_START_ADDR
- * @brief DÃ©finition de l'adresse de dÃ©but de la mÃ©moire stockant les grandes page mÃ©moire (SDRAM).
- */
-
-#define K_MK_PAGE_LARGE_START_ADDR K_MK_BSP_PAGE_LARGE_START_ADDR
+#define K_MK_BSP_PAGE_LARGE_START_ADDR ( K_MK_DISPLAY_FRAME_BUFFER_BANK1_BASE_ADDR + ( 2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE ) + K_MK_DISPLAY_FRAME_BUFFER_SIZE )
 
 /**
- * @def K_MK_PAGE_LARGE_SIZE
- * @brief DÃ©finition de la taille de la mÃ©moire permettant d'allouer les grandes pages mÃ©moire [en octets].
+ * @def K_MK_BSP_PAGE_LARGE_SIZE
+ * @brief Définition de la taille de la mémoire permettant d'allouer les grandes pages mémoire [en octets].
  *        2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE => buffers graphiques.
- *        1 * K_MK_DISPLAY_FRAME_BUFFER_SIZE => mÃ©moire dÃ©diÃ©es Ã  l'allocation des applications.
+ *        1 * K_MK_DISPLAY_FRAME_BUFFER_SIZE => mémoire dédiées à l'allocation des applications.
  */
 
-#define K_MK_PAGE_LARGE_SIZE K_MK_BSP_PAGE_LARGE_SIZE
+#define K_MK_BSP_PAGE_LARGE_SIZE ( ( 0x800000 - ( ( 2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE ) + K_MK_DISPLAY_FRAME_BUFFER_SIZE ) ) * 4 )
 
 /**
- * @def K_MK_PAGE_LARGE_BLOCK_SIZE
- * @brief DÃ©finition de la taille des grandes pages mÃ©moire [en octets].
+ * @def K_MK_BSP_PAGE_LARGE_BLOCK_SIZE
+ * @brief Définition de la taille des grandes pages mémoire [en octets].
  */
 
-#define K_MK_PAGE_LARGE_BLOCK_SIZE K_MK_BSP_PAGE_LARGE_BLOCK_SIZE
+#define K_MK_BSP_PAGE_LARGE_BLOCK_SIZE ( K_MK_DISPLAY_FRAME_BUFFER_SIZE * 4 )
 
 /**
  *
  */
 
 #endif
-
-

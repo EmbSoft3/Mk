@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -250,7 +250,7 @@ static T_mkCode mk_shell_getUserInput ( T_mkShell* p_shell, T_mkShellMessage* p_
       if ( l_result == K_MK_OK )
       {
          /* Si la taille du buffer est suffisante pour réaliser la lecture */
-         if ( l_lowFileSize < K_MK_PAGE_SRAM_BLOCK_SIZE )
+         if ( l_lowFileSize < K_MK_PAGE_SMALL_BLOCK_SIZE )
          {
             /* Lecture du contenu du fichier */
             /* On stocke la ligne de commande dans la page mémoire */

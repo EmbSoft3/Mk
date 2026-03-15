@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -52,7 +52,7 @@ T_mkCode mk_shell_delete ( T_mkShell* p_shell )
    if ( p_shell->page.baseAddr != K_MK_NULL )
    {
       /* Suppression d'une page mémoire */
-      l_result = mk_page_free ( K_MK_PAGE_ID_SRAM, p_shell->page.baseAddr );
+      l_result = mk_page_free ( K_MK_PAGE_ID_SMALL, p_shell->page.baseAddr );
 
       /* Si aucune erreur ne s'est produite */
       if ( l_result == K_MK_OK )

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,44 +28,37 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_page_types.h
-* @brief D√©claration des types d√©di√©s √† la pagination m√©moire.
-* @date 10 avr. 2023
+* @file mk_bsp_constants.h
+* @brief DÈclaration des constantes de chaque BSP.
+* @date 13 mars 2026
 *
 */
 
-#ifndef MK_PAGE_TYPES_H
-#define MK_PAGE_TYPES_H
+#ifndef MK_BSP_CONSTANTS_H
+#define MK_BSP_CONSTANTS_H
 
-/**
- * @enum T_mkPageIdentifier
- * @brief D√©claration de la structure T_mkPageIdentifier.
- *
- */
+/* Constantes dÈdiÈes ‡ la carte STM32F746G-Eval2 */
+#if defined ( MK_BOARD_EVAL2 )
 
-typedef enum T_mkPageIdentifier
-{
-   K_MK_PAGE_ID_SMALL = 0,       /*!< Identifiant permettant d'allouer un petite page m√©moire. */
-   K_MK_PAGE_ID_LARGE = 1        /*!< Identifiant permettant d'allouer une grande page m√©moire. */
-} T_mkPageIdentifier;
+/* DÈfinition des constants dÈdiÈes ‡ la carte Eval2 */
+#include "mk_board_eval2_constants.h"
 
-/**
- * @struct T_mkPagehandler
- * @brief D√©claration de la structure T_mkPagehandler.
- *
- */
+/* On inclut les constantes dÈdiÈes ‡ la carte STM32F746G-DISCO REV.C */
+#elif defined ( MK_BOARD_DISCO_REV_C )
 
-typedef struct T_mkPagehandler T_mkPagehandler;
-struct T_mkPagehandler
-{
-   T_mkPool* pool;               /*!< Ce membre contient le gestionnaire m√©moire utilis√© pour allouer dynamiquement une page m√©moire. */
-   T_mkPoolArea area;            /*!< Ce membre contient les caract√©ristiques m√©moire du gestionnaire d'allocation dynamique. */
-};
+/* On inclut les constantes dÈdiÈes ‡ la carte DISCO REV.C */
+#include "mk_board_discoRevC_constants.h"
+
+/* Sinon erreur de compilation */
+#else
+#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
+#endif
 
 /**
  *
  */
 
 #endif
+
 
 

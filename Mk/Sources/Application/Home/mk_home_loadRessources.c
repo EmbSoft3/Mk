@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -156,7 +156,7 @@ static T_mkCode mk_home_loadIcons ( T_mkHomeApplication* p_home, uint32_t* p_res
       if ( l_result == K_MK_OK )
       {
          /* Allocation de la page mémoire dédiée à l'affichage de l'arrière plan de l'application home */
-         l_result = mk_page_alloc ( K_MK_PAGE_ID_SDRAM, ( T_mkAddr* ) &p_home->page.background, 0 );
+         l_result = mk_page_alloc ( K_MK_PAGE_ID_LARGE, ( T_mkAddr* ) &p_home->page.background, 0 );
       }
 
       /* Sinon */
