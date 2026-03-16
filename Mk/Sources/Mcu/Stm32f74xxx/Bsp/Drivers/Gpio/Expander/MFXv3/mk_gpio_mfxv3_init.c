@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,8 +28,8 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_expander_init.c
-* @brief Définition de la fonction mk_gpio_expander_init.
+* @file mk_gpio_mfxv3_init.c
+* @brief Définition de la fonction mk_gpio_mfxv3_init.
 * @date 20 déc. 2020
 *
 */

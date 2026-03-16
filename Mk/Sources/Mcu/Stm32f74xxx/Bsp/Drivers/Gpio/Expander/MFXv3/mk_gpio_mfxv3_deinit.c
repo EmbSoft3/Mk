@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,8 +28,8 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_expander_resistor.c
-* @brief Définition de la fonction mk_gpio_expander_resistor.
+* @file mk_gpio_mfxv3_deinit.c
+* @brief Définition de la fonction mk_gpio_mfxv3_deinit.
 * @date 20 déc. 2020
 *
 */
@@ -42,43 +42,37 @@
  * @endinternal
  */
 
-T_mkCode mk_gpio_expander_resistor ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_resistor )
+static T_mkCode mk_gpio_expander_closePort ( T_mkGPIOHandler* p_handler )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
 
-   /* Déclaration des variables de travail */
-   uint32_t l_offset = ( p_pinNumber >> 3 );
-   uint32_t l_shift  = ( p_pinNumber ) - ( l_offset << 3 );
+   /* Fermeture du port de communication I2C */
+   l_result = mk_i2c_close ( p_handler->device, K_MK_NULL );
 
-   /* Définition du contenu de la trame I2C */
-   uint8_t l_registerValue [ 1 ] = {
-         ( uint8_t ) ( MK_GPIO_EXPANDER_PULL_REGISTER_ADDR + l_offset )
-   };
+   /* Retour */
+   return ( l_result );
+}
+
+/**
+ * @internal
+ * @brief
+ * @endinternal
+ */
+
+T_mkCode mk_gpio_expander_deinit ( T_mkGPIOHandler* p_handler )
+{
+   /* Déclaration de la variable de retour */
+   T_mkCode l_result;
 
    /* Si le paramètre est valide */
    if ( ( p_handler != K_MK_NULL ) && ( p_handler->device != K_MK_NULL ) )
    {
-      /* Lecture du registre de configuration des résistances de tirage du périphérique MFX */
-      l_result = mk_gpio_expander_read ( p_handler, l_registerValue, 1 );
+      /* Réinitialisation du périphérique MFX */
+      l_result = mk_gpio_expander_reset ( p_handler );
 
-      /* Si aucune erreur ne s'est produite */
-      if ( l_result == K_MK_OK )
-      {
-         /* Ecriture de la nouvelle valeur dans le registre */
-         l_registerValue [ 0 ] &= ( uint8_t ) ( ~ ( 1 << l_shift ) );
-         l_registerValue [ 0 ] |= ( uint8_t ) (   ( p_resistor << l_shift ) );
-
-         /* Actualisation du registre */
-         l_result = mk_gpio_expander_write ( p_handler, ( uint8_t ) ( MK_GPIO_EXPANDER_PULL_REGISTER_ADDR + l_offset ),
-                                             l_registerValue [ 0 ] );
-      }
-
-      /* Sinon */
-      else
-      {
-         /* Ne rien faire */
-      }
+      /* Fermeture du port de communication I2C ( sans condition ) */
+      l_result |= mk_gpio_expander_closePort ( p_handler );
    }
 
    /* Sinon */
@@ -90,7 +84,7 @@ T_mkCode mk_gpio_expander_resistor ( T_mkGPIOHandler* p_handler, uint32_t p_pinN
 
    /* Retour */
    return ( l_result );
-}
 
+}
 
 

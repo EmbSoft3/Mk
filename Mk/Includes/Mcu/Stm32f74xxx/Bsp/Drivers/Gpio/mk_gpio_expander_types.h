@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,27 +28,27 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_expander_data.h
-* @brief D√©claration des donn√©es d√©di√©es au p√©riph√©rique MFX.
-* @date 21 d√©c. 2020
+* @file mk_gpio_expander_types.h
+* @brief DÈclaration des types dÈdiÈs aux expanders GPIO.
+* @date 16 mars 2026
 *
 */
 
-#ifndef MK_GPIO_EXPANDER_DATA_H
-#define MK_GPIO_EXPANDER_DATA_H
+#ifndef MK_GPIO_EXPANDER_TYPES_H
+#define MK_GPIO_EXPANDER_TYPES_H
 
-/**
- * @fn const uint8_t g_expanderSettingTable [ MK_GPIO_EXPANDER_NUMBER_OF_PINS ] [ 4 ];
- * @brief D√©claration de la table de configuration du p√©riph√©rique MFX.
- *
- */
+/* Constantes dÈdiÈes ‡ la carte STM32F746G-Eval2 */
+#if defined ( MK_BOARD_EVAL2 )
 
-extern const uint8_t g_expanderSettingTable [ MK_GPIO_EXPANDER_NUMBER_OF_PINS ] [ 4 ];
+/* La carte Eval2 est ÈquipÈe d'un expander MFXv2 */
+#include "mk_gpio_mfxv3_types.h"
 
-/**
- *
- */
+/* On inclut les constantes dÈdiÈes ‡ la carte STM32F746G-DISCO REV.C */
+#elif defined ( MK_BOARD_DISCO_REV_C )
 
+/* Sinon erreur de compilation */
+#else
+#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
 #endif
 
-
+#endif

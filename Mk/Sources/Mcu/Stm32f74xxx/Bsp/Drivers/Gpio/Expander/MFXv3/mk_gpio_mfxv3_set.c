@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,8 +28,8 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_expander_direction.c
-* @brief Définition de la fonction mk_gpio_expander_direction.
+* @file mk_gpio_mfxv3_set.c
+* @brief Définition de la fonction mk_gpio_mfxv3_set.
 * @date 20 déc. 2020
 *
 */
@@ -42,7 +42,7 @@
  * @endinternal
  */
 
-T_mkCode mk_gpio_expander_direction ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_direction )
+T_mkCode mk_gpio_expander_set ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
@@ -51,15 +51,15 @@ T_mkCode mk_gpio_expander_direction ( T_mkGPIOHandler* p_handler, uint32_t p_pin
    uint32_t l_offset = ( p_pinNumber >> 3 );
    uint32_t l_shift  = ( p_pinNumber ) - ( l_offset << 3 );
 
-   /* Définition du contenu de la trame I2C */
+   /* Déclaration du contenu de la trame I2C */
    uint8_t l_registerValue [ 1 ] = {
-         ( uint8_t ) ( MK_GPIO_EXPANDER_DIRECTION_REGISTER_ADDR + l_offset )
+         ( uint8_t ) ( MK_GPIO_EXPANDER_SET_REGISTER_ADDR + l_offset )
    };
 
    /* Si le paramètre est valide */
    if ( ( p_handler != K_MK_NULL ) && ( p_handler->device != K_MK_NULL ) )
    {
-      /* Lecture du registre de direction du périphérique MFX */
+      /* Lecture du registre d'état du périphérique MFX */
       l_result = mk_gpio_expander_read ( p_handler, l_registerValue, 1 );
 
       /* Si aucune erreur ne s'est produite */
@@ -67,10 +67,10 @@ T_mkCode mk_gpio_expander_direction ( T_mkGPIOHandler* p_handler, uint32_t p_pin
       {
          /* Ecriture de la nouvelle valeur dans le registre */
          l_registerValue [ 0 ] &= ( uint8_t ) ( ~ ( 1 << l_shift ) );
-         l_registerValue [ 0 ] |= ( uint8_t ) ( ( p_direction << l_shift ) );
+         l_registerValue [ 0 ] |= ( uint8_t ) (   ( 1 << l_shift ) );
 
          /* Actualisation du registre */
-         l_result = mk_gpio_expander_write ( p_handler, ( uint8_t ) ( MK_GPIO_EXPANDER_DIRECTION_REGISTER_ADDR + l_offset ),
+         l_result = mk_gpio_expander_write ( p_handler, ( uint8_t ) ( MK_GPIO_EXPANDER_SET_REGISTER_ADDR + l_offset ),
                                              l_registerValue [ 0 ] );
       }
 

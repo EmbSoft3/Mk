@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,72 +28,27 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_expander_reset.c
-* @brief DÃ©finition de la fonction mk_gpio_expander_reset.
-* @date 20 dÃ©c. 2020
+* @file mk_gpio_expander_constants.h
+* @brief Déclaration des constantes dédiées aux expanders GPIO.
+* @date 16 mars 2026
 *
 */
 
-#include "mk_gpio_api.h"
+#ifndef MK_GPIO_EXPANDER_CONSTANTS_H
+#define MK_GPIO_EXPANDER_CONSTANTS_H
 
-/**
- * @internal
- * @brief
- * @endinternal
- */
+/* Constantes dédiées à la carte STM32F746G-Eval2 */
+#if defined ( MK_BOARD_EVAL2 )
 
-T_mkCode mk_gpio_expander_reset ( T_mkGPIOHandler* p_handler )
-{
-   /* DÃ©claration de la variable de retour */
-   T_mkCode l_result;
+/* La carte Eval2 est équipée d'un expander MFXv3 */
+#include "mk_gpio_mfxv3_constants.h"
 
-   /* DÃ©finition du contenu de la trame I2C */
-   uint8_t l_buf [ 2 ] = {
-      MK_GPIO_EXPANDER_SYSCTRL_REGISTER_ADDR,
-      MK_GPIO_EXPANDER_SYSCTRL_SOFTWARE_RESET
-   };
+/* On inclut les constantes dédiées à la carte STM32F746G-DISCO REV.C */
+#elif defined ( MK_BOARD_DISCO_REV_C )
 
-   /* DÃ©claration d'une trame I2C */
-   T_mkI2CFrame l_frame = {
-      K_I2C_WRITE,
-      l_buf, 2, MK_GPIO_EXPANDER_TIMEOUT,
-      K_MK_NULL, 0, MK_GPIO_EXPANDER_TIMEOUT
-   };
+/* Sinon erreur de compilation */
+#else
+#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
+#endif
 
-   /* DÃ©claration d'un registre de statut */
-   T_mkI2CTransferStatus l_status = {
-      0, 0, 0, K_MK_NULL
-   };
-
-   /* Si le paramÃ¨tre est valide */
-   if ( ( p_handler != K_MK_NULL ) && ( p_handler->device != K_MK_NULL ) )
-   {
-      /* Transfert de la trame I2C */
-      l_result = mk_i2c_postMessage ( p_handler->device, &l_frame, &l_status, K_MK_NULL );
-
-      /* Si aucune erreur ne s'est produite */
-      if ( l_result == K_MK_OK )
-      {
-         /* Attendre au moins 10ms */
-         l_result = mk_task_sleep ( 10 );
-      }
-
-      /* Sinon */
-      else
-      {
-         /* Ne rien faire */
-      }
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Actualisation de la variable de retour */
-      l_result = K_MK_ERROR_PARAM;
-   }
-
-   /* Retour */
-   return ( l_result );
-}
-
-
+#endif

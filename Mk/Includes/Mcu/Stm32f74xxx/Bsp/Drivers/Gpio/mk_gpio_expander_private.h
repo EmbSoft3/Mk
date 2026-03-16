@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,59 +28,27 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_expander_write.c
-* @brief DÃ©finition de la fonction mk_gpio_expander_write.
-* @date 20 dÃ©c. 2020
+* @file mk_gpio_expander_private.h
+* @brief Déclaration des fonctions privées dédiées aux expanders GPIO.
+* @date 16 mars 2026
 *
 */
 
-#include "mk_gpio_api.h"
+#ifndef MK_GPIO_EXPANDER_PRIVATE_H
+#define MK_GPIO_EXPANDER_PRIVATE_H
 
-/**
- * @internal
- * @brief
- * @endinternal
- */
+/* Constantes dédiées à la carte STM32F746G-Eval2 */
+#if defined ( MK_BOARD_EVAL2 )
 
-T_mkCode mk_gpio_expander_write ( T_mkGPIOHandler* p_handler, uint8_t p_register, uint8_t p_value )
-{
-   /* DÃ©claration de la variable de retour */
-   T_mkCode l_result;
+/* La carte Eval2 est équipée d'un expander MFXv2 */
+#include "mk_gpio_mfxv3_private.h"
 
-   /* DÃ©finition du contenu de la trame I2C */
-   uint8_t l_registerValue [ 2 ] = {
-         p_register, p_value
-   };
+/* On inclut les constantes dédiées à la carte STM32F746G-DISCO REV.C */
+#elif defined ( MK_BOARD_DISCO_REV_C )
 
-   /* DÃ©claration d'une trame I2C */
-   T_mkI2CFrame l_frame = {
-         K_I2C_WRITE,
-         l_registerValue, 2, MK_GPIO_EXPANDER_TIMEOUT,
-         K_MK_NULL, 0, MK_GPIO_EXPANDER_TIMEOUT
-   };
+/* Sinon erreur de compilation */
+#else
+#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
+#endif
 
-   /* DÃ©claration d'un registre de statut */
-   T_mkI2CTransferStatus l_status = {
-      0, 0, 0, K_MK_NULL
-   };
-
-   /* Si les paramÃ¨tres sont valides */
-   if ( ( p_handler != K_MK_NULL ) && ( p_handler->device != K_MK_NULL ) )
-   {
-      /* Transfert de la trame I2C */
-      l_result = mk_i2c_postMessage ( p_handler->device, &l_frame, &l_status, K_MK_NULL );
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Actualisation de la variable de retour */
-      l_result = K_MK_ERROR_PARAM;
-   }
-
-   /* Retour */
-   return ( l_result );
-}
-
-
-
+#endif

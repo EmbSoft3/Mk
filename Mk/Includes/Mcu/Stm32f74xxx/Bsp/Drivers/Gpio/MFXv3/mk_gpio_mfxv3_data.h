@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,53 +28,27 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_expander_read.c
-* @brief Définition de la fonction mk_gpio_expander_read.
-* @date 20 déc. 2020
+* @file mk_gpio_mfxv3_data.h
+* @brief Déclaration des données dédiées au périphérique MFX.
+* @date 16 mars 2026
 *
 */
 
-#include "mk_gpio_api.h"
+#ifndef MK_GPIO_MFXV3_DATA_H
+#define MK_GPIO_MFXV3_DATA_H
 
 /**
- * @internal
- * @brief
- * @endinternal
+ * @fn const uint8_t g_expanderSettingTable [ MK_GPIO_EXPANDER_NUMBER_OF_PINS ] [ 4 ];
+ * @brief Déclaration de la table de configuration du périphérique MFX.
+ *
  */
 
-T_mkCode mk_gpio_expander_read ( T_mkGPIOHandler* p_handler, uint8_t* p_register, uint8_t p_length )
-{
-   /* Déclaration de la variable de retour */
-   T_mkCode l_result;
+extern const uint8_t g_expanderSettingTable [ MK_GPIO_EXPANDER_NUMBER_OF_PINS ] [ 4 ];
 
-   /* Définition d'une trame I2C */
-   T_mkI2CFrame l_frame = {
-      K_I2C_READ,
-      p_register, 1, MK_GPIO_EXPANDER_TIMEOUT,
-      p_register, p_length, MK_GPIO_EXPANDER_TIMEOUT
-   };
+/**
+ *
+ */
 
-   /* Déclaration d'un registre de statut */
-   T_mkI2CTransferStatus l_status = {
-      0, 0, 0, K_MK_NULL
-   };
-
-   /* Si les paramètres sont valides */
-   if ( ( p_handler != K_MK_NULL ) && ( p_handler->device != K_MK_NULL ) && ( p_register != K_MK_NULL ) )
-   {
-      /* Transfert de la trame I2C */
-      l_result = mk_i2c_postMessage ( p_handler->device, &l_frame, &l_status, K_MK_NULL );
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Actualisation de la variable de retour */
-      l_result = K_MK_ERROR_PARAM;
-   }
-
-   /* Retour */
-   return ( l_result );
-}
+#endif
 
 

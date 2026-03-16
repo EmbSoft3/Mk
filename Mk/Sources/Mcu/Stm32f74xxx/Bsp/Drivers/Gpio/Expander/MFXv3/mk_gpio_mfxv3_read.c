@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,8 +28,8 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_expander_get.c
-* @brief Définition de la fonction mk_gpio_expander_get.
+* @file mk_gpio_mfxv3_read.c
+* @brief Définition de la fonction mk_gpio_mfxv3_read.
 * @date 20 déc. 2020
 *
 */
@@ -42,36 +42,28 @@
  * @endinternal
  */
 
-T_mkCode mk_gpio_expander_get ( T_mkGPIOHandler* p_handler, uint32_t* p_value )
+T_mkCode mk_gpio_expander_read ( T_mkGPIOHandler* p_handler, uint8_t* p_register, uint8_t p_length )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
 
-   /* Définition du contenu de la trame I2C */
-   uint8_t l_registerValue [ 3 ] = {
-         ( uint8_t ) ( MK_GPIO_EXPANDER_GET_REGISTER_ADDR )
+   /* Définition d'une trame I2C */
+   T_mkI2CFrame l_frame = {
+      K_I2C_READ,
+      p_register, 1, MK_GPIO_EXPANDER_TIMEOUT,
+      p_register, p_length, MK_GPIO_EXPANDER_TIMEOUT
    };
 
-   /* Si le paramètre est valide */
-   if ( ( p_handler != K_MK_NULL ) && ( p_handler->device != K_MK_NULL ) && ( p_value != K_MK_NULL ) )
+   /* Déclaration d'un registre de statut */
+   T_mkI2CTransferStatus l_status = {
+      0, 0, 0, K_MK_NULL
+   };
+
+   /* Si les paramètres sont valides */
+   if ( ( p_handler != K_MK_NULL ) && ( p_handler->device != K_MK_NULL ) && ( p_register != K_MK_NULL ) )
    {
-      /* Lecture du registre d'état du périphérique MFX */
-      l_result = mk_gpio_expander_read ( p_handler, l_registerValue, 3 );
-
-      /* Si aucune erreur ne s'est produite */
-      if ( l_result == K_MK_OK )
-      {
-         /* Actualisation du résultat */
-         *p_value  = ( ( uint32_t ) ( l_registerValue [ 2 ] ) << 16 );
-         *p_value |= ( ( uint32_t ) ( l_registerValue [ 1 ] ) << 8 );
-         *p_value |= ( ( uint32_t ) ( l_registerValue [ 0 ] ) << 0 );
-      }
-
-      /* Sinon */
-      else
-      {
-         /* Ne rien faire */
-      }
+      /* Transfert de la trame I2C */
+      l_result = mk_i2c_postMessage ( p_handler->device, &l_frame, &l_status, K_MK_NULL );
    }
 
    /* Sinon */

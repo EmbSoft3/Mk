@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,63 +28,28 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_expander_deinit.c
-* @brief D√©finition de la fonction mk_gpio_expander_deinit.
-* @date 20 d√©c. 2020
+* @file mk_gpio_expander_data.h
+* @brief DÈclaration des donnÈes dÈdiÈes aux expanders GPIO.
+* @date 16 mars 2026
 *
 */
 
-#include "mk_gpio_api.h"
+#ifndef MK_GPIO_EXPANDER_DATA_H
+#define MK_GPIO_EXPANDER_DATA_H
 
-/**
- * @internal
- * @brief
- * @endinternal
- */
+/* Constantes dÈdiÈes ‡ la carte STM32F746G-Eval2 */
+#if defined ( MK_BOARD_EVAL2 )
 
-static T_mkCode mk_gpio_expander_closePort ( T_mkGPIOHandler* p_handler )
-{
-   /* D√©claration de la variable de retour */
-   T_mkCode l_result;
+/* La carte Eval2 est ÈquipÈe d'un expander MFXv3 */
+#include "mk_gpio_mfxv3_data.h"
 
-   /* Fermeture du port de communication I2C */
-   l_result = mk_i2c_close ( p_handler->device, K_MK_NULL );
+/* On inclut les constantes dÈdiÈes ‡ la carte STM32F746G-DISCO REV.C */
+#elif defined ( MK_BOARD_DISCO_REV_C )
 
-   /* Retour */
-   return ( l_result );
-}
+/* Sinon erreur de compilation */
+#else
+#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
+#endif
 
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
-T_mkCode mk_gpio_expander_deinit ( T_mkGPIOHandler* p_handler )
-{
-   /* D√©claration de la variable de retour */
-   T_mkCode l_result;
-
-   /* Si le param√®tre est valide */
-   if ( ( p_handler != K_MK_NULL ) && ( p_handler->device != K_MK_NULL ) )
-   {
-      /* R√©initialisation du p√©riph√©rique MFX */
-      l_result = mk_gpio_expander_reset ( p_handler );
-
-      /* Fermeture du port de communication I2C ( sans condition ) */
-      l_result |= mk_gpio_expander_closePort ( p_handler );
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Actualisation de la variable de retour */
-      l_result = K_MK_ERROR_PARAM;
-   }
-
-   /* Retour */
-   return ( l_result );
-
-}
-
+#endif
 
