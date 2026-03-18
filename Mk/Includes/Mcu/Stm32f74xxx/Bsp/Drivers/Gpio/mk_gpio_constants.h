@@ -53,7 +53,7 @@
  * @brief Définition du timeout de réception d'un message.
  */
 
-#define K_MK_GPIO_REQUEST_TIMEOUT 10
+#define K_MK_GPIO_REQUEST_TIMEOUT 50
 
 /**
  *
