@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,36 +28,24 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_init.c
-* @brief DÃ©finition de la fonction mk_gpio_init.
-* @date 20 dÃ©c. 2020
+* @file mk_gpio_expander_data.h
+* @brief Déclaration des données dédiées aux expanders GPIO.
+* @date 16 mars 2026
 *
 */
 
-#include "mk_gpio_api.h"
+#ifndef MK_GPIO_EXPANDER_DATA_H
+#define MK_GPIO_EXPANDER_DATA_H
 
 /**
- * @internal
- * @brief
- * @endinternal
+ *
  */
 
-void mk_gpio_init ( void )
-{
-   /* Initialisation de la broche PI8 (Expander Interruption) */
-   gpio_pushPull ( K_GPIOI, 8 );
-   gpio_resistor ( K_GPIOI, K_GPIO_PULL_OFF, 8 );
-   gpio_speed ( K_GPIOI, K_GPIO_HIGH_SPEED, 8 );
-   gpio_setMode ( K_GPIOI, K_GPIO_INPUT, 8 );
+#include "mk_gpio_mfxv3_data.h"
 
-   /* Initialisation de la broche d'interruption externe */
-   exti_enableInterrupt ( K_EXTI_LINE8 );
-   exti_enableRisingEdge ( K_EXTI_LINE8 );
-   nvic_enableRequest ( K_NVIC_EXTI9_TO_EXTI5 );
+/**
+ *
+ */
 
-   /* Routage de la broche d'interruption externe sur le port PI8 */
-   syscfg_setMultiplexer ( K_SYSCFG_EXTI8, K_SYSCFG_PORTI );
+#endif
 
-   /* Retour */
-   return;
-}

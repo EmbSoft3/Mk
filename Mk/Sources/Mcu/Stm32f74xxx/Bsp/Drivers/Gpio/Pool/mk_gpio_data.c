@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -45,7 +45,8 @@
 
 const uint32_t g_mkGPIOProtectionTable [ K_MK_GPIO_NUMBER_OF_PORTS ] = {
 
-      0xFFF0FFFF, /* K_MK_GPIO_EXPANDER */
+      0xFFFFFFFF, /* Réservé */
+      0xFFFFFFFF, /* Réservé */
       0xFFFFFFFF, /* K_MK_GPIO_PORTA */
       0xFFFFFFFF, /* K_MK_GPIO_PORTB */
       0xFFFFFFFF, /* K_MK_GPIO_PORTC */
@@ -56,7 +57,7 @@ const uint32_t g_mkGPIOProtectionTable [ K_MK_GPIO_NUMBER_OF_PORTS ] = {
       0xFFFFFFFF, /* K_MK_GPIO_PORTH */
       0xFFFFFFFF, /* K_MK_GPIO_PORTI */
       0xFFFFFFFF, /* K_MK_GPIO_PORTJ */
-      0xFFFFFFFF, /* K_MK_GPIO_PORTK */
+      0xFFFFFFFF  /* K_MK_GPIO_PORTK */
 };
 
 /**
@@ -73,6 +74,13 @@ K_MK_PRIVILEGED_DMA_MEMORY T_mkGPIORequestArea g_mkGPIORequestArea;
  *
  */
 
-K_MK_PRIVILEGED_DMA_MEMORY uint32_t g_mkGPIOStackAddr [ K_MK_GPIO_STACK_SIZE ];
+K_MK_PRIVILEGED_DMA_MEMORY uint32_t g_mkGPIOStackAddr[K_MK_GPIO_STACK_SIZE];
+
+/**
+ *
+ */
+
+
+
 
 

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -46,10 +46,6 @@ void mk_recovery ( uint32_t p_hParam, uint32_t p_lParam )
 {
    ( void ) p_hParam;
    ( void ) p_lParam;
-
-   /* Configuration et activation des voyants lumineux */
-   gpio_setMode ( K_GPIOF, K_GPIO_OUTPUT, 10 );
-   gpio_setLow ( K_GPIOF, 10 );
 
    for ( ;; )
    {

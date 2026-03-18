@@ -37,18 +37,14 @@
 #ifndef MK_GPIO_EXPANDER_TYPES_H
 #define MK_GPIO_EXPANDER_TYPES_H
 
-/* Constantes dédiées à la carte STM32F746G-Eval2 */
-#if defined ( MK_BOARD_EVAL2 )
+/**
+ *
+ */
 
-/* La carte Eval2 est équipée d'un expander MFXv2 */
 #include "mk_gpio_mfxv3_types.h"
 
-/* On inclut les constantes dédiées à la carte STM32F746G-DISCO REV.C */
-#elif defined ( MK_BOARD_DISCO_REV_C )
-
-/* Sinon erreur de compilation */
-#else
-#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
-#endif
+/**
+ *
+ */
 
 #endif

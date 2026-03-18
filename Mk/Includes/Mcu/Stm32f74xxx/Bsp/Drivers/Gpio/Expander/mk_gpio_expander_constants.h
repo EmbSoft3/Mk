@@ -28,28 +28,23 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_expander_data.h
-* @brief Déclaration des données dédiées aux expanders GPIO.
+* @file mk_gpio_expander_constants.h
+* @brief Déclaration des constantes dédiées aux expanders GPIO.
 * @date 16 mars 2026
 *
 */
 
-#ifndef MK_GPIO_EXPANDER_DATA_H
-#define MK_GPIO_EXPANDER_DATA_H
+#ifndef MK_GPIO_EXPANDER_CONSTANTS_H
+#define MK_GPIO_EXPANDER_CONSTANTS_H
 
-/* Constantes dédiées à la carte STM32F746G-Eval2 */
-#if defined ( MK_BOARD_EVAL2 )
+/**
+ *
+ */
 
-/* La carte Eval2 est équipée d'un expander MFXv3 */
-#include "mk_gpio_mfxv3_data.h"
+#include "mk_gpio_mfxv3_constants.h"
 
-/* On inclut les constantes dédiées à la carte STM32F746G-DISCO REV.C */
-#elif defined ( MK_BOARD_DISCO_REV_C )
-
-/* Sinon erreur de compilation */
-#else
-#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
-#endif
+/**
+ *
+ */
 
 #endif
-

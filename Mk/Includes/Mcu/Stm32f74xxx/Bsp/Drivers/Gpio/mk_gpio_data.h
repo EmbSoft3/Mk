@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -65,6 +65,14 @@ extern uint32_t g_mkGPIOStackAddr [ K_MK_GPIO_STACK_SIZE ];
  */
 
 extern const uint32_t g_mkGPIOProtectionTable [ K_MK_GPIO_NUMBER_OF_PORTS ];
+
+/**
+ * @fn T_mkGPIOPinHandler g_mkGPIOPinTable [ K_MK_GPIO_NUMBER_OF_PINS ];
+ * @brief Déclaration de la table de correspondance des broches génériques.
+ *
+ */
+
+extern T_mkGPIOPinHandler g_mkGPIOPinTable [ K_MK_GPIO_NUMBER_OF_PINS ];
 
 /**
  *

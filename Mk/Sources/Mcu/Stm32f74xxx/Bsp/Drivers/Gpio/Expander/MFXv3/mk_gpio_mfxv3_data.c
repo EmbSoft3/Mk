@@ -37,7 +37,7 @@
 #include "mk_gpio_api.h"
 
 /**
- * @fn const uint8_t g_expanderSettingTable [ MK_GPIO_EXPANDER_NUMBER_OF_PINS ] [ 4 ];
+ * @fn const uint8_t g_expanderMFXV3SettingTable [ MK_GPIO_EXPANDER_MFXV3_NUMBER_OF_PINS ] [ 4 ];
  * @brief Déclaration de la table de configuration du périphérique MFX.
  *
  * @note La dernière colonne contient le niveau à configurer sur une sortie ou dans le cas
@@ -45,7 +45,7 @@
  *
  */
 
-const uint8_t g_expanderSettingTable [ MK_GPIO_EXPANDER_NUMBER_OF_PINS ] [ 4 ] = {
+const uint8_t g_expanderMFXV3SettingTable [ MK_GPIO_EXPANDER_MFXV3_NUMBER_OF_PINS ] [ 4 ] = {
 
       { K_MK_GPIO_INPUT,  K_MK_GPIO_ENABLE_PULL,  K_MK_GPIO_PULLUP,   1 },         /* Joystick Sel */
       { K_MK_GPIO_INPUT,  K_MK_GPIO_ENABLE_PULL,  K_MK_GPIO_PULLUP,   1 },         /* Joystick Down */

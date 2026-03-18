@@ -38,7 +38,7 @@
 #define MK_GPIO_MFXV3_PRIVATE_H
 
 /**
- * @fn T_mkCode mk_gpio_expander_init ( T_mkGPIOHandler* p_handler );
+ * @fn T_mkCode mk_gpio_expander_mfxv3_init ( T_mkGPIOHandler* p_handler );
  * @brief Cette fonction ouvre un port de communication I2C puis initialise le périphérique MFX.
  * @param[in] p_handler Ce paramètre contient l'adresse d'un gestionnaire de type \ref T_mkGPIOHandler.
  *
@@ -54,10 +54,10 @@
  *
  */
 
-T_mkCode mk_gpio_expander_init ( T_mkGPIOHandler* p_handler );
+T_mkCode mk_gpio_expander_mfxv3_init ( T_mkGPIOHandler* p_handler );
 
 /**
- * @fn T_mkCode mk_gpio_expander_deinit ( T_mkGPIOHandler* p_handler );
+ * @fn T_mkCode mk_gpio_expander_mfxv3_deinit ( T_mkGPIOHandler* p_handler );
  * @brief Cette fonction ferme un port de communication I2C puis réinitialise (reset) le périphérique MFX.
  * @param[in] p_handler Ce paramètre contient l'adresse d'un gestionnaire de type \ref T_mkGPIOHandler.
  *
@@ -70,10 +70,10 @@ T_mkCode mk_gpio_expander_init ( T_mkGPIOHandler* p_handler );
  *
  */
 
-T_mkCode mk_gpio_expander_deinit ( T_mkGPIOHandler* p_handler );
+T_mkCode mk_gpio_expander_mfxv3_deinit ( T_mkGPIOHandler* p_handler );
 
 /**
- * @fn T_mkCode mk_gpio_expander_reset ( T_mkGPIOHandler* p_handler );
+ * @fn T_mkCode mk_gpio_expander_mfxv3_reset ( T_mkGPIOHandler* p_handler );
  * @brief Cette fonction réinitialise le périphérique MFX (reset).
  * @param[in] p_handler Ce paramètre contient l'adresse d'un gestionnaire de type \ref T_mkGPIOHandler.
  *
@@ -86,14 +86,14 @@ T_mkCode mk_gpio_expander_deinit ( T_mkGPIOHandler* p_handler );
  *
  */
 
-T_mkCode mk_gpio_expander_reset ( T_mkGPIOHandler* p_handler );
+T_mkCode mk_gpio_expander_mfxv3_reset ( T_mkGPIOHandler* p_handler );
 
 /**
- * @fn T_mkCode mk_gpio_expander_type ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_type );
+ * @fn T_mkCode mk_gpio_expander_mfxv3_type ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_type );
  * @brief Cette fonction configure le type d'une broche GPIO du périphérique MFX.
  *
  * @param[in] p_handler   Ce paramètre contient l'adresse d'un gestionnaire de type \ref T_mkGPIOHandler.
- * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue entre [0 et\ref MK_GPIO_EXPANDER_NUMBER_OF_PINS]. Les
+ * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue entre [0 et\ref MK_GPIO_EXPANDER_MFXV3_NUMBER_OF_PINS]. Les
  *                        constantes définies dans la structure \ref T_mkGPIOExpanderPin peuvent être utilisées.
  * @param[in] p_type      Ce paramètre contient le type de la broche à configurer. Les constantes \ref K_MK_GPIO_PUSHPULL et \ref K_MK_GPIO_OPENDRAIN peuvent
  *                        être utilisées pour une broche configurée en sortie. Les constantes \ref K_MK_GPIO_ENABLE_PULL et \ref K_MK_GPIO_DISABLE_PULL peuvent
@@ -108,14 +108,14 @@ T_mkCode mk_gpio_expander_reset ( T_mkGPIOHandler* p_handler );
  *
  */
 
-T_mkCode mk_gpio_expander_type ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_type );
+T_mkCode mk_gpio_expander_mfxv3_type ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_type );
 
 /**
- * @fn T_mkCode mk_gpio_expander_direction ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_direction );
+ * @fn T_mkCode mk_gpio_expander_mfxv3_direction ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_direction );
  * @brief Cette fonction configure la direction d'une broche GPIO du périphérique MFX.
  *
  * @param[in] p_handler   Ce paramètre contient l'adresse d'un gestionnaire de type \ref T_mkGPIOHandler.
- * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue entre [0 et\ref MK_GPIO_EXPANDER_NUMBER_OF_PINS]. Les
+ * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue entre [0 et\ref MK_GPIO_EXPANDER_MFXV3_NUMBER_OF_PINS]. Les
  *                        constantes définies dans la structure \ref T_mkGPIOExpanderPin peuvent être utilisées.
  * @param[in] p_direction Ce paramètre contient la direction de la broche à configurer. Les constantes \ref K_MK_GPIO_INPUT et \ref K_MK_GPIO_OUTPUT peuvent
  *                        être utilisées.
@@ -129,14 +129,14 @@ T_mkCode mk_gpio_expander_type ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumbe
  *
  */
 
-T_mkCode mk_gpio_expander_direction ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_direction );
+T_mkCode mk_gpio_expander_mfxv3_direction ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_direction );
 
 /**
- * @fn T_mkCode mk_gpio_expander_resistor ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_resistor );
+ * @fn T_mkCode mk_gpio_expander_mfxv3_resistor ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_resistor );
  * @brief Cette fonction configure le type de la résistance de tirage d'une broche GPIO du périphérique MFX.
  *
  * @param[in] p_handler   Ce paramètre contient l'adresse d'un gestionnaire de type \ref T_mkGPIOHandler.
- * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue entre [0 et\ref MK_GPIO_EXPANDER_NUMBER_OF_PINS]. Les
+ * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue entre [0 et\ref MK_GPIO_EXPANDER_MFXV3_NUMBER_OF_PINS]. Les
  *                        constantes définies dans la structure \ref T_mkGPIOExpanderPin peuvent être utilisées.
  * @param[in] p_resistor  Ce paramètre contient la type de la résitance de tirage. Les constantes \ref K_MK_GPIO_PULLUP et \ref K_MK_GPIO_PULLDOWN p
  *                        euvent être utilisées.
@@ -150,14 +150,14 @@ T_mkCode mk_gpio_expander_direction ( T_mkGPIOHandler* p_handler, uint32_t p_pin
  *
  */
 
-T_mkCode mk_gpio_expander_resistor ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_resistor );
+T_mkCode mk_gpio_expander_mfxv3_resistor ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_resistor );
 
 /**
- * @fn T_mkCode mk_gpio_expander_set ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber );
+ * @fn T_mkCode mk_gpio_expander_mfxv3_set ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber );
  * @brief Cette fonction positionne une broche GPIO du périphérique MFX au niveau logique HIGH.
  *
  * @param[in] p_handler   Ce paramètre contient l'adresse d'un gestionnaire de type \ref T_mkGPIOHandler.
- * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue entre [0 et\ref MK_GPIO_EXPANDER_NUMBER_OF_PINS]. Les
+ * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue entre [0 et\ref MK_GPIO_EXPANDER_MFXV3_NUMBER_OF_PINS]. Les
  *                        constantes définies dans la structure \ref T_mkGPIOExpanderPin peuvent être utilisées.
  *
  * @return Cette fonction retourne une des valeurs suivantes :
@@ -169,14 +169,14 @@ T_mkCode mk_gpio_expander_resistor ( T_mkGPIOHandler* p_handler, uint32_t p_pinN
  *
  */
 
-T_mkCode mk_gpio_expander_set ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber );
+T_mkCode mk_gpio_expander_mfxv3_set ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber );
 
 /**
- * @fn T_mkCode mk_gpio_expander_clear ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber );
+ * @fn T_mkCode mk_gpio_expander_mfxv3_clear ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber );
  * @brief Cette fonction positionne une broche GPIO du périphérique MFX au niveau logique LOW.
  *
  * @param[in] p_handler   Ce paramètre contient l'adresse d'un gestionnaire de type \ref T_mkGPIOHandler.
- * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue entre [0 et\ref MK_GPIO_EXPANDER_NUMBER_OF_PINS]. Les
+ * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue entre [0 et\ref MK_GPIO_EXPANDER_MFXV3_NUMBER_OF_PINS]. Les
  *                        constantes définies dans la structure \ref T_mkGPIOExpanderPin peuvent être utilisées.
  *
  * @return Cette fonction retourne une des valeurs suivantes :
@@ -188,14 +188,16 @@ T_mkCode mk_gpio_expander_set ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber
  *
  */
 
-T_mkCode mk_gpio_expander_clear ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber );
+T_mkCode mk_gpio_expander_mfxv3_clear ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber );
 
 /**
- * @fn T_mkCode mk_gpio_expander_get ( T_mkGPIOHandler* p_handler, uint32_t* p_value );
+ * @fn T_mkCode mk_gpio_expander_mfxv3_get ( T_mkGPIOHandler* p_handler, uint32_t* p_value );
  * @brief Cette fonction lit l'état d'une broche GPIO du périphérique MFX.
  *
- * @param[in]  p_handler Ce paramètre contient l'adresse d'un gestionnaire de type \ref T_mkGPIOHandler.
- * @param[out] p_value   Ce paramètre contient la valeur du port GPIO du périphérique MFX sur \ref MK_GPIO_EXPANDER_NUMBER_OF_PINS bits.
+ * @param[in] p_handler   Ce paramètre contient l'adresse d'un gestionnaire de type \ref T_mkGPIOHandler.
+ * @param[in] p_pinNumber Ce paramètre contient le numéro de la broche GPIO à configurer. Il évolue entre [0 et\ref MK_GPIO_EXPANDER_MFXV3_NUMBER_OF_PINS]. Les
+ *                        constantes définies dans la structure \ref T_mkGPIOExpanderPin peuvent être utilisées. 
+ @param[out]  p_value     Ce paramètre contient la valeur de la broche GPIO du périphérique MFX.
  *
  * @return Cette fonction retourne une des valeurs suivantes :
  *         \li \ref K_MK_OK                   : le port GPIO a été lu.
@@ -206,10 +208,10 @@ T_mkCode mk_gpio_expander_clear ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumb
  *
  */
 
-T_mkCode mk_gpio_expander_get ( T_mkGPIOHandler* p_handler, uint32_t* p_value );
+T_mkCode mk_gpio_expander_mfxv3_get ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t* p_value );
 
 /**
- * @fn T_mkCode mk_gpio_expander_read ( T_mkGPIOHandler* p_handler, uint8_t* p_register, uint8_t p_length );
+ * @fn T_mkCode mk_gpio_expander_mfxv3_read ( T_mkGPIOHandler* p_handler, uint8_t* p_register, uint8_t p_length );
  * @brief Cette fonction lit un registre I2C du périphérique MFX.
  *
  * @param[in]  p_handler  Ce paramètre contient l'adresse d'un gestionnaire de type \ref T_mkGPIOHandler.
@@ -225,10 +227,10 @@ T_mkCode mk_gpio_expander_get ( T_mkGPIOHandler* p_handler, uint32_t* p_value );
  *
  */
 
-T_mkCode mk_gpio_expander_read ( T_mkGPIOHandler* p_handler, uint8_t* p_register, uint8_t p_length );
+T_mkCode mk_gpio_expander_mfxv3_read ( T_mkGPIOHandler* p_handler, uint8_t* p_register, uint8_t p_length );
 
 /**
- * @fn T_mkCode mk_gpio_expander_write ( T_mkGPIOHandler* p_handler, uint8_t p_register, uint8_t p_value );
+ * @fn T_mkCode mk_gpio_expander_mfxv3_write ( T_mkGPIOHandler* p_handler, uint8_t p_register, uint8_t p_value );
  * @brief Cette fonction écrit un registre I2C du périphérique MFX.
  *
  * @param[in] p_handler  Ce paramètre contient l'adresse d'un gestionnaire de type \ref T_mkGPIOHandler.
@@ -244,7 +246,7 @@ T_mkCode mk_gpio_expander_read ( T_mkGPIOHandler* p_handler, uint8_t* p_register
  *
  */
 
-T_mkCode mk_gpio_expander_write ( T_mkGPIOHandler* p_handler, uint8_t p_register, uint8_t p_value );
+T_mkCode mk_gpio_expander_mfxv3_write ( T_mkGPIOHandler* p_handler, uint8_t p_register, uint8_t p_value );
 
 /**
  *

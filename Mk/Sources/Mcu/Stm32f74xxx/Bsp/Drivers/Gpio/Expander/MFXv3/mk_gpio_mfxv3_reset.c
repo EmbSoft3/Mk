@@ -42,22 +42,22 @@
  * @endinternal
  */
 
-T_mkCode mk_gpio_expander_reset ( T_mkGPIOHandler* p_handler )
+T_mkCode mk_gpio_expander_mfxv3_reset ( T_mkGPIOHandler* p_handler )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
 
    /* Définition du contenu de la trame I2C */
    uint8_t l_buf [ 2 ] = {
-      MK_GPIO_EXPANDER_SYSCTRL_REGISTER_ADDR,
-      MK_GPIO_EXPANDER_SYSCTRL_SOFTWARE_RESET
+      MK_GPIO_EXPANDER_MFXV3_SYSCTRL_REGISTER_ADDR,
+      MK_GPIO_EXPANDER_MFXV3_SYSCTRL_SOFTWARE_RESET
    };
 
    /* Déclaration d'une trame I2C */
    T_mkI2CFrame l_frame = {
       K_I2C_WRITE,
-      l_buf, 2, MK_GPIO_EXPANDER_TIMEOUT,
-      K_MK_NULL, 0, MK_GPIO_EXPANDER_TIMEOUT
+      l_buf, 2, MK_GPIO_EXPANDER_MFXV3_TIMEOUT,
+      K_MK_NULL, 0, MK_GPIO_EXPANDER_MFXV3_TIMEOUT
    };
 
    /* Déclaration d'un registre de statut */

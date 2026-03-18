@@ -28,27 +28,38 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_expander_constants.h
-* @brief Déclaration des constantes dédiées aux expanders GPIO.
-* @date 16 mars 2026
+* @file mk_gpio_bsp_private.h
+* @brief Déclaration des fonctions privées dédiées aux GPIO de chaque BSP.
+* @date 17 mars 2026
 *
 */
 
-#ifndef MK_GPIO_EXPANDER_CONSTANTS_H
-#define MK_GPIO_EXPANDER_CONSTANTS_H
+#ifndef MK_GPIO_BSP_PRIVATE_H
+#define MK_GPIO_BSP_PRIVATE_H
 
-/* Constantes dédiées à la carte STM32F746G-Eval2 */
-#if defined ( MK_BOARD_EVAL2 )
+/**
+ * @fn T_mkCode mk_gpio_bsp_init ( T_mkGPIOHandler* p_handler );
+ * @brief Cette fonction initialise le BSP du terminal GPIO.
+ *
+ * @param[in] p_handler Ce paramètre contient l'adresse d'un gestionnaire GPIO de type \ref T_mkGPIOHandler.
+ *
+ * @return Cette fonction retourne un des codes suivants:
+  *         \li \ref K_MK_OK                   : le BSP a été initialisé.
+  *         \li \ref K_MK_ERROR_PARAM          : le BSP n'a pas été initialisé car au moins un paramètre est invalide.
+  *         \li \ref K_MK_ERROR_ISR            : le BSP n'a pas été initialisé car la fonction a été exécutée depuis un vecteur d'interruption.
+  *         \li \ref K_MK_ERROR_COMM           : le BSP n'a pas été initialisé car une erreur de communication s'est produite.
+  *         \li \ref K_MK_ERROR_TIMEOUT        : le BSP n'a pas été initialisé car un timeout de communication s'est produit.
+  *         \li \ref K_MK_ERROR_NOT_AVAILABLE  : le BSP n'a pas été initialisé car aucun port de communication n'est disponible.
+  *         \li \ref K_MK_ERROR_RIGHT          : le BSP n'a pas été initialisé car une tâche non privilégiée ne possède pas suffisamment de droits.
+  *         \li \ref K_MK_ERROR_MALLOC         : le BSP n'a pas été initialisé car aucun bloc mémoire n'est disponible pour ouvrir un nouveau port de communication.
+ *
+ */
 
-/* La carte Eval2 est équipée d'un expander MFXv3 */
-#include "mk_gpio_mfxv3_constants.h"
+T_mkCode mk_gpio_bsp_init ( T_mkGPIOHandler* p_handler );
 
-/* On inclut les constantes dédiées à la carte STM32F746G-DISCO REV.C */
-#elif defined ( MK_BOARD_DISCO_REV_C )
+/**
+ *
+ */
 
-/* Sinon erreur de compilation */
-#else
-#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
 #endif
 
-#endif

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -44,9 +44,6 @@
 
 void vector_defaultNMIHandler ( void )
 {
-   /* Allumage d'un voyant lumineux */
-   gpio_setLow ( K_GPIOF, 10 );
-
    /* Boucle pour toujours */
    while ( 1 )
    {

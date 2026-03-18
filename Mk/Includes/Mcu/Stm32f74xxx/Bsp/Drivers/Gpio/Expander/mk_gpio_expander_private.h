@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,29 +28,23 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_gpio_port_private.h
-* @brief Déclaration des fonctions privées dédiées au port GPIO.
-* @date 20 déc. 2020
+* @file mk_gpio_expander_private.h
+* @brief D�claration des fonctions priv�es d�di�es aux expanders GPIO.
+* @date 16 mars 2026
 *
 */
 
-#ifndef MK_GPIO_PORT_PRIVATE_H
-#define MK_GPIO_PORT_PRIVATE_H
+#ifndef MK_GPIO_EXPANDER_PRIVATE_H
+#define MK_GPIO_EXPANDER_PRIVATE_H
 
 /**
- * @fn void mk_gpio_init ( void );
- * @brief Cette fonction initialise le périphérique EXTI puis active les broches d'interruption externes.
- * @return Sans objet.
- *
- * @note Cette fonction n'est pas utilisée dans le terminal.
  *
  */
 
-void mk_gpio_init ( void );
+#include "mk_gpio_mfxv3_private.h"
 
 /**
  *
  */
 
 #endif
-

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -62,10 +62,6 @@ static T_mkCode mk_initArea ( void )
 
 void mk_main ( void )
 {
-   /* Configuration des voyants lumineux */
-   gpio_setMode ( K_GPIOF, K_GPIO_OUTPUT, 10 );
-   gpio_setHigh ( K_GPIOF, 10 );
-
    /* Si l'initialisation du système a échoué */
    if (
          /* Initialisation du noyau */
@@ -101,9 +97,6 @@ void mk_main ( void )
          /* Lançement du noyau avec un tick de 1ms */
          mk_start ( 27000 ) )
    {
-      /* Si l'initialisation du système a échoué, on allume un voyant */
-      gpio_setLow ( K_GPIOF, 10 );
-
       /* On exécute la fonction de de récupération */
       mk_recovery ( 0, 0 );
    }

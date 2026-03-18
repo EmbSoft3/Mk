@@ -42,7 +42,7 @@
  * @endinternal
  */
 
-T_mkCode mk_gpio_expander_read ( T_mkGPIOHandler* p_handler, uint8_t* p_register, uint8_t p_length )
+T_mkCode mk_gpio_expander_mfxv3_read ( T_mkGPIOHandler* p_handler, uint8_t* p_register, uint8_t p_length )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
@@ -50,8 +50,8 @@ T_mkCode mk_gpio_expander_read ( T_mkGPIOHandler* p_handler, uint8_t* p_register
    /* Définition d'une trame I2C */
    T_mkI2CFrame l_frame = {
       K_I2C_READ,
-      p_register, 1, MK_GPIO_EXPANDER_TIMEOUT,
-      p_register, p_length, MK_GPIO_EXPANDER_TIMEOUT
+      p_register, 1, MK_GPIO_EXPANDER_MFXV3_TIMEOUT,
+      p_register, p_length, MK_GPIO_EXPANDER_MFXV3_TIMEOUT
    };
 
    /* Déclaration d'un registre de statut */

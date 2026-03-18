@@ -38,12 +38,12 @@
 #define MK_GPIO_MFXV3_DATA_H
 
 /**
- * @fn const uint8_t g_expanderSettingTable [ MK_GPIO_EXPANDER_NUMBER_OF_PINS ] [ 4 ];
+ * @fn const uint8_t g_expanderMFXV3SettingTable [ MK_GPIO_EXPANDER_MFXV3_NUMBER_OF_PINS ] [ 4 ];
  * @brief Déclaration de la table de configuration du périphérique MFX.
  *
  */
 
-extern const uint8_t g_expanderSettingTable [ MK_GPIO_EXPANDER_NUMBER_OF_PINS ] [ 4 ];
+extern const uint8_t g_expanderMFXV3SettingTable [ MK_GPIO_EXPANDER_MFXV3_NUMBER_OF_PINS ] [ 4 ];
 
 /**
  *

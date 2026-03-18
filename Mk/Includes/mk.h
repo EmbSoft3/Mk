@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -187,6 +187,7 @@
 #include "mk_gpio_constants.h"
 #include "mk_gpio_pool_types.h"
 #include "mk_gpio_types.h"
+#include "mk_gpio_bsp_types.h"
 #include "mk_gpio.h"
 
 #include "mk_mmc_cmd_types.h"

@@ -42,21 +42,21 @@
  * @endinternal
  */
 
-T_mkCode mk_gpio_expander_get ( T_mkGPIOHandler* p_handler, uint32_t* p_value )
+T_mkCode mk_gpio_expander_mfxv3_get ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t* p_value )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
 
    /* Définition du contenu de la trame I2C */
    uint8_t l_registerValue [ 3 ] = {
-         ( uint8_t ) ( MK_GPIO_EXPANDER_GET_REGISTER_ADDR )
+         ( uint8_t ) ( MK_GPIO_EXPANDER_MFXV3_GET_REGISTER_ADDR )
    };
 
    /* Si le paramètre est valide */
    if ( ( p_handler != K_MK_NULL ) && ( p_handler->device != K_MK_NULL ) && ( p_value != K_MK_NULL ) )
    {
       /* Lecture du registre d'état du périphérique MFX */
-      l_result = mk_gpio_expander_read ( p_handler, l_registerValue, 3 );
+      l_result = mk_gpio_expander_mfxv3_read ( p_handler, l_registerValue, 3 );
 
       /* Si aucune erreur ne s'est produite */
       if ( l_result == K_MK_OK )
@@ -65,6 +65,8 @@ T_mkCode mk_gpio_expander_get ( T_mkGPIOHandler* p_handler, uint32_t* p_value )
          *p_value  = ( ( uint32_t ) ( l_registerValue [ 2 ] ) << 16 );
          *p_value |= ( ( uint32_t ) ( l_registerValue [ 1 ] ) << 8 );
          *p_value |= ( ( uint32_t ) ( l_registerValue [ 0 ] ) << 0 );
+
+         *p_value = ( *p_value >> p_pinNumber ) & 0x1;
       }
 
       /* Sinon */

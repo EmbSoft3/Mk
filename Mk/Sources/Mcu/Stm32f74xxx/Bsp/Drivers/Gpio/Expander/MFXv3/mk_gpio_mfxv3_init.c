@@ -51,30 +51,30 @@ static T_mkCode mk_gpio_expander_setup ( T_mkGPIOHandler* p_handler )
    uint32_t l_counter;
 
    /* Pour le nombre de broches à configurer */
-   for ( l_counter = 0 ; ( l_counter < MK_GPIO_EXPANDER_NUMBER_OF_PINS ) && ( l_result == K_MK_OK ) ; l_counter++ )
+   for ( l_counter = 0 ; ( l_counter < MK_GPIO_EXPANDER_MFXV3_NUMBER_OF_PINS ) && ( l_result == K_MK_OK ) ; l_counter++ )
    {
       /* Configuration du type de broche GPIO */
-      l_result |= mk_gpio_expander_type ( p_handler, l_counter, g_expanderSettingTable [ l_counter ] [ 1 ] );
+      l_result |= mk_gpio_expander_mfxv3_type ( p_handler, l_counter, g_expanderMFXV3SettingTable [ l_counter ] [ 1 ] );
 
       /* Configuration de la résistance de tirage de la broche GPIO */
-      l_result |= mk_gpio_expander_resistor ( p_handler, l_counter, g_expanderSettingTable [ l_counter ] [ 2 ] );
+      l_result |= mk_gpio_expander_mfxv3_resistor ( p_handler, l_counter, g_expanderMFXV3SettingTable [ l_counter ] [ 2 ] );
 
       /* Si la broche doit être configurée à l'état bas */
-      if ( g_expanderSettingTable [ l_counter ] [ 3 ] == 0 )
+      if ( g_expanderMFXV3SettingTable [ l_counter ] [ 3 ] == 0 )
       {
          /* Configuration de la broche GPIO à l'état bas */
-         l_result |= mk_gpio_expander_clear ( p_handler, l_counter );
+         l_result |= mk_gpio_expander_mfxv3_clear ( p_handler, l_counter );
       }
 
       /* Sinon */
       else
       {
          /* Configuration de la broche GPIO à l'état haut */
-         l_result |= mk_gpio_expander_set ( p_handler, l_counter );
+         l_result |= mk_gpio_expander_mfxv3_set ( p_handler, l_counter );
       }
 
       /* Configuration de la direction de la broche GPIO */
-      l_result |= mk_gpio_expander_direction ( p_handler, l_counter, g_expanderSettingTable [ l_counter ] [ 0 ] );
+      l_result |= mk_gpio_expander_mfxv3_direction ( p_handler, l_counter, g_expanderMFXV3SettingTable [ l_counter ] [ 0 ] );
    }
 
    /* Retour */
@@ -94,15 +94,15 @@ static T_mkCode mk_gpio_expander_start ( T_mkGPIOHandler* p_handler )
 
    /* Définition du contenu de la trame I2C */
    uint8_t l_buf [ 2 ] = {
-      MK_GPIO_EXPANDER_SYSCTRL_REGISTER_ADDR,
-      MK_GPIO_EXPANDER_SYSCTRL_ENABLE_GPIO | MK_GPIO_EXPANDER_SYSCTRL_ENABLE_ALTERNATE_GPIO
+      MK_GPIO_EXPANDER_MFXV3_SYSCTRL_REGISTER_ADDR,
+      MK_GPIO_EXPANDER_MFXV3_SYSCTRL_ENABLE_GPIO | MK_GPIO_EXPANDER_MFXV3_SYSCTRL_ENABLE_ALTERNATE_GPIO
    };
 
    /* Déclaration d'une trame I2C */
    T_mkI2CFrame l_frame = {
       K_I2C_WRITE,
-      l_buf, 2, MK_GPIO_EXPANDER_TIMEOUT,
-      K_MK_NULL, 0, MK_GPIO_EXPANDER_TIMEOUT
+      l_buf, 2, MK_GPIO_EXPANDER_MFXV3_TIMEOUT,
+      K_MK_NULL, 0, MK_GPIO_EXPANDER_MFXV3_TIMEOUT
    };
 
    /* Déclaration d'un registre de statut */
@@ -131,7 +131,7 @@ static T_mkCode mk_gpio_expander_openPort ( T_mkGPIOHandler* p_handler )
    /* Déclaration d'une structure de configuration d'un port I2C */
    T_mkI2CSetting l_setting = {
          K_MK_I2C1,
-         MK_GPIO_EXPANDER_ADDR, 0, 0, K_I2C_7BITS_MODE, 1,
+         MK_GPIO_EXPANDER_MFXV3_ADDR, 0, 0, K_I2C_7BITS_MODE, 1,
          0x04, 0x32, 0x27, 0x09, 0x01
    };
 
@@ -148,7 +148,7 @@ static T_mkCode mk_gpio_expander_openPort ( T_mkGPIOHandler* p_handler )
  * @endinternal
  */
 
-T_mkCode mk_gpio_expander_init ( T_mkGPIOHandler* p_handler )
+T_mkCode mk_gpio_expander_mfxv3_init ( T_mkGPIOHandler* p_handler )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
@@ -163,7 +163,7 @@ T_mkCode mk_gpio_expander_init ( T_mkGPIOHandler* p_handler )
       if ( l_result == K_MK_OK )
       {
          /* Réinitialisation du périphérique MFX */
-         l_result = mk_gpio_expander_reset ( p_handler );
+         l_result = mk_gpio_expander_mfxv3_reset ( p_handler );
 
          /* Si aucune erreur ne s'est produite */
          if ( l_result == K_MK_OK )

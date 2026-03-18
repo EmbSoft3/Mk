@@ -38,119 +38,119 @@
 #define MK_GPIO_MFXV3_CONSTANTS_H
 
 /**
- * @def MK_GPIO_EXPANDER_ADDR
+ * @def MK_GPIO_EXPANDER_MFXV3_ADDR
  * @brief Définition de l'adresse I2C du périphérique MFX.
  */
 
-#define MK_GPIO_EXPANDER_ADDR 0x42
+#define MK_GPIO_EXPANDER_MFXV3_ADDR 0x42
 
 /**
- * @def MK_GPIO_EXPANDER_TIMEOUT
+ * @def MK_GPIO_EXPANDER_MFXV3_TIMEOUT
  * @brief Définition de la durée [en ms] du timeout de communication avec le périphérique MFX.
  */
 
-#define MK_GPIO_EXPANDER_TIMEOUT 0x08
+#define MK_GPIO_EXPANDER_MFXV3_TIMEOUT 0x08
 
 /**
- * @def MK_GPIO_EXPANDER_NUMBER_OF_PINS
+ * @def MK_GPIO_EXPANDER_MFXV3_NUMBER_OF_PINS
  * @brief Définition du nombre de broches d'entrées-sorties du périphérique MFX.
  */
 
-#define MK_GPIO_EXPANDER_NUMBER_OF_PINS 24
+#define MK_GPIO_EXPANDER_MFXV3_NUMBER_OF_PINS 24
 
 /**
  *
  */
 
 /**
- * @def MK_GPIO_EXPANDER_SYSCTRL_REGISTER_ADDR
+ * @def MK_GPIO_EXPANDER_MFXV3_SYSCTRL_REGISTER_ADDR
  * @brief Définition de l'adresse du registre de contrôle du périphérique MFX.
  */
 
-#define MK_GPIO_EXPANDER_SYSCTRL_REGISTER_ADDR 0x40
+#define MK_GPIO_EXPANDER_MFXV3_SYSCTRL_REGISTER_ADDR 0x40
 
 /**
- * @def MK_GPIO_EXPANDER_SYSCTRL_SOFTWARE_RESET
+ * @def MK_GPIO_EXPANDER_MFXV3_SYSCTRL_SOFTWARE_RESET
  * @brief Définition de l'offset du bit RESET dans le registre de contrôle.
  */
 
-#define MK_GPIO_EXPANDER_SYSCTRL_SOFTWARE_RESET 0x80
+#define MK_GPIO_EXPANDER_MFXV3_SYSCTRL_SOFTWARE_RESET 0x80
 
 /**
- * @def MK_GPIO_EXPANDER_SYSCTRL_ENABLE_ALTERNATE_GPIO
+ * @def MK_GPIO_EXPANDER_MFXV3_SYSCTRL_ENABLE_ALTERNATE_GPIO
  * @brief Définition de l'offset du bit ALT_GPIO dans le registre de contrôle.
  */
 
-#define MK_GPIO_EXPANDER_SYSCTRL_ENABLE_ALTERNATE_GPIO 0x08
+#define MK_GPIO_EXPANDER_MFXV3_SYSCTRL_ENABLE_ALTERNATE_GPIO 0x08
 
 /**
- * @def MK_GPIO_EXPANDER_SYSCTRL_ENABLE_GPIO
+ * @def MK_GPIO_EXPANDER_MFXV3_SYSCTRL_ENABLE_GPIO
  * @brief Définition de l'offset du bit EN_GPIO dans le registre de contrôle.
  */
 
-#define MK_GPIO_EXPANDER_SYSCTRL_ENABLE_GPIO 0x01
+#define MK_GPIO_EXPANDER_MFXV3_SYSCTRL_ENABLE_GPIO 0x01
 
 /**
  *
  */
 
 /**
- * @def MK_GPIO_EXPANDER_DIRECTION_REGISTER_ADDR
+ * @def MK_GPIO_EXPANDER_MFXV3_DIRECTION_REGISTER_ADDR
  * @brief Définition de l'adresse du registre de direction du périphérique MFX.
  *        \li '0' = Input.
  *        \li '1' = Output.
  */
 
-#define MK_GPIO_EXPANDER_DIRECTION_REGISTER_ADDR 0x60
+#define MK_GPIO_EXPANDER_MFXV3_DIRECTION_REGISTER_ADDR 0x60
 
 /**
- * @def MK_GPIO_EXPANDER_TYPE_REGISTER_ADDR
+ * @def MK_GPIO_EXPANDER_MFXV3_TYPE_REGISTER_ADDR
  * @brief Définition de l'adresse du registre de configuration du périphérique MFX.
  *        \li output : '0' = sortie push-pull,            '1' = sortie open-drain.
  *        \li input  : '0' = pas de résistance de tirage, '1' = résistance de tirage.
  */
 
-#define MK_GPIO_EXPANDER_TYPE_REGISTER_ADDR 0x64
+#define MK_GPIO_EXPANDER_MFXV3_TYPE_REGISTER_ADDR 0x64
 
 /**
- * @def MK_GPIO_EXPANDER_PULL_REGISTER_ADDR
+ * @def MK_GPIO_EXPANDER_MFXV3_PULL_REGISTER_ADDR
  * @brief Définition de l'adresse du registre de configuration des résistances de
  *        tirage du périphérique MFX.
  *        \li '0' = Pulldown.
  *        \li '1' = Pullup.
  */
 
-#define MK_GPIO_EXPANDER_PULL_REGISTER_ADDR 0x68
+#define MK_GPIO_EXPANDER_MFXV3_PULL_REGISTER_ADDR 0x68
 
 /**
- * @def MK_GPIO_EXPANDER_SET_REGISTER_ADDR
+ * @def MK_GPIO_EXPANDER_MFXV3_SET_REGISTER_ADDR
  * @brief Définition de l'adresse du registre d'activation des broches de sorties
  *        du périphérique MFX.
  *        \li '0' = Pas d'effet.
  *        \li '1' = Niveau haut.
  */
 
-#define MK_GPIO_EXPANDER_SET_REGISTER_ADDR 0x6C
+#define MK_GPIO_EXPANDER_MFXV3_SET_REGISTER_ADDR 0x6C
 
 /**
- * @def MK_GPIO_EXPANDER_CLEAR_REGISTER_ADDR
+ * @def MK_GPIO_EXPANDER_MFXV3_CLEAR_REGISTER_ADDR
  * @brief Définition de l'adresse du registre de désactivation des broches de sorties
  *        du périphérique MFX.
  *        \li '0' = Pas d'effet.
  *        \li '1' = Niveau bas.
  */
 
-#define MK_GPIO_EXPANDER_CLEAR_REGISTER_ADDR 0x70
+#define MK_GPIO_EXPANDER_MFXV3_CLEAR_REGISTER_ADDR 0x70
 
 /**
- * @def MK_GPIO_EXPANDER_GET_REGISTER_ADDR
+ * @def MK_GPIO_EXPANDER_MFXV3_GET_REGISTER_ADDR
  * @brief Définition de l'adresse du registre de lecture des broches d'entrées du
  *        périphérique MFX.
  *        \li '0' = L'entrée est au niveau bas.
  *        \li '1' = L'entrée est au haut.
  */
 
-#define MK_GPIO_EXPANDER_GET_REGISTER_ADDR 0x10
+#define MK_GPIO_EXPANDER_MFXV3_GET_REGISTER_ADDR 0x10
 
 /**
  *

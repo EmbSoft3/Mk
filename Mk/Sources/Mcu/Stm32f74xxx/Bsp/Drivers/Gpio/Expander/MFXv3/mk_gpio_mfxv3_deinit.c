@@ -60,7 +60,7 @@ static T_mkCode mk_gpio_expander_closePort ( T_mkGPIOHandler* p_handler )
  * @endinternal
  */
 
-T_mkCode mk_gpio_expander_deinit ( T_mkGPIOHandler* p_handler )
+T_mkCode mk_gpio_expander_mfxv3_deinit ( T_mkGPIOHandler* p_handler )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
@@ -69,7 +69,7 @@ T_mkCode mk_gpio_expander_deinit ( T_mkGPIOHandler* p_handler )
    if ( ( p_handler != K_MK_NULL ) && ( p_handler->device != K_MK_NULL ) )
    {
       /* Réinitialisation du périphérique MFX */
-      l_result = mk_gpio_expander_reset ( p_handler );
+      l_result = mk_gpio_expander_mfxv3_reset ( p_handler );
 
       /* Fermeture du port de communication I2C ( sans condition ) */
       l_result |= mk_gpio_expander_closePort ( p_handler );

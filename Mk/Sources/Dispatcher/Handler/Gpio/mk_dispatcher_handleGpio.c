@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -47,8 +47,8 @@ static T_mkCode mk_dispatcher_handleGpioEvent ( T_mkDispatcherHandler* p_handler
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
 
-   /* Déclaration des variables de travail */
-   uint32_t l_counter, l_lastValue = 0, l_currentValue = 0;
+   /* Déclaration d'une variable de travail */
+   uint32_t l_counter;
 
    /* Déclaration d'un message à destination de la tâche d'écoute */
    T_mkListenerMessage l_message;
@@ -59,75 +59,30 @@ static T_mkCode mk_dispatcher_handleGpioEvent ( T_mkDispatcherHandler* p_handler
    l_message.tick      = p_message->tick;             /* Numéro du tick enregistré lors de la détection de l'événement */
 
    /* Pour le nombre d'entrées à analyser */
-   for ( l_counter = 0 ; l_counter < MK_GPIO_EXPANDER_NUMBER_OF_PINS ; l_counter++ )
+   for ( l_counter = 0 ; l_counter < K_MK_GPIO_NUMBER_OF_PINS; l_counter++ )
    {
       /* Configuration de l'identifiant du contrôle */
       l_message.ctrlId = ( uint16_t ) l_counter;
 
-      /* Récupération de la valeur des entrées courante et passé */
-      l_lastValue = ( uint32_t ) ( ( p_gpio->expander.last >> l_counter ) & 0x1 );
-      l_currentValue = ( uint32_t ) ( ( p_gpio->expander.current >> l_counter ) & 0x1 );
-
-      /* Si l'entrée concerne le joystick */
-      if ( l_counter <= K_MK_EXPANDER_JOYSTICK_UP )
+      /* Si l'entrée GPIO a changée d'état */
+      if ( p_gpio->pin->lastValue != p_gpio->pin->currentValue )
       {
-         /* Si l'entrée a changée d'état */
-         if ( l_lastValue != l_currentValue )
+         /* On teste si celle-ci est revenue dans son état de repos */
+         if ( p_gpio->pin->currentValue == p_gpio->pin->initialValue )
          {
-            /* Si l'état de la broche est différent de l'état de repos */
-            if ( l_currentValue != g_expanderSettingTable [ l_counter ] [ 3 ] )
-            {
-               /* Configuration de l'identifiant de l'événement à générer (PRESS ou RELEASE) */
-               l_message.ctrlEvt = K_MK_EVENT_PRESS;
-            }
-
-            /* Sinon */
-            else
-            {
-               /* Configuration de l'identifiant de l'événement à générer (PRESS ou RELEASE) */
-               l_message.ctrlEvt = K_MK_EVENT_RELEASE;
-            }
-
-            /* Transmission d'un message à la tâche d'écoute */
-            l_result = mk_mail_post ( p_handler->listenerArea->mail, ( T_mkAddr ) &l_message, K_MK_STATE_READY, K_MK_TASK_WAIT_FOREVER );
+            /* Configuration de l'identifiant de l'événement à générer */
+            l_message.ctrlEvt = p_gpio->pin->idleState;
          }
 
          /* Sinon */
          else
          {
-            /* Ne rien faire */
-         }
-      }
-
-      /* Sinon si l'entrée concerne la carte SD */
-      else if ( l_counter == K_MK_EXPANDER_SDCARD_DETECT )
-      {
-         /* Si l'entrée a changée d'état */
-         if ( l_lastValue != l_currentValue )
-         {
-            /* Si l'état de la broche est différent de l'état de repos */
-            if ( l_currentValue != g_expanderSettingTable [ l_counter ] [ 3 ] )
-            {
-               /* Configuration de l'identifiant de l'événement à générer (K_MK_EVENT_CONNECT) */
-               l_message.ctrlEvt = K_MK_EVENT_CONNECT;
-            }
-
-            /* Sinon */
-            else
-            {
-               /* Configuration de l'identifiant de l'événement à générer (K_MK_EVENT_DISCONNECT) */
-               l_message.ctrlEvt = K_MK_EVENT_DISCONNECT;
-            }
-
-            /* Transmission d'un message à la tâche d'écoute */
-            l_result = mk_mail_post ( p_handler->listenerArea->mail, ( T_mkAddr ) &l_message, K_MK_STATE_READY, K_MK_TASK_WAIT_FOREVER );
+            /* Configuration de l'identifiant de l'événement à générer (PRESS ou RELEASE) */
+            l_message.ctrlEvt = p_gpio->pin->activeState;
          }
 
-         /* Sinon */
-         else
-         {
-            /* Ne rien faire */
-         }
+         /* Transmission d'un message à la tâche d'écoute */
+         l_result = mk_mail_post ( p_handler->listenerArea->mail, ( T_mkAddr ) &l_message, K_MK_STATE_READY, K_MK_TASK_WAIT_FOREVER );
       }
 
       /* Sinon */

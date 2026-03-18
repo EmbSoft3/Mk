@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -54,11 +54,11 @@ T_mkCode mk_gpio_get ( uint32_t p_port, uint32_t p_pinNumber, uint32_t* p_value 
    T_mkGPIOHandler* l_handler;
 
    /* Déclaration d'une variable de travail */
-   T_mkAddr l_addrTable [ ] = { 0, K_GPIOA, K_GPIOB, K_GPIOC,
+   T_mkAddr l_addrTable [ ] = { 0, 0, K_GPIOA, K_GPIOB, K_GPIOC,
          K_GPIOD, K_GPIOE, K_GPIOF, K_GPIOG, K_GPIOH, K_GPIOI, K_GPIOJ, K_GPIOK };
 
    /* Si les paramètres sont valides */
-   if ( ( p_value != K_MK_NULL ) && ( p_port <= K_MK_GPIO_PORTK ) )
+   if ( ( p_value != K_MK_NULL ) && ( p_port < K_MK_GPIO_NUMBER_OF_PORTS ) )
    {
       /* Récupération de l'adresse du gestionnaire GPIO */
       l_result = mk_termio_getChild ( l_termio, ( T_mkAddr* ) &l_handler );
@@ -67,13 +67,13 @@ T_mkCode mk_gpio_get ( uint32_t p_port, uint32_t p_pinNumber, uint32_t* p_value 
       if ( ( l_result == K_MK_OK ) && ( l_handler != K_MK_NULL ) )
       {
          /* Si une broche du périphérique MFX doit être configurée */
-         if ( p_port == K_MK_GPIO_EXPANDER )
+         if ( p_port == K_MK_GPIO_EXTERNAL )
          {
             /* Si le numéro de la broche est valide */
-            if ( p_pinNumber < MK_GPIO_EXPANDER_NUMBER_OF_PINS )
+            if ( p_pinNumber < K_MK_GPIO_NUMBER_OF_PINS )
             {
                /* Récupération de la valeur de la broche */
-               *p_value = ( uint32_t ) ( ( ( l_handler->ctrl.expander.current ) >> ( p_pinNumber ) ) & 0x1 );
+               *p_value = ( uint32_t ) g_mkGPIOPinTable[ p_pinNumber ].currentValue;
             }
 
             /* Sinon */

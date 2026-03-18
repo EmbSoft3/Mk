@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -57,8 +57,7 @@ void mk_handler_memFault ( void )
       /* Boucle pour toujours */
       for ( ;; )
       {
-         /* Signalisation de l'erreur */
-         gpio_setLow ( K_GPIOF, 10 );
+
       }
    }
 

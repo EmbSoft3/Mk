@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,41 +28,43 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_handler_nmiFault.c
-* @brief DÃ©finition de la fonction mk_handler_nmiFault.
-* @date 4 avr. 2023
+* @file mk_gpio_bsp_constants.h
+* @brief Déclaration des constantes dédiées aux GPIO de chaque BSP.
+* @date 17 mars 2026
 *
 */
 
-#include "mk_kernel_api.h"
+#ifndef MK_GPIO_BSP_CONSTANTS_H
+#define MK_GPIO_BSP_CONSTANTS_H
+
+/* Constantes dédiées à la carte STM32F746G-Eval2 */
+#if defined ( MK_BOARD_EVAL2 )
 
 /**
- * @internal
- * @brief
- * @endinternal
+ * @def K_MK_GPIO_TERMIO_LIST
+ * @brief Liste de tous les termio dont l'initialisation doit être terminée avant le démarrage du terminal GPIO.
  */
 
-void mk_handler_nmiFault ( void )
-{
-   /* Si un gestionnaire a Ã©tÃ© rÃ©fÃ©rencÃ© */
-   if ( g_mkKernelCallback.nmiFault != K_MK_NULL )
-   {
-      /* ExÃ©cution du gestionnaire */
-      g_mkKernelCallback.nmiFault ( K_MK_NULL, K_MK_NULL, K_MK_NULL );
-   }
+#define K_MK_GPIO_TERMIO_LIST ( K_MK_TERMIO_FLAG_I2C1 | K_MK_TERMIO_FLAG_DISPATCHER )
 
-   /* Sinon */
-   else
-   {
-      /* Boucle pour toujours */
-      for ( ;; )
-      {
+/* On inclut les types dédiés à la carte STM32F746G-DISCO REV.C */
+#elif defined ( MK_BOARD_DISCO_REV_C )
 
-      }
-   }
-   /* Retour */
-   return;
-}
+/**
+ * @def K_MK_GPIO_TERMIO_LIST
+ * @brief Liste de tous les termio dont l'initialisation doit être terminée avant le démarrage du terminal GPIO.
+ */
 
+#define K_MK_GPIO_TERMIO_LIST ( K_MK_TERMIO_FLAG_DISPATCHER )
 
+/* Sinon erreur de compilation */
+#else
+#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
+#endif
+
+/**
+ *
+ */
+
+#endif
 

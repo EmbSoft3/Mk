@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -48,23 +48,23 @@ static T_mkCode mk_gpio_handleSetupRequest ( T_mkGPIOHandler* p_handler, uint32_
    T_mkCode l_result = K_MK_OK;
 
    /* Déclaration d'une table de configuration */
-   T_mkAddr l_addrTable [ ] = { 0, K_GPIOA, K_GPIOB, K_GPIOC,
+   T_mkAddr l_addrTable [ ] = { 0, 0, K_GPIOA, K_GPIOB, K_GPIOC,
          K_GPIOD, K_GPIOE, K_GPIOF, K_GPIOG, K_GPIOH, K_GPIOI, K_GPIOJ, K_GPIOK };
 
    /* Si les paramètres de configuration sont valides */
-   if ( ( p_port <= K_MK_GPIO_PORTK ) && ( p_setting != K_MK_NULL ) && ( p_setting->direction <= K_MK_GPIO_OUTPUT ) &&
+   if ( ( p_port < K_MK_GPIO_NUMBER_OF_PORTS ) && ( p_setting != K_MK_NULL ) && ( p_setting->direction <= K_MK_GPIO_OUTPUT ) &&
          ( p_setting->type <= K_MK_GPIO_OPENDRAIN ) && ( p_setting->resistor <= K_MK_GPIO_PULLUP ) )
    {
       /* Si une broche du périphérique MFX doit être configurée */
-      if ( p_port == K_MK_GPIO_EXPANDER )
+      if ( p_port == K_MK_GPIO_EXTERNAL )
       {
          /* Si le numéro de la broche est valide */
-         if ( p_pinNumber < MK_GPIO_EXPANDER_NUMBER_OF_PINS )
+         if ( p_pinNumber < K_MK_GPIO_NUMBER_OF_PINS )
          {
             /* Configuration de la broche GPIO */
-            l_result  = mk_gpio_expander_direction ( p_handler, p_pinNumber, p_setting->direction );
-            l_result |= mk_gpio_expander_type ( p_handler, p_pinNumber, p_setting->type );
-            l_result |= mk_gpio_expander_resistor ( p_handler, p_pinNumber, p_setting->resistor );
+            l_result  = g_mkGPIOPinTable [ p_pinNumber ].callback.expanderDirection ( p_handler, p_pinNumber, p_setting->direction );
+            l_result |= g_mkGPIOPinTable [ p_pinNumber ].callback.expanderType ( p_handler, p_pinNumber, p_setting->type );
+            l_result |= g_mkGPIOPinTable [ p_pinNumber ].callback.expanderResistor ( p_handler, p_pinNumber, p_setting->resistor );
          }
 
          /* Sinon */
@@ -170,30 +170,30 @@ static T_mkCode mk_gpio_handleSetRequest ( T_mkGPIOHandler* p_handler, uint32_t 
    T_mkCode l_result = K_MK_OK;
 
    /* Déclaration d'une table de configuration */
-   T_mkAddr l_addrTable [ ] = { 0, K_GPIOA, K_GPIOB, K_GPIOC,
+   T_mkAddr l_addrTable [ ] = { 0, 0, K_GPIOA, K_GPIOB, K_GPIOC,
          K_GPIOD, K_GPIOE, K_GPIOF, K_GPIOG, K_GPIOH, K_GPIOI, K_GPIOJ, K_GPIOK };
 
    /* Si les paramètres de configuration sont valides */
-   if ( p_port <= K_MK_GPIO_PORTK )
+   if ( p_port < K_MK_GPIO_NUMBER_OF_PORTS )
    {
       /* Si une broche du périphérique MFX doit être configurée */
-      if ( p_port == K_MK_GPIO_EXPANDER )
+      if ( p_port == K_MK_GPIO_EXTERNAL )
       {
          /* Si le numéro de la broche est valide */
-         if ( p_pinNumber < MK_GPIO_EXPANDER_NUMBER_OF_PINS )
+         if ( p_pinNumber < K_MK_GPIO_NUMBER_OF_PINS )
          {
             /* Si la broche doit être positionnée à l'état haut */
             if ( p_value != 0 )
             {
                /* Configuration du niveau de la broche à la valeur HIGH */
-               l_result = mk_gpio_expander_set ( p_handler, p_pinNumber );
+               l_result = g_mkGPIOPinTable [ p_pinNumber ].callback.expanderSet ( p_handler, p_pinNumber );
             }
 
             /* Sinon */
             else
             {
                /* Configuration du niveau de la broche à la valeur LOW */
-               l_result = mk_gpio_expander_clear ( p_handler, p_pinNumber );
+               l_result = g_mkGPIOPinTable [ p_pinNumber ].callback.expanderClear ( p_handler, p_pinNumber );
             }
          }
 
@@ -255,22 +255,71 @@ static T_mkCode mk_gpio_handleSetRequest ( T_mkGPIOHandler* p_handler, uint32_t 
 T_mkCode mk_gpio_handleRequest ( T_mkTask* p_task, T_mkGPIOHandler* p_handler, T_mkGPIOMessage* p_message, uint32_t p_request )
 {
    /* Déclaration de la variable de retour */
-   T_mkCode l_result;
+   T_mkCode l_result = K_MK_OK;
 
    /* Si les paramètres sont valides */
    if ( ( p_handler != K_MK_NULL ) && ( p_message != K_MK_NULL ) )
    {
       /* Si une tâche non privilégiée tente d'accéder à une broche protégée */
-      if ( ( ( p_task->attribute.type & K_MK_TYPE_PRIVILEGED ) == K_MK_TYPE_DEFAULT ) &&
-         ( ( g_mkGPIOProtectionTable [ p_message->port ] & ( uint32_t ) ( 1 << p_message->pinNumber ) ) > 0 ) )
+      if ( ( p_task->attribute.type & K_MK_TYPE_PRIVILEGED ) == K_MK_TYPE_DEFAULT )
       {
-         /* Actualisation de la variable de retour */
-         l_result = K_MK_ERROR_RIGHT;
+         /* Si une broche système ou une broche externe doit être configurée */
+         if ( ( p_message->port == K_MK_GPIO_SYSID ) || ( p_message->port == K_MK_GPIO_EXTERNAL ) )
+         {
+            /* Si la broche est protégée */
+            if ( g_mkGPIOPinTable [ p_message->pinNumber ].isProtect == K_MK_GPIO_PROTECTED )
+            {
+               /* Actualisation de la variable de retour */
+               l_result = K_MK_ERROR_RIGHT;
+            }
+
+            /* Sinon */
+            else
+            {
+               /* Ne rien faire */
+            }
+         }
+
+         /* Sinon */
+         else 
+         {
+            /* Si la broche est protégée */
+            if ( ( g_mkGPIOProtectionTable [ p_message->port ] & ( uint32_t ) ( 1 << p_message->pinNumber ) ) > 0 )
+            {
+               /* Actualisation de la variable de retour */
+               l_result = K_MK_ERROR_RIGHT;
+            }
+
+            /* Sinon */
+            else
+            {
+               /* Ne rien faire */
+            }
+         }
       }
 
       /* Sinon */
       else
       {
+         /* Ne rien faire */
+      }
+
+      /* Si la requête peut être exécutée */
+      if ( l_result != K_MK_ERROR_RIGHT )
+      {
+         /* Si la GPIO a été adressée avec un ID système */
+         if ( ( p_message->port == K_MK_GPIO_SYSID ) && ( p_message->pinNumber < K_MK_GPIO_NUMBER_OF_PINS ) )
+         {
+            /* On configure le numéro de port avec le bon identifiant */
+            p_message->port = g_mkGPIOPinTable [ p_message->pinNumber ].port;
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Ne rien faire */
+         }
+         
          /* Si une requête de type SETUP doit être exécutée */
          if ( p_request == K_MK_GPIO_SETUP )
          {
@@ -291,6 +340,12 @@ T_mkCode mk_gpio_handleRequest ( T_mkTask* p_task, T_mkGPIOHandler* p_handler, T
             /* Actualisation de la variable de retour */
             l_result = K_MK_ERROR_PARAM;
          }
+      }
+
+      /* Sinon */
+      else
+      {
+         /* Ne rien faire */
       }
    }
 

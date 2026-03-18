@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -107,31 +107,9 @@ static T_mkCode mk_gpio_initGPIOHandler ( T_mkTermio* p_termio, T_mkGPIOHandler*
       /* Si aucune erreur ne s'est produite */
       if ( l_result == K_MK_OK )
       {
-         /* Effectue */
-         do
-         {
-            /* Tentative d'initialisation du périphérique MFX */
-            l_result = mk_gpio_expander_init ( p_handler );
-
-            /* Si aucune erreur ne s'est produite */
-            if ( l_result == K_MK_OK )
-            {
-               /* Récupération de la valeur du port GPIO du périphérique MFX */
-               l_result = mk_gpio_expander_get ( p_handler, &p_handler->ctrl.expander.current );
-            }
-
-            /* Sinon */
-            else
-            {
-               /* Ne rien faire */
-            }
-
-            /* Attente 10 ms */
-            l_result |= mk_task_sleep ( K_MK_GPIO_REQUEST_TIMEOUT );
-
-         /* Tant que l'initialisation n'est pas terminée et tant qu'aucune erreur critique ne s'est produite */
-         } while ( ( l_result == K_MK_ERROR_TIMEOUT ) || ( l_result == K_MK_ERROR_COMM ) );
-
+         /* Initialisation du BSP */
+         l_result = mk_gpio_bsp_init ( p_handler );
+         
          /* Si aucune erreur ne s'est produite */
          if ( l_result == K_MK_OK )
          {
@@ -244,23 +222,58 @@ static T_mkCode mk_gpio_handleEvent ( T_mkGPIOHandler* p_handler )
    /* Déclaration d'un message */
    T_mkGPIOMessage l_message;
 
+   /* Déclaration d'un compteur */
+   uint32_t l_counter;
+
+   /* Déclaration d'une table de correspondance de travail */
+   T_mkAddr l_addrTable [ ] = { 0, 0, K_GPIOA, K_GPIOB, K_GPIOC,
+         K_GPIOD, K_GPIOE, K_GPIOF, K_GPIOG, K_GPIOH, K_GPIOI, K_GPIOJ, K_GPIOK };
+
+
    /* Tant qu'aucune erreur non critique ne s'est produite */
    while ( ( l_result == K_MK_OK ) || ( l_result == K_MK_ERROR_TIMEOUT ) || ( l_result == K_MK_ERROR_COMM ) )
    {
-      /* Récupération de la valeur du port GPIO du périphérique MFX */
-      l_result = mk_gpio_expander_get ( p_handler, &p_handler->ctrl.expander.current );
-
-      /* Si aucune erreur ne s'est produite */
-      if ( l_result == K_MK_OK )
+      /* Pour le nombre de GPIO défini par ID */
+      for ( l_counter = 0; l_counter < K_MK_GPIO_NUMBER_OF_PINS; l_counter++ )
       {
-         /* Si une transition s'est produite sur une broche du périphérique MFX */
-         if ( p_handler->ctrl.expander.last != p_handler->ctrl.expander.current )
+         /* Si la broche est une entrée */
+         if ( g_mkGPIOPinTable [ l_counter ].type == K_MK_GPIO_INPUT )
          {
-            /* Transmission d'un événement au dispatcher */
-            l_result = mk_gpio_dispatchGpioMessage ( p_handler );
+            /* Si la broche n'est pas une broche native (expander, ...) */
+            if ( g_mkGPIOPinTable [ l_counter ].port == K_MK_GPIO_EXTERNAL )
+            {
+               /* Récupération de la valeur de la broche */
+               l_result = g_mkGPIOPinTable [ l_counter ].callback.expanderGet ( p_handler, l_counter,
+                  &g_mkGPIOPinTable [ l_counter ].currentValue );
+            }
 
-            /* Actualisation du registre */
-            p_handler->ctrl.expander.last = p_handler->ctrl.expander.current;
+            /* Sinon */
+            else
+            {
+               /* Récupération de la valeur de la broche */
+               g_mkGPIOPinTable [ l_counter ].currentValue = gpio_get ( l_addrTable [ g_mkGPIOPinTable [ l_counter ].port ],
+                  g_mkGPIOPinTable [ l_counter ].pinNumber );
+            }
+
+            /* Si une transition s'est produite sur une broche du périphérique MFX */
+            /* L'initialisation du champ lastValue est faite dans la structure g_mkGPIOPinTable au démarrage */
+            if ( g_mkGPIOPinTable [ l_counter ].lastValue != g_mkGPIOPinTable [ l_counter ].currentValue )
+            {
+               /* Configuration de la structure à transmettre au dispatcher */
+               p_handler->ctrl.pin = &g_mkGPIOPinTable [ l_counter ];
+
+               /* Transmission d'un événement au dispatcher */
+               l_result = mk_gpio_dispatchGpioMessage ( p_handler );
+
+               /* Actualisation du registre */
+               g_mkGPIOPinTable [ l_counter ].lastValue = g_mkGPIOPinTable [ l_counter ].currentValue;
+            }
+
+            /* Sinon */
+            else
+            {
+               /* Ne rien faire */
+            }
          }
 
          /* Sinon */
@@ -268,25 +281,19 @@ static T_mkCode mk_gpio_handleEvent ( T_mkGPIOHandler* p_handler )
          {
             /* Ne rien faire */
          }
+      }
 
-         /* Analyse de la messagerie afin de récupérer les requêtes envoyées par l'utilisateur */
-         l_result = mk_mail_pend ( &l_task, p_handler->requestArea->request, ( T_mkAddr ) &l_message, K_MK_GPIO_REQUEST_TIMEOUT );
+      /* Analyse de la messagerie afin de récupérer les requêtes envoyées par l'utilisateur */
+      l_result = mk_mail_pend ( &l_task, p_handler->requestArea->request, ( T_mkAddr ) &l_message, K_MK_GPIO_REQUEST_TIMEOUT );
 
-         /* Si une requête est disponible */
-         if ( ( l_result == K_MK_OK ) && ( l_task != K_MK_NULL ) )
-         {
-            /* Traitement de la requête */
-            l_result = mk_gpio_handleRequest ( l_task, p_handler, &l_message, l_message.requestIdentifier );
+      /* Si une requête est disponible */
+      if ( ( l_result == K_MK_OK ) && ( l_task != K_MK_NULL ) )
+      {
+         /* Traitement de la requête */
+         l_result = mk_gpio_handleRequest ( l_task, p_handler, &l_message, l_message.requestIdentifier );
 
-            /* Gestion et déclenchement de la fonction de rappel si nécessaire */
-            l_result |= mk_gpio_handleCallback ( l_task, &l_message, l_result );
-         }
-
-         /* Sinon */
-         else
-         {
-            /* Ne rien faire */
-         }
+         /* Gestion et déclenchement de la fonction de rappel si nécessaire */
+         l_result |= mk_gpio_handleCallback ( l_task, &l_message, l_result );
       }
 
       /* Sinon */

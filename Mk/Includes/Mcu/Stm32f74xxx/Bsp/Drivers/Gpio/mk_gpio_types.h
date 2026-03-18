@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -38,6 +38,100 @@
 #define MK_GPIO_TYPES_H
 
 /**
+ *
+ */
+
+typedef struct T_mkGPIOHandler T_mkGPIOHandler;
+
+/**
+ * @struct T_mkGPIOExpanderGetFunction
+ * @brief Création du type T_mkGPIOExpanderGetFunction.
+ */
+
+typedef T_mkCode ( *T_mkGPIOExpanderGetFunction ) ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t* p_value );
+
+/**
+ * @struct T_mkGPIOExpanderDirectionFunction
+ * @brief Création du type T_mkGPIOExpanderDirectionFunction.
+ */
+
+typedef T_mkCode ( *T_mkGPIOExpanderDirectionFunction ) ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_direction );
+
+/**
+ * @struct T_mkGPIOExpanderTypeFunction
+ * @brief Création du type T_mkGPIOExpanderTypeFunction.
+ */
+
+typedef T_mkCode ( *T_mkGPIOExpanderTypeFunction ) ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_type );
+
+/**
+ * @struct T_mkGPIOExpanderResistorFunction
+ * @brief Création du type T_mkGPIOExpanderResistorFunction.
+ */
+
+typedef T_mkCode ( *T_mkGPIOExpanderResistorFunction ) ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_resistor );
+
+/**
+ * @struct T_mkGPIOExpanderSetFunction
+ * @brief Création du type T_mkGPIOExpanderSetFunction.
+ */
+
+typedef T_mkCode ( *T_mkGPIOExpanderSetFunction ) ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber );
+
+/**
+ * @struct T_mkGPIOExpanderClearFunction
+ * @brief Création du type T_mkGPIOExpanderClearFunction.
+ */
+
+typedef T_mkCode ( *T_mkGPIOExpanderClearFunction ) ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber );
+
+/**
+ *
+ */
+
+/**
+ * @struct T_mkGPIOPinHandlerCallback
+ * @brief Déclaration de la structure T_mkGPIOPinHandlerCallback.
+ *
+ */
+
+typedef struct T_mkGPIOPinHandlerCallback T_mkGPIOPinHandlerCallback;
+struct T_mkGPIOPinHandlerCallback
+{
+   T_mkGPIOExpanderGetFunction expanderGet;                          /*!< Ce membre contient l'adresse de la fonction permettant de récupérer l'état d'une broche GPIO */
+   T_mkGPIOExpanderDirectionFunction expanderDirection;              /*!< Ce membre contient l'adresse de la fonction permettant de configurer la direction d'une broche GPIO */
+   T_mkGPIOExpanderTypeFunction expanderType;                        /*!< Ce membre contient l'adresse de la fonction permettant de configurer le type d'une broche GPIO */
+   T_mkGPIOExpanderResistorFunction expanderResistor;                /*!< Ce membre contient l'adresse de la fonction permettant de configurer la résistance d'une broche GPIO */
+   T_mkGPIOExpanderSetFunction expanderSet;                          /*!< Ce membre contient l'adresse de la fonction permettant positionner une broche GPIO au niveau logique HIGH */
+   T_mkGPIOExpanderClearFunction expanderClear;                      /*!< Ce membre contient l'adresse de la fonction permettant positionner une broche GPIO au niveau logique LOW */
+};
+
+/**
+ * @struct T_mkGPIOMessage
+ * @brief Déclaration de la structure T_mkGPIOMessage.
+ *
+ */
+
+typedef struct T_mkGPIOPinHandler T_mkGPIOPinHandler;
+struct T_mkGPIOPinHandler
+{
+   uint32_t port;                                                    /*!< Ce membre contient le numéro du port (\ref T_mkGPIOPort) assigné à l'identifiant \ref T_mkGPIOPinID */
+   uint32_t pinNumber;                                               /*!< Ce membre contient le numéro de la broche assigné à l'identifant \ref T_mkGPIOPinID. */
+   uint32_t type;                                                    /*!< Ce membre contient le type de la broche (\ref T_mkGPIODirection). */
+   uint32_t initialValue;                                            /*!< Ce membre contient la valeur initiale de la broche \ref T_mkGPIOPinID. */
+   uint32_t lastValue;                                               /*!< Ce membre contient la dernière valeur mémorisée de la broche \ref T_mkGPIOPinID. */
+   uint32_t currentValue;                                            /*!< Ce membre contient la valeur mémorisée de la broche \ref T_mkGPIOPinID. */
+   uint16_t idleState;                                               /*!< Ce membre contient l'événement à assigner à la broche lorsque celle-ci revient à l'état de repos (\ref K_MK_EVENT_NO si non applicable). */
+   uint16_t activeState;                                             /*!< Ce membre contient l'événement à assigner à la broche lorsque celle-ci passe à l'état actif (\ref K_MK_EVENT_NO si non applicable). */
+   uint32_t isProtect;                                               /*!< Ce membre indique si la broche T_mkGPIOPinID est protégée ou non. */
+   T_mkGPIOPinHandlerCallback callback;                              /*!< Ce membre contient l'ensemble des fonctions permettant l'accès à la broche GPIO. */
+};
+
+/**
+ *
+ */
+
+/**
  * @enum T_mkGPIOPort
  * @brief Déclaration de l'énumération T_mkGPIOPort.
  *
@@ -45,18 +139,20 @@
 
 typedef enum T_mkGPIOPort
 {
-   K_MK_GPIO_EXPANDER = 0,                                           /*!< Définition de l'identifiant du port externe relié au périphérique MFX. */
-   K_MK_GPIO_PORTA = 1,                                              /*!< Définition de l'identifiant du port A. */
-   K_MK_GPIO_PORTB = 2,                                              /*!< Définition de l'identifiant du port B. */
-   K_MK_GPIO_PORTC = 3,                                              /*!< Définition de l'identifiant du port C. */
-   K_MK_GPIO_PORTD = 4,                                              /*!< Définition de l'identifiant du port D. */
-   K_MK_GPIO_PORTE = 5,                                              /*!< Définition de l'identifiant du port E. */
-   K_MK_GPIO_PORTF = 6,                                              /*!< Définition de l'identifiant du port F. */
-   K_MK_GPIO_PORTG = 7,                                              /*!< Définition de l'identifiant du port G. */
-   K_MK_GPIO_PORTH = 8,                                              /*!< Définition de l'identifiant du port H. */
-   K_MK_GPIO_PORTI = 9,                                              /*!< Définition de l'identifiant du port I. */
-   K_MK_GPIO_PORTJ = 10,                                             /*!< Définition de l'identifiant du port J. */
-   K_MK_GPIO_PORTK = 11                                              /*!< Définition de l'identifiant du port K. */
+   K_MK_GPIO_SYSID = 0,                                              /*!< Définition de l'identifiant indiquant que la broche est adressée de manière générique. */
+   K_MK_GPIO_EXTERNAL = 1,                                           /*!< Définition de l'identifiant du/des ports externes. */
+   K_MK_GPIO_PORTA = 2,                                              /*!< Définition de l'identifiant du port A. */
+   K_MK_GPIO_PORTB = 3,                                              /*!< Définition de l'identifiant du port B. */
+   K_MK_GPIO_PORTC = 4,                                              /*!< Définition de l'identifiant du port C. */
+   K_MK_GPIO_PORTD = 5,                                              /*!< Définition de l'identifiant du port D. */
+   K_MK_GPIO_PORTE = 6,                                              /*!< Définition de l'identifiant du port E. */
+   K_MK_GPIO_PORTF = 7,                                              /*!< Définition de l'identifiant du port F. */
+   K_MK_GPIO_PORTG = 8,                                              /*!< Définition de l'identifiant du port G. */
+   K_MK_GPIO_PORTH = 9,                                              /*!< Définition de l'identifiant du port H. */
+   K_MK_GPIO_PORTI = 10,                                             /*!< Définition de l'identifiant du port I. */
+   K_MK_GPIO_PORTJ = 11,                                             /*!< Définition de l'identifiant du port J. */
+   K_MK_GPIO_PORTK = 12,                                             /*!< Définition de l'identifiant du port K. */
+   K_MK_GPIO_NUMBER_OF_PORTS = 13                                    /*!< Définition du nombre d'identifiants. */
 } T_mkGPIOPort;
 
 /**
@@ -119,6 +215,17 @@ typedef enum T_mkGPIOLevel
    K_MK_GPIO_HIGH = 1                                                /*!< Définition d'une constante permettant de positionner une broche au niveau logique LOW. */
 } T_mkGPIOLevel;
 
+/**
+ * @enum T_mkGPIOProtect
+ * @brief Déclaration de l'énumération T_mkGPIOProtect.
+ *
+ */
+
+typedef enum T_mkGPIOProtect
+{
+   K_MK_GPIO_UNPROTECTED = 0,                                        /*!< Définition d'une constante permettant de positionner une broche au niveau logique HIGH. */
+   K_MK_GPIO_PROTECTED = 1                                           /*!< Définition d'une constante permettant de positionner une broche au niveau logique LOW. */
+} T_mkGPIOProtect;
 
 /**
  * @enum T_mkGPIORequest
@@ -164,19 +271,6 @@ struct T_mkGPIOMessage
 };
 
 /**
- * @struct T_mkGPIORegister
- * @brief Déclaration de la structure T_mkGPIORegister.
- *
- */
-
-typedef struct T_mkGPIORegister T_mkGPIORegister;
-struct T_mkGPIORegister
-{
-   uint32_t last;                                                    /*!< Ce membre contient la dernière valeur mémorisée sur le port GPIO du périphérique MFX (broches externes uniquement). */
-   uint32_t current;                                                 /*!< Ce membre contient la valeur lue sur le port GPIO du périphérique MFX (broches externes uniquement). */
-};
-
-/**
  * @struct T_mkGPIOLayer
  * @brief Déclaration de la structure T_mkGPIOLayer.
  *
@@ -199,7 +293,7 @@ typedef struct T_mkGPIOCtrl T_mkGPIOCtrl;
 struct T_mkGPIOCtrl
 {
    T_mkGPIOLayer layer;                                              /*!< Ce membre contient le registre d'identification du contrôle de type \ref T_mkGPIOCtrl. La position de cet attribut ne doit pas être modifiée. */
-   T_mkGPIORegister expander;                                        /*!< Ce membre contient les valeurs présentes et passées lues sur le port GPIO du périphérique MFX (broches externes uniquement). */
+   T_mkGPIOPinHandler* pin;                                          /*!< Ce membre contient les valeurs présentes et passées lues sur le port GPIO du périphérique MFX (broches externes uniquement). */
 };
 
 /**
@@ -208,13 +302,31 @@ struct T_mkGPIOCtrl
  *
  */
 
-typedef struct T_mkGPIOHandler T_mkGPIOHandler;
 struct T_mkGPIOHandler
 {
    T_mkI2CDevice* device;                                            /*!< Ce membre contient l'adresse d'un périphérique I2C de type \ref T_mkI2CDevice. */
-   T_mkGPIOCtrl ctrl;                                                /*!< Ce membre contient le registre de contrôle du terminal GPIO. */
+   T_mkGPIOCtrl ctrl;                                              /*!< Ce membre contient le registre d'identification du contrôle de type \ref T_mkGPIOCtrl. La position de cet attribut ne doit pas être modifiée. */
    T_mkGPIORequestArea* requestArea;                                 /*!< Ce membre contient l'adresse de la structure contenant les données relatives à la messagerie du terminal GPIO. */
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /**

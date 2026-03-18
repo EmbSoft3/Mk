@@ -42,7 +42,7 @@
  * @endinternal
  */
 
-T_mkCode mk_gpio_expander_direction ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_direction )
+T_mkCode mk_gpio_expander_mfxv3_direction ( T_mkGPIOHandler* p_handler, uint32_t p_pinNumber, uint32_t p_direction )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
@@ -53,14 +53,14 @@ T_mkCode mk_gpio_expander_direction ( T_mkGPIOHandler* p_handler, uint32_t p_pin
 
    /* Définition du contenu de la trame I2C */
    uint8_t l_registerValue [ 1 ] = {
-         ( uint8_t ) ( MK_GPIO_EXPANDER_DIRECTION_REGISTER_ADDR + l_offset )
+         ( uint8_t ) ( MK_GPIO_EXPANDER_MFXV3_DIRECTION_REGISTER_ADDR + l_offset )
    };
 
    /* Si le paramètre est valide */
    if ( ( p_handler != K_MK_NULL ) && ( p_handler->device != K_MK_NULL ) )
    {
       /* Lecture du registre de direction du périphérique MFX */
-      l_result = mk_gpio_expander_read ( p_handler, l_registerValue, 1 );
+      l_result = mk_gpio_expander_mfxv3_read ( p_handler, l_registerValue, 1 );
 
       /* Si aucune erreur ne s'est produite */
       if ( l_result == K_MK_OK )
@@ -70,7 +70,7 @@ T_mkCode mk_gpio_expander_direction ( T_mkGPIOHandler* p_handler, uint32_t p_pin
          l_registerValue [ 0 ] |= ( uint8_t ) ( ( p_direction << l_shift ) );
 
          /* Actualisation du registre */
-         l_result = mk_gpio_expander_write ( p_handler, ( uint8_t ) ( MK_GPIO_EXPANDER_DIRECTION_REGISTER_ADDR + l_offset ),
+         l_result = mk_gpio_expander_mfxv3_write ( p_handler, ( uint8_t ) ( MK_GPIO_EXPANDER_MFXV3_DIRECTION_REGISTER_ADDR + l_offset ),
                                              l_registerValue [ 0 ] );
       }
 

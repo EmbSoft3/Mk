@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -54,13 +54,6 @@
  */
 
 #define K_MK_GPIO_REQUEST_TIMEOUT 10
-
-/**
- * @def K_MK_GPIO_NUMBER_OF_PORTS
- * @brief Définition du nombre de ports d'entrées-sorties.
- */
-
-#define K_MK_GPIO_NUMBER_OF_PORTS 12
 
 /**
  *
