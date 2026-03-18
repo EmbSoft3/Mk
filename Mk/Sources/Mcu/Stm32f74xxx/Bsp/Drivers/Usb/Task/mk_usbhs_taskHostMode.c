@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -96,9 +96,6 @@ static T_mkCode mk_usbhs_initUSBOTGHS ( T_mkTermio* p_termio, T_mkHCDHandler* p_
       /* Si aucune erreur ne s'est produite */
       if ( l_result == K_MK_OK )
       {
-         /* Initialisation des broches GPIO du bus USB */
-         mk_usb_initGPIO ( K_USB_OTGHS );
-
          /* Initialisation du coeur USB_OTGHS */
          l_result = mk_usb_initCore ( K_USB_OTGHS );
       }
@@ -190,7 +187,7 @@ void mk_usbhs_taskHostMode ( T_mkAddr p_param )
    if ( l_result == K_MK_OK )
    {
       /* On attends tant que les terminaux enfants (HID, MSC) ne sont pas initialisés */
-      /* Il faut pas leur transmettre de messages alors que la boite n'est pas initialisée. */
+      /* Il ne faut pas leur transmettre de messages alors que la boite n'est pas initialisée. */
       l_result = mk_usbhs_waitChild ( );
 
       /* Si l'intialisation du gestionnaire a réussi */

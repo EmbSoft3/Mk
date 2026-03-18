@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -62,6 +62,12 @@
 #include "mk_event_constants.h"
 #include "mk_event_types.h"
 #include "mk_event.h"
+#include "mk_mail_constants.h"
+#include "mk_mail_types.h"
+#include "mk_mail.h"
+#include "mk_callback_constants.h"
+#include "mk_callback_types.h"
+#include "mk_callback_private.h"
 #include "mk_mutex_types.h"
 #include "mk_memory_constants.h"
 
@@ -75,6 +81,34 @@
 #include "mk_termio_data.h"
 #include "mk_termio_private.h"
 #include "mk_termio.h"
+ 
+/**
+ *
+ */
+
+#include "mk_i2c_constants.h"
+#include "mk_i2c_device_types.h"
+#include "mk_i2c_port_types.h"
+#include "mk_i2c.h"
+ 
+/**
+ *
+ */
+
+#include "mk_gpio_constants.h"
+#include "mk_gpio_pool_types.h"
+#include "mk_gpio_types.h"
+#include "mk_gpio_bsp_constants.h"
+#include "mk_gpio_bsp_types.h"
+#include "mk_gpio_bsp_private.h"
+#include "mk_gpio_data.h"
+#include "mk_gpio_isr_private.h"
+#include "mk_gpio_private.h"
+#include "mk_gpio_expander_constants.h"
+#include "mk_gpio_expander_types.h"
+#include "mk_gpio_expander_data.h"
+#include "mk_gpio_expander_private.h"
+#include "mk_gpio.h"
 
 /**
  *
@@ -83,6 +117,7 @@
 #include "mk_usb_constants.h"
 #include "mk_usb_data.h"
 #include "mk_usb_private.h"
+#include "mk_usb_bsp_private.h"
 #include "mk_usb_isr_private.h"
 
 /**

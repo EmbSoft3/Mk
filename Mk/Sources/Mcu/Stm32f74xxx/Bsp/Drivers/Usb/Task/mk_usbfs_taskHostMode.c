@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -64,9 +64,6 @@ static T_mkCode mk_usbfs_initUSBOTGFS ( T_mkTermio* p_termio, T_mkHCDHandler* p_
       /* Si aucune erreur ne s'est produite */
       if ( l_result == K_MK_OK )
       {
-         /* Initialisation des broches GPIO du bus USB */
-         mk_usb_initGPIO ( K_USB_OTGFS );
-
          /* Initialisation du coeur USB_OTGFS */
          l_result = mk_usb_initCore ( K_USB_OTGFS );
       }

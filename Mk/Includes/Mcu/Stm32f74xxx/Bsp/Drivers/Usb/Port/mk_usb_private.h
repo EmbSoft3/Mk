@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -80,18 +80,6 @@ void mk_usbfs_taskHostMode ( T_mkAddr p_param );
  */
 
 void mk_usbfs_taskDeviceMode ( T_mkAddr p_param );
-
-/**
- * @fn void mk_usb_initGPIO ( T_mkAddr p_usb );
- * @brief Cette fonction initialise les broches d'un périphérique matériel.
- * @param[in] p_usb Ce paramètre contient l'adresse de base d'un périphérique USB. Les constantes suivantes peuvent
- *                  être utilisés : \n \ref K_USB_OTGHS et \ref K_USB_OTGFS
- *
- * @return Sans objet.
- *
- */
-
-void mk_usb_initGPIO ( T_mkAddr p_usb );
 
 /**
  * @fn T_mkUSBCode mk_usb_initCore ( T_mkAddr p_usb );

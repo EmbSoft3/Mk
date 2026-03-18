@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -44,6 +44,27 @@
  * @endinternal
  */
 
+static T_mkCode mk_usbhs_waitGPIO ( void )
+{
+   /* Déclaration de la variable de retour */
+   T_mkCode l_result;
+
+   /* Déclaration d'une variable de travail */
+   uint32_t l_event = 0;
+
+   /* Attente de l'intialisation des terminaux HID et MSC */
+   l_result = mk_event_wait ( g_mkTermioSync.event, K_MK_EVENT_AND | K_MK_TERMIO_FLAG_GPIO, &l_event, K_MK_TERMIO_INIT_TIMEOUT );
+
+   /* Retour */
+   return ( l_result );
+}
+
+/**
+ * @internal
+ * @brief
+ * @endinternal
+ */
+
 static T_mkCode mk_usbhs_initUSBOTGHS ( T_mkTermio* p_termio, T_mkHCDHandler* p_handler )
 {
    /* Déclaration de la variable de retour */
@@ -64,11 +85,35 @@ static T_mkCode mk_usbhs_initUSBOTGHS ( T_mkTermio* p_termio, T_mkHCDHandler* p_
       /* Si aucune erreur ne s'est produite */
       if ( l_result == K_MK_OK )
       {
-         /* Initialisation des broches GPIO du bus USB */
-         mk_usb_initGPIO ( K_USB_OTGHS );
+         /* On attends tant que le terminal GPIO n'est pas initialisés. */
+         /* Il ne faut pas transmettre de messages alors que la boite n'est pas initialisée. */
+         l_result = mk_usbhs_waitGPIO ( );
 
-         /* Initialisation du coeur USB_OTGHS */
-         l_result = mk_usb_initCore ( K_USB_OTGHS );
+         /* Si aucune erreur ne s'est produite */
+         if ( l_result == K_MK_OK )
+         {
+            /* Initialisation des broches GPIO du bus USB */
+            l_result = mk_usb_bsp_init ( K_USB_OTGHS );
+
+            /* Si aucune erreur ne s'est produite */
+            if ( l_result == K_MK_OK )
+            {
+               /* Initialisation du coeur USB_OTGHS */
+               l_result = mk_usb_initCore ( K_USB_OTGHS );
+            }
+
+            /* Sinon */
+            else
+            {
+               /* Ne rien faire */
+            }
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Ne rien faire */
+         }
       }
 
       /* Sinon */
