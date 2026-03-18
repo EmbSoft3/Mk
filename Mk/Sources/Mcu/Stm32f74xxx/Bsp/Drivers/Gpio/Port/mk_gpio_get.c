@@ -66,6 +66,20 @@ T_mkCode mk_gpio_get ( uint32_t p_port, uint32_t p_pinNumber, uint32_t* p_value 
       /* Si aucune erreur ne s'est produite */
       if ( ( l_result == K_MK_OK ) && ( l_handler != K_MK_NULL ) )
       {
+         /* Si la GPIO a été adressée avec un ID système */
+         if ( ( p_port == K_MK_GPIO_SYSID ) && ( p_pinNumber < K_MK_GPIO_NUMBER_OF_PINS ) )
+         {
+            /* On configure le numéro de port et le numéro de broche avec le bon identifiant */
+            p_port = g_mkGPIOPinTable [ p_pinNumber ].port;
+            p_pinNumber = g_mkGPIOPinTable [ p_pinNumber ].pinNumber;
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Ne rien faire */
+         }
+
          /* Si une broche du périphérique MFX doit être configurée */
          if ( p_port == K_MK_GPIO_EXTERNAL )
          {
