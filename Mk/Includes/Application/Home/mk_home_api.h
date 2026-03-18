@@ -86,12 +86,7 @@
  *
  */
 
-#include "mk_bsp_constants.h"
-
-/**
- *
- */
-
+#include "mk_page_bsp_constants.h"
 #include "mk_page_constants.h"
 #include "mk_page_types.h"
 #include "mk_page_data.h"

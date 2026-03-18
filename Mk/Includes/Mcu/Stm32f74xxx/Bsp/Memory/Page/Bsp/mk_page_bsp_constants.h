@@ -28,14 +28,72 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_board_discoRevC_constants.h
-* @brief Déclaration des constantes dédiées à la board DISCO_REV_C.
-* @date 15 mars 2026
+* @file mk_page_bsp_constants.h
+* @brief Déclaration des constantes dédiées aux boards EVAL2 & DISCO_REV_C.
+* @date 18 mars 2026
 *
 */
 
-#ifndef MK_BOARD_DISCOREVC_CONSTANTS_H
-#define MK_BOARD_DISCOREVC_CONSTANTS_H
+#ifndef MK_PAGE_BSP_CONSTANTS_H
+#define MK_PAGE_BSP_CONSTANTS_H
+
+/**
+ *
+ */
+
+/* Constantes dédiées à la carte STM32F746G-Eval2 */
+#if defined ( MK_BOARD_EVAL2 )
+
+/**
+ * @def K_MK_BSP_PAGE_SMALL_START_ADDR
+ * @brief Définition de l'adresse de début de la mémoire stockant les petites pages mémoire (SRAM, SDRAM, ...).
+ */
+
+#define K_MK_BSP_PAGE_SMALL_START_ADDR 0x68000000
+
+/**
+ * @def K_MK_BSP_PAGE_SMALL_SIZE
+ * @brief Définition de la taille de la mémoire permettant d'allouer les petites pages mémoire [en octets].
+ */
+
+#define K_MK_BSP_PAGE_SMALL_SIZE 0x200000
+
+/**
+ * @def K_MK_BSP_PAGE_SMALL_BLOCK_SIZE
+ * @brief Définition de la taille des petites pages mémoire [en octets].
+ */
+
+#define K_MK_BSP_PAGE_SMALL_BLOCK_SIZE 0x10000
+
+/**
+ * @def K_MK_BSP_PAGE_LARGE_START_ADDR
+ * @brief Définition de l'adresse de début de la mémoire stockant les grandes page mémoire (SDRAM).
+ */
+
+#define K_MK_BSP_PAGE_LARGE_START_ADDR ( K_MK_DISPLAY_FRAME_BUFFER_BANK1_BASE_ADDR + ( 2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE ) + K_MK_DISPLAY_FRAME_BUFFER_SIZE )
+
+/**
+ * @def K_MK_BSP_PAGE_LARGE_SIZE
+ * @brief Définition de la taille de la mémoire permettant d'allouer les grandes pages mémoire [en octets].
+ *        2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE => buffers graphiques.
+ *        1 * K_MK_DISPLAY_FRAME_BUFFER_SIZE => mémoire dédiées à l'allocation des applications.
+ */
+
+#define K_MK_BSP_PAGE_LARGE_SIZE ( ( ( uint32_t ) 0x800000 - ( ( 2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE ) + K_MK_DISPLAY_FRAME_BUFFER_SIZE ) ) * 4 )
+
+/**
+ * @def K_MK_BSP_PAGE_LARGE_BLOCK_SIZE
+ * @brief Définition de la taille des grandes pages mémoire [en octets].
+ */
+
+#define K_MK_BSP_PAGE_LARGE_BLOCK_SIZE ( K_MK_DISPLAY_FRAME_BUFFER_SIZE * 4 )
+
+/**
+ *
+ */
+
+/* On inclut les constantes dédiées à la carte STM32F746G-DISCO REV.C */
+#elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**
  * @def K_MK_BSP_PAGE_SMALL_START_ADDR
@@ -84,6 +142,11 @@
 /**
  *
  */
+
+/* Sinon erreur de compilation */
+#else
+#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
+#endif
 
 #endif
 
