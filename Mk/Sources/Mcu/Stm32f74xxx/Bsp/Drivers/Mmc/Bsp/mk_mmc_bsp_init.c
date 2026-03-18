@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -42,55 +42,56 @@
  * @endinternal
  */
 
-static void mk_mmc_initGPIOMode ( void )
+static T_mkCode mk_mmc_bsp_initCardDetect ( void )
 {
-   /* Configuration du mode de fonctionnement des broches GPIO */
+   /* Déclaration de la variable de retour */
+   T_mkCode l_result;
 
+   /* Déclaration d'une structure de configuration */
+   T_mkGPIOSetting l_setting = {
+      K_MK_GPIO_INPUT, K_MK_GPIO_ENABLE_PULL, K_MK_GPIO_PULLUP
+   };
+
+   /* Configuration de la broche CARD_DETECT */
+   l_result = mk_gpio_setup ( K_MK_GPIO_SYSID, K_MK_GPIO_PIN_SDCARD_DETECT, &l_setting, K_MK_NULL );
+
+   /* Retour */
+   return ( l_result );
+}
+
+/* Constantes dédiées à la carte STM32F746G-Eval2 et à la carte DISCO_REV_C */
+#if ( defined ( MK_BOARD_EVAL2 ) || defined ( MK_BOARD_DISCO_REV_C ) )
+
+/**
+ * @internal
+ * @brief
+ * @endinternal
+ */
+
+T_mkCode mk_mmc_bsp_init ( void )
+{
+   /* Déclaration de la variable de retour */
+   T_mkCode l_result;
+   
+   /* Configuration du mode de fonctionnement des broches GPIO */
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 2 );           /* MMC_CMD */
    gpio_setMode ( K_GPIOC, K_GPIO_ALTERNATE, 12 );          /* MMC_CLK */
    gpio_setMode ( K_GPIOC, K_GPIO_ALTERNATE, 8 );           /* MMC_D0 */
    gpio_setMode ( K_GPIOC, K_GPIO_ALTERNATE, 9 );           /* MMC_D1 */
    gpio_setMode ( K_GPIOC, K_GPIO_ALTERNATE, 10 );          /* MMC_D2 */
    gpio_setMode ( K_GPIOC, K_GPIO_ALTERNATE, 11 );          /* MMC_D3 */
-
-   /* Retour */
-   return;
-}
-
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
-static void mk_mmc_initGPIOAlternate ( void )
-{
+   
    /* Multiplexage des broches GPIO */
-
    gpio_alternate ( K_GPIOD, K_GPIO_AF12, 2 );              /* MMC_CMD */
    gpio_alternate ( K_GPIOC, K_GPIO_AF12, 12 );             /* MMC_CLK */
    gpio_alternate ( K_GPIOC, K_GPIO_AF12, 8 );              /* MMC_D0 */
    gpio_alternate ( K_GPIOC, K_GPIO_AF12, 9 );              /* MMC_D1 */
    gpio_alternate ( K_GPIOC, K_GPIO_AF12, 10 );             /* MMC_D2 */
    gpio_alternate ( K_GPIOC, K_GPIO_AF12, 11 );             /* MMC_D3 */
-
-   /* Retour */
-   return;
-}
-
-
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
-static void mk_mmc_initGPIOSpeed ( void )
-{
+   
    /* Configuration de la vitesse des broches GPIO */
    /* La configuration des broches en vitesse 'MEDIUM' semble être un bon compromis */
    /* pour faire fonctionner tous les modèles de cartes disponibles lors du codage du driver */
-
    gpio_speed ( K_GPIOD, K_GPIO_MEDIUM_SPEED, 2 );          /* MMC_CMD */
    gpio_speed ( K_GPIOC, K_GPIO_MEDIUM_SPEED, 12 );         /* MMC_CLK */
    gpio_speed ( K_GPIOC, K_GPIO_MEDIUM_SPEED, 8 );          /* MMC_D0 */
@@ -98,20 +99,7 @@ static void mk_mmc_initGPIOSpeed ( void )
    gpio_speed ( K_GPIOC, K_GPIO_MEDIUM_SPEED, 10 );         /* MMC_D2 */
    gpio_speed ( K_GPIOC, K_GPIO_MEDIUM_SPEED, 11 );         /* MMC_D3 */
 
-   /* Retour */
-   return;
-}
-
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
-static void mk_mmc_initGPIOResistor ( void )
-{
    /* Configuration des résistances de tirage des broches GPIO */
-
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_OFF, 2 );           /* MMC_CMD */
    gpio_resistor ( K_GPIOC, K_GPIO_PULL_OFF, 12 );          /* MMC_CLK */
    gpio_resistor ( K_GPIOC, K_GPIO_PULL_OFF, 8 );           /* MMC_D0 */
@@ -119,20 +107,7 @@ static void mk_mmc_initGPIOResistor ( void )
    gpio_resistor ( K_GPIOC, K_GPIO_PULL_OFF, 10 );          /* MMC_D2 */
    gpio_resistor ( K_GPIOC, K_GPIO_PULL_OFF, 11 );          /* MMC_D3 */
 
-   /* Retour */
-   return;
-}
-
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
-static void mk_mmc_initGPIOType ( void )
-{
    /* Configuration du type de sortie des broches du périphérique MMC */
-
    gpio_pushPull ( K_GPIOD, 2 );                            /* MMC_CMD */
    gpio_pushPull ( K_GPIOC, 12 );                           /* MMC_CLK */
    gpio_pushPull ( K_GPIOC, 8 );                            /* MMC_D0 */
@@ -140,34 +115,15 @@ static void mk_mmc_initGPIOType ( void )
    gpio_pushPull ( K_GPIOC, 10 );                           /* MMC_D2 */
    gpio_pushPull ( K_GPIOC, 11 );                           /* MMC_D3 */
 
-   /* Retour */
-   return;
-}
-
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
-void mk_mmc_initGPIO ( void )
-{
-   /* Configuration du mode de fonctionnement des broches GPIO */
-   mk_mmc_initGPIOMode ( );
-
-   /* Multiplexage des broches GPIO */
-   mk_mmc_initGPIOAlternate ( );
-
-   /* Configuration de la vitesse des broches GPIO */
-   mk_mmc_initGPIOSpeed ( );
-
-   /* Configuration des résistances de tirage des broches GPIO */
-   mk_mmc_initGPIOResistor ( );
-
-   /* Configuration de l'étage de sortie des broches GPIO */
-   mk_mmc_initGPIOType ( );
+   /* Initialisation de la broche CARD-DETECT */
+   l_result = mk_mmc_bsp_initCardDetect ( );
 
    /* Retour */
-   return;
+   return ( l_result ) ;
 }
+
+/* Sinon erreur de compilation */
+#else
+#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
+#endif
 

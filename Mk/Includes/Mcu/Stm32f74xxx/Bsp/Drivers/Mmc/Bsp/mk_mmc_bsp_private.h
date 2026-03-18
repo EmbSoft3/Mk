@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2021-2026 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,36 +28,35 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_mmc_constants.h
-* @brief DÃ©claration des constantes SD/MMC.
-* @date 7 fÃ©vr. 2021
+* @file mk_mmc_bsp_private.h
+* @brief Déclaration des fonctions privées dédiées aux BSP SD/MMC.
+* @date 18 mars 2026
 *
 */
 
-#ifndef MK_MMC_CONSTANTS_H
-#define MK_MMC_CONSTANTS_H
+#ifndef MK_MMC_BSP_PRIVATE_H
+#define MK_MMC_BSP_PRIVATE_H
 
 /**
- * @def K_MK_MMC_STACK_SIZE
- * @brief DÃ©finition de la taille de la stack du terminal MMC [en multiple de mots 32bits].
- */
-
-#define K_MK_MMC_STACK_SIZE 350
-
-/**
+ * @fn void mk_mmc_bsp_init ( void );
+ * @brief Cette fonction initialise le BSP SD/MMC.
+ * @return Cette fonction retourne une des valeurs suivantes :
+ *         \li \ref K_MK_OK            : l'initialisation du BSP a été exécutée sans renconter d'erreur.
+ *         \li \ref K_MK_ERROR_PARAM   : l'initialisation du BSP a échouée car au moins un paramètre est invalide.
+ *         \li \ref K_MK_ERROR_TIMEOUT : l'initialisation du BSP a échouée car la messagerie GPIO est pleine.
+ *         \li \ref K_MK_ERROR_ISR     : l'initialisation du BSP a échouée car la fonction a été exécutée depuis un vecteur d'interruption.
+ *         \li \ref K_MK_ERROR_COMM    : l'initialisation du BSP a échouée car une erreur de communication s'est produite.
+ *         \li \ref K_MK_ERROR_TIMEOUT : l'initialisation du BSP a échouée car un timeout de communication s'est produit.
+ *         \li \ref K_MK_ERROR_RIGHT   : l'initialisation du BSP a échouée car une tâche non privilégiée ne peut pas modifier une broche protégée.
  *
  */
 
-/**
- * @def K_MK_MMC_REFRESH_TIMEOUT
- * @brief DÃ©finition du timeout de rafraichissement du terminal MMC.
- */
-
-#define K_MK_MMC_REFRESH_TIMEOUT 10
+T_mkCode mk_mmc_bsp_init ( void );
 
 /**
  *
  */
 
 #endif
+
 

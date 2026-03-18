@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -69,8 +69,8 @@ static T_mkCode mk_mmc_initMMCHandler ( T_mkTermio* p_termio, T_mkMMCHandler* p_
          /* Si aucune erreur ne s'est produite */
          if ( l_result == K_MK_OK )
          {
-            /* Initialisation des broches GPIO du périphérique matériel */
-            mk_mmc_initGPIO ( );
+            /* Initialisation du BSP */
+            l_result = mk_mmc_bsp_init ( );
 
             /* Initialisation du périphérique matériel */
             mk_mmc_init ( );

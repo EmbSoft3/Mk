@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -109,10 +109,10 @@ static T_mkCode mk_mmc_handleDevice ( T_mkMMCHandler* p_handler )
    /* La broche est initialisée par le gestionnaire GPIO. */
 
    /* Lecture du port GPIO associé à la broche SD/MMC_CONNECTED */
-   l_result = mk_gpio_get ( K_MK_MMC_CARD_PORT_NUMBER, K_MK_MMC_CARD_PIN_NUMBER, &l_pin );
+   l_result = mk_gpio_get ( K_MK_GPIO_SYSID, K_MK_GPIO_PIN_SDCARD_DETECT, &l_pin );
 
    /* Si une carte a été connectée */
-   if ( ( l_pin == K_MK_MMC_CARD_CONNECTED_STATE ) && ( p_handler->state != K_MK_MMC_STATE_DISCONNECTED ) )
+   if ( ( l_pin != g_mkGPIOPinTable [ K_MK_GPIO_PIN_SDCARD_DETECT ].initialValue ) && ( p_handler->state != K_MK_MMC_STATE_DISCONNECTED ) )
    {
       /* Si le bus est dans l'état inactif */
       if ( ( p_handler->state != K_MK_MMC_STATE_READY ) || ( p_handler->list.first == K_MK_NULL ) )

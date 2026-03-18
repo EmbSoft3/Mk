@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -36,15 +36,6 @@
 
 #ifndef MK_MMC_PORT_PRIVATE_H
 #define MK_MMC_PORT_PRIVATE_H
-
-/**
- * @fn void mk_mmc_initGPIO ( void );
- * @brief Cette fonction initialise les broches du périphérique matérielles SD/MMC.
- * @return Sans objet.
- *
- */
-
-void mk_mmc_initGPIO ( void );
 
 /**
  * @fn void mk_mmc_init ( void );

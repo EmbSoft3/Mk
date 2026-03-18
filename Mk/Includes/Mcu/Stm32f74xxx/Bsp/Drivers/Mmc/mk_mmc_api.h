@@ -111,6 +111,7 @@
 #include "mk_gpio_pool_types.h"
 #include "mk_gpio_types.h"
 #include "mk_gpio_bsp_types.h"
+#include "mk_gpio_data.h"
 #include "mk_gpio.h"
 
 /**
@@ -149,6 +150,7 @@
 #include "mk_mmc_list_private.h"
 #include "mk_mmc_types.h"
 #include "mk_mmc_data.h"
+#include "mk_mmc_bsp_private.h"
 #include "mk_mmc_cmd_private.h"
 #include "mk_mmc_dma_private.h"
 #include "mk_mmc_isr_private.h"
