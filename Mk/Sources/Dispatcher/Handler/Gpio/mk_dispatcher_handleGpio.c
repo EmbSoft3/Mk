@@ -47,49 +47,42 @@ static T_mkCode mk_dispatcher_handleGpioEvent ( T_mkDispatcherHandler* p_handler
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
 
-   /* Déclaration d'une variable de travail */
-   uint32_t l_counter;
-
    /* Déclaration d'un message à destination de la tâche d'écoute */
    T_mkListenerMessage l_message;
 
    /* Configuration du message de sortie */
    l_message.appCtrlID = K_MK_CONTROL_GPIO;           /* Identifiant du contrôle applicatif */
-   l_message.appCtrl   = p_gpio;                      /* Adresse du contrôle applicatif */
+   l_message.appCtrl   = p_gpio->pin;                      /* Adresse du contrôle applicatif */
    l_message.tick      = p_message->tick;             /* Numéro du tick enregistré lors de la détection de l'événement */
 
-   /* Pour le nombre d'entrées à analyser */
-   for ( l_counter = 0 ; l_counter < K_MK_GPIO_NUMBER_OF_PINS; l_counter++ )
+   /* Configuration de l'identifiant du contrôle */
+   l_message.ctrlId = ( uint16_t ) p_gpio->pin->pinNumber;
+
+   /* Si l'entrée GPIO a changée d'état */
+   if ( p_gpio->pin->lastValue != p_gpio->pin->currentValue )
    {
-      /* Configuration de l'identifiant du contrôle */
-      l_message.ctrlId = ( uint16_t ) l_counter;
-
-      /* Si l'entrée GPIO a changée d'état */
-      if ( p_gpio->pin->lastValue != p_gpio->pin->currentValue )
+      /* On teste si celle-ci est revenue dans son état de repos */
+      if ( p_gpio->pin->currentValue == p_gpio->pin->initialValue )
       {
-         /* On teste si celle-ci est revenue dans son état de repos */
-         if ( p_gpio->pin->currentValue == p_gpio->pin->initialValue )
-         {
-            /* Configuration de l'identifiant de l'événement à générer */
-            l_message.ctrlEvt = p_gpio->pin->idleState;
-         }
-
-         /* Sinon */
-         else
-         {
-            /* Configuration de l'identifiant de l'événement à générer (PRESS ou RELEASE) */
-            l_message.ctrlEvt = p_gpio->pin->activeState;
-         }
-
-         /* Transmission d'un message à la tâche d'écoute */
-         l_result = mk_mail_post ( p_handler->listenerArea->mail, ( T_mkAddr ) &l_message, K_MK_STATE_READY, K_MK_TASK_WAIT_FOREVER );
+         /* Configuration de l'identifiant de l'événement à générer */
+         l_message.ctrlEvt = p_gpio->pin->idleState;
       }
 
       /* Sinon */
       else
       {
-         /* Ne rien faire */
+         /* Configuration de l'identifiant de l'événement à générer (PRESS ou RELEASE) */
+         l_message.ctrlEvt = p_gpio->pin->activeState;
       }
+
+      /* Transmission d'un message à la tâche d'écoute */
+      l_result = mk_mail_post ( p_handler->listenerArea->mail, ( T_mkAddr ) &l_message, K_MK_STATE_READY, K_MK_TASK_WAIT_FOREVER );
+   }
+
+   /* Sinon */
+   else
+   {
+      /* Ne rien faire */
    }
 
    /* Retour */

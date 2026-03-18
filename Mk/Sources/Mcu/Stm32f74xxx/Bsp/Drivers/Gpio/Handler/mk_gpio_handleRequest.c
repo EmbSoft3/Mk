@@ -310,8 +310,9 @@ T_mkCode mk_gpio_handleRequest ( T_mkTask* p_task, T_mkGPIOHandler* p_handler, T
          /* Si la GPIO a été adressée avec un ID système */
          if ( ( p_message->port == K_MK_GPIO_SYSID ) && ( p_message->pinNumber < K_MK_GPIO_NUMBER_OF_PINS ) )
          {
-            /* On configure le numéro de port avec le bon identifiant */
+            /* On configure le numéro de port et le numéro de broche avec le bon identifiant */
             p_message->port = g_mkGPIOPinTable [ p_message->pinNumber ].port;
+            p_message->pinNumber = g_mkGPIOPinTable [ p_message->pinNumber ].pinNumber;
          }
 
          /* Sinon */
