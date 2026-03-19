@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -67,8 +67,8 @@ void mk_display_init ( void )
    /* Configuration et activation des interruptions */
    mk_display_enableLTDCRequest ( );
 
-   /* Initialisation des GPIOs du périphérique LTDC */
-   mk_display_initGPIO ( );
+   /* Initialisation du BSP  */
+   mk_display_bsp_init ( );
 
    /* Initialisation du périphérique LTDC */
    mk_display_initLTDC ( );

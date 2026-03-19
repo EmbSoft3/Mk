@@ -226,7 +226,7 @@
 #include "mk_display_parser_types.h"
 #include "mk_display_parser_private.h"
 #include "mk_display_request_constants.h"
-#include "mk_display_constants.h"
+#include "mk_display_bsp_constants.h"
 #include "mk_display_peripherals_constants.h"
 #include "mk_display_tasks_constants.h"
 #include "mk_display_types.h"

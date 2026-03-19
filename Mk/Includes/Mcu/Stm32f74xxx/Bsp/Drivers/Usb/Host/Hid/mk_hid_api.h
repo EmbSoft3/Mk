@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -117,7 +117,7 @@
 #include "mk_display_graphics_types.h"
 #include "mk_display_graphics.h"
 #include "mk_display_request_constants.h"
-#include "mk_display_constants.h"
+#include "mk_display_bsp_constants.h"
 #include "mk_display_tasks_constants.h"
 #include "mk_display_types.h"
 #include "mk_display_data.h"

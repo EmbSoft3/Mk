@@ -147,7 +147,7 @@
 #include "mk_display_bmp.h"
 #include "mk_display_vect2d.h"
 #include "mk_display_request_constants.h"
-#include "mk_display_constants.h"
+#include "mk_display_bsp_constants.h"
 #include "mk_display_tasks_constants.h"
 #include "mk_display_types.h"
 #include "mk_display_data.h"

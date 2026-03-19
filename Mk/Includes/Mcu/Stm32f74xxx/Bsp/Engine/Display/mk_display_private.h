@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -45,15 +45,6 @@
  */
 
 void mk_display_init ( void );
-
-/**
- * @fn void mk_display_initGPIO ( void );
- * @brief Cette fonction initialise les broches GPIO du périphérique LTDC.
- * @return Sans objet.
- *
- */
-
-void mk_display_initGPIO ( void );
 
 /**
  * @fn void mk_display_initLTDC ( void );

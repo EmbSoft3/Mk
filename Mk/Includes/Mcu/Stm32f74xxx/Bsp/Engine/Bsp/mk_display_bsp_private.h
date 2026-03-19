@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,37 +28,23 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_memory_api.h
-* @brief Ce fichier contient les directives 'include' utilisÃ©es.
-* @date 24 mars 2024
+* @file mk_display_bsp_constants.h
+* @brief Déclaration des constantes dédiées au BSP du module 'Display'.
+* @date 19/03/2026
 *
 */
 
-#ifndef MK_MEMORY_API_H
-#define MK_MEMORY_API_H
+#ifndef MK_DISPLAY_BSP_PRIVATE_H
+#define MK_DISPLAY_BSP_PRIVATE_H
 
 /**
+ * @fn void mk_display_bsp_init ( void );
+ * @brief Cette fonction initialise le BSP (broches GPIO) du périphérique LTDC.
+ * @return Sans objet.
  *
  */
 
-#include "mk_types.h"
-#include "mk_peripheral_fmc_constants.h"
-#include "mk_sync_types.h"
-#include "mk_pool_constants.h"
-#include "mk_pool_types.h"
-#include "mk_pool.h"
-#include "mk_memory_constants.h"
-#include "mk_display_bsp_constants.h"
-
-/**
- *
- */
-
-#include "mk_page_bsp_constants.h"
-#include "mk_page_constants.h"
-#include "mk_page_types.h"
-#include "mk_page_data.h"
-#include "mk_page.h"
+void mk_display_bsp_init ( void );
 
 /**
  *
