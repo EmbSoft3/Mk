@@ -60,177 +60,13 @@ static T_mkCode mk_termio_initEvent ( void )
  * @endinternal
  */
 
-static T_mkCode mk_termio_createSystemTermio ( void )
-{
-   /* Déclaration de la variable de retour */
-   T_mkCode l_result;
-
-   /* Création du dispatcher */
-   l_result = mk_termio_create ( K_MK_NULL, K_MK_TERMIO_DISPATCHER_ID, K_MK_TERMIO_DISPATCHER_PRIORITY,
-                                  mk_dispatcher_task, g_mkDispatcherStack, K_MK_DISPATCHER_STACK_SIZE );
-
-   /* Retour */
-   return ( l_result );
-}
-
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
-static T_mkCode mk_termio_createDriverTermio ( void )
-{
-   /* Déclaration de la variable de retour */
-   T_mkCode l_result = K_MK_OK;
-
-   /* Création du terminal MMC */
-   l_result = mk_termio_create ( K_MK_NULL, K_MK_TERMIO_MMC_ID, K_MK_TERMIO_TASK_PRIORITY,
-                                 mk_mmc_task, g_mkMMCStackAddr, K_MK_MMC_STACK_SIZE );
-
-   /* Si l'initialisation du terminal a réussi */
-   if ( l_result == K_MK_OK )
-   {
-      /* Création du terminal I2C */
-      l_result = mk_termio_create ( K_MK_NULL, K_MK_TERMIO_I2C1_ID, K_MK_TERMIO_TASK_PRIORITY,
-                                    mk_i2c_task, g_mkI2CStackAddr, K_MK_I2C_STACK_SIZE );
-
-      /* Si l'initialisation du terminal a réussi */
-      if ( l_result == K_MK_OK )
-      {
-         /* Création du terminal GPIO */
-         l_result = mk_termio_create ( K_MK_NULL, K_MK_TERMIO_GPIO_ID, K_MK_TERMIO_TASK_PRIORITY,
-                                        mk_gpio_task, g_mkGPIOStackAddr, K_MK_GPIO_STACK_SIZE );
-      }
-
-      /* Sinon */
-      else
-      {
-         /* Ne rien faire */
-      }
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Ne rien faire */
-   }
-
-   /* Retour */
-   return ( l_result );
-}
-
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
-static T_mkCode mk_termio_createUSBTermio ( void )
-{
-   /* Déclaration de la variable de retour */
-   T_mkCode l_result;
-
-   /* Création du terminal USB_OTGHS */
-   l_result = mk_termio_create ( K_MK_NULL, K_MK_TERMIO_HCD_OTGHS_ID, K_MK_TERMIO_TASK_PRIORITY,
-                                  mk_usbhs_taskDeviceMode, g_mkUSBHSDeviceStackAddr, K_MK_USBHS_DEVICE_STACK_SIZE );
-
-   /* Si l'initialisation du terminal a réussi */
-   if ( l_result == K_MK_OK )
-   {
-      /* Création du terminal USB_OTGFS */
-      l_result = mk_termio_create ( K_MK_NULL, K_MK_TERMIO_HCD_OTGFS_ID, K_MK_TERMIO_TASK_PRIORITY,
-                                     mk_usbfs_taskDeviceMode, g_mkUSBFSDeviceStackAddr, K_MK_USBFS_DEVICE_STACK_SIZE );
-
-      /* Si l'initialisation du terminal a réussi */
-      if ( l_result == K_MK_OK )
-      {
-         /* Création du terminal HID */
-         l_result = mk_termio_create ( K_MK_NULL, K_MK_TERMIO_HID_ID, K_MK_TERMIO_TASK_PRIORITY,
-                                        mk_hid_task, g_mkHIDStackAddr, K_MK_HID_STACK_SIZE );
-
-         /* Si l'initialisation du terminal a réussi */
-         if ( l_result == K_MK_OK )
-         {
-            /* Création du terminal MSC */
-            l_result = mk_termio_create ( K_MK_NULL, K_MK_TERMIO_MSC_ID, K_MK_TERMIO_TASK_PRIORITY,
-                                           mk_msc_task, g_mkMSCStackAddr, K_MK_MSC_STACK_SIZE );
-         }
-
-         /* Sinon */
-         else
-         {
-            /* Ne rien faire */
-         }
-      }
-
-      /* Sinon */
-      else
-      {
-         /* Ne rien faire */
-      }
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Ne rien faire */
-   }
-
-   /* Retour */
-   return ( l_result );
-}
-
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
-static T_mkCode mk_termio_createFileSystemTermio ( void )
-{
-   /* Déclaration de la variable de retour */
-   T_mkCode l_result = K_MK_OK;
-
-   /* Déclaration d'une variable de comptage */
-   uint32_t l_counter = 0;
-
-   /* Pour le nombre de terminal à initialiser */
-   for ( l_counter = 0 ; ( l_counter < ( K_MK_FILE_NUMBER_OF_TASKS - 1 ) ) && ( l_result == K_MK_OK ) ; l_counter++ )
-   {
-      /* Création des terminaux en relation avec le système de fichiers */
-      l_result = mk_termio_create ( K_MK_NULL, K_MK_TERMIO_FILESYSTEM_ID + ( l_counter), K_MK_TERMIO_TASK_PRIORITY,
-                                     mk_file_task, ( uint32_t* ) &g_mkFileStackAddr [ l_counter ] [ 0 ], K_MK_FILE_STACK_SIZE  );
-   }
-
-   /* Si aucune erreur ne s'est produite */
-   if ( l_result == K_MK_OK )
-   {
-      /* Création du terminal du système de fichiers partagés */
-      l_result = mk_termio_create ( K_MK_NULL, K_MK_TERMIO_FILESYSTEM_ID + ( l_counter), K_MK_TERMIO_TASK_PRIORITY,
-                                     mk_file_taskShared, ( uint32_t* ) &g_mkFileStackAddr [ l_counter ] [ 0 ], K_MK_FILE_STACK_SIZE );
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Ne rien faire */
-   }
-
-   /* Retour */
-   return ( l_result );
-}
-
-/**
- * @internal
- * @brief
- * @endinternal
- */
-
 T_mkCode mk_termio_init ( void )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
+
+   /* Déclaration d'une variable de comptage */
+   uint32_t l_counter = 0;
 
    /* Initialisation du gestionnaire de référencement des terminaux. */
    mk_termio_initHandler ( );
@@ -245,43 +81,15 @@ T_mkCode mk_termio_init ( void )
       /* terminaux au démarrage. */
       l_result = mk_termio_initEvent ( );
 
-      /* Si aucune erreur ne s'est produite */
-      if ( l_result == K_MK_OK )
+      /* Pour le nombre de terminal à initialiser */
+      for ( l_counter = 0; ( l_counter < K_MK_TERMIO_NUMBER ) && ( l_result == K_MK_OK ); l_counter++ )
       {
-         /* Création des terminaux système (dispatcher) */
-         l_result = mk_termio_createSystemTermio ( );
-
-         /* Si l'initialisation a réussi */
-         if ( l_result == K_MK_OK )
+         /* Si le terminal doit être initialisé */
+         if ( g_mkTermioCtrlBlock [ l_counter ].identifier != K_MK_TERMIO_NO )
          {
-            /* Création des terminaux USB */
-            l_result = mk_termio_createUSBTermio ( );
-
-            /* Si l'initialisation a réussi */
-            if ( l_result == K_MK_OK )
-            {
-               /* Création des terminaux I2C, MMC, ...  */
-               l_result = mk_termio_createDriverTermio ( );
-
-               /* Si l'initialisation a réussi */
-               if ( l_result == K_MK_OK )
-               {
-                  /* Création des terminaux dédiés au système de fichiers */
-                  l_result = mk_termio_createFileSystemTermio ( );
-               }
-
-               /* Sinon */
-               else
-               {
-                  /* Ne rien faire */
-               }
-            }
-
-            /* Sinon */
-            else
-            {
-               /* Ne rien faire */
-            }
+            /* Création du terminal du système de fichiers partagés */
+            l_result |= mk_termio_create ( K_MK_NULL, g_mkTermioCtrlBlock [ l_counter ].identifier, g_mkTermioCtrlBlock [ l_counter ].priority,
+               g_mkTermioCtrlBlock [ l_counter ].function, g_mkTermioCtrlBlock [ l_counter ].stackAddr, g_mkTermioCtrlBlock [ l_counter ].stackSize );
          }
 
          /* Sinon */
@@ -289,12 +97,6 @@ T_mkCode mk_termio_init ( void )
          {
             /* Ne rien faire */
          }
-      }
-
-      /* Sinon */
-      else
-      {
-         /* Ne rien faire */
       }
    }
 

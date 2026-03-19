@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -89,6 +89,22 @@ struct T_mkTermioHandler
 };
 
 /**
+ * @struct T_mkTermioHandler
+ * @brief Déclaration de la structure T_mkTermioHandler.
+ *
+ */
+
+typedef struct T_mkTermioCtrlBlock T_mkTermioCtrlBlock;
+struct T_mkTermioCtrlBlock
+{
+   uint32_t identifier;                                                          /*!< Ce membre contient l'identifiant de la tâche du terminal. */
+   uint32_t priority;                                                            /*!< Ce membre contient la priorité de la tâche du terminal. */
+   T_mkAddress function;                                                         /*!< Ce membre contient l'adresse de la routine principale du terminal. */
+   uint32_t* stackAddr;                                                          /*!< Ce membre contient l'adresse de la stack du terminal. */
+   uint32_t stackSize;                                                           /*!< Ce membre contient la taille de la stack du terminal [en multiple de mots 32bits].*/
+};
+
+/**
  * @struct T_mkTermioSync
  * @brief Déclaration de la structure T_mkTermioSync.
  *
@@ -125,11 +141,12 @@ typedef enum T_mkTermioFlag
 /**
  * @enum T_mkTermioIdentifier
  * @brief Déclaration de l'énumération T_mkTermioIdentifier.
- *
+ * 
  */
 
 typedef enum T_mkTermioIdentifier
 {
+   K_MK_TERMIO_NO            = 0x0000,
    K_MK_TERMIO_DISPATCHER_ID = 0x0100,                                           /*!< Identifiant de la tâche du terminal DISPATCHER. */
    K_MK_TERMIO_HCD_OTGHS_ID  = 0x0200,                                           /*!< Identifiant de la tâche du terminal USB_OTGHS. */
    K_MK_TERMIO_HCD_OTGFS_ID  = 0x0201,                                           /*!< Identifiant de la tâche du terminal USB_OTGFS. */

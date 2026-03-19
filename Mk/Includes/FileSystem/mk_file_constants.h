@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -51,7 +51,8 @@
 /**
  * @def K_MK_FILE_NUMBER_OF_TASKS
  * @brief Définition du nombre de tâches du systèmes de fichiers.
- * @note Au minimum 2 tâches (1 partagé et 1 non partagé)
+ * @note Au minimum 2 tâches (1 partagé et 1 non partagé). Modifier la donnée \ref g_mkTermioCtrlBlock
+ *       si cette constante est modifiée.
  */
 
 #define K_MK_FILE_NUMBER_OF_TASKS 4

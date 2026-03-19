@@ -192,6 +192,7 @@
 #include "mk_termio_constants.h"
 #include "mk_termio_types.h"
 #include "mk_termio_data.h"
+#include "mk_termio_bsp_data.h"
 #include "mk_termio_private.h"
 #include "mk_termio.h"
 
