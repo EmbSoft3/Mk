@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,14 +28,17 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_i2c_gpio_constants.h
-* @brief Déclaration des constantes dédiées aux broches GPIO des périphériques I2C.
-* @date 28 nov. 2020
+* @file mk_i2c_bsp_constants.h
+* @brief Déclaration des constantes dédiées aux broches BSP des périphériques I2C.
+* @date 19 mars 2026
 *
 */
 
-#ifndef MK_I2C_GPIO_CONSTANTS_H
-#define MK_I2C_GPIO_CONSTANTS_H
+#ifndef MK_I2C_BSP_CONSTANTS_H
+#define MK_I2C_BSP_CONSTANTS_H
+
+/* Constantes dédiées à la carte STM32F746G-Eval2 ou MK_BOARD_DISCO_REV_C */
+#if ( defined ( MK_BOARD_EVAL2 ) || defined ( MK_BOARD_DISCO_REV_C ) )
 
 /**
  * @def K_MK_I2C1_GPIO_CLOCK_ADDR
@@ -216,6 +219,11 @@
  */
 
 #define K_MK_I2C4_GPIO_DATA_MULTIPLEXER K_GPIO_AF4
+
+ /* Sinon erreur de compilation */
+#else
+#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
+#endif
 
 /**
  *

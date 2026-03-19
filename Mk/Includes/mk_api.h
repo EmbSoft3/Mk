@@ -275,7 +275,7 @@
 
 #include "mk_i2c_constants.h"
 #include "mk_i2c_right_constants.h"
-#include "mk_i2c_gpio_constants.h"
+#include "mk_i2c_bsp_constants.h"
 #include "mk_i2c_device_constants.h"
 #include "mk_i2c_device_types.h"
 #include "mk_i2c_list_types.h"

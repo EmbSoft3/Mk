@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -94,7 +94,7 @@
 #include "mk_dma_pipe_private.h"
 #include "mk_i2c_constants.h"
 #include "mk_i2c_right_constants.h"
-#include "mk_i2c_gpio_constants.h"
+#include "mk_i2c_bsp_constants.h"
 #include "mk_i2c_device_constants.h"
 #include "mk_i2c_device_types.h"
 #include "mk_i2c_list_types.h"
