@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,17 +28,17 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi.h
-* @brief Déclaration des fonctions publiques dédiées à la mémoire QSPI.
+* @file mk_qspi_n25q512a.h
+* @brief Déclaration des fonctions publiques dédiées à la mémoire QSPI N25Q512A.
 * @date 9 août 2024
 *
 */
 
-#ifndef MK_QSPI_H
-#define MK_QSPI_H
+#ifndef MK_QSPI_N25Q512A_H
+#define MK_QSPI_N25Q512A_H
 
 /**
- * @fn T_mkCode mk_qspi_getMode ( uint32_t* p_mode );
+ * @fn T_mkCode mk_qspi_n25q512a_getMode ( uint32_t* p_mode );
  * @brief Cette fonction retourne le mode de fonctionnement de la mémoire QSPI.
  *
  * @param[out] p_mode Ce paramètre contient le mode de fonctionnement de la mémoire QSPI.
@@ -51,10 +51,10 @@
  *         \li \ref K_MK_ERROR_NOT_AVAILABLE : la récupération du mode de fonctionnement a échoué car le bus QSPI n'est pas disponible.
  */
 
-T_mkCode mk_qspi_getMode ( uint32_t* p_mode );
+T_mkCode mk_qspi_n25q512a_getMode ( uint32_t* p_mode );
 
 /**
- * @fn T_mkCode mk_qspi_setDummyCycle ( uint32_t p_mode, uint32_t p_dummyCycles );
+ * @fn T_mkCode mk_qspi_n25q512a_setDummyCycle ( uint32_t p_mode, uint32_t p_dummyCycles );
  * @brief Cette fonction configure le nombre de cycles d'horloge insérés après chaque instruction de type 'FAST READ'.
  *
  * @param[in] p_mode        Ce paramètre contient le mode de fonctionnement de la mémoire QSPI.
@@ -68,10 +68,10 @@ T_mkCode mk_qspi_getMode ( uint32_t* p_mode );
  *         \li \ref K_MK_ERROR_NOT_AVAILABLE : la configuration a échoué car le bus QSPI n'est pas disponible.
  */
 
-T_mkCode mk_qspi_setDummyCycle ( uint32_t p_mode, uint32_t p_dummyCycles );
+T_mkCode mk_qspi_n25q512a_setDummyCycle ( uint32_t p_mode, uint32_t p_dummyCycles );
 
 /**
- * @fn T_mkCode mk_qspi_enableExtendedMode ( uint32_t p_mode );
+ * @fn T_mkCode mk_qspi_n25q512a_enableExtendedMode ( uint32_t p_mode );
  * @brief Cette fonction active le mode d'adressage étendu (32bits).
  *
  * @param[in] p_mode Ce paramètre contient le mode de fonctionnement de la mémoire QSPI.
@@ -84,10 +84,10 @@ T_mkCode mk_qspi_setDummyCycle ( uint32_t p_mode, uint32_t p_dummyCycles );
  *         \li \ref K_MK_ERROR_NOT_AVAILABLE : l'activation du mode étendu a échoué car le bus QSPI n'est pas disponible.
  */
 
-T_mkCode mk_qspi_enableExtendedMode ( uint32_t p_mode );
+T_mkCode mk_qspi_n25q512a_enableExtendedMode ( uint32_t p_mode );
 
 /**
- * @fn T_mkCode mk_qspi_disableExtendedMode ( uint32_t p_mode );
+ * @fn T_mkCode mk_qspi_n25q512a_disableExtendedMode ( uint32_t p_mode );
  * @brief Cette fonction désactive le mode d'adressage étendu (32bits).
  *
  * @param[in] p_mode Ce paramètre contient le mode de fonctionnement de la mémoire QSPI.
@@ -100,12 +100,12 @@ T_mkCode mk_qspi_enableExtendedMode ( uint32_t p_mode );
  *         \li \ref K_MK_ERROR_NOT_AVAILABLE : la désactivation du mode étendu a échoué car le bus QSPI n'est pas disponible.
  */
 
-T_mkCode mk_qspi_disableExtendedMode ( uint32_t p_mode );
+T_mkCode mk_qspi_n25q512a_disableExtendedMode ( uint32_t p_mode );
 
 /**
- * @fn T_mkCode mk_qspi_erase ( uint32_t p_mode, uint32_t p_addr );
+ * @fn T_mkCode mk_qspi_n25q512a_erase ( uint32_t p_mode, uint32_t p_addr );
  * @brief Cette fonction efface un secteur de la mémoire QSPI. La taille et le nombre de secteurs sont définies par
- *        les constantes \ref K_MK_MICRON_N25Q512A_SECTOR_SIZE et \ref K_MK_MICRON_N25Q512A_SECTOR_NUMBER.
+ *        les constantes \ref K_MK_QSPI_N25Q512A_SECTOR_SIZE et \ref K_MK_QSPI_N25Q512A_SECTOR_NUMBER.
  *
  * @param[in] p_mode Ce paramètre contient le mode de fonctionnement de la mémoire QSPI.
  *                   Une des constante suivante peut être utilisée :
@@ -118,10 +118,10 @@ T_mkCode mk_qspi_disableExtendedMode ( uint32_t p_mode );
  *         \li \ref K_MK_ERROR_NOT_AVAILABLE : l'effacement du secteur a échoué car le bus QSPI n'est pas disponible.
  */
 
-T_mkCode mk_qspi_erase ( uint32_t p_mode, uint32_t p_addr );
+T_mkCode mk_qspi_n25q512a_erase ( uint32_t p_mode, uint32_t p_addr );
 
 /**
- * @fn T_mkCode mk_qspi_eraseChip ( uint32_t p_mode );
+ * @fn T_mkCode mk_qspi_n25q512a_eraseChip ( uint32_t p_mode );
  * @brief Cette fonction efface l'intégralité de la mémoire QSPI.
  *
  * @param[in] p_mode Ce paramètre contient le mode de fonctionnement de la mémoire QSPI.
@@ -134,19 +134,19 @@ T_mkCode mk_qspi_erase ( uint32_t p_mode, uint32_t p_addr );
  *         \li \ref K_MK_ERROR_NOT_AVAILABLE : l'effacement de la mémoire a échoué car le bus QSPI n'est pas disponible.
  */
 
-T_mkCode mk_qspi_eraseChip ( uint32_t p_mode );
+T_mkCode mk_qspi_n25q512a_eraseChip ( uint32_t p_mode );
 
 /**
- * @fn T_mkCode mk_qspi_writePage ( uint32_t p_mode, uint32_t p_addr, uint8_t* p_buf, uint16_t p_bufLength );
+ * @fn T_mkCode mk_qspi_n25q512a_writePage ( uint32_t p_mode, uint32_t p_addr, uint8_t* p_buf, uint16_t p_bufLength );
  * @brief Cette fonction écrit une page de la mémoire QSPI. Celle-ci doit préalablement avoir été effacée.
- *        La taille d'une page est définie par la constante \ref K_MK_MICRON_N25Q512A_PAGE_SIZE.
+ *        La taille d'une page est définie par la constante \ref K_MK_QSPI_N25Q512A_PAGE_SIZE.
  *
  * @param[in] p_mode      Ce paramètre contient le mode de fonctionnement de la mémoire QSPI.
  *                        Une des constante suivante peut être utilisée :
  *                        \ref K_MK_QSPI_MODE_SINGLE, \ref K_MK_QSPI_MODE_DUAL ou \ref K_MK_QSPI_MODE_QUAD
  * @param[in] p_addr      Ce paramètre contient l'adresse de la page à écrire.
  * @param[in] p_buf       Ce paramètre contient l'adresse du buffer de données à écrire dans la page.
- * @param[in] p_bufLength Ce paramètre contient la taille du buffer de données. Il évolue de [1 à \ref K_MK_MICRON_N25Q512A_PAGE_SIZE].
+ * @param[in] p_bufLength Ce paramètre contient la taille du buffer de données. Il évolue de [1 à \ref K_MK_QSPI_N25Q512A_PAGE_SIZE].
  *
  * @return Cette fonction retourne une des valeurs suivantes :
  *         \li \ref K_MK_OK                  : l'écriture de la page mémoire a réussi.
@@ -155,7 +155,7 @@ T_mkCode mk_qspi_eraseChip ( uint32_t p_mode );
  *         \li \ref K_MK_ERROR_NOT_AVAILABLE : l'écriture de la page mémoire a échoué car le bus QSPI n'est pas disponible.
  */
 
-T_mkCode mk_qspi_writePage ( uint32_t p_mode, uint32_t p_addr, uint8_t* p_buf, uint16_t p_bufLength );
+T_mkCode mk_qspi_n25q512a_writePage ( uint32_t p_mode, uint32_t p_addr, uint8_t* p_buf, uint16_t p_bufLength );
 
 /**
  *

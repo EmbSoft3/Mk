@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,25 +28,25 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_micron_n25q512a_types.h
-* @brief Déclaration des types dédiés à la mémoire MICRON N25Q512A.
+* @file mk_qspi_n25q512a_types.h
+* @brief Déclaration des types dédiés à la mémoire QSPI N25Q512A.
 * @date 5 mai 2020
 *
 * @todo Ecrire la documentation.
 *
 */
 
-#ifndef MK_MICRON_N25Q512A_H
-#define MK_MICRON_N25Q512A_H
+#ifndef MK_MICRON_N25Q512A_TYPES_H
+#define MK_MICRON_N25Q512A_TYPES_H
 
 /**
- * @struct T_MicronN25Q512A_StatusField
- * @brief Déclaration de la structure T_MicronN25Q512A_StatusField.
+ * @struct T_mkN25Q512AStatusField
+ * @brief Déclaration de la structure T_mkN25Q512AStatusField.
  *
  */
 
-typedef struct T_MicronN25Q512A_StatusField T_MicronN25Q512A_StatusField;
-struct T_MicronN25Q512A_StatusField
+typedef struct T_mkN25Q512AStatusField T_mkN25Q512AStatusField;
+struct T_mkN25Q512AStatusField
 {
    unsigned_t writeInProgress:1;
    unsigned_t writeEnableLatch:1;
@@ -63,10 +63,10 @@ struct T_MicronN25Q512A_StatusField
  *
  */
 
-typedef union T_MicronN25Q512A_StatusRegister T_MicronN25Q512A_StatusRegister;
-union T_MicronN25Q512A_StatusRegister
+typedef union T_mkN25Q512AStatusRegister T_mkN25Q512AStatusRegister;
+union T_mkN25Q512AStatusRegister
 {
-   T_MicronN25Q512A_StatusField field;
+   T_mkN25Q512AStatusField field;
    uint32_t word;
 };
 
@@ -75,13 +75,13 @@ union T_MicronN25Q512A_StatusRegister
  */
 
 /**
- * @struct T_MicronN25Q512A_NVConfigurationField
- * @brief Déclaration de la structure T_MicronN25Q512A_NVConfigurationField.
+ * @struct T_mkN25Q512ANonVolatileConfigurationField
+ * @brief Déclaration de la structure T_mkN25Q512ANonVolatileConfigurationField.
  *
  */
 
-typedef struct T_MicronN25Q512A_NVConfigurationField T_MicronN25Q512A_NVConfigurationField;
-struct T_MicronN25Q512A_NVConfigurationField
+typedef struct T_mkN25Q512ANonVolatileConfigurationField T_mkN25Q512ANonVolatileConfigurationField;
+struct T_mkN25Q512ANonVolatileConfigurationField
 {
    unsigned_t addressBytes:1;
    unsigned_t segmentSelect:1;
@@ -96,16 +96,16 @@ struct T_MicronN25Q512A_NVConfigurationField
 };
 
 /**
- * @struct T_MicronN25Q512A_NVConfigurationRegister
- * @brief Déclaration de la structure T_MicronN25Q512A_NVConfigurationRegister.
+ * @struct T_mkN25Q512ANonVolatileConfigurationRegister
+ * @brief Déclaration de la structure T_mkN25Q512ANonVolatileConfigurationRegister.
  * @note Ce registre est de type 'Non Volatile'.
  *
  */
 
-typedef union T_MicronN25Q512A_NVConfigurationRegister T_MicronN25Q512A_NVConfigurationRegister;
-union T_MicronN25Q512A_NVConfigurationRegister
+typedef union T_mkN25Q512ANonVolatileConfigurationRegister T_mkN25Q512ANonVolatileConfigurationRegister;
+union T_mkN25Q512ANonVolatileConfigurationRegister
 {
-   T_MicronN25Q512A_NVConfigurationField field;
+   T_mkN25Q512ANonVolatileConfigurationField field;
    uint32_t word;
 };
 
@@ -119,8 +119,8 @@ union T_MicronN25Q512A_NVConfigurationRegister
  *
  */
 
-typedef struct T_MicronN25Q512A_ConfigurationField T_MicronN25Q512A_ConfigurationField;
-struct T_MicronN25Q512A_ConfigurationField
+typedef struct T_mkN25Q512AConfigurationField T_mkN25Q512AConfigurationField;
+struct T_mkN25Q512AConfigurationField
 {
    unsigned_t wrap:2;
    unsigned_t reserved:1;
@@ -130,16 +130,16 @@ struct T_MicronN25Q512A_ConfigurationField
 };
 
 /**
- * @struct T_MicronN25Q512A_ConfigurationRegister
- * @brief Déclaration de la structure T_MicronN25Q512A_ConfigurationRegister.
+ * @struct T_mkN25Q512AConfigurationRegister
+ * @brief Déclaration de la structure T_mkN25Q512AConfigurationRegister.
  * @note Ce registre est de type 'Volatile'.
  *
  */
 
-typedef union T_MicronN25Q512A_ConfigurationRegister T_MicronN25Q512A_ConfigurationRegister;
-union T_MicronN25Q512A_ConfigurationRegister
+typedef union T_mkN25Q512AConfigurationRegister T_mkN25Q512AConfigurationRegister;
+union T_mkN25Q512AConfigurationRegister
 {
-   T_MicronN25Q512A_ConfigurationField field;
+   T_mkN25Q512AConfigurationField field;
    uint32_t word;
 };
 
@@ -148,13 +148,13 @@ union T_MicronN25Q512A_ConfigurationRegister
  */
 
 /**
- * @struct T_MicronN25Q512ANVConfigurationField
- * @brief Déclaration de la structure T_MicronN25Q512ANVConfigurationField.
+ * @struct T_mkN25Q512AEnhancedConfigurationField
+ * @brief Déclaration de la structure T_mkN25Q512AEnhancedConfigurationField.
  *
  */
 
-typedef struct T_MicronN25Q512A_EnhancedConfigurationField T_MicronN25Q512A_EnhancedConfigurationField;
-struct T_MicronN25Q512A_EnhancedConfigurationField
+typedef struct T_mkN25Q512AEnhancedConfigurationField T_mkN25Q512AEnhancedConfigurationField;
+struct T_mkN25Q512AEnhancedConfigurationField
 {
    unsigned_t outputDriverStrength:3;
    unsigned_t vppAccelerator:1;
@@ -166,16 +166,16 @@ struct T_MicronN25Q512A_EnhancedConfigurationField
 };
 
 /**
- * @struct T_MicronN25Q512A_EnhancedConfigurationRegister
- * @brief Déclaration de la structure T_MicronN25Q512A_EnhancedConfigurationRegister.
+ * @struct T_mkN25Q512AEnhancedConfigurationRegister
+ * @brief Déclaration de la structure T_mkN25Q512AEnhancedConfigurationRegister.
  * @note Ce registre est de type 'Volatile'.
  *
  */
 
-typedef union T_MicronN25Q512A_EnhancedConfigurationRegister T_MicronN25Q512A_EnhancedConfigurationRegister;
-union T_MicronN25Q512A_EnhancedConfigurationRegister
+typedef union T_mkN25Q512AEnhancedConfigurationRegister T_mkN25Q512AEnhancedConfigurationRegister;
+union T_mkN25Q512AEnhancedConfigurationRegister
 {
-   T_MicronN25Q512A_EnhancedConfigurationField field;
+   T_mkN25Q512AEnhancedConfigurationField field;
    uint32_t word;
 };
 

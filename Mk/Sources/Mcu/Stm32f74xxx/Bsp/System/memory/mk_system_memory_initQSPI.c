@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -51,13 +51,13 @@ static T_mkCode mk_system_memory_enableSingleModeNV ( uint32_t p_mode )
    uint32_t l_counter = 0;
 
    /* Déclaration d'un registre de statut */
-   T_MicronN25Q512A_StatusRegister l_statusRegister = { 0 };
+   T_mkN25Q512AStatusRegister l_statusRegister = { 0 };
 
    /* Déclaration d'un registre de configuration de type 'Enhanced' */
-   T_MicronN25Q512A_NVConfigurationRegister l_nvConfigurationRegister = { 0 };
+   T_mkN25Q512ANonVolatileConfigurationRegister l_nvConfigurationRegister = { 0 };
 
    /* Lecture du registre de configuration non volatile */
-   l_result = mk_qspi_readRegister ( &l_nvConfigurationRegister, K_MK_MICRON_N25Q512A_OPCODE_READ_NV_CONFIGURATION, 2, p_mode );
+   l_result = mk_qspi_n25q512a_readRegister ( &l_nvConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_NV_CONFIGURATION, 2, p_mode );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
@@ -66,7 +66,7 @@ static T_mkCode mk_system_memory_enableSingleModeNV ( uint32_t p_mode )
       if ( ( l_nvConfigurationRegister.field.quadIO == 0 ) || ( l_nvConfigurationRegister.field.dualIO == 0 ) )
       {
          /* Autorisation d'une écriture */
-         l_result = mk_qspi_writeInstruction ( K_MK_MICRON_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
+         l_result = mk_qspi_n25q512a_writeInstruction ( K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
 
          /* Si aucune erreur ne s'est produite */
          if ( l_result == K_MK_OK )
@@ -76,7 +76,7 @@ static T_mkCode mk_system_memory_enableSingleModeNV ( uint32_t p_mode )
             l_nvConfigurationRegister.field.dualIO = 1;
 
             /* Ecriture du registre de configuration */
-            l_result = mk_qspi_writeRegister ( &l_nvConfigurationRegister, K_MK_MICRON_N25Q512A_OPCODE_WRITE_NV_CONFIGURATION, 2, p_mode );
+            l_result = mk_qspi_n25q512a_writeRegister ( &l_nvConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_WRITE_NV_CONFIGURATION, 2, p_mode );
 
             /* Si l'opération a réussi */
             if ( l_result == K_MK_OK )
@@ -85,7 +85,7 @@ static T_mkCode mk_system_memory_enableSingleModeNV ( uint32_t p_mode )
                do
                {
                   /* Lecture du registre de statut pour savoir si l'écriture est terminée */
-                  l_result = mk_qspi_readRegister ( &l_statusRegister, K_MK_MICRON_N25Q512A_OPCODE_READ_STATUS, 1, p_mode );
+                  l_result = mk_qspi_n25q512a_readRegister ( &l_statusRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_STATUS, 1, p_mode );
 
                   /* Attente 1ms */
                   mk_utils_waitus ( 1000 );
@@ -97,7 +97,7 @@ static T_mkCode mk_system_memory_enableSingleModeNV ( uint32_t p_mode )
                } while ( ( l_statusRegister.field.writeInProgress == 1 ) && ( l_counter < 25 ) );
 
                /* Vérification de la nouvelle valeur du registre */
-               l_result = mk_qspi_readRegister ( &l_nvConfigurationRegister, K_MK_MICRON_N25Q512A_OPCODE_READ_NV_CONFIGURATION, 2, p_mode );
+               l_result = mk_qspi_n25q512a_readRegister ( &l_nvConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_NV_CONFIGURATION, 2, p_mode );
 
                /* Si le mode 1 fils n'est pas actif */
                if ( ( l_nvConfigurationRegister.field.quadIO != 1 ) || ( l_nvConfigurationRegister.field.dualIO != 1 ) )
@@ -159,13 +159,13 @@ static uint32_t mk_system_memory_enableQuadModeNV ( uint32_t p_mode )
    uint32_t l_counter = 0;
 
    /* Déclaration d'un registre de statut */
-   T_MicronN25Q512A_StatusRegister l_statusRegister = { 0 };
+   T_mkN25Q512AStatusRegister l_statusRegister = { 0 };
 
    /* Déclaration d'un registre de configuration de type 'Enhanced' */
-   T_MicronN25Q512A_NVConfigurationRegister l_nvConfigurationRegister = { 0 };
+   T_mkN25Q512ANonVolatileConfigurationRegister l_nvConfigurationRegister = { 0 };
 
    /* Lecture du registre de configuration non volatile */
-   l_result = mk_qspi_readRegister ( &l_nvConfigurationRegister, K_MK_MICRON_N25Q512A_OPCODE_READ_NV_CONFIGURATION, 2, p_mode );
+   l_result = mk_qspi_n25q512a_readRegister ( &l_nvConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_NV_CONFIGURATION, 2, p_mode );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
@@ -174,7 +174,7 @@ static uint32_t mk_system_memory_enableQuadModeNV ( uint32_t p_mode )
       if ( ( l_nvConfigurationRegister.field.quadIO == 1 ) || ( l_nvConfigurationRegister.field.dualIO == 0 ) )
       {
          /* Autorisation d'une écriture */
-         l_result = mk_qspi_writeInstruction ( K_MK_MICRON_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
+         l_result = mk_qspi_n25q512a_writeInstruction ( K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
 
          /* Si aucune erreur ne s'est produite */
          if ( l_result == K_MK_OK )
@@ -184,7 +184,7 @@ static uint32_t mk_system_memory_enableQuadModeNV ( uint32_t p_mode )
             l_nvConfigurationRegister.field.dualIO = 1;
 
             /* Ecriture du registre de configuration */
-            l_result = mk_qspi_writeRegister ( &l_nvConfigurationRegister, K_MK_MICRON_N25Q512A_OPCODE_WRITE_NV_CONFIGURATION, 2, p_mode );
+            l_result = mk_qspi_n25q512a_writeRegister ( &l_nvConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_WRITE_NV_CONFIGURATION, 2, p_mode );
 
             /* Si l'opération a réussi */
             if ( l_result == K_MK_OK )
@@ -193,7 +193,7 @@ static uint32_t mk_system_memory_enableQuadModeNV ( uint32_t p_mode )
                do
                {
                   /* Lecture du registre de statut pour savoir si l'écriture est terminée */
-                  l_result = mk_qspi_readRegister ( &l_statusRegister, K_MK_MICRON_N25Q512A_OPCODE_READ_STATUS, 1, p_mode );
+                  l_result = mk_qspi_n25q512a_readRegister ( &l_statusRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_STATUS, 1, p_mode );
 
                   /* Attente 1ms (100 µs min) */
                   mk_utils_waitus ( 1000 );
@@ -205,7 +205,7 @@ static uint32_t mk_system_memory_enableQuadModeNV ( uint32_t p_mode )
                } while ( ( l_statusRegister.field.writeInProgress == 1 ) && ( l_counter < 25 ) );
 
                /* Vérification de la nouvelle valeur du registre */
-               l_result = mk_qspi_readRegister ( &l_nvConfigurationRegister, K_MK_MICRON_N25Q512A_OPCODE_READ_NV_CONFIGURATION, 2, p_mode );
+               l_result = mk_qspi_n25q512a_readRegister ( &l_nvConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_NV_CONFIGURATION, 2, p_mode );
 
                /* Si le mode 4 fils n'est pas actif */
                if ( ( l_nvConfigurationRegister.field.quadIO != 0 ) || ( l_nvConfigurationRegister.field.dualIO != 1 ) )
@@ -264,10 +264,10 @@ static T_mkCode mk_system_memory_enableSingleMode ( uint32_t p_mode )
    T_mkCode l_result;
 
    /* Déclaration d'un registre de configuration de type 'Enhanced' */
-   T_MicronN25Q512A_EnhancedConfigurationRegister l_enhancedConfigurationRegister = { 0 };
+   T_mkN25Q512AEnhancedConfigurationRegister l_enhancedConfigurationRegister = { 0 };
 
    /* Lecture du registre de configuration non volatile */
-   l_result = mk_qspi_readRegister ( &l_enhancedConfigurationRegister, K_MK_MICRON_N25Q512A_OPCODE_READ_ENHANCED_CONFIGURATION, 1, p_mode );
+   l_result = mk_qspi_n25q512a_readRegister ( &l_enhancedConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_ENHANCED_CONFIGURATION, 1, p_mode );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
@@ -276,7 +276,7 @@ static T_mkCode mk_system_memory_enableSingleMode ( uint32_t p_mode )
       if ( ( l_enhancedConfigurationRegister.field.quadIO == 0 ) || ( l_enhancedConfigurationRegister.field.dualIO == 0 ) )
       {
          /* Autorisation d'une écriture */
-         l_result = mk_qspi_writeInstruction ( K_MK_MICRON_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
+         l_result = mk_qspi_n25q512a_writeInstruction ( K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
 
          /* Si aucune erreur ne s'est produite */
          if ( l_result == K_MK_OK )
@@ -286,14 +286,14 @@ static T_mkCode mk_system_memory_enableSingleMode ( uint32_t p_mode )
             l_enhancedConfigurationRegister.field.dualIO = 1;
 
             /* Ecriture du registre de configuration */
-            l_result = mk_qspi_writeRegister ( &l_enhancedConfigurationRegister, K_MK_MICRON_N25Q512A_OPCODE_WRITE_ENHANCED_CONFIGURATION, 1, p_mode );
+            l_result = mk_qspi_n25q512a_writeRegister ( &l_enhancedConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENHANCED_CONFIGURATION, 1, p_mode );
 
             /* Si l'opération a réussi */
             if ( l_result == K_MK_OK )
             {
                /* Vérification de la nouvelle valeur du registre */
                /* Si la commande a correctement été exécutée, la lecture doit être réalisée en mode 1 fil */
-               l_result = mk_qspi_readRegister ( &l_enhancedConfigurationRegister, K_MK_MICRON_N25Q512A_OPCODE_READ_ENHANCED_CONFIGURATION, 1, K_MK_QSPI_MODE_SINGLE );
+               l_result = mk_qspi_n25q512a_readRegister ( &l_enhancedConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_ENHANCED_CONFIGURATION, 1, K_MK_QSPI_MODE_SINGLE );
 
                /* Si le mode 1 fils n'est pas actif */
                if ( ( l_enhancedConfigurationRegister.field.quadIO != 1 ) || ( l_enhancedConfigurationRegister.field.dualIO != 1 ) )
@@ -352,10 +352,10 @@ static T_mkCode mk_system_memory_enableQuadMode ( uint32_t p_mode )
    T_mkCode l_result;
 
    /* Déclaration d'un registre de configuration de type 'Enhanced' */
-   T_MicronN25Q512A_EnhancedConfigurationRegister l_enhancedConfigurationRegister = { 0 };
+   T_mkN25Q512AEnhancedConfigurationRegister l_enhancedConfigurationRegister = { 0 };
 
    /* Lecture du registre de configuration non volatile */
-   l_result = mk_qspi_readRegister ( &l_enhancedConfigurationRegister, K_MK_MICRON_N25Q512A_OPCODE_READ_ENHANCED_CONFIGURATION, 1, p_mode );
+   l_result = mk_qspi_n25q512a_readRegister ( &l_enhancedConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_ENHANCED_CONFIGURATION, 1, p_mode );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
@@ -364,7 +364,7 @@ static T_mkCode mk_system_memory_enableQuadMode ( uint32_t p_mode )
       if ( ( l_enhancedConfigurationRegister.field.quadIO == 1 ) || ( l_enhancedConfigurationRegister.field.dualIO == 0 ) )
       {
          /* Autorisation d'une écriture */
-         l_result = mk_qspi_writeInstruction ( K_MK_MICRON_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
+         l_result = mk_qspi_n25q512a_writeInstruction ( K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
 
          /* Si aucune erreur ne s'est produite */
          if ( l_result == K_MK_OK )
@@ -374,14 +374,14 @@ static T_mkCode mk_system_memory_enableQuadMode ( uint32_t p_mode )
             l_enhancedConfigurationRegister.field.dualIO = 1;
 
             /* Ecriture du registre de configuration */
-            l_result = mk_qspi_writeRegister ( &l_enhancedConfigurationRegister, K_MK_MICRON_N25Q512A_OPCODE_WRITE_ENHANCED_CONFIGURATION, 1, p_mode );
+            l_result = mk_qspi_n25q512a_writeRegister ( &l_enhancedConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENHANCED_CONFIGURATION, 1, p_mode );
 
             /* Si l'opération a réussi */
             if ( l_result == K_MK_OK )
             {
                /* Vérification de la nouvelle valeur du registre */
                /* Si la commande a correctement été exécutée, la lecture doit être réalisée en mode 4 fils */
-               l_result = mk_qspi_readRegister ( &l_enhancedConfigurationRegister, K_MK_MICRON_N25Q512A_OPCODE_READ_ENHANCED_CONFIGURATION, 1, K_MK_QSPI_MODE_QUAD );
+               l_result = mk_qspi_n25q512a_readRegister ( &l_enhancedConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_ENHANCED_CONFIGURATION, 1, K_MK_QSPI_MODE_QUAD );
 
                /* Si le mode 4 fils n'est pas actif */
                if ( ( l_enhancedConfigurationRegister.field.quadIO != 0 ) || ( l_enhancedConfigurationRegister.field.dualIO != 1 ) )
@@ -443,13 +443,13 @@ static T_mkCode mk_system_memory_singleModeInitializationSequence ( void )
    uint32_t l_mode = K_MK_QSPI_MODE_SINGLE;
 
    /* Récupération du mode de fonctionnement de la mémoire */
-   l_result = mk_qspi_getMode ( &l_mode );
+   l_result = mk_qspi_n25q512a_getMode ( &l_mode );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
       /* Configuration du nombre de 'DummyCycle' */
-      l_result = mk_qspi_setDummyCycle ( l_mode, 0 );
+      l_result = mk_qspi_n25q512a_setDummyCycle ( l_mode, 0 );
    }
 
    /* Sinon */
@@ -489,7 +489,7 @@ static T_mkCode mk_system_memory_singleModeInitializationSequence ( void )
    if ( l_result == K_MK_OK )
    {
       /* Activation de l'adressage étendu */
-      l_result = mk_qspi_disableExtendedMode ( l_mode );
+      l_result = mk_qspi_n25q512a_disableExtendedMode ( l_mode );
    }
 
    /* Sinon */
@@ -503,7 +503,7 @@ static T_mkCode mk_system_memory_singleModeInitializationSequence ( void )
    {
       /* Le mode 1 fil a été activé et configuré dans les séquences précédentes */
       /* On vérifie la prise en compte de celui-ci en lisant l'identifiant du fabricant */
-      l_result = mk_qspi_getMode ( &l_mode );
+      l_result = mk_qspi_n25q512a_getMode ( &l_mode );
 
       /* Si le mode 1 fil n'est pas actif */
       if ( l_mode != K_MK_QSPI_MODE_SINGLE )
@@ -529,7 +529,7 @@ static T_mkCode mk_system_memory_singleModeInitializationSequence ( void )
    if ( l_result == K_QSPI_OK )
    {
       /* Activation du mode 'MemoryMap' */
-      qspi_map ( K_QSPI_SDR_MODE, 0, K_MK_MICRON_N25Q512A_OPCODE_READ |
+      qspi_map ( K_QSPI_SDR_MODE, 0, K_MK_QSPI_N25Q512A_OPCODE_READ |
                  K_QSPI_INSTRUCTION_SINGLE_MODE, K_QSPI_ADDRESS_SINGLE_MODE | K_QSPI_ADDRESS_SIZE_24BITS,
                  K_QSPI_ALTERNATE_BYTES_NO_LINE_MODE | K_QSPI_ALTERNATE_BYTES_SIZE_8BITS, K_QSPI_DATA_SINGLE_MODE );
 
@@ -563,13 +563,13 @@ static T_mkCode mk_system_memory_quadModeInitializationSequence ( void )
    uint32_t l_mode = K_MK_QSPI_MODE_QUAD;
 
    /* Récupération du mode de fonctionnement de la mémoire */
-   l_result = mk_qspi_getMode ( &l_mode );
+   l_result = mk_qspi_n25q512a_getMode ( &l_mode );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
       /* Configuration du nombre de 'DummyCycle' */
-      l_result = mk_qspi_setDummyCycle ( l_mode, 0 );
+      l_result = mk_qspi_n25q512a_setDummyCycle ( l_mode, 0 );
    }
 
    /* Sinon */
@@ -596,7 +596,7 @@ static T_mkCode mk_system_memory_quadModeInitializationSequence ( void )
    if ( l_result == K_MK_OK )
    {
       /* Configuration du nombre de 'DummyCycle' */
-      l_result = mk_qspi_setDummyCycle ( l_mode, K_MK_MICRON_N25Q512A_DUMMY_CYCLE );
+      l_result = mk_qspi_n25q512a_setDummyCycle ( l_mode, K_MK_QSPI_N25Q512A_DUMMY_CYCLE );
    }
 
    /* Sinon */
@@ -622,7 +622,7 @@ static T_mkCode mk_system_memory_quadModeInitializationSequence ( void )
    if ( l_result == K_MK_OK )
    {
       /* Activation de l'adressage étendu */
-      l_result = mk_qspi_enableExtendedMode ( l_mode );
+      l_result = mk_qspi_n25q512a_enableExtendedMode ( l_mode );
    }
 
    /* Sinon */
@@ -636,7 +636,7 @@ static T_mkCode mk_system_memory_quadModeInitializationSequence ( void )
    {
       /* Le mode 4 fils a été activé et configuré dans les séquences précédentes */
       /* On vérifie la prise en compte de celui-ci en lisant l'identifiant du fabricant */
-      l_result = mk_qspi_getMode ( &l_mode );
+      l_result = mk_qspi_n25q512a_getMode ( &l_mode );
 
       /* Si le mode 4 fils n'est pas actif */
       if ( l_mode != K_MK_QSPI_MODE_QUAD )
@@ -662,7 +662,7 @@ static T_mkCode mk_system_memory_quadModeInitializationSequence ( void )
    if ( l_result == K_MK_OK )
    {
       /* Activation du mode 'MemoryMap' */
-      qspi_map ( K_QSPI_SDR_MODE, K_MK_MICRON_N25Q512A_DUMMY_CYCLE, K_MK_MICRON_N25Q512A_OPCODE_4BYTE_FAST_READ |
+      qspi_map ( K_QSPI_SDR_MODE, K_MK_QSPI_N25Q512A_DUMMY_CYCLE, K_MK_QSPI_N25Q512A_OPCODE_4BYTE_FAST_READ |
                  K_QSPI_INSTRUCTION_QUAD_MODE, K_QSPI_ADDRESS_QUAD_MODE | K_QSPI_ADDRESS_SIZE_32BITS,
                  K_QSPI_ALTERNATE_BYTES_NO_LINE_MODE | K_QSPI_ALTERNATE_BYTES_SIZE_8BITS, K_QSPI_DATA_QUAD_MODE );
 
@@ -696,13 +696,13 @@ static T_mkCode mk_system_memory_singleModeProgrammingSequence ( void )
    uint32_t l_mode = K_MK_QSPI_MODE_SINGLE;
 
    /* Récupération du mode de fonctionnement de la mémoire */
-   l_result = mk_qspi_getMode ( &l_mode );
+   l_result = mk_qspi_n25q512a_getMode ( &l_mode );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
       /* Configuration du nombre de 'DummyCycle' */
-      l_result = mk_qspi_setDummyCycle ( l_mode, K_MK_MICRON_N25Q512A_DUMMY_CYCLE );
+      l_result = mk_qspi_n25q512a_setDummyCycle ( l_mode, K_MK_QSPI_N25Q512A_DUMMY_CYCLE );
    }
 
    /* Sinon */
@@ -729,7 +729,7 @@ static T_mkCode mk_system_memory_singleModeProgrammingSequence ( void )
    {
       /* Le mode 1 fil a été activé et configuré dans les séquences précédentes */
       /* On vérifie la prise en compte de celui-ci en lisant l'identifiant du fabricant */
-      l_result = mk_qspi_getMode ( &l_mode );
+      l_result = mk_qspi_n25q512a_getMode ( &l_mode );
 
       /* Si le mode 4 fils n'est pas actif */
       if ( l_mode != K_MK_QSPI_MODE_SINGLE )

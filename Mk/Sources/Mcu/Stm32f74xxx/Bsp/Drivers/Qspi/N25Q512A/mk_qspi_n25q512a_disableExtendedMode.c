@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,8 +28,8 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi_enableExtendedMode.c
-* @brief Définition de la fonction mk_qspi_enableExtendedMode.
+* @file mk_qspi_n25q512a_disableExtendedMode.c
+* @brief Définition de la fonction mk_qspi_n25q512a_disableExtendedMode.
 * @date 9 août 2024
 *
 */
@@ -42,19 +42,19 @@
  * @endinternal
  */
 
-T_mkCode mk_qspi_enableExtendedMode ( uint32_t p_mode )
+T_mkCode mk_qspi_n25q512a_disableExtendedMode ( uint32_t p_mode )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
 
    /* Autorisation d'une écriture */
-   l_result = mk_qspi_writeInstruction ( K_MK_MICRON_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
+   l_result = mk_qspi_n25q512a_writeInstruction ( K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Activation de l'adressage 32 bits */
-      l_result = mk_qspi_writeInstruction ( K_MK_MICRON_N25Q512A_OPCODE_ENTER_4BYTE_ADDRESS_MODE, p_mode );
+      /* Désactivation de l'adressage 32 bits */
+      l_result = mk_qspi_n25q512a_writeInstruction ( K_MK_QSPI_N25Q512A_OPCODE_EXIT_4BYTE_ADDRESS_MODE, p_mode );
    }
 
    /* Sinon */
@@ -66,6 +66,5 @@ T_mkCode mk_qspi_enableExtendedMode ( uint32_t p_mode )
    /* Retour */
    return ( l_result );
 }
-
 
 

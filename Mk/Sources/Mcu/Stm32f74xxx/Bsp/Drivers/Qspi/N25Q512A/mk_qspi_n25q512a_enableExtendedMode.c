@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,8 +28,8 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi_abort.c
-* @brief Définition de la fonction mk_qspi_abort.
+* @file mk_qspi_n25q512a_enableExtendedMode.c
+* @brief Définition de la fonction mk_qspi_n25q512a_enableExtendedMode.
 * @date 9 août 2024
 *
 */
@@ -42,37 +42,19 @@
  * @endinternal
  */
 
-T_mkCode mk_qspi_abort ( void )
+T_mkCode mk_qspi_n25q512a_enableExtendedMode ( uint32_t p_mode )
 {
    /* Déclaration de la variable de retour */
-   T_mkCode l_result = K_MK_OK;
+   T_mkCode l_result;
 
-   /* Déclaration de la variable de retour locale */
-   uint32_t l_ret;
+   /* Autorisation d'une écriture */
+   l_result = mk_qspi_n25q512a_writeInstruction ( K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
 
-   /* Déclaration d'une variable de comptage */
-   uint32_t l_counter = 0;
-
-   /* Arrêt du transfert */
-   qspi_abort ( );
-
-   /* Effectue */
-   do
+   /* Si aucune erreur ne s'est produite */
+   if ( l_result == K_MK_OK )
    {
-      /* Récupération du statut de l'opération */
-      l_ret = qspi_getAbortStatus ( );
-
-      /* Actualisation du compteur */
-      l_counter++;
-
-   /* Tant que l'arrêt du transfert n'est pas terminé */
-   } while ( ( l_ret == K_QSPI_ABORT_IN_PROGRESS ) && ( l_counter < K_MK_MICRON_N25Q512A_TIMEOUT ) );
-
-   /* Si une erreur s'est produite */
-   if ( l_ret == K_QSPI_ABORT_IN_PROGRESS )
-   {
-      /* Actualisation de la variable de retour */
-      l_result = K_MK_ERROR_TIMEOUT;
+      /* Activation de l'adressage 32 bits */
+      l_result = mk_qspi_n25q512a_writeInstruction ( K_MK_QSPI_N25Q512A_OPCODE_ENTER_4BYTE_ADDRESS_MODE, p_mode );
    }
 
    /* Sinon */
@@ -84,5 +66,6 @@ T_mkCode mk_qspi_abort ( void )
    /* Retour */
    return ( l_result );
 }
+
 
 

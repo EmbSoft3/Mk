@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,8 +28,8 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi_disableExtendedMode.c
-* @brief Définition de la fonction mk_qspi_disableExtendedMode.
+* @file mk_qspi_n25q512a_abort.c
+* @brief Définition de la fonction mk_qspi_n25q512a_abort.
 * @date 9 août 2024
 *
 */
@@ -42,19 +42,37 @@
  * @endinternal
  */
 
-T_mkCode mk_qspi_disableExtendedMode ( uint32_t p_mode )
+T_mkCode mk_qspi_n25q512a_abort ( void )
 {
    /* Déclaration de la variable de retour */
-   T_mkCode l_result;
+   T_mkCode l_result = K_MK_OK;
 
-   /* Autorisation d'une écriture */
-   l_result = mk_qspi_writeInstruction ( K_MK_MICRON_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
+   /* Déclaration de la variable de retour locale */
+   uint32_t l_ret;
 
-   /* Si aucune erreur ne s'est produite */
-   if ( l_result == K_MK_OK )
+   /* Déclaration d'une variable de comptage */
+   uint32_t l_counter = 0;
+
+   /* Arrêt du transfert */
+   qspi_abort ( );
+
+   /* Effectue */
+   do
    {
-      /* Désactivation de l'adressage 32 bits */
-      l_result = mk_qspi_writeInstruction ( K_MK_MICRON_N25Q512A_OPCODE_EXIT_4BYTE_ADDRESS_MODE, p_mode );
+      /* Récupération du statut de l'opération */
+      l_ret = qspi_getAbortStatus ( );
+
+      /* Actualisation du compteur */
+      l_counter++;
+
+   /* Tant que l'arrêt du transfert n'est pas terminé */
+   } while ( ( l_ret == K_QSPI_ABORT_IN_PROGRESS ) && ( l_counter < K_MK_QSPI_N25Q512A_TIMEOUT ) );
+
+   /* Si une erreur s'est produite */
+   if ( l_ret == K_QSPI_ABORT_IN_PROGRESS )
+   {
+      /* Actualisation de la variable de retour */
+      l_result = K_MK_ERROR_TIMEOUT;
    }
 
    /* Sinon */

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,17 +28,17 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi_private.h
-* @brief Déclaration des fonctions privées dédiées à la mémoire QSPI.
+* @file mk_qspi_n25q512a_private.h
+* @brief Déclaration des fonctions privées dédiées à la mémoire QSPI N25Q512A.
 * @date 9 août 2024
 *
 */
 
-#ifndef MK_QSPI_PRIVATE_H
-#define MK_QSPI_PRIVATE_H
+#ifndef MK_QSPI_N25Q512A_PRIVATE_H
+#define MK_QSPI_N25Q512A_PRIVATE_H
 
 /**
- * @fn T_mkCode mk_qspi_abort ( void );
+ * @fn T_mkCode mk_qspi_n25q512a_abort ( void );
  * @brief Cette fonction stoppe le transfert en cours sur le bus QSPI.
  *
  * @return Cette fonction retourne une des valeurs suivantes :
@@ -46,10 +46,10 @@
  *         \li \ref K_MK_ERROR_TIMEOUT : l'arrêt du transfert a échoué car un timeout s'est produit.
  */
 
-T_mkCode mk_qspi_abort ( void );
+T_mkCode mk_qspi_n25q512a_abort ( void );
 
 /**
- * @fn T_mkCode mk_qspi_wait ( void );
+ * @fn T_mkCode mk_qspi_n25q512a_wait ( void );
  * @brief Cette fonction attend la fin d'un transfert QSPI.
  *
  * @return Cette fonction retourne une des valeurs suivantes :
@@ -57,10 +57,10 @@ T_mkCode mk_qspi_abort ( void );
  *         \li \ref K_MK_ERROR_TIMEOUT : le transfert a échoué car un timeout s'est produit.
  */
 
-T_mkCode mk_qspi_wait ( void );
+T_mkCode mk_qspi_n25q512a_wait ( void );
 
 /**
- * @fn T_mkCode mk_qspi_writeInstruction ( uint32_t p_instruction, uint32_t p_mode );
+ * @fn T_mkCode mk_qspi_n25q512a_writeInstruction ( uint32_t p_instruction, uint32_t p_mode );
  * @brief Cette fonction transfert une instruction sur le bus QSPI.
  *
  * @param[in] p_instruction Ce paramètre contient la valeur de l'instruction sur 8 bits.
@@ -74,10 +74,10 @@ T_mkCode mk_qspi_wait ( void );
  *         \li \ref K_MK_ERROR_NOT_AVAILABLE : le transfert a échoué car le bus QSPI n'est pas disponible.
  */
 
-T_mkCode mk_qspi_writeInstruction ( uint32_t p_instruction, uint32_t p_mode );
+T_mkCode mk_qspi_n25q512a_writeInstruction ( uint32_t p_instruction, uint32_t p_mode );
 
 /**
- * @fn T_mkCode mk_qspi_writeInstructionAddr ( uint32_t p_instruction, uint32_t p_addr, uint32_t p_mode );
+ * @fn T_mkCode mk_qspi_n25q512a_writeInstructionAddr ( uint32_t p_instruction, uint32_t p_addr, uint32_t p_mode );
  * @brief Cette fonction transfert une instruction et une adresse sur le bus QSPI.
  *
  * @param[in] p_instruction Ce paramètre contient la valeur de l'instruction sur 8 bits.
@@ -92,15 +92,15 @@ T_mkCode mk_qspi_writeInstruction ( uint32_t p_instruction, uint32_t p_mode );
  *         \li \ref K_MK_ERROR_NOT_AVAILABLE : le transfert a échoué car le bus QSPI n'est pas disponible.
  */
 
-T_mkCode mk_qspi_writeInstructionAddr ( uint32_t p_instruction, uint32_t p_addr, uint32_t p_mode );
+T_mkCode mk_qspi_n25q512a_writeInstructionAddr ( uint32_t p_instruction, uint32_t p_addr, uint32_t p_mode );
 
 /**
- * @fn T_mkCode mk_qspi_writeInstructionData ( uint32_t p_instruction, uint32_t p_addr, uint8_t* p_buf, uint32_t p_size, uint32_t p_mode );
+ * @fn T_mkCode mk_qspi_n25q512a_writeInstructionData ( uint32_t p_instruction, uint32_t p_addr, uint8_t* p_buf, uint32_t p_size, uint32_t p_mode );
  * @brief Cette fonction transfert une instruction, une adresse et un ou plusieurs octets sur le bus QSPI.
  * @param[in] p_instruction Ce paramètre contient la valeur de l'instruction sur 8 bits.
  * @param[in] p_addr        Ce paramètre contient la valeur de l'adresse sur 32 bits.
  * @param[in] p_buf         Ce paramètre contient l'adresse du buffer contenant les octets à envoyer sur le bus QSPI.
- * @param[in] p_size        Ce paramètre contient le nombre de données à envoyer sur le bus QSPI. Il évolue de [1 à \ref K_MK_MICRON_N25Q512A_PAGE_SIZE].
+ * @param[in] p_size        Ce paramètre contient le nombre de données à envoyer sur le bus QSPI. Il évolue de [1 à \ref K_MK_QSPI_N25Q512A_PAGE_SIZE].
  * @param[in] p_mode        Ce paramètre contient le mode de fonctionnement de la mémoire QSPI.
  *                          Une des constante suivante peut être utilisée :
  *                          \ref K_MK_QSPI_MODE_SINGLE, \ref K_MK_QSPI_MODE_DUAL ou \ref K_MK_QSPI_MODE_QUAD
@@ -112,15 +112,15 @@ T_mkCode mk_qspi_writeInstructionAddr ( uint32_t p_instruction, uint32_t p_addr,
  *         \li \ref K_MK_ERROR_NOT_AVAILABLE : le transfert a échoué car le bus QSPI n'est pas disponible.
  */
 
-T_mkCode mk_qspi_writeInstructionData ( uint32_t p_instruction, uint32_t p_addr, uint8_t* p_buf, uint32_t p_size, uint32_t p_mode );
+T_mkCode mk_qspi_n25q512a_writeInstructionData ( uint32_t p_instruction, uint32_t p_addr, uint8_t* p_buf, uint32_t p_size, uint32_t p_mode );
 
 /**
- * @fn T_mkCode mk_qspi_writeRegister ( T_mkAddr p_register, uint32_t p_instruction, uint32_t p_size, uint32_t p_mode );
+ * @fn T_mkCode mk_qspi_n25q512a_writeRegister ( T_mkAddr p_register, uint32_t p_instruction, uint32_t p_size, uint32_t p_mode );
  * @brief Cette fonction écrit une nouvelle valeur dans un registre de la mémoire QSPI.
  *
  * @param[in] p_register    Ce paramètre contient l'adresse d'un buffer contenant la nouvelle valeur du registre (
- *                          \ref T_MicronN25Q512A_StatusRegister, \ref T_MicronN25Q512A_NVConfigurationRegister,
- *                          \ref T_MicronN25Q512A_ConfigurationRegister et T_MicronN25Q512A_EnhancedConfigurationRegister).
+ *                          \ref T_mkN25Q512AStatusRegister, \ref T_mkN25Q512ANonVolatileConfigurationRegister,
+ *                          \ref T_mkN25Q512AConfigurationRegister et T_mkN25Q512AEnhancedConfigurationRegister).
  * @param[in] p_instruction Ce paramètre contient la valeur de l'instruction sur 8 bits.
  * @param[in] p_size        Ce paramètre contient la taille du registre (en octets).
  * @param[in] p_mode        Ce paramètre contient le mode de fonctionnement de la mémoire QSPI.
@@ -133,15 +133,15 @@ T_mkCode mk_qspi_writeInstructionData ( uint32_t p_instruction, uint32_t p_addr,
  *         \li \ref K_MK_ERROR_NOT_AVAILABLE : le transfert a échoué car le bus QSPI n'est pas disponible.
  */
 
-T_mkCode mk_qspi_writeRegister ( T_mkAddr p_register, uint32_t p_instruction, uint32_t p_size, uint32_t p_mode );
+T_mkCode mk_qspi_n25q512a_writeRegister ( T_mkAddr p_register, uint32_t p_instruction, uint32_t p_size, uint32_t p_mode );
 
 /**
- * @fn T_mkCode mk_qspi_readRegister ( T_mkAddr p_register, uint32_t p_instruction, uint32_t p_mode, uint32_t p_size );
+ * @fn T_mkCode mk_qspi_n25q512a_readRegister ( T_mkAddr p_register, uint32_t p_instruction, uint32_t p_mode, uint32_t p_size );
  * @brief Cette fonction lit la valeur d'un registre de la mémoire QSPI.
  *
  * @param[in] p_register    Ce paramètre contient l'adresse d'un buffer où la valeur du registre doit être stockée (
- *                          \ref T_MicronN25Q512A_StatusRegister, \ref T_MicronN25Q512A_NVConfigurationRegister,
- *                          \ref T_MicronN25Q512A_ConfigurationRegister et T_MicronN25Q512A_EnhancedConfigurationRegister).
+ *                          \ref T_mkN25Q512AStatusRegister, \ref T_mkN25Q512ANonVolatileConfigurationRegister,
+ *                          \ref T_mkN25Q512AConfigurationRegister et T_mkN25Q512AEnhancedConfigurationRegister).
  * @param[in] p_instruction Ce paramètre contient la valeur de l'instruction sur 8 bits.
  * @param[in] p_size        Ce paramètre contient la taille du registre (en octets).
  * @param[in] p_mode        Ce paramètre contient le mode de fonctionnement de la mémoire QSPI.
@@ -154,7 +154,7 @@ T_mkCode mk_qspi_writeRegister ( T_mkAddr p_register, uint32_t p_instruction, ui
  *         \li \ref K_MK_ERROR_NOT_AVAILABLE : le transfert a échoué car le bus QSPI n'est pas disponible.
  */
 
-T_mkCode mk_qspi_readRegister ( T_mkAddr p_register, uint32_t p_instruction, uint32_t p_size, uint32_t p_mode );
+T_mkCode mk_qspi_n25q512a_readRegister ( T_mkAddr p_register, uint32_t p_instruction, uint32_t p_size, uint32_t p_mode );
 
 /**
  *

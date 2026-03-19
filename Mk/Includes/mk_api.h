@@ -497,8 +497,8 @@
  *
  */
 
-#include "mk_micron_n25q512a_constants.h"
-#include "mk_micron_n25q512a_types.h"
+#include "mk_qspi_n25q512a_constants.h"
+#include "mk_qspi_n25q512a_types.h"
 
 /**
  *

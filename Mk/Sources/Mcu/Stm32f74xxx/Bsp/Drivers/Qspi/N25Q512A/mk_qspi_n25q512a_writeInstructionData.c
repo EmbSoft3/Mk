@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,8 +28,8 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi_writeInstructionData.c
-* @brief Définition de la fonction mk_qspi_writeInstructionData.c.
+* @file mk_qspi_n25q512a_writeInstructionData.c
+* @brief Définition de la fonction mk_qspi_n25q512a_writeInstructionData.c.
 * @date 9 août 2024
 *
 */
@@ -42,7 +42,7 @@
  * @endinternal
  */
 
-T_mkCode mk_qspi_writeInstructionData ( uint32_t p_instruction, uint32_t p_addr, uint8_t* p_buf, uint32_t p_size, uint32_t p_mode )
+T_mkCode mk_qspi_n25q512a_writeInstructionData ( uint32_t p_instruction, uint32_t p_addr, uint8_t* p_buf, uint32_t p_size, uint32_t p_mode )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
@@ -54,7 +54,7 @@ T_mkCode mk_qspi_writeInstructionData ( uint32_t p_instruction, uint32_t p_addr,
    uint32_t l_counter = 0;
 
    /* Si le taille du buffer est valide */
-   if ( ( p_size > 0 ) && ( p_size <= K_MK_MICRON_N25Q512A_PAGE_SIZE ) )
+   if ( ( p_size > 0 ) && ( p_size <= K_MK_QSPI_N25Q512A_PAGE_SIZE ) )
    {
       /* Récupération du statut du périphérique */
       l_ret = qspi_getStatus ( K_QSPI_BUSY_STATUS );
@@ -69,7 +69,7 @@ T_mkCode mk_qspi_writeInstructionData ( uint32_t p_instruction, uint32_t p_addr,
          if ( p_mode == K_MK_QSPI_MODE_SINGLE )
          {
             /* Transmission de l'instruction 'WriteEnable' */
-            qspi_write ( K_QSPI_SDR_MODE, K_MK_MICRON_N25Q512A_REGISTER_DUMMY_CYCLE, p_instruction |
+            qspi_write ( K_QSPI_SDR_MODE, K_MK_QSPI_N25Q512A_REGISTER_DUMMY_CYCLE, p_instruction |
                          K_QSPI_INSTRUCTION_SINGLE_MODE, K_QSPI_ADDRESS_SINGLE_MODE | K_QSPI_ADDRESS_SIZE_32BITS,
                          K_QSPI_ALTERNATE_BYTES_NO_LINE_MODE | K_QSPI_ALTERNATE_BYTES_SIZE_8BITS, K_QSPI_DATA_SINGLE_MODE );
          }
@@ -78,7 +78,7 @@ T_mkCode mk_qspi_writeInstructionData ( uint32_t p_instruction, uint32_t p_addr,
          else if ( p_mode == K_MK_QSPI_MODE_DUAL )
          {
             /* Transmission de l'instruction 'WriteEnable' */
-            qspi_write ( K_QSPI_SDR_MODE, K_MK_MICRON_N25Q512A_REGISTER_DUMMY_CYCLE, p_instruction |
+            qspi_write ( K_QSPI_SDR_MODE, K_MK_QSPI_N25Q512A_REGISTER_DUMMY_CYCLE, p_instruction |
                          K_QSPI_INSTRUCTION_DUAL_MODE, K_QSPI_ADDRESS_DUAL_MODE | K_QSPI_ADDRESS_SIZE_32BITS,
                          K_QSPI_ALTERNATE_BYTES_NO_LINE_MODE | K_QSPI_ALTERNATE_BYTES_SIZE_8BITS, K_QSPI_DATA_DUAL_MODE );
          }
@@ -87,7 +87,7 @@ T_mkCode mk_qspi_writeInstructionData ( uint32_t p_instruction, uint32_t p_addr,
          else
          {
             /* Transmission de l'instruction 'WriteEnable' */
-            qspi_write ( K_QSPI_SDR_MODE, K_MK_MICRON_N25Q512A_REGISTER_DUMMY_CYCLE, p_instruction |
+            qspi_write ( K_QSPI_SDR_MODE, K_MK_QSPI_N25Q512A_REGISTER_DUMMY_CYCLE, p_instruction |
                          K_QSPI_INSTRUCTION_QUAD_MODE, K_QSPI_ADDRESS_QUAD_MODE | K_QSPI_ADDRESS_SIZE_32BITS,
                          K_QSPI_ALTERNATE_BYTES_NO_LINE_MODE | K_QSPI_ALTERNATE_BYTES_SIZE_8BITS, K_QSPI_DATA_QUAD_MODE );
          }
@@ -103,13 +103,13 @@ T_mkCode mk_qspi_writeInstructionData ( uint32_t p_instruction, uint32_t p_addr,
          }
 
          /* Attendre tant que le transfert n'est pas terminé */
-         l_result = mk_qspi_wait ( );
+         l_result = mk_qspi_n25q512a_wait ( );
 
          /* Si l'opération a échoué */
          if ( l_result != K_MK_OK )
          {
             /* Arrêt du transfert */
-            ( void ) mk_qspi_abort ( );
+            ( void ) mk_qspi_n25q512a_abort ( );
          }
 
          /* Sinon */

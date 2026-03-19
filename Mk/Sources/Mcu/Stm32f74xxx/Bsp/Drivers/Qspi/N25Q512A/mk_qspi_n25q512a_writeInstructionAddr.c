@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,8 +28,8 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi_writeInstruction.c
-* @brief Définition de la fonction mk_qspi_writeInstruction.
+* @file mk_qspi_n25q512a_writeInstructionAddr.c
+* @brief Définition de la fonction mk_qspi_n25q512a_writeInstructionAddr.
 * @date 9 août 2024
 *
 */
@@ -42,7 +42,7 @@
  * @endinternal
  */
 
-T_mkCode mk_qspi_writeInstruction ( uint32_t p_instruction, uint32_t p_mode )
+T_mkCode mk_qspi_n25q512a_writeInstructionAddr ( uint32_t p_instruction, uint32_t p_addr, uint32_t p_mode )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
@@ -60,8 +60,8 @@ T_mkCode mk_qspi_writeInstruction ( uint32_t p_instruction, uint32_t p_mode )
       if ( p_mode == K_MK_QSPI_MODE_SINGLE )
       {
          /* Transmission de l'instruction 'WriteEnable' */
-         qspi_write ( K_QSPI_SDR_MODE, K_MK_MICRON_N25Q512A_REGISTER_DUMMY_CYCLE, p_instruction |
-                      K_QSPI_INSTRUCTION_SINGLE_MODE, K_QSPI_ADDRESS_NO_LINE_MODE | K_QSPI_ADDRESS_SIZE_32BITS,
+         qspi_write ( K_QSPI_SDR_MODE, K_MK_QSPI_N25Q512A_REGISTER_DUMMY_CYCLE, p_instruction |
+                      K_QSPI_INSTRUCTION_SINGLE_MODE, K_QSPI_ADDRESS_SINGLE_MODE | K_QSPI_ADDRESS_SIZE_32BITS,
                       K_QSPI_ALTERNATE_BYTES_NO_LINE_MODE | K_QSPI_ALTERNATE_BYTES_SIZE_8BITS, K_QSPI_DATA_NO_LINE_MODE );
       }
 
@@ -69,8 +69,8 @@ T_mkCode mk_qspi_writeInstruction ( uint32_t p_instruction, uint32_t p_mode )
       else if ( p_mode == K_MK_QSPI_MODE_DUAL )
       {
          /* Transmission de l'instruction 'WriteEnable' */
-         qspi_write ( K_QSPI_SDR_MODE, K_MK_MICRON_N25Q512A_REGISTER_DUMMY_CYCLE, p_instruction |
-                      K_QSPI_INSTRUCTION_DUAL_MODE, K_QSPI_ADDRESS_NO_LINE_MODE | K_QSPI_ADDRESS_SIZE_32BITS,
+         qspi_write ( K_QSPI_SDR_MODE, K_MK_QSPI_N25Q512A_REGISTER_DUMMY_CYCLE, p_instruction |
+                      K_QSPI_INSTRUCTION_DUAL_MODE, K_QSPI_ADDRESS_DUAL_MODE | K_QSPI_ADDRESS_SIZE_32BITS,
                       K_QSPI_ALTERNATE_BYTES_NO_LINE_MODE | K_QSPI_ALTERNATE_BYTES_SIZE_8BITS, K_QSPI_DATA_NO_LINE_MODE );
       }
 
@@ -78,19 +78,23 @@ T_mkCode mk_qspi_writeInstruction ( uint32_t p_instruction, uint32_t p_mode )
       else
       {
          /* Transmission de l'instruction 'WriteEnable' */
-         qspi_write ( K_QSPI_SDR_MODE, K_MK_MICRON_N25Q512A_REGISTER_DUMMY_CYCLE, p_instruction |
-                      K_QSPI_INSTRUCTION_QUAD_MODE, K_QSPI_ADDRESS_NO_LINE_MODE | K_QSPI_ADDRESS_SIZE_32BITS,
+         qspi_write ( K_QSPI_SDR_MODE, K_MK_QSPI_N25Q512A_REGISTER_DUMMY_CYCLE, p_instruction |
+                      K_QSPI_INSTRUCTION_QUAD_MODE, K_QSPI_ADDRESS_QUAD_MODE | K_QSPI_ADDRESS_SIZE_32BITS,
                       K_QSPI_ALTERNATE_BYTES_NO_LINE_MODE | K_QSPI_ALTERNATE_BYTES_SIZE_8BITS, K_QSPI_DATA_NO_LINE_MODE );
       }
 
+      /* Configuration de l'adresse QSPI */
+      /* L'instruction est envoyée sur le bus suite à l'écriture du registre. */
+      qspi_writeAddress ( p_addr );
+
       /* Attendre tant que le nombre d'octets demandés n'a pas été reçu */
-      l_result = mk_qspi_wait ( );
+      l_result = mk_qspi_n25q512a_wait ( );
 
       /* Si l'opération a échoué */
       if ( l_result != K_MK_OK )
       {
          /* Arrêt du transfert */
-         ( void ) mk_qspi_abort ( );
+         ( void ) mk_qspi_n25q512a_abort ( );
       }
 
       /* Sinon */
@@ -116,4 +120,5 @@ T_mkCode mk_qspi_writeInstruction ( uint32_t p_instruction, uint32_t p_mode )
    /* Retour */
    return ( l_result );
 }
+
 

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -101,8 +101,10 @@
 #include "mk_mmc_isr_private.h"
 #include "mk_usb_isr_private.h"
 #include "mk_qspi_isr_private.h"
-#include "mk_micron_n25q512a_constants.h"
-#include "mk_micron_n25q512a_types.h"
+#include "mk_qspi_n25q512a_constants.h"
+#include "mk_qspi_n25q512a_types.h"
+#include "mk_qspi_n25q512a_private.h"
+#include "mk_qspi_n25q512a.h"
 #include "mk_main.h"
 
 /**
@@ -111,8 +113,6 @@
 
 #include "mk_qspi_types.h"
 #include "mk_qspi_isr_private.h"
-#include "mk_qspi_private.h"
-#include "mk_qspi.h"
 
 /**
  *

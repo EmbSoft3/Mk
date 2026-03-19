@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,8 +28,8 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi_setDummyCycle.c
-* @brief Définition de la fonction mk_qspi_setDummyCycle.
+* @file mk_qspi_n25q512a_getMode.c
+* @brief Définition de la fonction mk_qspi_n25q512a_getMode.
 * @date 9 août 2024
 *
 */
@@ -42,44 +42,50 @@
  * @endinternal
  */
 
-T_mkCode mk_qspi_setDummyCycle ( uint32_t p_mode, uint32_t p_dummyCycles )
+T_mkCode mk_qspi_n25q512a_getMode ( uint32_t* p_mode )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
 
-   /* Déclaration d'un registre de configuration de type volatile */
-   T_MicronN25Q512A_ConfigurationRegister l_configurationRegister = { 0 };
+   /* Déclaration d'une variable de travail */
+   uint8_t l_id = 0;
 
-   /* Lecture du registre de configuration */
-   l_result = mk_qspi_readRegister ( &l_configurationRegister, K_MK_MICRON_N25Q512A_OPCODE_READ_CONFIGURATION, 1, p_mode );
+   /* La mémoire QSPI possède un registre de type non volatile définissant le mode de fonctionnement au démarrage de la mémoire. */
+   /* Le but de cette fonction est de déterminer la valeur du mode initial (SINGLE, DUAL, QUAD). */
+   /* Pour ce faire, on récupére l'identifiant fabricant de la mémoire et on le compare à une valeur prédéfinie. */
+
+   /* Initialisation de la variable de retour */
+   *p_mode = K_MK_QSPI_MODE_SINGLE;
+
+   /* Lecture de l'identifiant fabricant en mode 'SINGLE' */
+   l_result = mk_qspi_n25q512a_readRegister ( &l_id, K_MK_QSPI_N25Q512A_OPCODE_READ_ID, 1, K_MK_QSPI_MODE_SINGLE );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Si le nombre de dummyCycle doit être configuré */
-      if ( l_configurationRegister.field.dummyClockCycle != p_dummyCycles )
+      /* Si le mode 'SINGLE' n'est pas le mode recherché */
+      if ( l_id != K_MK_QSPI_N25Q512A_MANUFACTURER_ID )
       {
-         /* Autorisation d'une écriture */
-         l_result = mk_qspi_writeInstruction ( K_MK_MICRON_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
+         /* Initialisation de la variable de retour */
+         *p_mode = K_MK_QSPI_MODE_DUAL;
+
+         /* Lecture de l'identifiant fabricant en mode 'DUAL' */
+         l_result = mk_qspi_n25q512a_readRegister ( &l_id, K_MK_QSPI_N25Q512A_OPCODE_READ_ID, 1, K_MK_QSPI_MODE_DUAL );
 
          /* Si aucune erreur ne s'est produite */
          if ( l_result == K_MK_OK )
          {
-            /* Actualisation de la valeur du registre de configuration */
-            l_configurationRegister.field.dummyClockCycle = ( uint8_t ) ( p_dummyCycles & 0xF ); ;
-
-            /* Ecriture du registre de configuration */
-            l_result = mk_qspi_writeRegister ( &l_configurationRegister, K_MK_MICRON_N25Q512A_OPCODE_WRITE_CONFIGURATION, 1, p_mode );
-
-            /* Si l'opération a réussi */
-            if ( l_result == K_MK_OK )
+            /* Si le mode 'DUAL' n'est pas le mode recherché */
+            if ( l_id != K_MK_QSPI_N25Q512A_MANUFACTURER_ID )
             {
-               /* Vérification de la nouvelle valeur du registre */
-               /* Si la commande a correctement été exécutée, la lecture doit être réalisée en QUADMODE */
-               l_result = mk_qspi_readRegister ( &l_configurationRegister, K_MK_MICRON_N25Q512A_OPCODE_READ_CONFIGURATION, 1, p_mode );
+               /* Initialisation de la variable de retour */
+               *p_mode = K_MK_QSPI_MODE_QUAD;
 
-               /* Si le mode 4 fils n'est pas actif */
-               if ( l_configurationRegister.field.dummyClockCycle != p_dummyCycles )
+               /* Lecture de l'identifiant fabricant en mode 'QUAD' */
+               l_result = mk_qspi_n25q512a_readRegister ( &l_id, K_MK_QSPI_N25Q512A_OPCODE_READ_ID, 1, K_MK_QSPI_MODE_QUAD );
+
+               /* Si le mode 'QUAD' n'est pas le mode recherché */
+               if ( l_id != K_MK_QSPI_N25Q512A_MANUFACTURER_ID )
                {
                   /* Actualisation de la variable de retour */
                   l_result = K_MK_ERROR_COMM;
@@ -122,3 +128,5 @@ T_mkCode mk_qspi_setDummyCycle ( uint32_t p_mode, uint32_t p_dummyCycles )
    /* Retour */
    return ( l_result );
 }
+
+
