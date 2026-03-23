@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -60,7 +60,7 @@ void mk_system_init ( void )
    mk_system_cache_init ( );
 
    /* Initialisation de l'arbre d'horloge */
-   l_result = mk_system_clock_init ( );
+   l_result = mk_system_bsp_initClock ( );
 
    /* Initialisation de la configuration matérielle */
    l_result |= mk_system_setting_init ( );
