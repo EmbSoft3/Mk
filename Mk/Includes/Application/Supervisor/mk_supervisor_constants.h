@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -125,77 +125,6 @@
  */
 
 #define K_MK_SUPERVISOR_REPORT_NUMBEROFBYTES_TO_WRITE 65536
-
-/**
- *
- */
-
-/**
- * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_X
- * @brief Définition de la position X de la fenêtre de la console.
- */
-
-#define K_MK_SUPERVISOR_CONSOLE_WINDOW_X 5
-
-/**
- * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_Y
- * @brief Définition de la position Y de la fenêtre de la console.
- */
-
-#define K_MK_SUPERVISOR_CONSOLE_WINDOW_Y 5
-
-/**
- * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_WIDTH
- * @brief Définition de la largeur de la fenêtre de la console.
- */
-
-#define K_MK_SUPERVISOR_CONSOLE_WINDOW_WIDTH 629
-
-/**
- * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_HEIGHT
- * @brief Définition de la hauteur de la fenêtre de la console.
- */
-
-#define K_MK_SUPERVISOR_CONSOLE_WINDOW_HEIGHT 436
-
-/**
- * @def K_MK_SUPERVISOR_CONSOLE_CACHE_SIZE
- * @brief Définition de la taille du cache de la console.
- */
-
-#define K_MK_SUPERVISOR_CONSOLE_CACHE_SIZE ( 4 * K_MK_SUPERVISOR_CONSOLE_WINDOW_WIDTH * K_MK_SUPERVISOR_CONSOLE_WINDOW_HEIGHT )
-
-/**
- *
- */
-
-/**
- * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_X
- * @brief Définition de la position X du prompt de la console.
- */
-
-#define K_MK_SUPERVISOR_CONSOLE_PROMPT_X 5
-
-/**
- * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_Y
- * @brief Définition de la position Y du prompt de la console.
- */
-
-#define K_MK_SUPERVISOR_CONSOLE_PROMPT_Y 447
-
-/**
- * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_WIDTH
- * @brief Définition de la largeur du prompt de la console.
- */
-
-#define K_MK_SUPERVISOR_CONSOLE_PROMPT_WIDTH 629
-
-/**
- * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_HEIGHT
- * @brief Définition de la hauteur du prompt de la console.
- */
-
-#define K_MK_SUPERVISOR_CONSOLE_PROMPT_HEIGHT 30
 
 /**
  *

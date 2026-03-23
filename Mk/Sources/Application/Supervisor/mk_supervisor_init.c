@@ -235,15 +235,15 @@ static T_mkCode mk_supervisor_initFigures ( T_mkSupervisor* p_supervisor )
 
    /* Initialisation de la figure affichant le framerate */
    mk_figure_init ( &p_supervisor->load.frameRate );
-   mk_figure_setPosition ( &p_supervisor->load.frameRate, 610, 10 );
-   mk_figure_setDimension ( &p_supervisor->load.frameRate, 30, 35 );
+   mk_figure_setPosition ( &p_supervisor->load.frameRate, K_MK_SUPERVISOR_FRAMERATE_X, K_MK_SUPERVISOR_FRAMERATE_Y );
+   mk_figure_setDimension ( &p_supervisor->load.frameRate, K_MK_SUPERVISOR_FRAMERATE_WIDTH, K_MK_SUPERVISOR_FRAMERATE_HEIGHT );
    mk_figure_setVisibility ( &p_supervisor->load.frameRate, K_MK_FIELD_VISIBLE );
    mk_figure_setPainter ( &p_supervisor->load.frameRate, mk_supervisor_paintFrameRate );
 
    /* Initialisation de la figure affichant la charge CPU */
    mk_figure_init ( &p_supervisor->load.cpu );
-   mk_figure_setPosition ( &p_supervisor->load.cpu, 610, 50 );
-   mk_figure_setDimension ( &p_supervisor->load.cpu, 30, 35 );
+   mk_figure_setPosition ( &p_supervisor->load.cpu, K_MK_SUPERVISOR_CPU_LOAD_X, K_MK_SUPERVISOR_CPU_LOAD_Y );
+   mk_figure_setDimension ( &p_supervisor->load.cpu, K_MK_SUPERVISOR_CPU_LOAD_WIDTH, K_MK_SUPERVISOR_CPU_LOAD_HEIGHT );
    mk_figure_setVisibility ( &p_supervisor->load.cpu, K_MK_FIELD_VISIBLE );
    mk_figure_setPainter ( &p_supervisor->load.cpu, mk_supervisor_paintCpuLoad );
 

@@ -223,6 +223,7 @@
  */
 
 #include "mk_supervisor_fault_types.h"
+#include "mk_supervisor_graphics_constants.h"
 #include "mk_supervisor_constants.h"
 #include "mk_supervisor_types.h"
 #include "mk_supervisor_data.h"
