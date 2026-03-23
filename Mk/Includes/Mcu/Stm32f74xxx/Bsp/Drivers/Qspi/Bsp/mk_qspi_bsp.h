@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,56 +28,35 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi_api.h
-* @brief Ce fichier contient les directives 'include' utilisÃ©es.
-* @date 9 aoÃ»t 2024
+* @file mk_qspi_bsp.h
+* @brief Déclaration des fonctions dédiées aux BSP du périphérique QSPI.
+* @date 23 mars 2026
 *
 */
 
-#ifndef MK_QSPI_API_H
-#define MK_QSPI_API_H
+#ifndef MK_QSPI_BSP_H
+#define MK_QSPI_BSP_H
 
 /**
+ * @fn T_mkCode mk_qspi_bsp_init ( uint32_t p_mode );
+ * @brief Cette fonction initialise le BSP du périphérique QSPI.
  *
+ * @param[in] p_mode Ce paramètre indique si la mémoire doit être initialisée en mode 1 fil
+ *                   (\ref K_QSPI_INSTRUCTION_SINGLE_MODE) ou 4 fils (\ref K_QSPI_INSTRUCTION_QUAD_MODE).
+ *
+ * @return Cette fonction retourne une des valeurs suivantes :
+ *         \li \ref K_MK_OK                  : l'initialisation de la mémoire a réussi.
+ *         \li \ref K_MK_ERROR_TIMEOUT       : l'initialisation de la mémoire a échoué car un timeout s'est produit.
+ *         \li \ref K_MK_ERROR_NOT_AVAILABLE : l'initialisation de la mémoire a échoué car le bus QSPI n'est pas disponible.
+ * 
  */
 
-#include "mk_types.h"
-#include "mk_peripheral_gpio_constants.h"
-#include "mk_peripheral_gpio.h"
-
-/**
- *
- */
-
-#include "mk_peripheral_qspi_constants.h"
-#include "mk_peripheral_qspi.h"
-
-/**
- *
- */
-
-#include "mk_qspi_n25q512a_constants.h"
-#include "mk_qspi_n25q512a_types.h"
-#include "mk_qspi_n25q512a_private.h"
-#include "mk_qspi_n25q512a.h"
-
-/**
- *
- */
-
-#include "mk_qspi_types.h"
-#include "mk_qspi_isr_private.h"
-#include "mk_qspi_bsp.h"
-
-/**
- *
- */
-
-#include "mk_utils.h"
+T_mkCode mk_qspi_bsp_init ( uint32_t p_mode );
 
 /**
  *
  */
 
 #endif
+
 

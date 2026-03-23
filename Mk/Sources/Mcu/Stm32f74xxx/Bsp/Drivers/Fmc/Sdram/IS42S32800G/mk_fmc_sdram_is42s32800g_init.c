@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,13 +28,13 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_system_memory_initSDRAM.c
-* @brief Définition de la fonction mk_system_memory_initSDRAM.
-* @date 24 févr. 2019
+* @file mk_fmc_sdram_is42s32800g_init.c
+* @brief Définition de la fonction mk_fmc_sdram_is42s32800g_init.
+* @date 23 mars 2026
 *
 */
 
-#include "mk_system_api.h"
+#include "mk_fmc_api.h"
 
 /**
  * @internal
@@ -42,7 +42,7 @@
  * @endinternal
  */
 
-static void mk_system_memory_initSDRAMFMC ( void )
+static void mk_fmc_sdram_is42s32800g_initFMC ( void )
 {
    /* Configuration de la fréquence de la broche SDCLK à 108Mhz - 166MHz max */
    /* pour la mémoire IS42S32800G-6)  */
@@ -92,7 +92,7 @@ static void mk_system_memory_initSDRAMFMC ( void )
  * @endinternal
  */
 
-static uint32_t mk_system_memory_initializationSequence ( void )
+static uint32_t mk_fmc_sdram_is42s32800g_initializationSequence ( void )
 {
    /* Déclaration de la variable de retour */
    uint32_t l_result;
@@ -113,7 +113,7 @@ static uint32_t mk_system_memory_initializationSequence ( void )
       l_result |= sdram_sendAutoRefresh ( K_SDRAM_BANK1_FLAG, 8 ); /* 2 cycles min */
 
       /* Configuration du "Load Mode Register" de la SDRAM */
-      l_result |= sdram_sendLoadModeRegister ( K_SDRAM_BANK1_FLAG, K_MK_SDRAM_LOADMODE_REGISTER_VALUE );
+      l_result |= sdram_sendLoadModeRegister ( K_SDRAM_BANK1_FLAG, K_MK_FMC_SDRAM_IS42S32800G_LOADMODE_REGISTER_VALUE );
 
       /* Configuration de la fréquence de rafraichissement (64ms ou 16ms quand Ta > 85°C) */
       /* Refresh_rate = ( 64ms / (4096) ) = 15.625 µs */
@@ -140,16 +140,32 @@ static uint32_t mk_system_memory_initializationSequence ( void )
  * @endinternal
  */
 
-uint32_t mk_system_memory_initSDRAM ( void )
+T_mkCode mk_fmc_sdram_is42s32800g_init ( void )
 {
    /* Déclaration de la variable de retour */
-   uint32_t l_result;
+   T_mkCode l_result = K_MK_OK;
+   
+   /* Déclaration de la variable de retour locale */
+   uint32_t l_ret;
 
    /* Initialisation du FMC (module SDRAM) */
-   mk_system_memory_initSDRAMFMC ( );
+   mk_fmc_sdram_is42s32800g_initFMC ( );
 
    /* Initialisation de la mémoire */
-   l_result = mk_system_memory_initializationSequence ( );
+   l_ret = mk_fmc_sdram_is42s32800g_initializationSequence ( );
+
+   /* Si une erreur s'est produite */
+   if ( l_ret == K_SDRAM_BUSY )
+   {
+      /* Actualisation de la variable de retour */
+      l_result = K_MK_ERROR_INIT;
+   }
+
+   /* Sinon */
+   else
+   {
+      /* Ne rien faire */
+   }
 
    /* Retour */
    return ( l_result );

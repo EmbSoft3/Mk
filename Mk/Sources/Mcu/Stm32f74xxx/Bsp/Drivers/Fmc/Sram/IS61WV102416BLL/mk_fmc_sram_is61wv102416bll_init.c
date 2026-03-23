@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2022 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,13 +28,13 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_system_memory_initSRAM.c
-* @brief Définition de la fonction mk_system_memory_initSRAM.
-* @date 18 oct. 2022
+* @file mk_fmc_sram_is61wv102416bll_init.c
+* @brief Définition de la fonction mk_fmc_sram_is61wv102416bll_init.
+* @date 23 mars 2026
 *
 */
 
-#include "mk_system_api.h"
+#include "mk_fmc_api.h"
 
 /**
  * @internal
@@ -42,7 +42,7 @@
  * @endinternal
  */
 
-void mk_system_memory_initSRAM ( void )
+void mk_fmc_sram_is61wv102416bll_init ( void )
 {
    /* Désactivation de la bank dédiée à la mémoire SRAM */
    norflash_psram_disableBank ( K_NORFLASH_PSRAM_BANK3 );

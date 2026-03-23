@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,17 +28,17 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_system_memory_constants.h
-* @brief Déclaration des constantes dédiées à la configuration des mémoires externes.
+* @file mk_fmc_sdram_is42s32800g_constants.h
+* @brief Déclaration des constantes dédiées à la configuration de la mémoire IS42S32800G.
 * @date 25 févr. 2019
 *
 */
 
-#ifndef MK_SYSTEM_MEMORY_CONSTANTS_H
-#define MK_SYSTEM_MEMORY_CONSTANTS_H
+#ifndef MK_FMC_SDRAM_IS42S32800G_CONSTANTS_H
+#define MK_FMC_SDRAM_IS42S32800G_CONSTANTS_H
 
 /**
- * @def K_MK_SDRAM_LOADMODE_REGISTER_VALUE
+ * @def K_MK_FMC_SDRAM_IS42S32800G_LOADMODE_REGISTER_VALUE
  * @brief Définition de la valeur du registre 'Load Mode Register'.\n
  *        Burst Length : 1 \n
  *        Burst Type : Sequential \n
@@ -47,7 +47,7 @@
  *        Write Burst Mode : Programmed Burst Length
  */
 
-#define K_MK_SDRAM_LOADMODE_REGISTER_VALUE 0x0220
+#define K_MK_FMC_SDRAM_IS42S32800G_LOADMODE_REGISTER_VALUE 0x0220
 
 /**
  *

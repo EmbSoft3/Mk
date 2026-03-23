@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -36,48 +36,6 @@
 
 #ifndef MK_SYSTEM_MEMORY_H
 #define MK_SYSTEM_MEMORY_H
-
-/**
- * @fn void mk_system_memory_initGPIO ( void );
- * @brief Cette fonction initialise les broches GPIO des mémoires externes.
- *
- * @return Sans objet.
- *
- */
-
-void mk_system_memory_initGPIO ( void );
-
-/**
- * @fn void mk_system_memory_initSRAM ( void );
- * @brief Cette fonction initialise la ou les mémoires externes de type SRAM.
- *
- * @return Sans objet.
- *
- */
-
-void mk_system_memory_initSRAM ( void );
-
-/**
- * @fn uint32_t mk_system_memory_initSDRAM ( void );
- * @brief Cette fonction initialise la ou les mémoires externes de type SDRAM.
- * @return Cette fonction retourne la valeur \ref K_SDRAM_OK si l'initialisation a réussi, sinon la valeur \ref K_SDRAM_BUSY.
- *
- */
-
-uint32_t mk_system_memory_initSDRAM ( void );
-
-/**
- * @fn uint32_t mk_system_memory_initQSPI ( void );
- * @brief Cette fonction initialise la ou les mémoires externes de type QSPI.
- *
- * @param[in] p_mode Ce paramètre indique si la mémoire doit être initialisée en mode 1 fil
- *                   (\ref K_QSPI_INSTRUCTION_SINGLE_MODE) ou 4 fils (\ref K_QSPI_INSTRUCTION_QUAD_MODE).
- *
- * @return Cette fonction retourne la valeur \ref K_QSPI_OK si l'initialisation a réussi, sinon la valeur \ref K_QSPI_KO.
- *
- */
-
-uint32_t mk_system_memory_initQSPI ( uint32_t p_mode );
 
 /**
  * @fn void mk_system_memory_init ( void );

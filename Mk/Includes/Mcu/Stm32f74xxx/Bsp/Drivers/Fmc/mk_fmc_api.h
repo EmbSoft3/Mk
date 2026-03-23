@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,14 +28,14 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_system_api.h
-* @brief Ce fichier contient les directives 'include' utilisÃ©es.
-* @date 23 mars 2024
+* @file mk_fmc_api.h
+* @brief Ce fichier contient les directives 'include' utilisées.
+* @date 23 mars 2026
 *
 */
 
-#ifndef MK_SYSTEM_API_H
-#define MK_SYSTEM_API_H
+#ifndef MK_FMC_API_H
+#define MK_FMC_API_H
 
 /**
  *
@@ -94,33 +94,12 @@
  *
  */
 
-#include "mk_dma_isr_private.h"
-#include "mk_display_private.h"
-#include "mk_i2c_isr_private.h"
-#include "mk_gpio_isr_private.h"
-#include "mk_mmc_isr_private.h"
-#include "mk_usb_isr_private.h"
-#include "mk_qspi_n25q512a_constants.h"
-#include "mk_qspi_n25q512a_types.h"
-#include "mk_qspi_n25q512a_private.h"
-#include "mk_qspi_n25q512a.h"
-#include "mk_main.h"
-
-/**
- *
- */
-
-#include "mk_qspi_types.h"
-#include "mk_qspi_bsp.h"
-#include "mk_qspi_isr_private.h"
-
-/**
- *
- */
-
 #include "mk_fmc_bsp.h"
+#include "mk_fmc_sram_is61wv102416bll.h"
 #include "mk_fmc_sdram_is42s32800g_constants.h"
 #include "mk_fmc_sdram_is42s32800g.h"
+#include "mk_fmc_sdram_is42s32400f_constants.h"
+#include "mk_fmc_sdram_is42s32400f.h"
 
 /**
  *
@@ -129,27 +108,6 @@
 #include "mk_utils_string.h"
 #include "mk_utils_utf.h"
 #include "mk_utils.h"
-
-/**
- *
- */
-
-#include "mk_system_types.h"
-#include "mk_system_boot_constants.h"
-#include "mk_system_boot_data.h"
-#include "mk_system_boot.h"
-#include "mk_system_cache.h"
-#include "mk_system_clock_constants.h"
-#include "mk_system_clock.h"
-#include "mk_system_fpu.h"
-#include "mk_system_memory.h"
-#include "mk_system_mpu.h"
-#include "mk_system_nvic.h"
-#include "mk_system_power_constants.h"
-#include "mk_system_power.h"
-#include "mk_system_rng.h"
-#include "mk_system_rtc.h"
-#include "mk_system_setting.h"
 
 /**
  *

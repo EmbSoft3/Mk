@@ -38,6 +38,22 @@
 #define MK_QSPI_N25Q512A_H
 
 /**
+ * @fn T_mkCode mk_qspi_n25q512a_init ( uint32_t p_mode );
+ * @brief Cette fonction initialise la mémoire N25Q512A.
+ *
+ * @param[in] p_mode Ce paramètre indique si la mémoire doit être initialisée en mode 1 fil
+ *                   (\ref K_QSPI_INSTRUCTION_SINGLE_MODE) ou 4 fils (\ref K_QSPI_INSTRUCTION_QUAD_MODE).
+ *
+ * @return Cette fonction retourne une des valeurs suivantes :
+ *         \li \ref K_MK_OK                  : l'initialisation de la mémoire a réussi.
+ *         \li \ref K_MK_ERROR_TIMEOUT       : l'initialisation de la mémoire a échoué car un timeout s'est produit.
+ *         \li \ref K_MK_ERROR_NOT_AVAILABLE : l'initialisation de la mémoire a échoué car le bus QSPI n'est pas disponible.
+ *
+ */
+
+T_mkCode mk_qspi_n25q512a_init ( uint32_t p_mode );
+
+/**
  * @fn T_mkCode mk_qspi_n25q512a_getMode ( uint32_t* p_mode );
  * @brief Cette fonction retourne le mode de fonctionnement de la mémoire QSPI.
  *

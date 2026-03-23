@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,56 +28,31 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi_api.h
-* @brief Ce fichier contient les directives 'include' utilisées.
-* @date 9 août 2024
+* @file mk_fmc_sdram_is42s32400f_constants.h
+* @brief Déclaration des constantes dédiées à la configuration de la mémoire IS42S32400F.
+* @date 25 févr. 2019
 *
 */
 
-#ifndef MK_QSPI_API_H
-#define MK_QSPI_API_H
+#ifndef MK_FMC_SDRAM_IS42S32400F_CONSTANTS_H
+#define MK_FMC_SDRAM_IS42S32400F_CONSTANTS_H
 
 /**
- *
+ * @def K_MK_FMC_SDRAM_IS42S32400F_LOADMODE_REGISTER_VALUE
+ * @brief Définition de la valeur du registre 'Load Mode Register'.\n
+ *        Burst Length : 1 \n
+ *        Burst Type : Sequential \n
+ *        CAS Latency : 2 cycles \n
+ *        Operating Mode : Standard \n
+ *        Write Burst Mode : Programmed Burst Length
  */
 
-#include "mk_types.h"
-#include "mk_peripheral_gpio_constants.h"
-#include "mk_peripheral_gpio.h"
-
-/**
- *
- */
-
-#include "mk_peripheral_qspi_constants.h"
-#include "mk_peripheral_qspi.h"
-
-/**
- *
- */
-
-#include "mk_qspi_n25q512a_constants.h"
-#include "mk_qspi_n25q512a_types.h"
-#include "mk_qspi_n25q512a_private.h"
-#include "mk_qspi_n25q512a.h"
-
-/**
- *
- */
-
-#include "mk_qspi_types.h"
-#include "mk_qspi_isr_private.h"
-#include "mk_qspi_bsp.h"
-
-/**
- *
- */
-
-#include "mk_utils.h"
+#define K_MK_FMC_SDRAM_IS42S32400F_LOADMODE_REGISTER_VALUE 0x0220
 
 /**
  *
  */
 
 #endif
+
 

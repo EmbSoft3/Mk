@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,56 +28,28 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_qspi_api.h
-* @brief Ce fichier contient les directives 'include' utilisÃ©es.
-* @date 9 aoÃ»t 2024
+* @file mk_fmc_sram_is61wv102416bll.h
+* @brief Déclaration des fonctions dédiées à la mémoire IS61WV102416BLL.
+* @date 23 mars 2026
 *
 */
 
-#ifndef MK_QSPI_API_H
-#define MK_QSPI_API_H
+#ifndef MK_FMC_SRAM_IS42S32800G_H
+#define MK_FMC_SRAM_IS42S32800G_H
 
 /**
+ * @fn void mk_fmc_sram_is61wv102416bll_init ( void );
+ * @brief Cette fonction initialise la mémoire IS61WV102416BLL.
+ * @return Sans objet.
  *
  */
 
-#include "mk_types.h"
-#include "mk_peripheral_gpio_constants.h"
-#include "mk_peripheral_gpio.h"
-
-/**
- *
- */
-
-#include "mk_peripheral_qspi_constants.h"
-#include "mk_peripheral_qspi.h"
-
-/**
- *
- */
-
-#include "mk_qspi_n25q512a_constants.h"
-#include "mk_qspi_n25q512a_types.h"
-#include "mk_qspi_n25q512a_private.h"
-#include "mk_qspi_n25q512a.h"
-
-/**
- *
- */
-
-#include "mk_qspi_types.h"
-#include "mk_qspi_isr_private.h"
-#include "mk_qspi_bsp.h"
-
-/**
- *
- */
-
-#include "mk_utils.h"
+void mk_fmc_sram_is61wv102416bll_init ( void );
 
 /**
  *
  */
 
 #endif
+
 

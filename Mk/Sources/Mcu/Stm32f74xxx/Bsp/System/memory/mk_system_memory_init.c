@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -47,20 +47,14 @@ T_sysCode mk_system_memory_init ( void )
    /* Déclaration de la variable de retour */
    T_sysCode l_result = K_SYS_OK;
 
-   /* Déclaration d'une variable de travail */
-   uint32_t l_ret;
+   /* Déclaration d'une variable de retour locale */
+   T_mkCode l_ret;
 
-   /* Initialisation des broches GPIO des mémoires */
-   mk_system_memory_initGPIO ( );
-
-   /* Initialisation de ou des mémoires SRAM */
-   mk_system_memory_initSRAM ( );
-
-   /* Initialisation de ou des mémoires SDRAM */
-   l_ret = mk_system_memory_initSDRAM ( );
+   /* Initialisation du BSP du périphérique FMC */
+   l_ret = mk_fmc_bsp_init ( );
 
    /* Si une erreur s'est produite */
-   if ( l_ret != K_SDRAM_OK )
+   if ( l_ret != K_MK_OK )
    {
       /* Actualisation de la variable de retour */
       l_result = K_SYS_ERROR_SDRAM;
@@ -72,14 +66,14 @@ T_sysCode mk_system_memory_init ( void )
       /* Ne rien faire */
    }
 
-   /* Initialisation de ou des mémoires QSPI */
-   l_ret = mk_system_memory_initQSPI ( K_QSPI_INSTRUCTION_QUAD_MODE );
+   /* Initialisation du BSP du périphérique QSPI */
+   l_ret = mk_qspi_bsp_init ( K_QSPI_INSTRUCTION_QUAD_MODE );
 
    /* Si une erreur s'est produite */
-   if ( l_ret != K_QSPI_OK )
+   if ( l_ret != K_MK_OK )
    {
       /* Actualisation de la variable de retour */
-      l_result = K_SYS_ERROR_QSPI;
+      l_result |= K_SYS_ERROR_QSPI;
    }
 
    /* Sinon */
