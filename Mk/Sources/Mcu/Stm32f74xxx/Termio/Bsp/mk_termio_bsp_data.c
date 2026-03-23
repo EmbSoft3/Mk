@@ -64,8 +64,8 @@ const T_mkTermioCtrlBlock g_mkTermioCtrlBlock [ K_MK_TERMIO_NUMBER ] =
    { K_MK_TERMIO_FILESYSTEM_ID,     K_MK_TERMIO_TASK_PRIORITY,       mk_file_task,            &g_mkFileStackAddr [ 0 ][ 0 ], K_MK_FILE_STACK_SIZE },
    { K_MK_TERMIO_FILESYSTEM_ID + 1, K_MK_TERMIO_TASK_PRIORITY,       mk_file_task,            &g_mkFileStackAddr [ 1 ][ 0 ], K_MK_FILE_STACK_SIZE },
    { K_MK_TERMIO_FILESYSTEM_ID + 2, K_MK_TERMIO_TASK_PRIORITY,       mk_file_task,            &g_mkFileStackAddr [ 2 ][ 0 ], K_MK_FILE_STACK_SIZE },
-   { K_MK_TERMIO_FILESYSTEM_ID + 3, K_MK_TERMIO_TASK_PRIORITY,       mk_file_task,            &g_mkFileStackAddr [ 3 ][ 0 ], K_MK_FILE_STACK_SIZE },
-   { K_MK_TERMIO_FILESYSTEM_ID + 4, K_MK_TERMIO_TASK_PRIORITY,       mk_file_taskShared,      &g_mkFileStackAddr [ 4 ][ 0 ], K_MK_FILE_STACK_SIZE },
+   { K_MK_TERMIO_FILESYSTEM_ID + 3, K_MK_TERMIO_TASK_PRIORITY,       mk_file_taskShared,      &g_mkFileStackAddr [ 3 ][ 0 ], K_MK_FILE_STACK_SIZE },
+   { K_MK_TERMIO_NO,                K_MK_TERMIO_TASK_PRIORITY,       K_MK_NULL,               K_MK_NULL,                     0 },
    { K_MK_TERMIO_NO,                K_MK_TERMIO_TASK_PRIORITY,       K_MK_NULL,               K_MK_NULL,                     0 },
    { K_MK_TERMIO_NO,                K_MK_TERMIO_TASK_PRIORITY,       K_MK_NULL,               K_MK_NULL,                     0 }
 };
@@ -93,8 +93,8 @@ const T_mkTermioCtrlBlock g_mkTermioCtrlBlock [ K_MK_TERMIO_NUMBER ] =
    { K_MK_TERMIO_FILESYSTEM_ID,     K_MK_TERMIO_TASK_PRIORITY,       mk_file_task,            &g_mkFileStackAddr [ 0 ][ 0 ], K_MK_FILE_STACK_SIZE },
    { K_MK_TERMIO_FILESYSTEM_ID + 1, K_MK_TERMIO_TASK_PRIORITY,       mk_file_task,            &g_mkFileStackAddr [ 1 ][ 0 ], K_MK_FILE_STACK_SIZE },
    { K_MK_TERMIO_FILESYSTEM_ID + 2, K_MK_TERMIO_TASK_PRIORITY,       mk_file_task,            &g_mkFileStackAddr [ 2 ][ 0 ], K_MK_FILE_STACK_SIZE },
-   { K_MK_TERMIO_FILESYSTEM_ID + 3, K_MK_TERMIO_TASK_PRIORITY,       mk_file_task,            &g_mkFileStackAddr [ 3 ][ 0 ], K_MK_FILE_STACK_SIZE },
-   { K_MK_TERMIO_FILESYSTEM_ID + 4, K_MK_TERMIO_TASK_PRIORITY,       mk_file_taskShared,      &g_mkFileStackAddr [ 4 ][ 0 ], K_MK_FILE_STACK_SIZE },
+   { K_MK_TERMIO_FILESYSTEM_ID + 3, K_MK_TERMIO_TASK_PRIORITY,       mk_file_taskShared,      &g_mkFileStackAddr [ 3 ][ 0 ], K_MK_FILE_STACK_SIZE },
+   { K_MK_TERMIO_NO,                K_MK_TERMIO_TASK_PRIORITY,       K_MK_NULL,               K_MK_NULL,                     0 },
    { K_MK_TERMIO_NO,                K_MK_TERMIO_TASK_PRIORITY,       K_MK_NULL,               K_MK_NULL,                     0 },
    { K_MK_TERMIO_NO,                K_MK_TERMIO_TASK_PRIORITY,       K_MK_NULL,               K_MK_NULL,                     0 }
 };
