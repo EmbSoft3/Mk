@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -37,6 +37,9 @@
 #ifndef MK_HOME_MANAGER_CONSTANTS_H
 #define MK_HOME_MANAGER_CONSTANTS_H
 
+/* Si carte EVAL2 (résolution 640x480) */
+#if defined ( MK_BOARD_EVAL2 )
+
 /**
  * @def K_MK_HOME_MANAGERVIEW_WORKINGAREA_TOPLEFT_X
  * @brief Définition de la position TOP_LEFT [x] de la zone de travail.
@@ -70,6 +73,168 @@
  */
 
 /**
+ * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_NUMBER
+ * @brief Définition du nombre de boutons pouvant être dessinés dans la zone d'affichage des applications.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_NUMBER 5
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_HEIGHT
+ * @brief Définition de la hauteur de la zone d'affichage des graphiques [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_HEIGHT 180
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_HANDLEAREA_HEIGHT
+ * @brief Définition de la hauteur de la zone d'affichage des instances [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_HEIGHT 140
+
+/**
+ *
+ */
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH
+ * @brief Définition de la largeur des graphiques [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH 125
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT
+ * @brief Définition de la hauteur des graphiques [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT 85
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_X
+ * @brief Définition de la position relative du graphique [x] par rapport à l'origine de la zone.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_X 30
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_Y
+ * @brief Définition de la position relative du graphique [y] par rapport à l'origine de la zone.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_Y 55
+
+/**
+ *
+ */
+ 
+/* Si carte DISCO_REV_C (résolution 480x272) */
+#elif defined ( MK_BOARD_DISCO_REV_C )
+
+/**
+ *
+ */
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_WORKINGAREA_TOPLEFT_X
+ * @brief Définition de la position TOP_LEFT [x] de la zone de travail.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_WORKINGAREA_TOPLEFT_X 0
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_WORKINGAREA_TOPLEFT_Y
+ * @brief Définition de la position TOP_LEFT [y] de la zone de travail.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_WORKINGAREA_TOPLEFT_Y 0
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_X
+ * @brief Définition de la position BOTTOM_RIGHT [x] de la zone de travail.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_X 479
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_Y
+ * @brief Définition de la position BOTTOM_RIGHT [y] de la zone de travail.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_Y 255
+
+/**
+ *
+ */
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_NUMBER
+ * @brief Définition du nombre de boutons pouvant être dessinés dans la zone d'affichage des applications.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_NUMBER 3
+
+ /**
+  * @def K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_HEIGHT
+  * @brief Définition de la hauteur de la zone d'affichage des graphiques [en pixels].
+  */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_HEIGHT 125
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_HANDLEAREA_WIDTH
+ * @brief Définition de la hauteur de la zone d'affichage des instances [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_HEIGHT 140
+
+/**
+ *
+ */
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH
+ * @brief Définition de la largeur des graphiques [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH 90
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT
+ * @brief Définition de la hauteur des graphiques [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT 75
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_X
+ * @brief Définition de la position relative du graphique [x] par rapport à l'origine de la zone.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_X 20
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_Y
+ * @brief Définition de la position relative du graphique [y] par rapport à l'origine de la zone.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_Y 40
+
+/**
+ *
+ */
+
+ /* Sinon erreur de compilation */
+#else
+#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
+#endif
+
+/**
+ *
+ */
+
+/**
  * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_TOPLEFT_X
  * @brief Définition de la position TOP_LEFT [x] de la zone d'affichage des applications.
  */
@@ -96,73 +261,6 @@
  */
 
 #define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BOTTOMRIGHT_Y K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_Y
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_NUMBER
- * @brief Définition du nombre de boutons pouvant être dessinés dans la zone d'affichage des applications.
- */
-
-#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_NUMBER 5
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_WIDTH
- * @brief Définition de la largeur des boutons présents dans la zone d'affichage des applications [en pixels].
- */
-
-#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_WIDTH ( 1 + K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BOTTOMRIGHT_X - K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_TOPLEFT_X )
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_HEIGHT
- * @brief Définition de la hauteur des boutons présents dans la zone d'affichage des applications [en pixels].
- */
-
-#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_HEIGHT 85
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_ICON_WITDH
- * @brief Définition de la largeur des icônes de chaque application [en pixels].
- */
-
-#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_ICON_WITDH 62
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_ICON_HEIGHT
- * @brief Définition de la hauteur des icônes de chaque application [en pixels].
- */
-
-#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_ICON_HEIGHT 60
-
-/**
- *
- */
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_APPLICATION_ICON_PATH
- * @brief Définition du chemin de l'icône APPLICATION présente dans la vue.
- */
-
-#define K_MK_HOME_MANAGERVIEW_APPLICATION_ICON_PATH ( T_str8 ) "mk/apps/home/mk_home_application.bmp"
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_PATH
- * @brief Définition du chemin de l'icône STATUS présente dans la vue.
- */
-
-#define K_MK_HOME_MANAGERVIEW_STATUS_ICON_PATH ( T_str8 ) "mk/apps/home/mk_home_status.bmp"
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_WIDTH
- * @brief Définition de la largeur de l'icône présente dans la vue [en pixels].
- */
-
-#define K_MK_HOME_MANAGERVIEW_STATUS_ICON_WIDTH 25
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_HEIGHT
- * @brief Définition de la hauteur de l'icône présente dans la vue [en pixels].
- */
-
-#define K_MK_HOME_MANAGERVIEW_STATUS_ICON_HEIGHT 25
 
 /**
  *
@@ -240,53 +338,14 @@
  * @brief Définition de la position BOTTOM_RIGHT [y] de la zone d'affichage des graphiques.
  */
 
-#define K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_BOTTOMRIGHT_Y ( K_MK_HOME_MANAGERVIEW_STATUSAREA_TOPLEFT_Y + 180 )
+#define K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_BOTTOMRIGHT_Y ( K_MK_HOME_MANAGERVIEW_STATUSAREA_TOPLEFT_Y + K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_HEIGHT )
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_WIDTH
  * @brief Définition de la largeur de la zone d'affichage des graphiques [en pixels].
  */
 
-#define K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_WIDTH ( 1 + K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_BOTTOMRIGHT_X - K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_TOPLEFT_X )
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_HEIGHT
- * @brief Définition de la hauteur de la zone d'affichage des graphiques [en pixels].
- */
-
-#define K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_HEIGHT ( 1 + K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_BOTTOMRIGHT_Y - K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_TOPLEFT_Y )
-
-/**
- *
- */
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH
- * @brief Définition de la largeur des graphiques [en pixels].
- */
-
-#define K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH 125
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT
- * @brief Définition de la hauteur des graphiques [en pixels].
- */
-
-#define K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT 85
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_X
- * @brief Définition de la position relative du graphique [x] par rapport à l'origine de la zone.
- */
-
-#define K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_X ( ( ( 1 + K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_BOTTOMRIGHT_X - K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_TOPLEFT_X ) - ( 2 * K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH ) ) / 3 )
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_Y
- * @brief Définition de la position relative du graphique [y] par rapport à l'origine de la zone.
- */
-
-#define K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_Y 55
+#define K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_WIDTH ( K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_BOTTOMRIGHT_X - K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_TOPLEFT_X )
 
 /**
  *
@@ -311,14 +370,14 @@
  * @brief Définition de la position BOTTOM_RIGHT [x] de la zone d'affichage des instances.
  */
 
-#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_BOTTOMRIGHT_X K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_X
+#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_BOTTOMRIGHT_X K_MK_HOME_MANAGERVIEW_STATUSAREA_BOTTOMRIGHT_X
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_HANDLEAREA_BOTTOMRIGHT_Y
  * @brief Définition de la position BOTTOM_RIGHT [y] de la zone d'affichage des instances.
  */
 
-#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_BOTTOMRIGHT_Y ( K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_BOTTOMRIGHT_Y + 140 )
+#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_BOTTOMRIGHT_Y ( K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_BOTTOMRIGHT_Y + K_MK_HOME_MANAGERVIEW_HANDLEAREA_HEIGHT )
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_HANDLEAREA_WIDTH
@@ -328,11 +387,68 @@
 #define K_MK_HOME_MANAGERVIEW_HANDLEAREA_WIDTH ( K_MK_HOME_MANAGERVIEW_HANDLEAREA_BOTTOMRIGHT_X - K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X )
 
 /**
- * @def K_MK_HOME_MANAGERVIEW_HANDLEAREA_WIDTH
- * @brief Définition de la hauteur de la zone d'affichage des instances [en pixels].
+ *
  */
 
-#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_HEIGHT ( K_MK_HOME_MANAGERVIEW_HANDLEAREA_BOTTOMRIGHT_Y - K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y )
+/**
+ * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_WIDTH
+ * @brief Définition de la largeur des boutons présents dans la zone d'affichage des applications [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_WIDTH ( 1 + K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BOTTOMRIGHT_X - K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_TOPLEFT_X )
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_HEIGHT
+ * @brief Définition de la hauteur des boutons présents dans la zone d'affichage des applications [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_HEIGHT 85
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_ICON_WITDH
+ * @brief Définition de la largeur des icônes de chaque application [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_ICON_WITDH 62
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_ICON_HEIGHT
+ * @brief Définition de la hauteur des icônes de chaque application [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_ICON_HEIGHT 60
+
+/**
+ *
+ */
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_APPLICATION_ICON_PATH
+ * @brief Définition du chemin de l'icône APPLICATION présente dans la vue.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_APPLICATION_ICON_PATH ( T_str8 ) "mk/apps/home/mk_home_application.bmp"
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_PATH
+ * @brief Définition du chemin de l'icône STATUS présente dans la vue.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_STATUS_ICON_PATH ( T_str8 ) "mk/apps/home/mk_home_status.bmp"
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_WIDTH
+ * @brief Définition de la largeur de l'icône présente dans la vue [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_STATUS_ICON_WIDTH 25
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_HEIGHT
+ * @brief Définition de la hauteur de l'icône présente dans la vue [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_STATUS_ICON_HEIGHT 25
 
 /**
  *

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023-2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -57,8 +57,8 @@ static void mk_home_initVariables ( T_mkHomeApplication* p_home )
    p_home->view.manager.current = ( T_mkHomeManagerApplicationButton* ) &p_home->view.manager.applicationList.app [ 0 ];
    p_home->view.manager.status.appsNumber = 0;
    p_home->view.manager.status.taskNumber = 0;
-   p_home->view.manager.status.sdramPageNumber = 0;
-   p_home->view.manager.status.sramPageNumber = 0;
+   p_home->view.manager.status.largePageNumber = 0;
+   p_home->view.manager.status.smallPageNumber = 0;
 
    /* Retour */
    return;

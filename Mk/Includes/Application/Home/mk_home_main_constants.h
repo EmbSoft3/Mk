@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -36,6 +36,9 @@
 
 #ifndef MK_HOME_MAIN_CONSTANTS_H
 #define MK_HOME_MAIN_CONSTANTS_H
+
+/* Si carte EVAL2 (résolution 640x480) */
+#if defined ( MK_BOARD_EVAL2 )
 
 /**
  * @def K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_X
@@ -99,7 +102,7 @@
  * @brief Définition du chemin du fichier stockant l'arrière plan de la vue principale.
  */
 
-#define K_MK_HOME_MAINVIEW_BACKGROUND_PATH ( T_str8 ) "mk/apps/home/mk_home_background.bmp"
+#define K_MK_HOME_MAINVIEW_BACKGROUND_PATH ( T_str8 ) "mk/apps/home/mk_home_background_640x480.bmp"
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_WIDTH
@@ -115,6 +118,103 @@
 
 #define K_MK_HOME_MAINVIEW_BACKGROUND_HEIGHT 480
 
+/**
+ *
+ */
+ 
+ /* Si carte DISCO_REV_C (résolution 480x272) */
+#elif defined ( MK_BOARD_DISCO_REV_C )
+
+/**
+ *
+ */
+
+/**
+ * @def K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_X
+ * @brief Définition de la position TOP_LEFT [x] de la zone de travail.
+ */
+
+#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_X 0
+
+/**
+ * @def K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_Y
+ * @brief Définition de la position TOP_LEFT [y] de la zone de travail.
+ */
+
+#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_Y 140
+
+/**
+ * @def K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_BOTTOMRIGHT_X
+ * @brief Définition de la position BOTTOM_RIGHT [x] de la zone de travail.
+ */
+
+#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_BOTTOMRIGHT_X 479
+
+/**
+ * @def K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_Y
+ * @brief Définition de la position BOTTOM_RIGHT [y] de la zone de travail.
+ */
+
+#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_BOTTOMRIGHT_Y 271
+
+/**
+ *
+ */
+
+/**
+ * @def K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_NUMBER
+ * @brief Définition du nombre de boutons pouvant être dessinés dans la zone d'affichage des applications.
+ */
+
+#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_NUMBER 3
+
+/**
+ * @def K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_WIDTH
+ * @brief Définition de la largeur [en pxl] des boutons applicatifs.
+ */
+
+#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_WIDTH 120
+
+/**
+ * @def K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_HEIGHT
+ * @brief Définition de la hauteur [en pxl] des boutons applicatifs.
+ */
+
+#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_HEIGHT 120
+
+/**
+ *
+ */
+
+/**
+ * @def K_MK_HOME_MAINVIEW_BACKGROUND_PATH
+ * @brief Définition du chemin du fichier stockant l'arrière plan de la vue principale.
+ */
+
+#define K_MK_HOME_MAINVIEW_BACKGROUND_PATH ( T_str8 ) "mk/apps/home/mk_home_background_480x272.bmp"
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_WIDTH
+ * @brief Définition de la largeur de l'arrière plan [en pixels].
+ */
+
+#define K_MK_HOME_MAINVIEW_BACKGROUND_WIDTH 480
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_STATUS_ICON_HEIGHT
+ * @brief Définition de la hauteur de l'arrière plan [en pixels].
+ */
+
+#define K_MK_HOME_MAINVIEW_BACKGROUND_HEIGHT 272
+
+/**
+ *
+ */
+
+/* Sinon erreur de compilation */
+#else
+#error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
+#endif
 
 /**
  *

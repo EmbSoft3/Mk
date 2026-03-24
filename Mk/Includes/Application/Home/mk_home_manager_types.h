@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -94,12 +94,12 @@ struct T_mkHomeManagerStatus
 {
    char8_t strApps [ 8 ];                                                                             /*!< Ce membre contient la chaine de caractères stockant le nombre d'applications installées sur le système (format [n]/[m]). */
    char8_t strTask [ 8 ];                                                                             /*!< Ce membre contient la chaine de caractères stockant le nombre de taches exécutées par le système (format [n]/[m]). */
-   char8_t strSdram [ 8 ];                                                                            /*!< Ce membre contient la chaine de caractères stockant le nombre de pages mémoire SDRAM allouées par le système (format [n]/[m]). */
-   char8_t strSram [ 8 ];                                                                             /*!< Ce membre contient la chaine de caractères stockant le nombre de pages mémoire SRAM allouées par le système (format [n]/[m]). */
+   char8_t strLargePage [ 8 ];                                                                        /*!< Ce membre contient la chaine de caractères stockant le nombre de pages mémoire SDRAM allouées par le système (format [n]/[m]). */
+   char8_t strSmallPage [ 8 ];                                                                        /*!< Ce membre contient la chaine de caractères stockant le nombre de pages mémoire SRAM allouées par le système (format [n]/[m]). */
    uint32_t appsNumber;                                                                               /*!< Ce membre contient le nombre d'application allouées en cours d'exécution. */
    uint32_t taskNumber;                                                                               /*!< Ce membre contient le nombre de tâches en cours d'exécution. */
-   uint32_t sdramPageNumber;                                                                          /*!< Ce membre contient le nombre de pages de mémoire SDRAM en cours d'exécution. */
-   uint32_t sramPageNumber;                                                                           /*!< Ce membre contient le nombre de pages de mémoire SRAM en cours d'exécution. */
+   uint32_t largePageNumber;                                                                          /*!< Ce membre contient le nombre de pages de mémoire SDRAM en cours d'exécution. */
+   uint32_t smallPageNumber;                                                                          /*!< Ce membre contient le nombre de pages de mémoire SRAM en cours d'exécution. */
    T_mkAddr addr;                                                                                     /*!< Ce membre contient l'adresse du logo placé devant chaque statut. */
    T_mkTextStyle defaultStyle;                                                                        /*!< Ce membre contient le style par défaut des chaines de caractères affichant les statuts. */
    T_mkButtonImage button;                                                                            /*!< Ce membre contient un bouton image. */

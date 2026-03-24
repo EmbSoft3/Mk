@@ -325,13 +325,13 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
    if ( l_result == K_MK_OK )
    {
       /* Récupération du nombre de pages mémoire SDRAM allouées */
-      p_home->view.manager.status.sdramPageNumber = g_mkLargePageHandler.pool->count;
+      p_home->view.manager.status.largePageNumber = g_mkLargePageHandler.pool->count;
 
       /* Conversion en chaine de caractères */
-      mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strSdram, p_home->view.manager.status.sdramPageNumber, K_MK_PAGE_LARGE_SIZE / K_MK_PAGE_LARGE_BLOCK_SIZE );
+      mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strLargePage, p_home->view.manager.status.largePageNumber, K_MK_PAGE_LARGE_SIZE / K_MK_PAGE_LARGE_BLOCK_SIZE );
 
       /* Dessin du nombre de pages allouées dans le groupe Memory */
-      l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Sdram", ( T_str8 ) p_home->view.manager.status.strSdram, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 170.0f, l_color );
+      l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Large", ( T_str8 ) p_home->view.manager.status.strLargePage, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 170.0f, l_color );
    }
 
    /* Sinon */
@@ -344,13 +344,13 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
    if ( l_result == K_MK_OK )
    {
       /* Récupération du nombre de pages mémoire SRAM allouées */
-      p_home->view.manager.status.sramPageNumber = g_mkSmallPageHandler.pool->count;
+      p_home->view.manager.status.smallPageNumber = g_mkSmallPageHandler.pool->count;
 
       /* Conversion du nombre de page SRAM allouées en chaine de caractères */
-      mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strSram, p_home->view.manager.status.sramPageNumber, K_MK_PAGE_SMALL_SIZE / K_MK_PAGE_SMALL_BLOCK_SIZE );
+      mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strSmallPage, p_home->view.manager.status.smallPageNumber, K_MK_PAGE_SMALL_SIZE / K_MK_PAGE_SMALL_BLOCK_SIZE );
 
       /* Dessin du nombre de pages allouées dans le groupe Memory */
-      l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Sram", ( T_str8 ) p_home->view.manager.status.strSram, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 200.0f, l_color );
+      l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Small", ( T_str8 ) p_home->view.manager.status.strSmallPage, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 200.0f, l_color );
    }
 
    /* Sinon */
@@ -381,8 +381,8 @@ T_mkCode mk_home_manager_paintStatus ( T_mkContainer* p_container, T_mkField* p_
    T_mkHomeApplication* l_home = ( T_mkHomeApplication* ) mk_application_getArg ( l_application );
 
    /* Si le contenu du champ doit être actualisé */
-   if ( ( l_home->view.manager.status.sramPageNumber  != g_mkSmallPageHandler.pool->count ) ||
-        ( l_home->view.manager.status.sdramPageNumber != g_mkLargePageHandler.pool->count ) ||
+   if ( ( l_home->view.manager.status.smallPageNumber != g_mkSmallPageHandler.pool->count ) ||
+        ( l_home->view.manager.status.largePageNumber != g_mkLargePageHandler.pool->count ) ||
         ( l_home->view.manager.status.taskNumber != g_mkTaskPool.pool.count ) ||
         ( l_home->view.manager.status.appsNumber != g_mkDisplay.handler.applicationPool->count ) )
    {
