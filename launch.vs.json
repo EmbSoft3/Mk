@@ -1,0 +1,81 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "type": "cppdbg",
+      "project": "CMakeLists.txt",
+      "projectTarget": "Mk.elf",
+      "name": "Mk.elf (J-Link)",
+      "request": "launch",
+      "program": "${cmake.buildRoot}/Mk.elf",
+      "cwd": "${workspaceRoot}",
+      "MIMode": "gdb",
+      "miDebuggerPath": "arm-none-eabi-gdb.exe",
+      "targetArchitecture": "arm",
+      "stopAtEntry": true,
+      "externalConsole": false,
+      "debugServerPath": "JLinkGDBServerCL.exe",
+      "debugServerArgs": "-device STM32F746NG -if SWD -speed 4000 -port 2331 -nogui -nologtofile -singlerun",
+      "serverStarted": "",
+      "filterStderr": false,
+      "filterStdout": true,
+      "serverLaunchTimeout": 10000,
+      "customLaunchSetupCommands": [
+        {
+          "text": "set tcp connect-timeout 30",
+          "ignoreFailures": false
+        },
+        {
+          "text": "set remote hardware-breakpoint-limit 8",
+          "ignoreFailures": false
+        },
+        {
+          "text": "set breakpoint auto-hw on",
+          "ignoreFailures": false
+        },
+        {
+          "text": "file \"${cmake.buildRoot}/Mk.elf\"",
+          "ignoreFailures": false
+        },
+        {
+          "text": "target remote localhost:2331",
+          "ignoreFailures": false
+        },
+        {
+          "text": "monitor interface SWD",
+          "ignoreFailures": false
+        },
+        {
+          "text": "monitor speed 4000",
+          "ignoreFailures": false
+        },
+        {
+          "text": "monitor reset",
+          "ignoreFailures": false
+        },
+        {
+          "text": "monitor halt",
+          "ignoreFailures": false
+        },
+        {
+          "text": "load",
+          "ignoreFailures": false
+        },
+        {
+          "text": "monitor reset",
+          "ignoreFailures": false
+        },
+        {
+          "text": "monitor halt",
+          "ignoreFailures": false
+        },
+        {
+          "text": "break _vector_resetHandler",
+          "ignoreFailures": false
+        }
+      ],
+      "launchCompleteCommand": "None"
+    }
+  ]
+}
