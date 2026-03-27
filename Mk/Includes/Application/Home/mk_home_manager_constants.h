@@ -73,6 +73,13 @@
  */
 
 /**
+ * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BOTTOMRIGHT_X
+ * @brief Définition de la position BOTTOM_RIGHT [x] de la zone d'affichage des applications.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BOTTOMRIGHT_X ( K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_TOPLEFT_X + ( 1 * ( K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_X - K_MK_HOME_MANAGERVIEW_WORKINGAREA_TOPLEFT_X ) / 2 ) )
+
+/**
  * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_NUMBER
  * @brief Définition du nombre de boutons pouvant être dessinés dans la zone d'affichage des applications.
  */
@@ -92,6 +99,24 @@
  */
 
 #define K_MK_HOME_MANAGERVIEW_HANDLEAREA_HEIGHT 140
+
+/**
+ *
+ */
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET
+ * @brief Définition de l'offset sur l'axe Y entre le nom d'un groupe et la première propriété [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET 50
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_HANDLEAREA_PROPERTY_OFFSET
+ * @brief Définition de l'offset sur l'axe Y entre deux propriété d'un même groupe [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_PROPERTY_OFFSET 30
 
 /**
  *
@@ -169,6 +194,14 @@
  */
 
 /**
+ * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BOTTOMRIGHT_X
+ * @brief Définition de la position BOTTOM_RIGHT [x] de la zone d'affichage des applications.
+ */
+
+#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BOTTOMRIGHT_X ( K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_TOPLEFT_X + ( 1 * ( K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_X - K_MK_HOME_MANAGERVIEW_WORKINGAREA_TOPLEFT_X ) / 2 ) )
+
+
+/**
  * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BUTTON_NUMBER
  * @brief Définition du nombre de boutons pouvant être dessinés dans la zone d'affichage des applications.
  */
@@ -180,14 +213,32 @@
   * @brief Définition de la hauteur de la zone d'affichage des graphiques [en pixels].
   */
 
-#define K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_HEIGHT 125
+#define K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_HEIGHT 115
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_HANDLEAREA_WIDTH
  * @brief Définition de la hauteur de la zone d'affichage des instances [en pixels].
  */
 
-#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_HEIGHT 140
+#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_HEIGHT 155
+
+/**
+ *
+ */
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET
+ * @brief Définition de l'offset sur l'axe Y entre le nom d'un groupe et la première propriété [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET 40
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_HANDLEAREA_PROPERTY_OFFSET
+ * @brief Définition de l'offset sur l'axe Y entre deux propriété d'un même groupe [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_PROPERTY_OFFSET 25
 
 /**
  *
@@ -205,7 +256,7 @@
  * @brief Définition de la hauteur des graphiques [en pixels].
  */
 
-#define K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT 75
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT 50
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_X
@@ -247,13 +298,6 @@
  */
 
 #define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_TOPLEFT_Y K_MK_HOME_MANAGERVIEW_WORKINGAREA_TOPLEFT_Y
-
-/**
- * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BOTTOMRIGHT_X
- * @brief Définition de la position BOTTOM_RIGHT [x] de la zone d'affichage des applications.
- */
-
-#define K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BOTTOMRIGHT_X ( K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_TOPLEFT_X + ( 1 * ( K_MK_HOME_MANAGERVIEW_WORKINGAREA_BOTTOMRIGHT_X - K_MK_HOME_MANAGERVIEW_WORKINGAREA_TOPLEFT_X ) / 2 ) )
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_APPLICATIONLIST_BOTTOMRIGHT_Y

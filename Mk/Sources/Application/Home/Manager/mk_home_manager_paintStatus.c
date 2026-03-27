@@ -188,7 +188,7 @@ static T_mkCode mk_home_manager_paintGroup ( T_mkButtonImage* p_buttonImage, T_s
    {
       /* Configuration des vecteurs position */
       mk_vect2d_setCoord ( &l_topLeft, p_x + 55.0f, p_y );
-      mk_vect2d_setCoord ( &l_bottomRight, p_x + 180.0f, p_y + 90.0f );
+      mk_vect2d_setCoord ( &l_bottomRight, p_x + 180.0f, p_y + 30.0f );
 
       /* Dessin du premier texte du groupe (statut) */
       l_result = mk_graphics_drawString ( p_buttonImage->field.layer, l_topLeft, l_bottomRight, p_string, p_buttonImage->style, K_MK_NULL );
@@ -204,8 +204,8 @@ static T_mkCode mk_home_manager_paintGroup ( T_mkButtonImage* p_buttonImage, T_s
    if ( l_result == K_MK_OK )
    {
       /* Configuration des vecteurs position */
-      mk_vect2d_setCoord ( &l_topLeft, p_x + 220.0f, p_y );
-      mk_vect2d_setCoord ( &l_bottomRight, p_x + 270.0f, p_y + 90.0f );
+      mk_vect2d_setCoord ( &l_topLeft, ( real32_t ) g_mkDisplay.screen.width - 55.0f, p_y );
+      mk_vect2d_setCoord ( &l_bottomRight, ( real32_t ) g_mkDisplay.screen.width - 5.0f, p_y + 30.0f );
 
       /* Effacement de la valeur précédente */
       l_result = mk_graphics_drawRect ( p_buttonImage->field.layer, K_MK_GRAPHICS_SOLID, l_topLeft, l_bottomRight, K_MK_COLOR_ARGB_BLACK );
@@ -261,20 +261,7 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
    if ( l_result == K_MK_OK )
    {
       /* Dessin du groupe "Handle" */
-      l_result = mk_home_manager_paintGroupName ( l_buttonImage, ( T_str8 ) "Handle", K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y, l_color );
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Ne rien faire */
-   }
-
-   /* Si aucune erreur ne s'est produite */
-   if ( l_result == K_MK_OK )
-   {
-      /* Dessin du groupe "Memory" */
-      l_result = mk_home_manager_paintGroupName ( l_buttonImage, ( T_str8 ) "Memory", K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 120.0f, l_color );
+      l_result = mk_home_manager_paintGroupName ( l_buttonImage, ( T_str8 ) "Handle/Memory", K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y, l_color );
    }
 
    /* Sinon */
@@ -293,7 +280,9 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
       mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strApps, p_home->view.manager.status.appsNumber, K_MK_DISPLAY_APPLICATION_NUMBER );
 
       /* Dessin du nombre d'application dans le groupe Handle */
-      l_result = mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Application", ( T_str8 ) p_home->view.manager.status.strApps, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 50.0f, l_color );
+      l_result = mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Application", ( T_str8 ) p_home->view.manager.status.strApps, 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET, l_color );
    }
 
    /* Sinon */
@@ -312,7 +301,11 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
       mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strTask, p_home->view.manager.status.taskNumber, K_MK_SCHEDULER_MAX_NUMBER_OF_TASKS );
 
       /* Dessin du nombre de tâches dans le groupe Handle */
-      l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Task", ( T_str8 ) p_home->view.manager.status.strTask, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 80.0f, l_color );
+      l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Task", ( T_str8 ) p_home->view.manager.status.strTask, 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET + K_MK_HOME_MANAGERVIEW_HANDLEAREA_PROPERTY_OFFSET, 
+         l_color );
    }
 
    /* Sinon */
@@ -331,7 +324,10 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
       mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strLargePage, p_home->view.manager.status.largePageNumber, K_MK_PAGE_LARGE_SIZE / K_MK_PAGE_LARGE_BLOCK_SIZE );
 
       /* Dessin du nombre de pages allouées dans le groupe Memory */
-      l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Large", ( T_str8 ) p_home->view.manager.status.strLargePage, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 170.0f, l_color );
+      l_result = mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "LargePage", ( T_str8 ) p_home->view.manager.status.strLargePage, 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET + ( 2 * K_MK_HOME_MANAGERVIEW_HANDLEAREA_PROPERTY_OFFSET ), l_color );
    }
 
    /* Sinon */
@@ -350,7 +346,10 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
       mk_home_manager_getStr ( ( T_str8 ) p_home->view.manager.status.strSmallPage, p_home->view.manager.status.smallPageNumber, K_MK_PAGE_SMALL_SIZE / K_MK_PAGE_SMALL_BLOCK_SIZE );
 
       /* Dessin du nombre de pages allouées dans le groupe Memory */
-      l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Small", ( T_str8 ) p_home->view.manager.status.strSmallPage, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 200.0f, l_color );
+      l_result = mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "SmallPage", ( T_str8 ) p_home->view.manager.status.strSmallPage, 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y +
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET + ( 3 * K_MK_HOME_MANAGERVIEW_HANDLEAREA_PROPERTY_OFFSET ), l_color );
    }
 
    /* Sinon */

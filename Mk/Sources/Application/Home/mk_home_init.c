@@ -157,7 +157,7 @@ static void mk_home_initManagerFields ( T_mkHomeApplication* p_home )
    mk_graph2D_setGridVisibility ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_GRID_SECONDARY, K_MK_FIELD_VISIBLE );
    mk_graph2D_setText ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, ( T_str8 ) "CPU");
    mk_graph2D_setTextLayer ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPHICS_BACKGROUND );
-   mk_graph2D_setTextArea ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, p_home->view.manager.cpuLoad.graph.field.position.x, p_home->view.manager.cpuLoad.graph.field.position.y + K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT + 10, K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH, 40 );
+   mk_graph2D_setTextArea ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, p_home->view.manager.cpuLoad.graph.field.position.x, p_home->view.manager.cpuLoad.graph.field.position.y + K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT, K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH, 40 );
    mk_graph2D_setTextStyle ( &p_home->view.manager.cpuLoad.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, K_MK_NULL );
 
    /* FrameRate */
@@ -188,7 +188,7 @@ static void mk_home_initManagerFields ( T_mkHomeApplication* p_home )
    mk_graph2D_setGridVisibility ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_GRID_SECONDARY, K_MK_FIELD_VISIBLE );
    mk_graph2D_setText ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, ( T_str8 ) "Framerate");
    mk_graph2D_setTextLayer ( &p_home->view.manager.frameRate.graph, K_MK_GRAPHICS_BACKGROUND );
-   mk_graph2D_setTextArea ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, p_home->view.manager.frameRate.graph.field.position.x, p_home->view.manager.frameRate.graph.field.position.y + K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT + 10, K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH, 40 );
+   mk_graph2D_setTextArea ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, p_home->view.manager.frameRate.graph.field.position.x, p_home->view.manager.frameRate.graph.field.position.y + K_MK_HOME_MANAGERVIEW_GRAPH2D_HEIGHT, K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH, 40 );
    mk_graph2D_setTextStyle ( &p_home->view.manager.frameRate.graph, K_MK_GRAPH2D_IDENTIFIER_TITLE, K_MK_NULL );
 
    /* Initialisation du bouton image */
@@ -399,7 +399,7 @@ static T_mkCode mk_home_initMainView ( T_mkHomeApplication* p_home )
       mk_home_initMainFields ( p_home );
 
       /* Ajout des objets dans le container */
-      l_result  = mk_container_addField ( p_home->view.main.container, &p_home->view.main.background.field, K_MK_NULL );
+      l_result = mk_container_addField ( p_home->view.main.container, &p_home->view.main.background.field, K_MK_NULL );
       l_result |= mk_container_addField ( p_home->view.main.container, &p_home->view.main.screen.field, K_MK_NULL );
 
       for ( l_counter = 0 ; l_counter < K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_NUMBER ; l_counter++ )
