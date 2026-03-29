@@ -1,9 +1,11 @@
-﻿################################################################################
-# Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
-################################################################################
-
-/.vs/Mk/FileContentIndex
-/.vs/Mk/v17
-/.vs
-/Mk/Make/objects_listing.txt
-/CppProperties.json
+﻿/.vs
+/build
+*.o
+*.d
+*.su
+*.elf
+*.map
+*.bin
+*.hex
+*.srec
+*.lst
