@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Mk — EVAL2 (J-Link)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "jlink",
+      "device": "STM32F746NG",
+      "interface": "SWD",
+      "speed": 4000,
+      "executable": "${workspaceFolder}/build/debug-eval2/Mk.elf",
+      "runToEntryPoint": "_vector_resetHandler"
+    },
+    {
+      "name": "Mk — DISCO (J-Link)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "jlink",
+      "device": "STM32F746NG",
+      "interface": "SWD",
+      "speed": 4000,
+      "executable": "${workspaceFolder}/build/debug-disco/Mk.elf",
+      "runToEntryPoint": "_vector_resetHandler"
+    }
+  ]
+}
