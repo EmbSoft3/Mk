@@ -109,7 +109,7 @@
  * @brief Définition de l'offset sur l'axe Y entre le nom d'un groupe et la première propriété [en pixels].
  */
 
-#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET 50
+#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET 40
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_HANDLEAREA_PROPERTY_OFFSET
@@ -121,6 +121,13 @@
 /**
  *
  */
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_TITLE_OFFSET_Y
+ * @brief Définition de l'offset sur l'axe Y entre l'origine de la zone de travail et le nom du groupe où sont les graphiques [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_TITLE_OFFSET_Y 10
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH
@@ -231,7 +238,7 @@
  * @brief Définition de l'offset sur l'axe Y entre le nom d'un groupe et la première propriété [en pixels].
  */
 
-#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET 40
+#define K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET 30
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_HANDLEAREA_PROPERTY_OFFSET
@@ -243,6 +250,13 @@
 /**
  *
  */
+
+/**
+ * @def K_MK_HOME_MANAGERVIEW_TITLE_OFFSET_Y
+ * @brief Définition de l'offset sur l'axe Y entre l'origine de la zone de travail et le nom du groupe où sont les graphiques [en pixels].
+ */
+
+#define K_MK_HOME_MANAGERVIEW_TITLE_OFFSET_Y 0
 
 /**
  * @def K_MK_HOME_MANAGERVIEW_GRAPH2D_WIDTH
@@ -270,7 +284,7 @@
  * @brief Définition de la position relative du graphique [y] par rapport à l'origine de la zone.
  */
 
-#define K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_Y 40
+#define K_MK_HOME_MANAGERVIEW_GRAPH2D_OFFSET_Y 30
 
 /**
  *

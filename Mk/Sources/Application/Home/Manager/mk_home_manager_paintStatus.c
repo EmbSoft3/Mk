@@ -86,46 +86,33 @@ static T_mkCode mk_home_manager_paintGroupName ( T_mkButtonImage* p_buttonImage,
    T_mkVect2D l_topLeft, l_bottomRight;
 
    /* Configuration de position de la bordure haute */
-   mk_vect2d_setCoord ( &l_topLeft, p_x + 125.0f, p_y + 23 );
-   mk_vect2d_setCoord ( &l_bottomRight, p_x + ( real32_t ) p_buttonImage->field.dimension.width - 15.0f, p_y + 23 );
+   mk_vect2d_setCoord ( &l_topLeft, p_x + 125.0f, p_y + 13.0f );
+   mk_vect2d_setCoord ( &l_bottomRight, p_x + ( real32_t ) p_buttonImage->field.dimension.width - 15.0f, p_y + 13.0f );
 
-   /* Dessin de la bordure haute */
-   l_result = mk_graphics_drawLine ( p_buttonImage->field.layer, l_topLeft, l_bottomRight, p_color );
+   /* Configuration des vecteurs position */
+   mk_vect2d_setCoord ( &l_topLeft, p_x + 10.0f, p_y );
+   mk_vect2d_setCoord ( &l_bottomRight, p_x + 40.0f, p_y + 20.0f );
 
-   /* Si aucune erreur ne s'est produite */
-   if ( l_result == K_MK_OK )
+   /* Si le groupe possède une image */
+   if ( ( p_buttonImage->bitmap != K_MK_NULL ) && ( p_buttonImage->bitmap->file != K_MK_NULL ) && ( p_buttonImage->bitmap->baseAddr != K_MK_NULL ) )
    {
-      /* Configuration des vecteurs position */
-      mk_vect2d_setCoord ( &l_topLeft, p_x + 10.0f, p_y + 10.0f );
-      mk_vect2d_setCoord ( &l_bottomRight, p_x + 40.0f, p_y + 30.0f );
-
-      /* Si le groupe possède une image */
-      if ( ( p_buttonImage->bitmap != K_MK_NULL ) && ( p_buttonImage->bitmap->file != K_MK_NULL ) && ( p_buttonImage->bitmap->baseAddr != K_MK_NULL ) )
-      {
-         /* Dessin de l'image du groupe */
-         l_result = mk_bmp_draw ( p_buttonImage->bitmap, p_buttonImage->field.layer, l_topLeft );
-      }
-
-      /* Sinon */
-      else
-      {
-         /* Dessin d'un rectangle pour combler l'absence d'image */
-         l_result = mk_graphics_drawRect ( p_buttonImage->field.layer, K_MK_GRAPHICS_SOLID, l_topLeft, l_bottomRight, p_color );
-      }
+      /* Dessin de l'image du groupe */
+      l_result = mk_bmp_draw ( p_buttonImage->bitmap, p_buttonImage->field.layer, l_topLeft );
    }
 
    /* Sinon */
    else
    {
-      /* Ne rien faire */
+      /* Dessin d'un rectangle pour combler l'absence d'image */
+      l_result = mk_graphics_drawRect ( p_buttonImage->field.layer, K_MK_GRAPHICS_SOLID, l_topLeft, l_bottomRight, p_color );
    }
 
    /* Si le groupe possède un texte */
    if ( ( l_result == K_MK_OK ) && ( p_string != K_MK_NULL ) )
    {
       /* Configuration de la position du texte */
-      mk_vect2d_setCoord ( &l_topLeft, p_x + 50.0f, p_y + 10.0f );
-      mk_vect2d_setCoord ( &l_bottomRight, p_x + ( real32_t ) p_buttonImage->field.dimension.width - 1.0f, p_y + 40.0f );
+      mk_vect2d_setCoord ( &l_topLeft, p_x + 50.0f, p_y );
+      mk_vect2d_setCoord ( &l_bottomRight, p_x + ( real32_t ) p_buttonImage->field.dimension.width - 1.0f, p_y + 30.0f );
 
       /* Dessin du texte */
       l_result = mk_graphics_drawString ( p_buttonImage->field.layer, l_topLeft, l_bottomRight, p_string, p_buttonImage->style, K_MK_NULL );
@@ -255,7 +242,7 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
    l_color = mk_color_getARGB32 ( &l_buttonImage->borderColor );
 
    /* Dessin du groupe "System" */
-   l_result = mk_home_manager_paintGroupName ( l_buttonImage, ( T_str8 ) "System", K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_TOPLEFT_X, K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_TOPLEFT_Y, l_color );
+   l_result = mk_home_manager_paintGroupName ( l_buttonImage, ( T_str8 ) "System", K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_TOPLEFT_X, K_MK_HOME_MANAGERVIEW_GRAPH2DAREA_TOPLEFT_Y + K_MK_HOME_MANAGERVIEW_TITLE_OFFSET_Y, l_color );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
@@ -281,7 +268,7 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
 
       /* Dessin du nombre d'application dans le groupe Handle */
       l_result = mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Application", ( T_str8 ) p_home->view.manager.status.strApps, 
-         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 25.0f, 
          K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET, l_color );
    }
 
@@ -302,7 +289,7 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
 
       /* Dessin du nombre de tâches dans le groupe Handle */
       l_result |= mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "Task", ( T_str8 ) p_home->view.manager.status.strTask, 
-         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 25.0f, 
          K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 
          K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET + K_MK_HOME_MANAGERVIEW_HANDLEAREA_PROPERTY_OFFSET, 
          l_color );
@@ -325,7 +312,7 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
 
       /* Dessin du nombre de pages allouées dans le groupe Memory */
       l_result = mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "LargePage", ( T_str8 ) p_home->view.manager.status.strLargePage, 
-         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 25.0f, 
          K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y + 
          K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET + ( 2 * K_MK_HOME_MANAGERVIEW_HANDLEAREA_PROPERTY_OFFSET ), l_color );
    }
@@ -347,7 +334,7 @@ static T_mkCode mk_home_manager_paintStatusField ( T_mkHomeApplication* p_home, 
 
       /* Dessin du nombre de pages allouées dans le groupe Memory */
       l_result = mk_home_manager_paintGroup ( l_buttonImage, ( T_str8 ) "SmallPage", ( T_str8 ) p_home->view.manager.status.strSmallPage, 
-         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 35.0f, 
+         K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_X + 25.0f, 
          K_MK_HOME_MANAGERVIEW_HANDLEAREA_TOPLEFT_Y +
          K_MK_HOME_MANAGERVIEW_HANDLEAREA_GROUP_NAME_START_OFFSET + ( 3 * K_MK_HOME_MANAGERVIEW_HANDLEAREA_PROPERTY_OFFSET ), l_color );
    }
