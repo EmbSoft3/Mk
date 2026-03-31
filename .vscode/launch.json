@@ -10,6 +10,8 @@
       "interface": "SWD",
       "speed": 4000,
       "executable": "${workspaceFolder}/build/debug-eval2/Mk.elf",
+      "loadFiles": ["${workspaceFolder}/build/debug-eval2/Mk.srec"],
+      "symbolFiles": [{"file": "${workspaceFolder}/build/debug-eval2/Mk.elf"}],
       "runToEntryPoint": "_vector_resetHandler"
     },
     {
@@ -21,6 +23,8 @@
       "interface": "SWD",
       "speed": 4000,
       "executable": "${workspaceFolder}/build/debug-disco/Mk.elf",
+      "loadFiles": ["${workspaceFolder}/build/debug-disco/Mk.srec"],
+      "symbolFiles": [{"file": "${workspaceFolder}/build/debug-disco/Mk.elf"}],
       "runToEntryPoint": "_vector_resetHandler"
     }
   ]
