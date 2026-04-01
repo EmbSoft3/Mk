@@ -9,9 +9,9 @@
       "device": "STM32F746NG",
       "interface": "SWD",
       "speed": 4000,
-      "executable": "${workspaceFolder}/build/debug-eval2/Mk.elf",
-      "loadFiles": ["${workspaceFolder}/build/debug-eval2/Mk.srec"],
-      "symbolFiles": [{"file": "${workspaceFolder}/build/debug-eval2/Mk.elf"}],
+      "executable": "./build/debug-eval2/Mk.elf",
+      "loadFiles": ["./build/debug-eval2/Mk.srec"],
+      "symbolFiles": [{"file": "./build/debug-eval2/Mk.elf"}],
       "runToEntryPoint": "_vector_resetHandler"
     },
     {
@@ -22,9 +22,9 @@
       "device": "STM32F746NG",
       "interface": "SWD",
       "speed": 4000,
-      "executable": "${workspaceFolder}/build/debug-disco/Mk.elf",
-      "loadFiles": ["${workspaceFolder}/build/debug-disco/Mk.srec"],
-      "symbolFiles": [{"file": "${workspaceFolder}/build/debug-disco/Mk.elf"}],
+      "executable": "./build/debug-disco/Mk.elf",
+      "loadFiles": ["./build/debug-disco/Mk.srec"],
+      "symbolFiles": [{"file": "./build/debug-disco/Mk.elf"}],
       "runToEntryPoint": "_vector_resetHandler"
     }
   ]
