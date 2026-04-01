@@ -11,7 +11,7 @@
 # Usage from command line:
 #
 #   cmake -B build -G Ninja \
-#         -DCMAKE_TOOLCHAIN_FILE=cmake/arm-none-eabi-toolchain.cmake \
+#         -DCMAKE_TOOLCHAIN_FILE=CMake/arm-none-eabi-toolchain.cmake \
 #         -DBOARD=EVAL2 \
 #         -DCMAKE_BUILD_TYPE=Release
 #   cmake --build build
