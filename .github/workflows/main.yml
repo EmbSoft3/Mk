@@ -91,27 +91,14 @@ jobs:
       # The step is skipped when running locally with "act" because artifact
       # upload requires the GitHub runtime environment.
       # -----------------------------------------------------------------------
-      - name: Upload ELF
+      - name: Upload artifacts (${{ matrix.preset }})
         if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v4
         with:
-          name: Mk-${{ matrix.preset }}.elf
-          path: build/${{ matrix.preset }}/Mk.elf
+          name: ${{ matrix.preset }}
+          path: |
+            build/${{ matrix.preset }}/Mk.elf
+            build/${{ matrix.preset }}/Mk.srec
+            build/${{ matrix.preset }}/Mk.map
           if-no-files-found: error
-
-      - name: Upload SREC
-        if: ${{ !env.ACT }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: Mk-${{ matrix.preset }}.srec
-          path: build/${{ matrix.preset }}/Mk.srec
-          if-no-files-found: error
-
-      - name: Upload MAP
-        if: ${{ !env.ACT }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: Mk-${{ matrix.preset }}.map
-          path: build/${{ matrix.preset }}/Mk.map
-          if-no-files-found: warn
       
