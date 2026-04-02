@@ -23,7 +23,10 @@ set(CMAKE_SYSTEM_PROCESSOR arm)
 
 if(WIN32)
   # Adaptez ce chemin à votre installation Windows
-  set(TOOLCHAIN_PATH "C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin")
+  set(TOOLCHAIN_PATH $ENV{ARM_TOOLCHAIN_PATH} CACHE PATH "ARM toolchain path")
+  if(NOT TOOLCHAIN_PATH)
+    set(TOOLCHAIN_PATH "C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin")
+  endif()
   set(TC_EXT ".exe")
 else()
   # Sur Linux/macOS, arm-none-eabi-gcc doit être dans le PATH
