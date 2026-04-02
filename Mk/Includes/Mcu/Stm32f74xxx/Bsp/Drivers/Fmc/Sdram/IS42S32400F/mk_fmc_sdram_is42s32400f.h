@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_fmc_sdram_is42s32400f.h
-* @brief Déclaration des fonctions dédiées à la mémoire IS42S32400F.
+* @brief DÃ©claration des fonctions dÃ©diÃ©es Ã  la mÃ©moire IS42S32400F.
 * @date 23 mars 2026
 *
 */
@@ -39,17 +39,15 @@
 
 /**
  * @fn uint32_t mk_fmc_sdram_is42s32400f_init ( void );
- * @brief Cette fonction initialise la mémoire IS42S32400F.
- * @return Cette fonction retourne la valeur \ref K_MK_OK si l'initialisation a réussi, sinon la valeur \ref K_MK_ERROR_INIT.
+ * @brief Cette fonction initialise la mÃ©moire IS42S32400F.
+ * @return Cette fonction retourne la valeur \ref K_MK_OK si l'initialisation a rÃ©ussi, sinon la valeur \ref K_MK_ERROR_INIT.
  *
  */
 
 T_mkCode mk_fmc_sdram_is42s32400f_init ( void );
 
- /**
+/**
   *
   */
 
 #endif
-
-

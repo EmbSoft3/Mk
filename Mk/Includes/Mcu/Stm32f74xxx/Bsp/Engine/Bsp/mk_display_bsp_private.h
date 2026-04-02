@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_display_bsp_constants.h
-* @brief Déclaration des constantes dédiées au BSP du module 'Display'.
+* @brief DÃ©claration des constantes dÃ©diÃ©es au BSP du module 'Display'.
 * @date 19/03/2026
 *
 */
@@ -39,7 +39,7 @@
 
 /**
  * @fn void mk_display_bsp_init ( void );
- * @brief Cette fonction initialise le BSP (broches GPIO) du périphérique LTDC.
+ * @brief Cette fonction initialise le BSP (broches GPIO) du pÃ©riphÃ©rique LTDC.
  * @return Sans objet.
  *
  */

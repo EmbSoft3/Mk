@@ -36,7 +36,7 @@
 
 #include "mk_system_api.h"
 
-/* Carte STM32F746G-Eval2 */
+/* Si carte EVAL2 */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
@@ -85,7 +85,7 @@ void mk_system_bsp_setPLL ( uint32_t p_source, uint32_t p_prescaler )
    return;
 }
 
-/* Carte STM32F746G-DISCO REV.C */
+/* Si carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**

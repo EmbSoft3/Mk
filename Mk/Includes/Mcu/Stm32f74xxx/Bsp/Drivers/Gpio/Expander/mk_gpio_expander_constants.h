@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_gpio_expander_constants.h
-* @brief Déclaration des constantes dédiées aux expanders GPIO.
+* @brief DÃ©claration des constantes dÃ©diÃ©es aux expanders GPIO.
 * @date 16 mars 2026
 *
 */

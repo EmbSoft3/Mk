@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_gpio_bsp_types.h
-* @brief Déclaration des types dédiés aux GPIO de chaque BSP.
+* @brief DÃ©claration des types dÃ©diÃ©ss aux GPIO de chaque BSP.
 * @date 17 mars 2026
 *
 */
@@ -41,59 +41,59 @@
  *
  */
 
-/* Types dédiées à la carte STM32F746G-Eval2 */
+/* Si carte EVAL2 */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
  * @enum T_mkGPIOPinID
- * @brief Déclaration de l'énumération T_mkGPIOPinID.
+ * @brief DÃ©claration de l'Ã©numÃ©ration T_mkGPIOPinID.
  *
  */
 
 typedef enum T_mkGPIOPinID
 {
-   K_MK_GPIO_PIN_JOYSTICK_SEL = 0,                                   /*!< Définition de l'identifiant de la broche JOY_SEL. */
-   K_MK_GPIO_PIN_JOYSTICK_DOWN = 1,                                  /*!< Définition de l'identifiant de la broche JOY_DOWN. */
-   K_MK_GPIO_PIN_JOYSTICK_LEFT = 2,                                  /*!< Définition de l'identifiant de la broche JOY_LEFT. */
-   K_MK_GPIO_PIN_JOYSTICK_RIGHT = 3,                                 /*!< Définition de l'identifiant de la broche JOY_RIGHT. */
-   K_MK_GPIO_PIN_JOYSTICK_UP = 4,                                    /*!< Définition de l'identifiant de la broche JOY_UP. */
-   K_MK_GPIO_PIN_AUDIO_INTERRUPT = 5,                                /*!< Définition de l'identifiant de la broche AUDIO_INT. */
-   K_MK_GPIO_PIN_OTGFS1_OVERCURRENT = 6,                             /*!< Définition de l'identifiant de la broche OTGFS1_OVERCURRENT. */
-   K_MK_GPIO_PIN_OTGFS1_POWERSWITCHON = 7,                           /*!< Définition de l'identifiant de la broche OTGFS1_POWERSWITCHON. */
-   K_MK_GPIO_PIN_OTGFS2_OVERCURRENT = 8,                             /*!< Définition de l'identifiant de la broche OTGFS2_OVERCURRENT. */
-   K_MK_GPIO_PIN_OTGFS2_POWERSWITCHON = 9,                           /*!< Définition de l'identifiant de la broche OTGFS2_POWERSWITCHON. */
-   K_MK_GPIO_PIN_OTGHS_OVERCURRENT = 8,                              /*!< Définition de l'identifiant de la broche OTGHS_OVERCURRENT (alias de OTGFS2_OVERCURRENT). */
-   K_MK_GPIO_PIN_OTGHS_POWERSWITCHON = 9,                            /*!< Définition de l'identifiant de la broche OTGHS_POWERSWITCHON (alias de OTGFS2_POWERSWITCHON). */
-   K_MK_GPIO_PIN_CAMERA_XSDN = 10,                                   /*!< Définition de l'identifiant de la broche CAMERA_XSDN. */
+   K_MK_GPIO_PIN_JOYSTICK_SEL = 0,         /*!< DÃ©finition de l'identifiant de la broche JOY_SEL. */
+   K_MK_GPIO_PIN_JOYSTICK_DOWN = 1,        /*!< DÃ©finition de l'identifiant de la broche JOY_DOWN. */
+   K_MK_GPIO_PIN_JOYSTICK_LEFT = 2,        /*!< DÃ©finition de l'identifiant de la broche JOY_LEFT. */
+   K_MK_GPIO_PIN_JOYSTICK_RIGHT = 3,       /*!< DÃ©finition de l'identifiant de la broche JOY_RIGHT. */
+   K_MK_GPIO_PIN_JOYSTICK_UP = 4,          /*!< DÃ©finition de l'identifiant de la broche JOY_UP. */
+   K_MK_GPIO_PIN_AUDIO_INTERRUPT = 5,      /*!< DÃ©finition de l'identifiant de la broche AUDIO_INT. */
+   K_MK_GPIO_PIN_OTGFS1_OVERCURRENT = 6,   /*!< DÃ©finition de l'identifiant de la broche OTGFS1_OVERCURRENT. */
+   K_MK_GPIO_PIN_OTGFS1_POWERSWITCHON = 7, /*!< DÃ©finition de l'identifiant de la broche OTGFS1_POWERSWITCHON. */
+   K_MK_GPIO_PIN_OTGFS2_OVERCURRENT = 8,   /*!< DÃ©finition de l'identifiant de la broche OTGFS2_OVERCURRENT. */
+   K_MK_GPIO_PIN_OTGFS2_POWERSWITCHON = 9, /*!< DÃ©finition de l'identifiant de la broche OTGFS2_POWERSWITCHON. */
+   K_MK_GPIO_PIN_OTGHS_OVERCURRENT = 8,    /*!< DÃ©finition de l'identifiant de la broche OTGHS_OVERCURRENT (alias de OTGFS2_OVERCURRENT). */
+   K_MK_GPIO_PIN_OTGHS_POWERSWITCHON = 9,  /*!< DÃ©finition de l'identifiant de la broche OTGHS_POWERSWITCHON (alias de OTGFS2_POWERSWITCHON). */
+   K_MK_GPIO_PIN_CAMERA_XSDN = 10,         /*!< DÃ©finition de l'identifiant de la broche CAMERA_XSDN. */
    K_MK_GPIO_PIN_CAMERA_RSTI = 11,
    K_MK_GPIO_PIN_CAMERA_PLUG = 12,
-   K_MK_GPIO_PIN_MII_INTERRUPT = 13,                                 /*!< Définition de l'identifiant de la broche MII_INT. */
-   K_MK_GPIO_PIN_LCD_INTERRUPT = 14,                                 /*!< Définition de l'identifiant de la broche LDC_INT. */
-   K_MK_GPIO_PIN_SDCARD_DETECT = 15,                                 /*!< Définition de l'identifiant de la broche SDCARD_DETECT. */
-   K_MK_GPIO_PIN_LED1 = 16,                                          /*!< Définition de l'identifiant de la broche PTF10. */
-   K_MK_GPIO_PIN_LED2 = 17,                                          /*!< Définition de l'identifiant de la broche LED2. */
-   K_MK_GPIO_NUMBER_OF_PINS = 22                                     /*!< Définition du nombre d'identifiants. */
+   K_MK_GPIO_PIN_MII_INTERRUPT = 13, /*!< DÃ©finition de l'identifiant de la broche MII_INT. */
+   K_MK_GPIO_PIN_LCD_INTERRUPT = 14, /*!< DÃ©finition de l'identifiant de la broche LDC_INT. */
+   K_MK_GPIO_PIN_SDCARD_DETECT = 15, /*!< DÃ©finition de l'identifiant de la broche SDCARD_DETECT. */
+   K_MK_GPIO_PIN_LED1 = 16,          /*!< DÃ©finition de l'identifiant de la broche PTF10. */
+   K_MK_GPIO_PIN_LED2 = 17,          /*!< DÃ©finition de l'identifiant de la broche LED2. */
+   K_MK_GPIO_NUMBER_OF_PINS = 22     /*!< DÃ©finition du nombre d'identifiants. */
 } T_mkGPIOPinID;
 
-/* On inclut les types dédiés à la carte STM32F746G-DISCO REV.C */
+/* Si carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**
  * @enum T_mkGPIOPinID
- * @brief Déclaration de l'énumération T_mkGPIOPinID.
+ * @brief DÃ©claration de l'Ã©numÃ©ration T_mkGPIOPinID.
  *
  */
 
 typedef enum T_mkGPIOPinID
 {
-   K_MK_GPIO_PIN_AUDIO_INTERRUPT = 0,                                /*!< Définition de l'identifiant de la broche AUDIO_INT. */
-   K_MK_GPIO_PIN_OTGFS1_OVERCURRENT = 1,                             /*!< Définition de l'identifiant de la broche OTGFS1_OVERCURRENT. */
-   K_MK_GPIO_PIN_OTGFS1_POWERSWITCHON = 2,                           /*!< Définition de l'identifiant de la broche OTGFS1_POWERSWITCHON. */
-   K_MK_GPIO_PIN_OTGHS_OVERCURRENT = 3,                              /*!< Définition de l'identifiant de la broche OTGHS_OVERCURRENT (alias de OTGFS2_OVERCURRENT). */
-   K_MK_GPIO_PIN_SDCARD_DETECT = 4,                                  /*!< Définition de l'identifiant de la broche SDCARD_DETECT. */
-   K_MK_GPIO_PIN_LED1 = 5,                                           /*!< Définition de l'identifiant de la broche LED1. */
-   K_MK_GPIO_PIN_PUSHBUTTON = 6,                                     /*!< Définition de l'identifiant de la broche PUSHBUTTON1. */
-   K_MK_GPIO_NUMBER_OF_PINS = 7                                      /*!< Définition du nombre d'identifiants. */
+   K_MK_GPIO_PIN_AUDIO_INTERRUPT = 0,      /*!< DÃ©finition de l'identifiant de la broche AUDIO_INT. */
+   K_MK_GPIO_PIN_OTGFS1_OVERCURRENT = 1,   /*!< DÃ©finition de l'identifiant de la broche OTGFS1_OVERCURRENT. */
+   K_MK_GPIO_PIN_OTGFS1_POWERSWITCHON = 2, /*!< DÃ©finition de l'identifiant de la broche OTGFS1_POWERSWITCHON. */
+   K_MK_GPIO_PIN_OTGHS_OVERCURRENT = 3,    /*!< DÃ©finition de l'identifiant de la broche OTGHS_OVERCURRENT (alias de OTGFS2_OVERCURRENT). */
+   K_MK_GPIO_PIN_SDCARD_DETECT = 4,        /*!< DÃ©finition de l'identifiant de la broche SDCARD_DETECT. */
+   K_MK_GPIO_PIN_LED1 = 5,                 /*!< DÃ©finition de l'identifiant de la broche LED1. */
+   K_MK_GPIO_PIN_PUSHBUTTON = 6,           /*!< DÃ©finition de l'identifiant de la broche PUSHBUTTON1. */
+   K_MK_GPIO_NUMBER_OF_PINS = 7            /*!< DÃ©finition du nombre d'identifiants. */
 } T_mkGPIOPinID;
 
 /* Sinon erreur de compilation */
@@ -107,10 +107,8 @@ typedef enum T_mkGPIOPinID
  */
 
 
-
 /**
  *
  */
 
 #endif
-

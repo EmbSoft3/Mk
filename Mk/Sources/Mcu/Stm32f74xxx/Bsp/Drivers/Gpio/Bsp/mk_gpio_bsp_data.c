@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_gpio_bsp_data.c
-* @brief Définition des types dédiés au BSP du module GPIO.
+* @brief DÃ©finition des types dÃ©diÃ©s au BSP du module GPIO.
 * @date 17 mars 2026
 *
 */
@@ -40,12 +40,12 @@
  *
  */
 
-/* Constantes dédiées à la carte STM32F746G-Eval2 */
-#if defined ( MK_BOARD_EVAL2 )
+/* Si carte EVAL2 */
+#if defined( MK_BOARD_EVAL2 )
 
 /**
  * @fn uint32_t g_mkGPIOPinTable [ K_MK_GPIO_NUMBER_OF_PINS ];
- * @brief Déclaration de la table de correspondance des broches génériques pour la carte EVAL_2.
+ * @brief DÃ©claration de la table de correspondance des broches gÃ©nÃ©riques pour la carte EVAL_2.
  *
  */
 
@@ -72,12 +72,12 @@ T_mkGPIOPinHandler g_mkGPIOPinTable [ K_MK_GPIO_NUMBER_OF_PINS ] = {
    
 };
 
-/* On inclut les constantes dédiées à la carte STM32F746G-DISCO REV.C */
+/* Si carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**
  * @fn uint32_t g_mkGPIOPinTable [ K_MK_GPIO_NUMBER_OF_PINS ];
- * @brief Déclaration de la table de correspondance des broches génériques pour la carte DISCO_REV_C.
+ * @brief DÃ©claration de la table de correspondance des broches gÃ©nÃ©riques pour la carte DISCO_REV_C.
  *
  */
 
@@ -96,4 +96,3 @@ T_mkGPIOPinHandler g_mkGPIOPinTable [ K_MK_GPIO_NUMBER_OF_PINS ] = {
 #else
 #error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
 #endif
-

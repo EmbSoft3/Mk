@@ -29,14 +29,14 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_qspi_bsp_init.c
-* @brief Définition de la fonction mk_qspi_bsp_init.
+* @brief DÃ©finition de la fonction mk_qspi_bsp_init.
 * @date 23 mars 2026
 *
 */
 
 #include "mk_qspi_api.h"
 
-/* Constantes dédiées à la carte STM32F746G-Eval2 */
+/* Si carte EVAL2 */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
@@ -47,10 +47,10 @@
 
 T_mkCode mk_qspi_bsp_init ( uint32_t p_mode )
 {
-   /* Déclaration de la variable de retour */
+   /* DÃ©claration de la variable de retour */
    T_mkCode l_result;
    
-   /* Configuration du mode des broches de pilotage du périphérique QSPI<1>. */
+   /* Configuration du mode des broches de pilotage du pÃ©riphÃ©rique QSPI<1>. */
    gpio_setMode ( K_GPIOB, K_GPIO_ALTERNATE, 2 );           /* CLK */
    gpio_setMode ( K_GPIOB, K_GPIO_ALTERNATE, 6 );           /* CS  */
    gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 8 );           /* IO0 */
@@ -58,7 +58,7 @@ T_mkCode mk_qspi_bsp_init ( uint32_t p_mode )
    gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 7 );           /* IO2 */
    gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 6 );           /* IO3 */
 
-   /* Multiplexage des broches de pilotage du périphérique QSPI<1>. */
+   /* Multiplexage des broches de pilotage du pÃ©riphÃ©rique QSPI<1>. */
    gpio_alternate ( K_GPIOB, K_GPIO_AF9, 2 );               /* CLK */
    gpio_alternate ( K_GPIOB, K_GPIO_AF10, 6 );              /* CS  */
    gpio_alternate ( K_GPIOF, K_GPIO_AF10, 8 );              /* IO0 */
@@ -66,7 +66,7 @@ T_mkCode mk_qspi_bsp_init ( uint32_t p_mode )
    gpio_alternate ( K_GPIOF, K_GPIO_AF9, 7 );               /* IO2 */
    gpio_alternate ( K_GPIOF, K_GPIO_AF9, 6 );               /* IO3 */
 
-   /* Configuration de la vitesse des broches de pilotage du périphérique QSPI<1> */
+   /* Configuration de la vitesse des broches de pilotage du pÃ©riphÃ©rique QSPI<1> */
    gpio_speed ( K_GPIOB, K_GPIO_VERY_HIGH_SPEED, 2 );       /* CLK */
    gpio_speed ( K_GPIOB, K_GPIO_VERY_HIGH_SPEED, 6 );       /* CS  */
    gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 8 );       /* IO0 */
@@ -74,7 +74,7 @@ T_mkCode mk_qspi_bsp_init ( uint32_t p_mode )
    gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 7 );       /* IO2 */
    gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 6 );       /* IO3 */
 
-   /* Configuration du type de résistance des broches de pilotage du périphérique QSPI<1> */
+   /* Configuration du type de rÃ©sistance des broches de pilotage du pÃ©riphÃ©rique QSPI<1> */
    gpio_resistor ( K_GPIOB, K_GPIO_PULL_UP, 2 );            /* CLK */
    gpio_resistor ( K_GPIOB, K_GPIO_PULL_UP, 6 );            /* CS */
    gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 8 );            /* IO0 */
@@ -82,14 +82,14 @@ T_mkCode mk_qspi_bsp_init ( uint32_t p_mode )
    gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 7 );            /* IO2 */
    gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 6 );            /* IO3 */
 
-   /* Initialisation de la mémoire N25Q512A */
+   /* Initialisation de la mÃ©moire N25Q512A */
    l_result = mk_qspi_n25q512a_init ( p_mode );
 
    /* Retour */
    return ( l_result ) ;
 }
 
-/* On inclut les constantes dédiées à la carte STM32F746G-DISCO REV.C */
+/* Si carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 T_mkCode mk_qspi_bsp_init ( uint32_t p_mode )
@@ -97,7 +97,7 @@ T_mkCode mk_qspi_bsp_init ( uint32_t p_mode )
    /* Suppression warning */
    ( void ) p_mode;
    
-   /* Configuration du mode des broches de pilotage du périphérique QSPI<1>. */
+   /* Configuration du mode des broches de pilotage du pÃ©riphÃ©rique QSPI<1>. */
    gpio_setMode ( K_GPIOB, K_GPIO_ALTERNATE, 2 );           /* CLK */
    gpio_setMode ( K_GPIOB, K_GPIO_ALTERNATE, 6 );           /* CS  */
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 11 );          /* IO0 */
@@ -105,7 +105,7 @@ T_mkCode mk_qspi_bsp_init ( uint32_t p_mode )
    gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 2 );           /* IO2 */
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 13 );          /* IO3 */
 
-   /* Multiplexage des broches de pilotage du périphérique QSPI<1>. */
+   /* Multiplexage des broches de pilotage du pÃ©riphÃ©rique QSPI<1>. */
    gpio_alternate ( K_GPIOB, K_GPIO_AF9, 2 );               /* CLK */
    gpio_alternate ( K_GPIOB, K_GPIO_AF10, 6 );              /* CS  */
    gpio_alternate ( K_GPIOD, K_GPIO_AF9, 11 );              /* IO0 */
@@ -113,7 +113,7 @@ T_mkCode mk_qspi_bsp_init ( uint32_t p_mode )
    gpio_alternate ( K_GPIOE, K_GPIO_AF9, 2 );               /* IO2 */
    gpio_alternate ( K_GPIOD, K_GPIO_AF9, 13 );              /* IO3 */
 
-   /* Configuration de la vitesse des broches de pilotage du périphérique QSPI<1> */
+   /* Configuration de la vitesse des broches de pilotage du pÃ©riphÃ©rique QSPI<1> */
    gpio_speed ( K_GPIOB, K_GPIO_VERY_HIGH_SPEED, 2 );       /* CLK */
    gpio_speed ( K_GPIOB, K_GPIO_VERY_HIGH_SPEED, 6 );       /* CS  */
    gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 11 );      /* IO0 */
@@ -121,7 +121,7 @@ T_mkCode mk_qspi_bsp_init ( uint32_t p_mode )
    gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 2 );       /* IO2 */
    gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 13 );      /* IO3 */
 
-   /* Configuration du type de résistance des broches de pilotage du périphérique QSPI<1> */
+   /* Configuration du type de rÃ©sistance des broches de pilotage du pÃ©riphÃ©rique QSPI<1> */
    gpio_resistor ( K_GPIOB, K_GPIO_PULL_UP, 2 );            /* CLK */
    gpio_resistor ( K_GPIOB, K_GPIO_PULL_UP, 6 );            /* CS */
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 11 );           /* IO0 */
@@ -130,14 +130,10 @@ T_mkCode mk_qspi_bsp_init ( uint32_t p_mode )
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 13 );           /* IO3 */
 
    /* Retour */
-   return ( K_MK_OK ) ;
+   return ( K_MK_OK );
 }
 
 /* Sinon erreur de compilation */
 #else
 #error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
 #endif
-
-
-
-

@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_page_bsp_constants.h
-* @brief DÈclaration des constantes dÈdiÈes aux boards EVAL2 & DISCO_REV_C.
+* @brief D√©claration des constantes d√©di√©es aux boards EVAL2 & DISCO_REV_C.
 * @date 18 mars 2026
 *
 */
@@ -41,49 +41,49 @@
  *
  */
 
-/* Constantes dÈdiÈes ‡ la carte STM32F746G-Eval2 */
+/* Si carte EVAL2 */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
  * @def K_MK_BSP_PAGE_SMALL_START_ADDR
- * @brief DÈfinition de l'adresse de dÈbut de la mÈmoire stockant les petites pages mÈmoire (SRAM, SDRAM, ...).
+ * @brief D√©finition de l'adresse de d√©but de la m√©moire stockant les petites pages m√©moire (SRAM, SDRAM, ...).
  */
 
 #define K_MK_BSP_PAGE_SMALL_START_ADDR 0x68000000
 
 /**
  * @def K_MK_BSP_PAGE_SMALL_SIZE
- * @brief DÈfinition de la taille de la mÈmoire permettant d'allouer les petites pages mÈmoire [en octets].
+ * @brief D√©finition de la taille de la m√©moire permettant d'allouer les petites pages m√©moire [en octets].
  */
 
 #define K_MK_BSP_PAGE_SMALL_SIZE 0x200000
 
 /**
  * @def K_MK_BSP_PAGE_SMALL_BLOCK_SIZE
- * @brief DÈfinition de la taille des petites pages mÈmoire [en octets].
+ * @brief D√©finition de la taille des petites pages m√©moire [en octets].
  */
 
 #define K_MK_BSP_PAGE_SMALL_BLOCK_SIZE 0x10000
 
 /**
  * @def K_MK_BSP_PAGE_LARGE_START_ADDR
- * @brief DÈfinition de l'adresse de dÈbut de la mÈmoire stockant les grandes page mÈmoire (SDRAM).
+ * @brief D√©finition de l'adresse de d√©but de la m√©moire stockant les grandes page m√©moire (SDRAM).
  */
 
 #define K_MK_BSP_PAGE_LARGE_START_ADDR ( K_MK_DISPLAY_FRAME_BUFFER_BANK1_BASE_ADDR + ( 2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE ) + K_MK_DISPLAY_FRAME_BUFFER_SIZE )
 
 /**
  * @def K_MK_BSP_PAGE_LARGE_SIZE
- * @brief DÈfinition de la taille de la mÈmoire permettant d'allouer les grandes pages mÈmoire [en octets].
+ * @brief D√©finition de la taille de la m√©moire permettant d'allouer les grandes pages m√©moire [en octets].
  *        2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE => buffers graphiques.
- *        1 * K_MK_DISPLAY_FRAME_BUFFER_SIZE => mÈmoire dÈdiÈes ‡ l'allocation des applications.
+ *        1 * K_MK_DISPLAY_FRAME_BUFFER_SIZE => m√©moire d√©di√©es √† l'allocation des applications.
  */
 
 #define K_MK_BSP_PAGE_LARGE_SIZE ( ( ( uint32_t ) 0x800000 - ( ( 2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE ) + K_MK_DISPLAY_FRAME_BUFFER_SIZE ) ) * 4 )
 
 /**
  * @def K_MK_BSP_PAGE_LARGE_BLOCK_SIZE
- * @brief DÈfinition de la taille des grandes pages mÈmoire [en octets].
+ * @brief D√©finition de la taille des grandes pages m√©moire [en octets].
  */
 
 #define K_MK_BSP_PAGE_LARGE_BLOCK_SIZE ( K_MK_DISPLAY_FRAME_BUFFER_SIZE * 4 )
@@ -92,49 +92,49 @@
  *
  */
 
-/* On inclut les constantes dÈdiÈes ‡ la carte STM32F746G-DISCO REV.C */
+/* Si carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**
  * @def K_MK_BSP_PAGE_SMALL_START_ADDR
- * @brief DÈfinition de l'adresse de dÈbut de la mÈmoire stockant les petites pages mÈmoire (SRAM, SDRAM, ...).
+ * @brief D√©finition de l'adresse de d√©but de la m√©moire stockant les petites pages m√©moire (SRAM, SDRAM, ...).
  */
 
 #define K_MK_BSP_PAGE_SMALL_START_ADDR ( K_MK_DISPLAY_FRAME_BUFFER_BANK1_BASE_ADDR + ( 2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE ) + K_MK_DISPLAY_FRAME_BUFFER_SIZE )
 
 /**
  * @def K_MK_BSP_PAGE_SMALL_SIZE
- * @brief DÈfinition de la taille de la mÈmoire permettant d'allouer les petites pages mÈmoire [en octets].
+ * @brief D√©finition de la taille de la m√©moire permettant d'allouer les petites pages m√©moire [en octets].
  */
 
 #define K_MK_BSP_PAGE_SMALL_SIZE ( K_MK_DISPLAY_FRAME_BUFFER_SIZE * 4 )
 
 /**
  * @def K_MK_BSP_PAGE_SMALL_BLOCK_SIZE
- * @brief DÈfinition de la taille des petites pages mÈmoire [en octets].
+ * @brief D√©finition de la taille des petites pages m√©moire [en octets].
  */
 
 #define K_MK_BSP_PAGE_SMALL_BLOCK_SIZE 0x10000
 
 /**
  * @def K_MK_BSP_PAGE_LARGE_START_ADDR
- * @brief DÈfinition de l'adresse de dÈbut de la mÈmoire stockant les grandes page mÈmoire (SDRAM).
+ * @brief D√©finition de l'adresse de d√©but de la m√©moire stockant les grandes page m√©moire (SDRAM).
  */
 
 #define K_MK_BSP_PAGE_LARGE_START_ADDR ( K_MK_BSP_PAGE_SMALL_START_ADDR + K_MK_DISPLAY_FRAME_BUFFER_SIZE )
 
 /**
  * @def K_MK_BSP_PAGE_LARGE_SIZE
- * @brief DÈfinition de la taille de la mÈmoire permettant d'allouer les grandes pages mÈmoire [en octets].
+ * @brief D√©finition de la taille de la m√©moire permettant d'allouer les grandes pages m√©moire [en octets].
  *        2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE => buffers graphiques.
- *        1 * K_MK_DISPLAY_FRAME_BUFFER_SIZE => mÈmoire dÈdiÈes ‡ l'allocation des applications.
+ *        1 * K_MK_DISPLAY_FRAME_BUFFER_SIZE => m√©moire d√©di√©es √† l'allocation des applications.
  */
 
-#define K_MK_BSP_PAGE_LARGE_SIZE ( ( ( uint32_t) 0x200000 - ( ( 2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE ) + ( 2 * K_MK_DISPLAY_FRAME_BUFFER_SIZE ) ) ) * 4 )
+#define K_MK_BSP_PAGE_LARGE_SIZE ( ( ( uint32_t ) 0x200000 - ( ( 2 * K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE ) + ( 2 * K_MK_DISPLAY_FRAME_BUFFER_SIZE ) ) ) * 4 )
 
 /**
  * @def K_MK_BSP_PAGE_LARGE_BLOCK_SIZE
- * @brief DÈfinition de la taille des grandes pages mÈmoire [en octets].
+ * @brief D√©finition de la taille des grandes pages m√©moire [en octets].
  */
 
 #define K_MK_BSP_PAGE_LARGE_BLOCK_SIZE ( K_MK_DISPLAY_FRAME_BUFFER_SIZE * 4 )
@@ -149,4 +149,3 @@
 #endif
 
 #endif
-

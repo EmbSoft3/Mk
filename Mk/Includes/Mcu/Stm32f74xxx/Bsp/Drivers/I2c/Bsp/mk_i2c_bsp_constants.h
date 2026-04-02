@@ -37,7 +37,7 @@
 #ifndef MK_I2C_BSP_CONSTANTS_H
 #define MK_I2C_BSP_CONSTANTS_H
 
-/* Constantes dédiées à la carte STM32F746G-Eval2 ou MK_BOARD_DISCO_REV_C */
+/* Si carte EVAL2 ou DISCO_REV_C */
 #if ( defined ( MK_BOARD_EVAL2 ) || defined ( MK_BOARD_DISCO_REV_C ) )
 
 /**

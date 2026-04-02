@@ -29,14 +29,14 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_fmc_bsp_init.c
-* @brief Définition de la fonction mk_fmc_bsp_init.
+* @brief DÃ©finition de la fonction mk_fmc_bsp_init.
 * @date 23 mars 2026
 *
 */
 
 #include "mk_fmc_api.h"
 
-/* Constantes dédiées à la carte STM32F746G-Eval2 */
+/* Si carte EVAL2 */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
@@ -47,9 +47,9 @@
 
 static void mk_fmc_bsp_initGPIO ( void )
 {
-   /* Configuration du mode des broches de pilotage du contrôleur */
+   /* Configuration du mode des broches de pilotage du contrÃ´leur */
    /* SDRAM. Les broches SDCKE<1> - PH7 et SDNE<1> - PH6 ne sont pas */
-   /* utilisées (en réserve pour une autre mémoire) */
+   /* utilisÃ©es (en rÃ©serve pour une autre mÃ©moire) */
    gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 8 );           /* SDCLK */
    gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 5 );           /* SDNWE */
    gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 2 );           /* SDCKE<0> */
@@ -57,21 +57,21 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 11 );          /* SDNRAS */
    gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 15 );          /* SDNCAS */
 
-   /* Configuration du mode des broches de pilotage du contrôleur */
+   /* Configuration du mode des broches de pilotage du contrÃ´leur */
    /* SRAM. */
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 7 );           /* NE1 */
    gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 10 );          /* NE3 */
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 4 );           /* NOE */
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 5 );           /* NWE */
 
-   /* Configuration du mode des broches partagées du périphérique */
+   /* Configuration du mode des broches partagÃ©es du pÃ©riphÃ©rique */
    /* FMC. */
    gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 5 );           /* NBL<3> */
    gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 4 );           /* NBL<2> */
    gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 1 );           /* NBL<1> */
    gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 0 );           /* NBL<0> */
 
-   /* Configuration du mode des broches de données [D31:D0] du périphérique FMC */
+   /* Configuration du mode des broches de donnÃ©es [D31:D0] du pÃ©riphÃ©rique FMC */
    /* */
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 14 );          /* D0 */
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 15 );          /* D1 */
@@ -106,8 +106,8 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 9 );           /* D30 */
    gpio_setMode ( K_GPIOI, K_GPIO_ALTERNATE, 10 );          /* D31 */
 
-   /* Configuration du mode des broches d'adresse [A23:A0] du périphérique FMC */
-   /* La broche A24 <PG13> n'est pas cablées sur les mémoires externes */
+   /* Configuration du mode des broches d'adresse [A23:A0] du pÃ©riphÃ©rique FMC */
+   /* La broche A24 <PG13> n'est pas cablÃ©es sur les mÃ©moires externes */
    /* */
    gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 0 );           /* A0 */
    gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 1 );           /* A1 */
@@ -134,9 +134,9 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 6 );           /* A22 */
    gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 2 );           /* A23 */
 
-   /* Multiplexage des broches de pilotage du contrôleur SDRAM. */
+   /* Multiplexage des broches de pilotage du contrÃ´leur SDRAM. */
    /* Les broches SDCKE<1> - PH7 et SDNE<1> - PH6 ne sont pas */
-   /* utilisées (en réserve pour une autre mémoire). */
+   /* utilisÃ©es (en rÃ©serve pour une autre mÃ©moire). */
    gpio_alternate ( K_GPIOG, K_GPIO_AF12, 8 );              /* SDCLK */
    gpio_alternate ( K_GPIOH, K_GPIO_AF12, 5 );              /* SDNWE */
    gpio_alternate ( K_GPIOH, K_GPIO_AF12, 2 );              /* SDCKE<0> */
@@ -144,21 +144,21 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_alternate ( K_GPIOF, K_GPIO_AF12, 11 );             /* SDNRAS */
    gpio_alternate ( K_GPIOG, K_GPIO_AF12, 15 );             /* SDNCAS */
 
-   /* Multiplexage du mode des broches de pilotage du contrôleur */
+   /* Multiplexage du mode des broches de pilotage du contrÃ´leur */
    /* SRAM. */
    gpio_alternate ( K_GPIOD, K_GPIO_AF12, 7 );              /* NE1 */
    gpio_alternate ( K_GPIOG, K_GPIO_AF12, 10 );             /* NE3 */
    gpio_alternate ( K_GPIOD, K_GPIO_AF12, 4 );              /* NOE */
    gpio_alternate ( K_GPIOD, K_GPIO_AF12, 5 );              /* NWE */
 
-   /* Multiplexage des broches partagées du périphérique FMC. */
+   /* Multiplexage des broches partagÃ©es du pÃ©riphÃ©rique FMC. */
    /**/
    gpio_alternate ( K_GPIOI, K_GPIO_AF12, 5 );              /* NBL<3> */
    gpio_alternate ( K_GPIOI, K_GPIO_AF12, 4 );              /* NBL<2> */
    gpio_alternate ( K_GPIOE, K_GPIO_AF12, 1 );              /* NBL<1> */
    gpio_alternate ( K_GPIOE, K_GPIO_AF12, 0 );              /* NBL<0> */
 
-   /* Multiplexage des broches de données [D31:D0] du périphérique FMC */
+   /* Multiplexage des broches de donnÃ©es [D31:D0] du pÃ©riphÃ©rique FMC */
    /* */
    gpio_alternate ( K_GPIOD, K_GPIO_AF12, 14 );             /* D0 */
    gpio_alternate ( K_GPIOD, K_GPIO_AF12, 15 );             /* D1 */
@@ -193,8 +193,8 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_alternate ( K_GPIOI, K_GPIO_AF12, 9 );              /* D30 */
    gpio_alternate ( K_GPIOI, K_GPIO_AF12, 10 );             /* D31 */
 
-   /* Multiplexage des broches d'adresse [A23:A0] du périphérique FMC */
-   /* La broche A24 <PG13> n'est pas cablées sur les mémoires externes */
+   /* Multiplexage des broches d'adresse [A23:A0] du pÃ©riphÃ©rique FMC */
+   /* La broche A24 <PG13> n'est pas cablÃ©es sur les mÃ©moires externes */
    /* */
    gpio_alternate ( K_GPIOF, K_GPIO_AF12, 0 );              /* A0 */
    gpio_alternate ( K_GPIOF, K_GPIO_AF12, 1 );              /* A1 */
@@ -221,9 +221,9 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_alternate ( K_GPIOE, K_GPIO_AF12, 6 );              /* A22 */
    gpio_alternate ( K_GPIOE, K_GPIO_AF12, 2 );              /* A23 */
 
-   /* Configuration de la vitesse des broches de pilotage du contrôleur */
+   /* Configuration de la vitesse des broches de pilotage du contrÃ´leur */
    /* SDRAM. Les broches SDCKE<1> - PH7 et SDNE<1> - PH6 ne sont pas  */
-   /* utilisées (en réserve pour une autre mémoire). */
+   /* utilisÃ©es (en rÃ©serve pour une autre mÃ©moire). */
    gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 8 );       /* SDCLK */
    gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 5 );       /* SDNWE */
    gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 2 );       /* SDCKE<0> */
@@ -231,21 +231,21 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 11 );      /* SDNRAS */
    gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 15 );      /* SDNCAS */
 
-   /* Configuration de la vitesse des broches partagées du contrôleur */
+   /* Configuration de la vitesse des broches partagÃ©es du contrÃ´leur */
    /* SDRAM. */
    gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 7 );       /* NE1 */
    gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 10 );      /* NE3 */
    gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 4 );       /* NOE */
    gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 5 );       /* NWE */
 
-   /* Configuration de la vitesse des broches partagées du périphérique */
+   /* Configuration de la vitesse des broches partagÃ©es du pÃ©riphÃ©rique */
    /* FMC. */
    gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 5 );       /* NBL<3> */
    gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 4 );       /* NBL<2> */
    gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 1 );       /* NBL<1> */
    gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 0 );       /* NBL<0> */
 
-   /* Configuration de la vitesse des broches de données [D31:D0] du périphérique FMC */
+   /* Configuration de la vitesse des broches de donnÃ©es [D31:D0] du pÃ©riphÃ©rique FMC */
    /* */
    gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 14 );      /* D0 */
    gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 15 );      /* D1 */
@@ -281,7 +281,7 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_speed ( K_GPIOI, K_GPIO_VERY_HIGH_SPEED, 10 );      /* D31 */
 
    /* Configuration de la vitesse des broches d'adresse [A23:A0] */
-   /* du périphérique FMC. La broche A24 <PG13> n'est pas cablées aux mémoires */
+   /* du pÃ©riphÃ©rique FMC. La broche A24 <PG13> n'est pas cablÃ©es aux mÃ©moires */
    /* externes */
    gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 0 );       /* A0 */
    gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 1 );       /* A1 */
@@ -308,9 +308,9 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 6 );       /* A22 */
    gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 2 );       /* A23 */
 
-   /* Configuration de la résistance de sortie des broches de pilotage */
-   /* du périphérique FMC. Les broches SDCKE<1> - PH7 et SDNE<1> - PH6 */
-   /* ne sont pas utilisées (en réserve pour une autre mémoire). */
+   /* Configuration de la rÃ©sistance de sortie des broches de pilotage */
+   /* du pÃ©riphÃ©rique FMC. Les broches SDCKE<1> - PH7 et SDNE<1> - PH6 */
+   /* ne sont pas utilisÃ©es (en rÃ©serve pour une autre mÃ©moire). */
    gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 8 );            /* SDCLK */
    gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 5 );            /* SDNWE */
    gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 2 );            /* SDCKE<0> */
@@ -318,22 +318,22 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 11 );           /* SDNRAS */
    gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 15 );           /* SDNCAS */
 
-   /* Configuration de la vitesse des broches partagées du contrôleur */
+   /* Configuration de la vitesse des broches partagÃ©es du contrÃ´leur */
    /* SDRAM. */
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 7 );            /* NE1 */
    gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 10 );           /* NE3 */
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 4 );            /* NOE */
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 5 );            /* NWE */
 
-   /* Configuration de la résistances de sortie des broches partagées */
-   /* du périphérique FMC. */
+   /* Configuration de la rÃ©sistances de sortie des broches partagÃ©es */
+   /* du pÃ©riphÃ©rique FMC. */
    gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 5 );            /* NBL<3> */
    gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 4 );            /* NBL<2> */
    gpio_resistor ( K_GPIOE, K_GPIO_PULL_UP, 1 );            /* NBL<1> */
    gpio_resistor ( K_GPIOE, K_GPIO_PULL_UP, 0 );            /* NBL<0> */
 
-   /* Configuration de la résistance de sortie des broches de données */
-   /* [D31:D0] du périphérique FMC */
+   /* Configuration de la rÃ©sistance de sortie des broches de donnÃ©es */
+   /* [D31:D0] du pÃ©riphÃ©rique FMC */
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 14 );           /* D0 */
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 15 );           /* D1 */
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 0 );            /* D2 */
@@ -367,9 +367,9 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 9 );            /* D30 */
    gpio_resistor ( K_GPIOI, K_GPIO_PULL_UP, 10 );           /* D31 */
 
-   /* Configuration de la résistance de sortie des broches d'adresse */
-   /* [A23:A0] du périphérique FMC. La broche A24 <PG13> n'est pas cablées */
-   /* aux mémoires externes */
+   /* Configuration de la rÃ©sistance de sortie des broches d'adresse */
+   /* [A23:A0] du pÃ©riphÃ©rique FMC. La broche A24 <PG13> n'est pas cablÃ©es */
+   /* aux mÃ©moires externes */
    gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 0 );            /* A0 */
    gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 1 );            /* A1 */
    gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 2 );            /* A2 */
@@ -407,23 +407,23 @@ static void mk_fmc_bsp_initGPIO ( void )
 
 T_mkCode mk_fmc_bsp_init ( void )
 {
-   /* Déclaration de la variable de retour */
+   /* DÃ©claration de la variable de retour */
    T_mkCode l_result;
    
    /* Initialisation des broches GPIO du FMC */
    mk_fmc_bsp_initGPIO ( );
 
-   /* Initialisation de la mémoire IS61WV102416BLL */
+   /* Initialisation de la mÃ©moire IS61WV102416BLL */
    mk_fmc_sram_is61wv102416bll_init ( );
 
-   /* Initialisation de la mémoire IS42S32800G */
+   /* Initialisation de la mÃ©moire IS42S32800G */
    l_result = mk_fmc_sdram_is42s32800g_init ( );
 
    /* Retour */
    return ( l_result );
 }
 
-/* On inclut les constantes dédiées à la carte STM32F746G-DISCO REV.C */
+/* Si carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**
@@ -434,9 +434,9 @@ T_mkCode mk_fmc_bsp_init ( void )
 
 static void mk_fmc_bsp_initGPIO ( void )
 {
-   /* Configuration du mode des broches de pilotage du contrôleur */
+   /* Configuration du mode des broches de pilotage du contrÃ´leur */
    /* SDRAM. Les broches SDCKE<1> - PH7 et SDNE<1> - PH6 ne sont pas */
-   /* utilisées (en réserve pour une autre mémoire) */
+   /* utilisÃ©es (en rÃ©serve pour une autre mÃ©moire) */
    gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 8 );           /* SDCLK */
    gpio_setMode ( K_GPIOH, K_GPIO_ALTERNATE, 5 );           /* SDNWE */
    gpio_setMode ( K_GPIOC, K_GPIO_ALTERNATE, 3 );           /* SDCKE<0> */
@@ -444,12 +444,12 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 11 );          /* SDNRAS */
    gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 15 );          /* SDNCAS */
 
-   /* Configuration du mode des broches partagées du périphérique */
+   /* Configuration du mode des broches partagÃ©es du pÃ©riphÃ©rique */
    /* FMC. */
    gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 1 );           /* NBL<1> */
    gpio_setMode ( K_GPIOE, K_GPIO_ALTERNATE, 0 );           /* NBL<0> */
 
-   /* Configuration du mode des broches de données [D31:D0] du périphérique FMC */
+   /* Configuration du mode des broches de donnÃ©es [D31:D0] du pÃ©riphÃ©rique FMC */
    /* */
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 14 );          /* D0 */
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 15 );          /* D1 */
@@ -468,8 +468,8 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 9 );           /* D14 */
    gpio_setMode ( K_GPIOD, K_GPIO_ALTERNATE, 10 );          /* D15 */
 
-   /* Configuration du mode des broches d'adresse [A23:A0] du périphérique FMC */
-   /* La broche A24 <PG13> n'est pas cablées sur les mémoires externes */
+   /* Configuration du mode des broches d'adresse [A23:A0] du pÃ©riphÃ©rique FMC */
+   /* La broche A24 <PG13> n'est pas cablÃ©es sur les mÃ©moires externes */
    /* */
    gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 0 );           /* A0 */
    gpio_setMode ( K_GPIOF, K_GPIO_ALTERNATE, 1 );           /* A1 */
@@ -486,9 +486,9 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 4 );           /* A14 - BA0 */
    gpio_setMode ( K_GPIOG, K_GPIO_ALTERNATE, 5 );           /* A15 - BA1 */
 
-   /* Multiplexage des broches de pilotage du contrôleur SDRAM. */
+   /* Multiplexage des broches de pilotage du contrÃ´leur SDRAM. */
    /* Les broches SDCKE<1> - PH7 et SDNE<1> - PH6 ne sont pas */
-   /* utilisées (en réserve pour une autre mémoire). */
+   /* utilisÃ©es (en rÃ©serve pour une autre mÃ©moire). */
    gpio_alternate ( K_GPIOG, K_GPIO_AF12, 8 );              /* SDCLK */
    gpio_alternate ( K_GPIOH, K_GPIO_AF12, 5 );              /* SDNWE */
    gpio_alternate ( K_GPIOC, K_GPIO_AF12, 3 );              /* SDCKE<0> */
@@ -496,12 +496,12 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_alternate ( K_GPIOF, K_GPIO_AF12, 11 );             /* SDNRAS */
    gpio_alternate ( K_GPIOG, K_GPIO_AF12, 15 );             /* SDNCAS */
 
-   /* Multiplexage des broches partagées du périphérique FMC. */
+   /* Multiplexage des broches partagÃ©es du pÃ©riphÃ©rique FMC. */
    /**/
    gpio_alternate ( K_GPIOE, K_GPIO_AF12, 1 );              /* NBL<1> */
    gpio_alternate ( K_GPIOE, K_GPIO_AF12, 0 );              /* NBL<0> */
 
-   /* Multiplexage des broches de données [D31:D0] du périphérique FMC */
+   /* Multiplexage des broches de donnÃ©es [D31:D0] du pÃ©riphÃ©rique FMC */
    /* */
    gpio_alternate ( K_GPIOD, K_GPIO_AF12, 14 );             /* D0 */
    gpio_alternate ( K_GPIOD, K_GPIO_AF12, 15 );             /* D1 */
@@ -520,8 +520,8 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_alternate ( K_GPIOD, K_GPIO_AF12, 9 );              /* D14 */
    gpio_alternate ( K_GPIOD, K_GPIO_AF12, 10 );             /* D15 */
 
-   /* Multiplexage des broches d'adresse [A23:A0] du périphérique FMC */
-   /* La broche A24 <PG13> n'est pas cablées sur les mémoires externes */
+   /* Multiplexage des broches d'adresse [A23:A0] du pÃ©riphÃ©rique FMC */
+   /* La broche A24 <PG13> n'est pas cablÃ©es sur les mÃ©moires externes */
    /* */
    gpio_alternate ( K_GPIOF, K_GPIO_AF12, 0 );              /* A0 */
    gpio_alternate ( K_GPIOF, K_GPIO_AF12, 1 );              /* A1 */
@@ -538,9 +538,9 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_alternate ( K_GPIOG, K_GPIO_AF12, 4 );              /* A14 - BA0 */
    gpio_alternate ( K_GPIOG, K_GPIO_AF12, 5 );              /* A15 - BA1 */
 
-   /* Configuration de la vitesse des broches de pilotage du contrôleur */
+   /* Configuration de la vitesse des broches de pilotage du contrÃ´leur */
    /* SDRAM. Les broches SDCKE<1> - PH7 et SDNE<1> - PH6 ne sont pas  */
-   /* utilisées (en réserve pour une autre mémoire). */
+   /* utilisÃ©es (en rÃ©serve pour une autre mÃ©moire). */
    gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 8 );       /* SDCLK */
    gpio_speed ( K_GPIOH, K_GPIO_VERY_HIGH_SPEED, 5 );       /* SDNWE */
    gpio_speed ( K_GPIOC, K_GPIO_VERY_HIGH_SPEED, 3 );       /* SDCKE<0> */
@@ -548,12 +548,12 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 11 );      /* SDNRAS */
    gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 15 );      /* SDNCAS */
 
-   /* Configuration de la vitesse des broches partagées du périphérique */
+   /* Configuration de la vitesse des broches partagÃ©es du pÃ©riphÃ©rique */
    /* FMC. */
    gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 1 );       /* NBL<1> */
    gpio_speed ( K_GPIOE, K_GPIO_VERY_HIGH_SPEED, 0 );       /* NBL<0> */
 
-   /* Configuration de la vitesse des broches de données [D31:D0] du périphérique FMC */
+   /* Configuration de la vitesse des broches de donnÃ©es [D31:D0] du pÃ©riphÃ©rique FMC */
    /* */
    gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 14 );      /* D0 */
    gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 15 );      /* D1 */
@@ -573,7 +573,7 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_speed ( K_GPIOD, K_GPIO_VERY_HIGH_SPEED, 10 );      /* D15 */
 
    /* Configuration de la vitesse des broches d'adresse [A23:A0] */
-   /* du périphérique FMC. La broche A24 <PG13> n'est pas cablées aux mémoires */
+   /* du pÃ©riphÃ©rique FMC. La broche A24 <PG13> n'est pas cablÃ©es aux mÃ©moires */
    /* externes */
    gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 0 );       /* A0 */
    gpio_speed ( K_GPIOF, K_GPIO_VERY_HIGH_SPEED, 1 );       /* A1 */
@@ -590,9 +590,9 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 4 );       /* A14 - BA0 */
    gpio_speed ( K_GPIOG, K_GPIO_VERY_HIGH_SPEED, 5 );       /* A15 - BA1 */
 
-   /* Configuration de la résistance de sortie des broches de pilotage */
-   /* du périphérique FMC. Les broches SDCKE<1> - PH7 et SDNE<1> - PH6 */
-   /* ne sont pas utilisées (en réserve pour une autre mémoire). */
+   /* Configuration de la rÃ©sistance de sortie des broches de pilotage */
+   /* du pÃ©riphÃ©rique FMC. Les broches SDCKE<1> - PH7 et SDNE<1> - PH6 */
+   /* ne sont pas utilisÃ©es (en rÃ©serve pour une autre mÃ©moire). */
    gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 8 );            /* SDCLK */
    gpio_resistor ( K_GPIOH, K_GPIO_PULL_UP, 5 );            /* SDNWE */
    gpio_resistor ( K_GPIOC, K_GPIO_PULL_UP, 3 );            /* SDCKE<0> */
@@ -600,13 +600,13 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 11 );           /* SDNRAS */
    gpio_resistor ( K_GPIOG, K_GPIO_PULL_UP, 15 );           /* SDNCAS */
 
-   /* Configuration de la résistances de sortie des broches partagées */
-   /* du périphérique FMC. */
+   /* Configuration de la rÃ©sistances de sortie des broches partagÃ©es */
+   /* du pÃ©riphÃ©rique FMC. */
    gpio_resistor ( K_GPIOE, K_GPIO_PULL_UP, 1 );            /* NBL<1> */
    gpio_resistor ( K_GPIOE, K_GPIO_PULL_UP, 0 );            /* NBL<0> */
 
-   /* Configuration de la résistance de sortie des broches de données */
-   /* [D31:D0] du périphérique FMC */
+   /* Configuration de la rÃ©sistance de sortie des broches de donnÃ©es */
+   /* [D31:D0] du pÃ©riphÃ©rique FMC */
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 14 );           /* D0 */
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 15 );           /* D1 */
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 0 );            /* D2 */
@@ -624,9 +624,9 @@ static void mk_fmc_bsp_initGPIO ( void )
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 9 );            /* D14 */
    gpio_resistor ( K_GPIOD, K_GPIO_PULL_UP, 10 );           /* D15 */
 
-   /* Configuration de la résistance de sortie des broches d'adresse */
-   /* [A23:A0] du périphérique FMC. La broche A24 <PG13> n'est pas cablées */
-   /* aux mémoires externes */
+   /* Configuration de la rÃ©sistance de sortie des broches d'adresse */
+   /* [A23:A0] du pÃ©riphÃ©rique FMC. La broche A24 <PG13> n'est pas cablÃ©es */
+   /* aux mÃ©moires externes */
    gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 0 );            /* A0 */
    gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 1 );            /* A1 */
    gpio_resistor ( K_GPIOF, K_GPIO_PULL_UP, 2 );            /* A2 */
@@ -654,13 +654,13 @@ static void mk_fmc_bsp_initGPIO ( void )
 
 T_mkCode mk_fmc_bsp_init ( void )
 {
-   /* Déclaration de la variable de retour */
+   /* DÃ©claration de la variable de retour */
    T_mkCode l_result;
    
    /* Initialisation des broches GPIO du FMC */
    mk_fmc_bsp_initGPIO ( );
    
-   /* Initialisation de la mémoire IS42S32400F */
+   /* Initialisation de la mÃ©moire IS42S32400F */
    l_result = mk_fmc_sdram_is42s32400f_init ( );
 
    /* Retour */
@@ -671,4 +671,3 @@ T_mkCode mk_fmc_bsp_init ( void )
 #else
 #error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
 #endif
-

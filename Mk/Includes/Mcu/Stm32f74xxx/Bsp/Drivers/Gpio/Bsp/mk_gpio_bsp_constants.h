@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_gpio_bsp_constants.h
-* @brief Déclaration des constantes dédiées aux GPIO de chaque BSP.
+* @brief DÃ©claration des constantes dÃ©diÃ©es aux GPIO de chaque BSP.
 * @date 17 mars 2026
 *
 */
@@ -37,22 +37,22 @@
 #ifndef MK_GPIO_BSP_CONSTANTS_H
 #define MK_GPIO_BSP_CONSTANTS_H
 
-/* Constantes dédiées à la carte STM32F746G-Eval2 */
+/* Si carte EVAL2 */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
  * @def K_MK_GPIO_TERMIO_LIST
- * @brief Liste de tous les termio dont l'initialisation doit être terminée avant le démarrage du terminal GPIO.
+ * @brief Liste de tous les termio dont l'initialisation doit Ãªtre terminÃ©e avant le dÃ©marrage du terminal GPIO.
  */
 
 #define K_MK_GPIO_TERMIO_LIST ( K_MK_TERMIO_FLAG_I2C1 | K_MK_TERMIO_FLAG_DISPATCHER )
 
-/* On inclut les types dédiés à la carte STM32F746G-DISCO REV.C */
+/* Si carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**
  * @def K_MK_GPIO_TERMIO_LIST
- * @brief Liste de tous les termio dont l'initialisation doit être terminée avant le démarrage du terminal GPIO.
+ * @brief Liste de tous les termio dont l'initialisation doit Ãªtre terminÃ©e avant le dÃ©marrage du terminal GPIO.
  */
 
 #define K_MK_GPIO_TERMIO_LIST ( K_MK_TERMIO_FLAG_DISPATCHER )
@@ -67,4 +67,3 @@
  */
 
 #endif
-

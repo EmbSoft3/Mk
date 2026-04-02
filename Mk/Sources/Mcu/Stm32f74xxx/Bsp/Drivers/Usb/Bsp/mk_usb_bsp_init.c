@@ -36,7 +36,7 @@
 
 #include "mk_usb_api.h"
 
-/* Constantes dédiées à la carte STM32F746G-Eval2 */
+/* Si carte EVAL2 */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
@@ -174,7 +174,7 @@ T_mkCode mk_usb_bsp_init ( T_mkAddr p_usb )
    return ( l_result );
 }
 
-/* On inclut les constantes dédiées à la carte STM32F746G-DISCO REV.C */
+/* Si carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**

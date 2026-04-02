@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_termio_bsp_data.c
-* @brief Déclaration des données dédiées aux BSP des terminaux d'entrées-sorties.
+* @brief DÃ©claration des donnÃ©es dÃ©diÃ©es aux BSP des terminaux d'entrÃ©es-sorties.
 * @date 19 mars 2026
 *
 */
@@ -41,18 +41,18 @@
  *
  */
 
- /* Constantes dédiées à la carte STM32F746G-Eval2 */
+/* Si carte EVAL2 */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
  * @fn T_mkTermioCtrlBlock g_mkTermioCtrlBlock;
- * @brief Déclaration du gestionnaire contenant les caractéristiques des terminaux à initialiser.
+ * @brief DÃ©claration du gestionnaire contenant les caractÃ©ristiques des terminaux Ã  initialiser.
  *
  */
 
 const T_mkTermioCtrlBlock g_mkTermioCtrlBlock [ K_MK_TERMIO_NUMBER ] =
 {
-   /* Attention, adapter le nombre de terminaux K_MK_TERMIO_FILESYSTEM_ID en fonction du nombre de système de fichiers K_MK_FILE_NUMBER_OF_TASKS */
+   /* Attention, adapter le nombre de terminaux K_MK_TERMIO_FILESYSTEM_ID en fonction du nombre de systÃ¨me de fichiers K_MK_FILE_NUMBER_OF_TASKS */
    { K_MK_TERMIO_DISPATCHER_ID,     K_MK_TERMIO_DISPATCHER_PRIORITY, mk_dispatcher_task,      g_mkDispatcherStack,           K_MK_DISPATCHER_STACK_SIZE },
    { K_MK_TERMIO_MMC_ID,            K_MK_TERMIO_TASK_PRIORITY,       mk_mmc_task,             g_mkMMCStackAddr,              K_MK_MMC_STACK_SIZE },
    { K_MK_TERMIO_I2C1_ID,           K_MK_TERMIO_TASK_PRIORITY,       mk_i2c_task,             g_mkI2CStackAddr,              K_MK_I2C_STACK_SIZE },
@@ -70,18 +70,18 @@ const T_mkTermioCtrlBlock g_mkTermioCtrlBlock [ K_MK_TERMIO_NUMBER ] =
    { K_MK_TERMIO_NO,                K_MK_TERMIO_TASK_PRIORITY,       K_MK_NULL,               K_MK_NULL,                     0 }
 };
 
-/* On inclut les constantes dédiées à la carte STM32F746G-DISCO REV.C */
+/* Si carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**
  * @fn T_mkTermioCtrlBlock g_mkTermioCtrlBlock;
- * @brief Déclaration du gestionnaire contenant les caractéristiques des terminaux à initialiser.
+ * @brief DÃ©claration du gestionnaire contenant les caractÃ©ristiques des terminaux Ã  initialiser.
  *
  */
 
 const T_mkTermioCtrlBlock g_mkTermioCtrlBlock [ K_MK_TERMIO_NUMBER ] =
 {
-   /* Attention, adapter le nombre de terminaux K_MK_TERMIO_FILESYSTEM_ID en fonction du nombre de système de fichiers K_MK_FILE_NUMBER_OF_TASKS */
+   /* Attention, adapter le nombre de terminaux K_MK_TERMIO_FILESYSTEM_ID en fonction du nombre de systÃ¨me de fichiers K_MK_FILE_NUMBER_OF_TASKS */
    { K_MK_TERMIO_DISPATCHER_ID,     K_MK_TERMIO_DISPATCHER_PRIORITY, mk_dispatcher_task,      g_mkDispatcherStack,           K_MK_DISPATCHER_STACK_SIZE },
    { K_MK_TERMIO_MMC_ID,            K_MK_TERMIO_TASK_PRIORITY,       mk_mmc_task,             g_mkMMCStackAddr,              K_MK_MMC_STACK_SIZE },
    { K_MK_TERMIO_I2C3_ID,           K_MK_TERMIO_TASK_PRIORITY,       mk_i2c_task,             g_mkI2CStackAddr,              K_MK_I2C_STACK_SIZE },
@@ -103,6 +103,3 @@ const T_mkTermioCtrlBlock g_mkTermioCtrlBlock [ K_MK_TERMIO_NUMBER ] =
 #else
 #error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
 #endif
-
-
-

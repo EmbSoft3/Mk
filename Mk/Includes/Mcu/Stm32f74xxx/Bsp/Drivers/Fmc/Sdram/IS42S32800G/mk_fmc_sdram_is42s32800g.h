@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_fmc_sdram_is42s32800g.h
-* @brief Déclaration des fonctions dédiées à la mémoire IS42S32800G.
+* @brief DÃ©claration des fonctions dÃ©diÃ©es Ã  la mÃ©moire IS42S32800G.
 * @date 23 mars 2026
 *
 */
@@ -39,8 +39,8 @@
 
 /**
  * @fn uint32_t mk_fmc_sdram_is42s32800g_init ( void );
- * @brief Cette fonction initialise la mémoire IS42S32800G.
- * @return Cette fonction retourne la valeur \ref K_MK_OK si l'initialisation a réussi, sinon la valeur \ref K_MK_ERROR_INIT.
+ * @brief Cette fonction initialise la mÃ©moire IS42S32800G.
+ * @return Cette fonction retourne la valeur \ref K_MK_OK si l'initialisation a rÃ©ussi, sinon la valeur \ref K_MK_ERROR_INIT.
  *
  */
 
@@ -51,5 +51,3 @@ T_mkCode mk_fmc_sdram_is42s32800g_init ( void );
  */
 
 #endif
-
-

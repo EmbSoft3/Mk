@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_qspi_bsp.h
-* @brief Déclaration des fonctions dédiées aux BSP du périphérique QSPI.
+* @brief DÃ©claration des fonctions dÃ©diÃ©es aux BSP du pÃ©riphÃ©rique QSPI.
 * @date 23 mars 2026
 *
 */
@@ -39,15 +39,15 @@
 
 /**
  * @fn T_mkCode mk_qspi_bsp_init ( uint32_t p_mode );
- * @brief Cette fonction initialise le BSP du périphérique QSPI.
+ * @brief Cette fonction initialise le BSP du pÃ©riphÃ©rique QSPI.
  *
- * @param[in] p_mode Ce paramètre indique si la mémoire doit être initialisée en mode 1 fil
+ * @param[in] p_mode Ce paramÃ¨tre indique si la mÃ©moire doit Ãªtre initialisÃ©e en mode 1 fil
  *                   (\ref K_QSPI_INSTRUCTION_SINGLE_MODE) ou 4 fils (\ref K_QSPI_INSTRUCTION_QUAD_MODE).
  *
  * @return Cette fonction retourne une des valeurs suivantes :
- *         \li \ref K_MK_OK                  : l'initialisation de la mémoire a réussi.
- *         \li \ref K_MK_ERROR_TIMEOUT       : l'initialisation de la mémoire a échoué car un timeout s'est produit.
- *         \li \ref K_MK_ERROR_NOT_AVAILABLE : l'initialisation de la mémoire a échoué car le bus QSPI n'est pas disponible.
+ *         \li \ref K_MK_OK                  : l'initialisation de la mÃ©moire a rÃ©ussi.
+ *         \li \ref K_MK_ERROR_TIMEOUT       : l'initialisation de la mÃ©moire a Ã©chouÃ© car un timeout s'est produit.
+ *         \li \ref K_MK_ERROR_NOT_AVAILABLE : l'initialisation de la mÃ©moire a Ã©chouÃ© car le bus QSPI n'est pas disponible.
  * 
  */
 
@@ -58,5 +58,3 @@ T_mkCode mk_qspi_bsp_init ( uint32_t p_mode );
  */
 
 #endif
-
-

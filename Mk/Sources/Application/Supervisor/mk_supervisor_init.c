@@ -421,6 +421,3 @@ T_mkCode mk_supervisor_init ( T_mkSupervisor* p_supervisor )
    /* Retour */
    return ( l_result );
 }
-
-
-

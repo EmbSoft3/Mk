@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_gpio_bsp_private.h
-* @brief DÈclaration des fonctions privÈes dÈdiÈes aux GPIO de chaque BSP.
+* @brief D√©claration des fonctions priv√©es d√©di√©es aux GPIO de chaque BSP.
 * @date 17 mars 2026
 *
 */
@@ -41,17 +41,17 @@
  * @fn T_mkCode mk_gpio_bsp_init ( T_mkGPIOHandler* p_handler );
  * @brief Cette fonction initialise le BSP du terminal GPIO.
  *
- * @param[in] p_handler Ce paramËtre contient l'adresse d'un gestionnaire GPIO de type \ref T_mkGPIOHandler.
+ * @param[in] p_handler Ce param√®tre contient l'adresse d'un gestionnaire GPIO de type \ref T_mkGPIOHandler.
  *
  * @return Cette fonction retourne un des codes suivants:
-  *         \li \ref K_MK_OK                   : le BSP a ÈtÈ initialisÈ.
-  *         \li \ref K_MK_ERROR_PARAM          : le BSP n'a pas ÈtÈ initialisÈ car au moins un paramËtre est invalide.
-  *         \li \ref K_MK_ERROR_ISR            : le BSP n'a pas ÈtÈ initialisÈ car la fonction a ÈtÈ exÈcutÈe depuis un vecteur d'interruption.
-  *         \li \ref K_MK_ERROR_COMM           : le BSP n'a pas ÈtÈ initialisÈ car une erreur de communication s'est produite.
-  *         \li \ref K_MK_ERROR_TIMEOUT        : le BSP n'a pas ÈtÈ initialisÈ car un timeout de communication s'est produit.
-  *         \li \ref K_MK_ERROR_NOT_AVAILABLE  : le BSP n'a pas ÈtÈ initialisÈ car aucun port de communication n'est disponible.
-  *         \li \ref K_MK_ERROR_RIGHT          : le BSP n'a pas ÈtÈ initialisÈ car une t‚che non privilÈgiÈe ne possËde pas suffisamment de droits.
-  *         \li \ref K_MK_ERROR_MALLOC         : le BSP n'a pas ÈtÈ initialisÈ car aucun bloc mÈmoire n'est disponible pour ouvrir un nouveau port de communication.
+  *         \li \ref K_MK_OK                   : le BSP a √©t√© initialis√©.
+  *         \li \ref K_MK_ERROR_PARAM          : le BSP n'a pas √©t√© initialis√© car au moins un param√®tre est invalide.
+  *         \li \ref K_MK_ERROR_ISR            : le BSP n'a pas √©t√© initialis√© car la fonction a √©t√© ex√©cut√©e depuis un vecteur d'interruption.
+  *         \li \ref K_MK_ERROR_COMM           : le BSP n'a pas √©t√© initialis√© car une erreur de communication s'est produite.
+  *         \li \ref K_MK_ERROR_TIMEOUT        : le BSP n'a pas √©t√© initialis√© car un timeout de communication s'est produit.
+  *         \li \ref K_MK_ERROR_NOT_AVAILABLE  : le BSP n'a pas √©t√© initialis√© car aucun port de communication n'est disponible.
+  *         \li \ref K_MK_ERROR_RIGHT          : le BSP n'a pas √©t√© initialis√© car une t√¢che non privil√©gi√©e ne poss√®de pas suffisamment de droits.
+  *         \li \ref K_MK_ERROR_MALLOC         : le BSP n'a pas √©t√© initialis√© car aucun bloc m√©moire n'est disponible pour ouvrir un nouveau port de communication.
  *
  */
 
@@ -62,4 +62,3 @@ T_mkCode mk_gpio_bsp_init ( T_mkGPIOHandler* p_handler );
  */
 
 #endif
-

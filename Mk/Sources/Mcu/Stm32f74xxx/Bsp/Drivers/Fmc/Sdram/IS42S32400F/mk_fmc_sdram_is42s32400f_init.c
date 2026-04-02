@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_fmc_sdram_is42s32400f_init.c
-* @brief Définition de la fonction mk_fmc_sdram_is42s32400f_init.
+* @brief DÃ©finition de la fonction mk_fmc_sdram_is42s32400f_init.
 * @date 23 mars 2026
 *
 */
@@ -44,21 +44,21 @@
 
 static void mk_fmc_sdram_is42s32400f_initFMC ( void )
 {
-   /* Configuration de la fréquence de la broche SDCLK à 108Mhz - 166MHz max */
-   /* pour la mémoire IS42S32800G-6)  */
+   /* Configuration de la frÃ©quence de la broche SDCLK Ã  108Mhz - 166MHz max */
+   /* pour la mÃ©moire IS42S32800G-6)  */
    /* Freq ( SDCLK ) = Freq ( HCLK ) / DIVn */
    sdram_setClockPrescaler ( K_SDRAM_PRESCALER_DIV2 );
 
    /* Activation du mode burst et configuration du nombre de 'Waitstate' */
-   /* après la latence CAS */
+   /* aprÃ¨s la latence CAS */
    sdram_enableBurstMode ( );
    sdram_setReadLatency ( K_SDRAM_CAS_TO_READ_NOCLOCK );
 
-   /* Désactivation de la protection en écriture */
+   /* DÃ©sactivation de la protection en Ã©criture */
    sdram_disableWriteProtection ( K_SDRAM_BANK1 );
 
-   /* Configuration des WaitState entre commandes. Les données internes du */
-   /* datasheet de la mémoire IS42S32800G-6 sont utilisées. */
+   /* Configuration des WaitState entre commandes. Les donnÃ©es internes du */
+   /* datasheet de la mÃ©moire IS42S32800G-6 sont utilisÃ©es. */
    /* Activate to Read/Write - TRCD */
    sdram_setMemoryCycle ( K_SDRAM_BANK1, K_SDRAM_ROW_TO_COLUMN, 2 ); /* 2 min */
    /* Precharge to Another - TRP */
@@ -78,7 +78,7 @@ static void mk_fmc_sdram_is42s32400f_initFMC ( void )
    sdram_setCASLatency ( K_SDRAM_BANK1, K_SDRAM_CAS_LATENCY_2CLOCK ); /* 2 CLOCK min */
    sdram_setBankNumber ( K_SDRAM_BANK1, K_SDRAM_FOUR_INTERNAL_BANKS );
 
-   /* Configuration du bus de données et du bus d'adresse */
+   /* Configuration du bus de donnÃ©es et du bus d'adresse */
    sdram_setDataBusWidth ( K_SDRAM_BANK1, K_SDRAM_DATABUS_16BITS );
    sdram_setAddressBusWidth ( K_SDRAM_BANK1, K_SDRAM_ADDRESS_ROW_12BITS, K_SDRAM_ADDRESS_COLUMN_8BITS );
 
@@ -94,13 +94,13 @@ static void mk_fmc_sdram_is42s32400f_initFMC ( void )
 
 static uint32_t mk_fmc_sdram_is42s32400f_initializationSequence ( void )
 {
-   /* Déclaration de la variable de retour */
+   /* DÃ©claration de la variable de retour */
    uint32_t l_result;
 
    /* Activation de l'horloge */
    l_result = sdram_enableClock ( K_SDRAM_BANK1_FLAG );
 
-   /* Attente 1ms (100 µs min) */
+   /* Attente 1ms (100Âµs min) */
    mk_utils_waitus ( 1000 );
 
    /* Si aucune erreur ne s'est produite */
@@ -115,9 +115,9 @@ static uint32_t mk_fmc_sdram_is42s32400f_initializationSequence ( void )
       /* Configuration du "Load Mode Register" de la SDRAM */
       l_result |= sdram_sendLoadModeRegister ( K_SDRAM_BANK1_FLAG, K_MK_FMC_SDRAM_IS42S32400F_LOADMODE_REGISTER_VALUE );
 
-      /* Configuration de la fréquence de rafraichissement (64ms ou 16ms quand Ta > 85°C) */
-      /* Refresh_rate = ( 64ms / (4096) ) = 15.625 µs */
-      /* p_timer = Refresh_rate . freq (SDCLK) - 20 = 15.625 µs* 100 MHz - 20 = 1542 */
+      /* Configuration de la frÃ©quence de rafraichissement (64ms ou 16ms quand Ta > 85Â°C) */
+      /* Refresh_rate = ( 64ms / (4096) ) = 15.625 Âµs */
+      /* p_timer = Refresh_rate . freq (SDCLK) - 20 = 15.625 Âµs* 100 MHz - 20 = 1542 */
       sdram_setRefreshRate ( K_SDRAM_DISABLE_REFRESH_ERROR_INTERRUPT, 1542 ); /* 1292 dans l'exemple ST.*/
 
       /* Attente 1ms (optionnelle) */
@@ -142,16 +142,16 @@ static uint32_t mk_fmc_sdram_is42s32400f_initializationSequence ( void )
 
 T_mkCode mk_fmc_sdram_is42s32400f_init ( void )
 {
-   /* Déclaration de la variable de retour */
+   /* DÃ©claration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
 
-   /* Déclaration de la variable de retour locale */
+   /* DÃ©claration de la variable de retour locale */
    uint32_t l_ret;
 
    /* Initialisation du FMC (module SDRAM) */
    mk_fmc_sdram_is42s32400f_initFMC ( );
 
-   /* Initialisation de la mémoire */
+   /* Initialisation de la mÃ©moire */
    l_ret = mk_fmc_sdram_is42s32400f_initializationSequence ( );
 
    /* Si une erreur s'est produite */
@@ -170,6 +170,3 @@ T_mkCode mk_fmc_sdram_is42s32400f_init ( void )
    /* Retour */
    return ( l_result );
 }
-
-
-

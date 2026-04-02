@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_gpio_expander_data.h
-* @brief Déclaration des données dédiées aux expanders GPIO.
+* @brief DÃ©claration des donnÃ©es dÃ©diÃ©es aux expanders GPIO.
 * @date 16 mars 2026
 *
 */
@@ -48,4 +48,3 @@
  */
 
 #endif
-

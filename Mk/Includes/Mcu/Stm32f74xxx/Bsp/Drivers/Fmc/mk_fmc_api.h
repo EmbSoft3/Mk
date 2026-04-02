@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_fmc_api.h
-* @brief Ce fichier contient les directives 'include' utilisées.
+* @brief Ce fichier contient les directives 'include' utilisÃ©es.
 * @date 23 mars 2026
 *
 */
@@ -114,5 +114,3 @@
  */
 
 #endif
-
-

@@ -59,7 +59,7 @@ static T_mkCode mk_mmc_bsp_initCardDetect ( void )
    return ( l_result );
 }
 
-/* Constantes dédiées à la carte STM32F746G-Eval2 et à la carte DISCO_REV_C */
+/* Si carte EVAL2 ou DISCO_REV_C */
 #if ( defined ( MK_BOARD_EVAL2 ) || defined ( MK_BOARD_DISCO_REV_C ) )
 
 /**

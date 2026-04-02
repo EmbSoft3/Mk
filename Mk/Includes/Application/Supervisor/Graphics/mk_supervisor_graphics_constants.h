@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_supervisor_graphics_constants.h
-* @brief Déclaration des constantes graphiques dédiées au superviseur.
+* @brief DÃ©claration des constantes graphiques dÃ©diÃ©es au superviseur.
 * @date 23 mars 2026
 *
 */
@@ -37,48 +37,48 @@
 #ifndef MK_SUPERVISOR_GRAPHICS_CONSTANTS_H
 #define MK_SUPERVISOR_GRAPHICS_CONSTANTS_H
 
-/* Si carte EVAL2 (résolution 640x480) */
+/* Si carte EVAL2 (rÃ©solution 640x480) */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_X
- * @brief Définition du message d'introduction affiché dans la console 
-          du superviseur au démarrage.
+ * @brief DÃ©finition du message d'introduction affichÃ© dans la console 
+          du superviseur au dÃ©marrage.
  */
 
 #define K_MK_SUPERVISOR_PROMPT "\nMkSoft for STM32746g-Eval2 board.\n"
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_X
- * @brief Définition de la position X de la fenêtre de la console.
+ * @brief DÃ©finition de la position X de la fenÃªtre de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_WINDOW_X 5
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_Y
- * @brief Définition de la position Y de la fenêtre de la console.
+ * @brief DÃ©finition de la position Y de la fenÃªtre de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_WINDOW_Y 5
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_WIDTH
- * @brief Définition de la largeur de la fenêtre de la console.
+ * @brief DÃ©finition de la largeur de la fenÃªtre de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_WINDOW_WIDTH 629
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_HEIGHT
- * @brief Définition de la hauteur de la fenêtre de la console.
+ * @brief DÃ©finition de la hauteur de la fenÃªtre de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_WINDOW_HEIGHT 436
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_CACHE_SIZE
- * @brief Définition de la taille du cache de la console.
+ * @brief DÃ©finition de la taille du cache de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_CACHE_SIZE ( 4 * K_MK_SUPERVISOR_CONSOLE_WINDOW_WIDTH * K_MK_SUPERVISOR_CONSOLE_WINDOW_HEIGHT )
@@ -89,28 +89,28 @@
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_X
- * @brief Définition de la position X du prompt de la console.
+ * @brief DÃ©finition de la position X du prompt de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_PROMPT_X 5
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_Y
- * @brief Définition de la position Y du prompt de la console.
+ * @brief DÃ©finition de la position Y du prompt de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_PROMPT_Y 447
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_WIDTH
- * @brief Définition de la largeur du prompt de la console.
+ * @brief DÃ©finition de la largeur du prompt de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_PROMPT_WIDTH 629
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_HEIGHT
- * @brief Définition de la hauteur du prompt de la console.
+ * @brief DÃ©finition de la hauteur du prompt de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_PROMPT_HEIGHT 30
@@ -121,28 +121,28 @@
 
 /**
  * @def K_MK_SUPERVISOR_FRAMERATE_X
- * @brief Définition de la position X de la figure affichant le framerate.
+ * @brief DÃ©finition de la position X de la figure affichant le framerate.
  */
 
 #define K_MK_SUPERVISOR_FRAMERATE_X 610
 
 /**
  * @def K_MK_SUPERVISOR_FRAMERATE_Y
- * @brief Définition de la position Y de la figure affichant le framerate.
+ * @brief DÃ©finition de la position Y de la figure affichant le framerate.
  */
 
 #define K_MK_SUPERVISOR_FRAMERATE_Y 10
 
 /**
  * @def K_MK_SUPERVISOR_FRAMERATE_WIDTH
- * @brief Définition de la largeur de la figure affichant le framerate.
+ * @brief DÃ©finition de la largeur de la figure affichant le framerate.
  */
 
 #define K_MK_SUPERVISOR_FRAMERATE_WIDTH 30
 
 /**
  * @def K_MK_SUPERVISOR_FRAMERATE_HEIGHT
- * @brief Définition de la hauteur de la figure affichant le framerate.
+ * @brief DÃ©finition de la hauteur de la figure affichant le framerate.
 */
 
 #define K_MK_SUPERVISOR_FRAMERATE_HEIGHT 35
@@ -153,28 +153,28 @@
 
 /**
  * @def K_MK_SUPERVISOR_CPU_LOAD_X
- * @brief Définition de la position X de la figure affichant la charge CPU.
+ * @brief DÃ©finition de la position X de la figure affichant la charge CPU.
  */
 
 #define K_MK_SUPERVISOR_CPU_LOAD_X 610
 
 /**
  * @def K_MK_SUPERVISOR_CPU_LOAD_Y
- * @brief Définition de la position Y de la figure affichant la charge CPU.
+ * @brief DÃ©finition de la position Y de la figure affichant la charge CPU.
  */
 
 #define K_MK_SUPERVISOR_CPU_LOAD_Y 50
 
 /**
  * @def K_MK_SUPERVISOR_CPU_LOAD_WIDTH
- * @brief Définition de la largeur de la figure affichant la charge CPU.
+ * @brief DÃ©finition de la largeur de la figure affichant la charge CPU.
 */
 
 #define K_MK_SUPERVISOR_CPU_LOAD_WIDTH 30
 
 /**
  * @def K_MK_SUPERVISOR_CPU_LOAD_HEIGHT
- * @brief Définition de la hauteur de la figure affichant la charge CPU.
+ * @brief DÃ©finition de la hauteur de la figure affichant la charge CPU.
 */
 
 #define K_MK_SUPERVISOR_CPU_LOAD_HEIGHT 35
@@ -183,48 +183,48 @@
  *
  */
 
-/* Si carte DISCO_REV_C (résolution 480x272) */
+/* Si carte DISCO_REV_C (rÃ©solution 480x272) */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_X
- * @brief Définition du message d'introduction affiché dans la console
-          du superviseur au démarrage.
+ * @brief DÃ©finition du message d'introduction affichÃ© dans la console
+          du superviseur au dÃ©marrage.
  */
 
 #define K_MK_SUPERVISOR_PROMPT "\nMkSoft for STM32746g-DISCO (REV.C) board.\n"
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_X
- * @brief Définition de la position X de la fenêtre de la console.
+ * @brief DÃ©finition de la position X de la fenÃªtre de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_WINDOW_X 5
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_Y
- * @brief Définition de la position Y de la fenêtre de la console.
+ * @brief DÃ©finition de la position Y de la fenÃªtre de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_WINDOW_Y 5
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_WIDTH
- * @brief Définition de la largeur de la fenêtre de la console.
+ * @brief DÃ©finition de la largeur de la fenÃªtre de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_WINDOW_WIDTH 469
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_WINDOW_HEIGHT
- * @brief Définition de la hauteur de la fenêtre de la console.
+ * @brief DÃ©finition de la hauteur de la fenÃªtre de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_WINDOW_HEIGHT 228
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_CACHE_SIZE
- * @brief Définition de la taille du cache de la console.
+ * @brief DÃ©finition de la taille du cache de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_CACHE_SIZE ( 4 * K_MK_SUPERVISOR_CONSOLE_WINDOW_WIDTH * K_MK_SUPERVISOR_CONSOLE_WINDOW_HEIGHT )
@@ -235,28 +235,28 @@
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_X
- * @brief Définition de la position X du prompt de la console.
+ * @brief DÃ©finition de la position X du prompt de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_PROMPT_X 5
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_Y
- * @brief Définition de la position Y du prompt de la console.
+ * @brief DÃ©finition de la position Y du prompt de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_PROMPT_Y 238
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_WIDTH
- * @brief Définition de la largeur du prompt de la console.
+ * @brief DÃ©finition de la largeur du prompt de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_PROMPT_WIDTH 469
 
 /**
  * @def K_MK_SUPERVISOR_CONSOLE_PROMPT_HEIGHT
- * @brief Définition de la hauteur du prompt de la console.
+ * @brief DÃ©finition de la hauteur du prompt de la console.
  */
 
 #define K_MK_SUPERVISOR_CONSOLE_PROMPT_HEIGHT 30
@@ -266,28 +266,28 @@
 
 /**
  * @def K_MK_SUPERVISOR_FRAMERATE_X
- * @brief Définition de la position X de la figure affichant le framerate.
+ * @brief DÃ©finition de la position X de la figure affichant le framerate.
  */
 
 #define K_MK_SUPERVISOR_FRAMERATE_X 450
 
 /**
  * @def K_MK_SUPERVISOR_FRAMERATE_Y
- * @brief Définition de la position Y de la figure affichant le framerate.
+ * @brief DÃ©finition de la position Y de la figure affichant le framerate.
  */
 
 #define K_MK_SUPERVISOR_FRAMERATE_Y 0
 
 /**
  * @def K_MK_SUPERVISOR_FRAMERATE_WIDTH
- * @brief Définition de la largeur de la figure affichant le framerate.
+ * @brief DÃ©finition de la largeur de la figure affichant le framerate.
  */
 
 #define K_MK_SUPERVISOR_FRAMERATE_WIDTH 30
 
 /**
  * @def K_MK_SUPERVISOR_FRAMERATE_HEIGHT
- * @brief Définition de la hauteur de la figure affichant le framerate.
+ * @brief DÃ©finition de la hauteur de la figure affichant le framerate.
 */
 
 #define K_MK_SUPERVISOR_FRAMERATE_HEIGHT 25
@@ -298,28 +298,28 @@
 
 /**
  * @def K_MK_SUPERVISOR_CPU_LOAD_X
- * @brief Définition de la position X de la figure affichant la charge CPU.
+ * @brief DÃ©finition de la position X de la figure affichant la charge CPU.
  */
 
 #define K_MK_SUPERVISOR_CPU_LOAD_X 450
 
 /**
  * @def K_MK_SUPERVISOR_CPU_LOAD_Y
- * @brief Définition de la position Y de la figure affichant la charge CPU.
+ * @brief DÃ©finition de la position Y de la figure affichant la charge CPU.
  */
 
 #define K_MK_SUPERVISOR_CPU_LOAD_Y 25
 
 /**
  * @def K_MK_SUPERVISOR_CPU_LOAD_WIDTH
- * @brief Définition de la largeur de la figure affichant la charge CPU.
+ * @brief DÃ©finition de la largeur de la figure affichant la charge CPU.
 */
 
 #define K_MK_SUPERVISOR_CPU_LOAD_WIDTH 30
 
 /**
  * @def K_MK_SUPERVISOR_CPU_LOAD_HEIGHT
- * @brief Définition de la hauteur de la figure affichant la charge CPU.
+ * @brief DÃ©finition de la hauteur de la figure affichant la charge CPU.
 */
 
 #define K_MK_SUPERVISOR_CPU_LOAD_HEIGHT 25
@@ -328,7 +328,7 @@
  *
  */
 
- /* Sinon erreur de compilation */
+/* Sinon erreur de compilation */
 #else
 #error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
 #endif
@@ -338,4 +338,3 @@
  */
 
 #endif
-

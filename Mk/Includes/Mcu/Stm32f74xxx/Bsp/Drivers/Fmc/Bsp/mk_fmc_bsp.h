@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_fmc_bsp.h
-* @brief Déclaration des fonctions dédiées aux BSP du périphérique FMC.
+* @brief DÃ©claration des fonctions dÃ©diÃ©es aux BSP du pÃ©riphÃ©rique FMC.
 * @date 23 mars 2026
 *
 */
@@ -39,8 +39,8 @@
 
 /**
  * @fn T_mkCode mk_fmc_bsp_init ( void );
- * @brief Cette fonction initialise le BSP du périphérique FMC.
- * @return Cette fonction retourne la valeur \ref K_MK_OK si l'initialisation a réussi, sinon la valeur \ref K_MK_ERROR_INIT.
+ * @brief Cette fonction initialise le BSP du pÃ©riphÃ©rique FMC.
+ * @return Cette fonction retourne la valeur \ref K_MK_OK si l'initialisation a rÃ©ussi, sinon la valeur \ref K_MK_ERROR_INIT.
  *
  */
 
@@ -51,5 +51,3 @@ T_mkCode mk_fmc_bsp_init ( void );
  */
 
 #endif
-
-

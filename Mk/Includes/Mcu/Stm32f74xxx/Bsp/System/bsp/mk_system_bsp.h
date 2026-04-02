@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_system_bsp.h
-* @brief Déclaration des fonctions système dédiées à la configuration du BSP.
+* @brief DÃ©claration des fonctions systÃ¨me dÃ©diÃ©es Ã  la configuration du BSP.
 * @date 23 mars 2026
 *
 */
@@ -39,13 +39,13 @@
 
 /**
  * @fn void mk_system_bsp_setPLL ( uint32_t p_source, uint32_t p_prescaler );
- * @brief Cette fonction configure les trois PLL du système.
+ * @brief Cette fonction configure les trois PLL du systÃ¨me.
  *
- * @param p_source    Ce paramètre contient la source d'horloge des PLL. \n
- *                    Les constantes suivantes peuvent être utilisées: \ref K_CLOCK_PLL_HSI, \ref K_CLOCK_PLL_HSE.
- * @param p_prescaler Ce paramètre contient la valeur du diviseur d'entrée [2 à 63]. Il doit être configuré de
- *                    manière à fixer la fréquence d'entrée du VCO entre 1 et 2MHz. Il est recommendé de choisir
- *                    une fréquence de 2MHz.
+ * @param p_source    Ce paramÃ¨tre contient la source d'horloge des PLL. \n
+ *                    Les constantes suivantes peuvent Ãªtre utilisÃ©es: \ref K_CLOCK_PLL_HSI, \ref K_CLOCK_PLL_HSE.
+ * @param p_prescaler Ce paramÃ¨tre contient la valeur du diviseur d'entrÃ©e [2 Ã  63]. Il doit Ãªtre configurÃ© de
+ *                    maniÃ¨re Ã  fixer la frÃ©quence d'entrÃ©e du VCO entre 1 et 2MHz. Il est recommendÃ© de choisir
+ *                    une frÃ©quence de 2MHz.
  *
  * @return Sans objet.
  *
@@ -55,16 +55,16 @@ void mk_system_bsp_setPLL ( uint32_t p_source, uint32_t p_prescaler );
 
 /**
  * @fn T_sysCode mk_system_bsp_initClock ( void );
- * @brief Cette fonction initialise les horloges du système. Elle désactive dans un premier temps l'ensemble des
- *        horloges envoyées aux périphériques puis dans un second temps active l'oscillateur HSE et les PLLs. Ensuite,
- *        elle modifie la source de l'horloge système en sélectionnant la PLL principale (PLL_MAIN).\n
- *        Si un problème survient au niveau de l'activation de l'oscillateur HSE alors la fonction sélectionne
+ * @brief Cette fonction initialise les horloges du systÃ¨me. Elle dÃ©sactive dans un premier temps l'ensemble des
+ *        horloges envoyÃ©es aux pÃ©riphÃ©riques puis dans un second temps active l'oscillateur HSE et les PLLs. Ensuite,
+ *        elle modifie la source de l'horloge systÃ¨me en sÃ©lectionnant la PLL principale (PLL_MAIN).\n
+ *        Si un problÃ¨me survient au niveau de l'activation de l'oscillateur HSE alors la fonction sÃ©lectionne
  *        l'oscillateur HSI comme source des PLL.\n
- *        Si un problème survient au niveau de l'activation des PLL, alors la fonction ne modifie pas la source de
- *        l'horloge système (oscillateur HSI).\n
- *        L'horloge des périphériques est activée uniquement si la fonction s'exécute sans erreur.
+ *        Si un problÃ¨me survient au niveau de l'activation des PLL, alors la fonction ne modifie pas la source de
+ *        l'horloge systÃ¨me (oscillateur HSI).\n
+ *        L'horloge des pÃ©riphÃ©riques est activÃ©e uniquement si la fonction s'exÃ©cute sans erreur.
  *
- * @return Cette fonction retourne \ref K_SYS_OK si les horloges ont été configurées, sinon les valeurs
+ * @return Cette fonction retourne \ref K_SYS_OK si les horloges ont Ã©tÃ© configurÃ©es, sinon les valeurs
  *         \ref K_SYS_ERROR_HSE, \ref K_SYS_ERROR_PLL, \ref K_SYS_ERROR_OVERDRIVE et/ou \ref K_SYS_ERROR_OVERDRIVE_SWITCH.
  *
  */
@@ -76,4 +76,3 @@ T_sysCode mk_system_bsp_initClock ( void );
  */
 
 #endif
-

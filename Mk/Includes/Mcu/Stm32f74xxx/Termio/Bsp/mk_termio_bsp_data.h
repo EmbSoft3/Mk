@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_termio_bsp_data.h
-* @brief Déclaration des données dédiées aux BSP des terminaux d'entrées-sorties.
+* @brief DÃ©claration des donnÃ©es dÃ©diÃ©es aux BSP des terminaux d'entrÃ©es-sorties.
 * @date 19 mars 2026
 *
 */
@@ -39,7 +39,7 @@
 
 /**
  * @fn T_mkTermioCtrlBlock g_mkTermioCtrlBlock;
- * @brief Déclaration du gestionnaire contenant les caractéristiques des terminaux à initialiser.
+ * @brief DÃ©claration du gestionnaire contenant les caractÃ©ristiques des terminaux Ã  initialiser.
  *
  */
 
@@ -50,5 +50,3 @@ extern const T_mkTermioCtrlBlock g_mkTermioCtrlBlock [ K_MK_TERMIO_NUMBER ];
  */
 
 #endif
-
-

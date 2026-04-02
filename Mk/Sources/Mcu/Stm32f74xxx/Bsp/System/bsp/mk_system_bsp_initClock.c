@@ -36,7 +36,7 @@
 
 #include "mk_system_api.h"
 
-/* Carte STM32F746G-Eval2 */
+/* Si carte EVAL2 ou DISCO_REV_C */
 #if ( defined ( MK_BOARD_EVAL2 ) || defined ( MK_BOARD_DISCO_REV_C ) )
 
 /**

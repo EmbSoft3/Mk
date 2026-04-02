@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_mmc_bsp_private.h
-* @brief DÈclaration des fonctions privÈes dÈdiÈes aux BSP SD/MMC.
+* @brief D√©claration des fonctions priv√©es d√©di√©es aux BSP SD/MMC.
 * @date 18 mars 2026
 *
 */
@@ -41,13 +41,13 @@
  * @fn void mk_mmc_bsp_init ( void );
  * @brief Cette fonction initialise le BSP SD/MMC.
  * @return Cette fonction retourne une des valeurs suivantes :
- *         \li \ref K_MK_OK            : l'initialisation du BSP a ÈtÈ exÈcutÈe sans renconter d'erreur.
- *         \li \ref K_MK_ERROR_PARAM   : l'initialisation du BSP a ÈchouÈe car au moins un paramËtre est invalide.
- *         \li \ref K_MK_ERROR_TIMEOUT : l'initialisation du BSP a ÈchouÈe car la messagerie GPIO est pleine.
- *         \li \ref K_MK_ERROR_ISR     : l'initialisation du BSP a ÈchouÈe car la fonction a ÈtÈ exÈcutÈe depuis un vecteur d'interruption.
- *         \li \ref K_MK_ERROR_COMM    : l'initialisation du BSP a ÈchouÈe car une erreur de communication s'est produite.
- *         \li \ref K_MK_ERROR_TIMEOUT : l'initialisation du BSP a ÈchouÈe car un timeout de communication s'est produit.
- *         \li \ref K_MK_ERROR_RIGHT   : l'initialisation du BSP a ÈchouÈe car une t‚che non privilÈgiÈe ne peut pas modifier une broche protÈgÈe.
+ *         \li \ref K_MK_OK            : l'initialisation du BSP a √©t√© ex√©cut√©e sans renconter d'erreur.
+ *         \li \ref K_MK_ERROR_PARAM   : l'initialisation du BSP a √©chou√©e car au moins un param√®tre est invalide.
+ *         \li \ref K_MK_ERROR_TIMEOUT : l'initialisation du BSP a √©chou√©e car la messagerie GPIO est pleine.
+ *         \li \ref K_MK_ERROR_ISR     : l'initialisation du BSP a √©chou√©e car la fonction a √©t√© ex√©cut√©e depuis un vecteur d'interruption.
+ *         \li \ref K_MK_ERROR_COMM    : l'initialisation du BSP a √©chou√©e car une erreur de communication s'est produite.
+ *         \li \ref K_MK_ERROR_TIMEOUT : l'initialisation du BSP a √©chou√©e car un timeout de communication s'est produit.
+ *         \li \ref K_MK_ERROR_RIGHT   : l'initialisation du BSP a √©chou√©e car une t√¢che non privil√©gi√©e ne peut pas modifier une broche prot√©g√©e.
  *
  */
 
@@ -58,5 +58,3 @@ T_mkCode mk_mmc_bsp_init ( void );
  */
 
 #endif
-
-

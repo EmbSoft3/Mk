@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_home_api.h
-* @brief Ce fichier contient les directives 'include' utilisées.
+* @brief Ce fichier contient les directives 'include' utilisées. 
 * @date 24 mars 2024
 *
 */
@@ -210,5 +210,3 @@
  */
 
 #endif
-
-

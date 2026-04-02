@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_qspi_n25q512a_init.c
-* @brief Définition de la fonction mk_qspi_n25q512a_init.
+* @brief DÃ©finition de la fonction mk_qspi_n25q512a_init.
 * @date 23 mars 2026
 *
 */
@@ -44,16 +44,16 @@
 
 static T_mkCode mk_qspi_n25q512a_enableSingleModeNV ( uint32_t p_mode )
 {
-   /* Déclaration de la variable de retour */
+   /* DÃ©claration de la variable de retour */
    T_mkCode l_result;
 
-   /* Déclaration d'un compteur */
+   /* DÃ©claration d'un compteur */
    uint32_t l_counter = 0;
 
-   /* Déclaration d'un registre de statut */
+   /* DÃ©claration d'un registre de statut */
    T_mkN25Q512AStatusRegister l_statusRegister = { 0 };
 
-   /* Déclaration d'un registre de configuration de type 'Enhanced' */
+   /* DÃ©claration d'un registre de configuration de type 'Enhanced' */
    T_mkN25Q512ANonVolatileConfigurationRegister l_nvConfigurationRegister = { 0 };
 
    /* Lecture du registre de configuration non volatile */
@@ -62,10 +62,10 @@ static T_mkCode mk_qspi_n25q512a_enableSingleModeNV ( uint32_t p_mode )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Si le mode 1 fils est désactivé, il faut l'activer */
+      /* Si le mode 1 fils est dÃ©sactivÃ©, il faut l'activer */
       if ( ( l_nvConfigurationRegister.field.quadIO == 0 ) || ( l_nvConfigurationRegister.field.dualIO == 0 ) )
       {
-         /* Autorisation d'une écriture */
+         /* Autorisation d'une Ã©criture */
          l_result = mk_qspi_n25q512a_writeInstruction ( K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
 
          /* Si aucune erreur ne s'est produite */
@@ -78,13 +78,13 @@ static T_mkCode mk_qspi_n25q512a_enableSingleModeNV ( uint32_t p_mode )
             /* Ecriture du registre de configuration */
             l_result = mk_qspi_n25q512a_writeRegister ( &l_nvConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_WRITE_NV_CONFIGURATION, 2, p_mode );
 
-            /* Si l'opération a réussi */
+            /* Si l'opÃ©ration a rÃ©ussi */
             if ( l_result == K_MK_OK )
             {
                /* Effectue */
                do
                {
-                  /* Lecture du registre de statut pour savoir si l'écriture est terminée */
+                  /* Lecture du registre de statut pour savoir si l'Ã©criture est terminÃ©e */
                   l_result = mk_qspi_n25q512a_readRegister ( &l_statusRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_STATUS, 1, p_mode );
 
                   /* Attente 1ms */
@@ -93,10 +93,10 @@ static T_mkCode mk_qspi_n25q512a_enableSingleModeNV ( uint32_t p_mode )
                   /* Actualisation d'un compteur */
                   l_counter = ( uint32_t ) ( l_counter + 1 );
 
-                  /* Tant que le registre de configuration non volatile est en cours d'écriture */
+                  /* Tant que le registre de configuration non volatile est en cours d'Ã©criture */
                } while ( ( l_statusRegister.field.writeInProgress == 1 ) && ( l_counter < 25 ) );
 
-               /* Vérification de la nouvelle valeur du registre */
+               /* VÃ©rification de la nouvelle valeur du registre */
                l_result = mk_qspi_n25q512a_readRegister ( &l_nvConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_NV_CONFIGURATION, 2, p_mode );
 
                /* Si le mode 1 fils n'est pas actif */
@@ -152,16 +152,16 @@ static T_mkCode mk_qspi_n25q512a_enableSingleModeNV ( uint32_t p_mode )
 
 static T_mkCode mk_qspi_n25q512a_enableQuadModeNV ( uint32_t p_mode )
 {
-   /* Déclaration de la variable de retour */
+   /* DÃ©claration de la variable de retour */
    T_mkCode l_result;
 
-   /* Déclaration d'un compteur */
+   /* DÃ©claration d'un compteur */
    uint32_t l_counter = 0;
 
-   /* Déclaration d'un registre de statut */
+   /* DÃ©claration d'un registre de statut */
    T_mkN25Q512AStatusRegister l_statusRegister = { 0 };
 
-   /* Déclaration d'un registre de configuration de type 'Enhanced' */
+   /* DÃ©claration d'un registre de configuration de type 'Enhanced' */
    T_mkN25Q512ANonVolatileConfigurationRegister l_nvConfigurationRegister = { 0 };
 
    /* Lecture du registre de configuration non volatile */
@@ -170,10 +170,10 @@ static T_mkCode mk_qspi_n25q512a_enableQuadModeNV ( uint32_t p_mode )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Si le mode 4 fils est désactivé, alors il faut l'activer */
+      /* Si le mode 4 fils est dÃ©sactivÃ©, alors il faut l'activer */
       if ( ( l_nvConfigurationRegister.field.quadIO == 1 ) || ( l_nvConfigurationRegister.field.dualIO == 0 ) )
       {
-         /* Autorisation d'une écriture */
+         /* Autorisation d'une Ã©criture */
          l_result = mk_qspi_n25q512a_writeInstruction ( K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
 
          /* Si aucune erreur ne s'est produite */
@@ -186,25 +186,25 @@ static T_mkCode mk_qspi_n25q512a_enableQuadModeNV ( uint32_t p_mode )
             /* Ecriture du registre de configuration */
             l_result = mk_qspi_n25q512a_writeRegister ( &l_nvConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_WRITE_NV_CONFIGURATION, 2, p_mode );
 
-            /* Si l'opération a réussi */
+            /* Si l'opÃ©ration a rÃ©ussi */
             if ( l_result == K_MK_OK )
             {
                /* Effectue */
                do
                {
-                  /* Lecture du registre de statut pour savoir si l'écriture est terminée */
+                  /* Lecture du registre de statut pour savoir si l'Ã©criture est terminÃ©e */
                   l_result = mk_qspi_n25q512a_readRegister ( &l_statusRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_STATUS, 1, p_mode );
 
-                  /* Attente 1ms (100 µs min) */
+                  /* Attente 1ms (100 Âµs min) */
                   mk_utils_waitus ( 1000 );
 
                   /* Actualisation d'un compteur */
                   l_counter = ( uint32_t ) ( l_counter + 1 );
 
-                  /* Tant que le registre de configuration non volatile est en cours d'écriture */
+                  /* Tant que le registre de configuration non volatile est en cours d'Ã©criture */
                } while ( ( l_statusRegister.field.writeInProgress == 1 ) && ( l_counter < 25 ) );
 
-               /* Vérification de la nouvelle valeur du registre */
+               /* VÃ©rification de la nouvelle valeur du registre */
                l_result = mk_qspi_n25q512a_readRegister ( &l_nvConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_NV_CONFIGURATION, 2, p_mode );
 
                /* Si le mode 4 fils n'est pas actif */
@@ -260,10 +260,10 @@ static T_mkCode mk_qspi_n25q512a_enableQuadModeNV ( uint32_t p_mode )
 
 static T_mkCode mk_qspi_n25q512a_enableSingleMode ( uint32_t p_mode )
 {
-   /* Déclaration de la variable de retour */
+   /* DÃ©claration de la variable de retour */
    T_mkCode l_result;
 
-   /* Déclaration d'un registre de configuration de type 'Enhanced' */
+   /* DÃ©claration d'un registre de configuration de type 'Enhanced' */
    T_mkN25Q512AEnhancedConfigurationRegister l_enhancedConfigurationRegister = { 0 };
 
    /* Lecture du registre de configuration non volatile */
@@ -272,10 +272,10 @@ static T_mkCode mk_qspi_n25q512a_enableSingleMode ( uint32_t p_mode )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Si le mode 1 fil est désactivé, alors il faut l'activer */
+      /* Si le mode 1 fil est dÃ©sactivÃ©, alors il faut l'activer */
       if ( ( l_enhancedConfigurationRegister.field.quadIO == 0 ) || ( l_enhancedConfigurationRegister.field.dualIO == 0 ) )
       {
-         /* Autorisation d'une écriture */
+         /* Autorisation d'une Ã©criture */
          l_result = mk_qspi_n25q512a_writeInstruction ( K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
 
          /* Si aucune erreur ne s'est produite */
@@ -288,11 +288,11 @@ static T_mkCode mk_qspi_n25q512a_enableSingleMode ( uint32_t p_mode )
             /* Ecriture du registre de configuration */
             l_result = mk_qspi_n25q512a_writeRegister ( &l_enhancedConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENHANCED_CONFIGURATION, 1, p_mode );
 
-            /* Si l'opération a réussi */
+            /* Si l'opÃ©ration a rÃ©ussi */
             if ( l_result == K_MK_OK )
             {
-               /* Vérification de la nouvelle valeur du registre */
-               /* Si la commande a correctement été exécutée, la lecture doit être réalisée en mode 1 fil */
+               /* VÃ©rification de la nouvelle valeur du registre */
+               /* Si la commande a correctement Ã©tÃ© exÃ©cutÃ©e, la lecture doit Ãªtre rÃ©alisÃ©e en mode 1 fil */
                l_result = mk_qspi_n25q512a_readRegister ( &l_enhancedConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_ENHANCED_CONFIGURATION, 1, K_MK_QSPI_MODE_SINGLE );
 
                /* Si le mode 1 fils n'est pas actif */
@@ -348,10 +348,10 @@ static T_mkCode mk_qspi_n25q512a_enableSingleMode ( uint32_t p_mode )
 
 static T_mkCode mk_qspi_n25q512a_enableQuadMode ( uint32_t p_mode )
 {
-   /* Déclaration de la variable de retour */
+   /* DÃ©claration de la variable de retour */
    T_mkCode l_result;
 
-   /* Déclaration d'un registre de configuration de type 'Enhanced' */
+   /* DÃ©claration d'un registre de configuration de type 'Enhanced' */
    T_mkN25Q512AEnhancedConfigurationRegister l_enhancedConfigurationRegister = { 0 };
 
    /* Lecture du registre de configuration non volatile */
@@ -360,10 +360,10 @@ static T_mkCode mk_qspi_n25q512a_enableQuadMode ( uint32_t p_mode )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Si le mode 4 fils est désactivé, alors il faut l'activer */
+      /* Si le mode 4 fils est dÃ©sactivÃ©, alors il faut l'activer */
       if ( ( l_enhancedConfigurationRegister.field.quadIO == 1 ) || ( l_enhancedConfigurationRegister.field.dualIO == 0 ) )
       {
-         /* Autorisation d'une écriture */
+         /* Autorisation d'une Ã©criture */
          l_result = mk_qspi_n25q512a_writeInstruction ( K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENABLE, p_mode );
 
          /* Si aucune erreur ne s'est produite */
@@ -376,11 +376,11 @@ static T_mkCode mk_qspi_n25q512a_enableQuadMode ( uint32_t p_mode )
             /* Ecriture du registre de configuration */
             l_result = mk_qspi_n25q512a_writeRegister ( &l_enhancedConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_WRITE_ENHANCED_CONFIGURATION, 1, p_mode );
 
-            /* Si l'opération a réussi */
+            /* Si l'opÃ©ration a rÃ©ussi */
             if ( l_result == K_MK_OK )
             {
-               /* Vérification de la nouvelle valeur du registre */
-               /* Si la commande a correctement été exécutée, la lecture doit être réalisée en mode 4 fils */
+               /* VÃ©rification de la nouvelle valeur du registre */
+               /* Si la commande a correctement Ã©tÃ© exÃ©cutÃ©e, la lecture doit Ãªtre rÃ©alisÃ©e en mode 4 fils */
                l_result = mk_qspi_n25q512a_readRegister ( &l_enhancedConfigurationRegister, K_MK_QSPI_N25Q512A_OPCODE_READ_ENHANCED_CONFIGURATION, 1, K_MK_QSPI_MODE_QUAD );
 
                /* Si le mode 4 fils n'est pas actif */
@@ -436,13 +436,13 @@ static T_mkCode mk_qspi_n25q512a_enableQuadMode ( uint32_t p_mode )
 
 static T_mkCode mk_qspi_n25q512a_singleModeInitializationSequence ( void )
 {
-   /* Déclaration de la variable de retour */
+   /* DÃ©claration de la variable de retour */
    T_mkCode l_result;
 
-   /* Déclaration d'une variable stockant le mode de fonctionnement de la mémoire */
+   /* DÃ©claration d'une variable stockant le mode de fonctionnement de la mÃ©moire */
    uint32_t l_mode = K_MK_QSPI_MODE_SINGLE;
 
-   /* Récupération du mode de fonctionnement de la mémoire */
+   /* RÃ©cupÃ©ration du mode de fonctionnement de la mÃ©moire */
    l_result = mk_qspi_n25q512a_getMode ( &l_mode );
 
    /* Si aucune erreur ne s'est produite */
@@ -461,8 +461,8 @@ static T_mkCode mk_qspi_n25q512a_singleModeInitializationSequence ( void )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Configuration de la mémoire de manière à la faire fonctionner en mode 1 fil */
-      /* à chaque démarrage */
+      /* Configuration de la mÃ©moire de maniÃ¨re Ã  la faire fonctionner en mode 1 fil */
+      /* Ã  chaque dÃ©marrage */
       l_result = mk_qspi_n25q512a_enableSingleModeNV ( l_mode );
    }
 
@@ -488,7 +488,7 @@ static T_mkCode mk_qspi_n25q512a_singleModeInitializationSequence ( void )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Activation de l'adressage étendu */
+      /* Activation de l'adressage Ã©tendu */
       l_result = mk_qspi_n25q512a_disableExtendedMode ( l_mode );
    }
 
@@ -501,8 +501,8 @@ static T_mkCode mk_qspi_n25q512a_singleModeInitializationSequence ( void )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Le mode 1 fil a été activé et configuré dans les séquences précédentes */
-      /* On vérifie la prise en compte de celui-ci en lisant l'identifiant du fabricant */
+      /* Le mode 1 fil a Ã©tÃ© activÃ© et configurÃ© dans les sÃ©quences prÃ©cÃ©dentes */
+      /* On vÃ©rifie la prise en compte de celui-ci en lisant l'identifiant du fabricant */
       l_result = mk_qspi_n25q512a_getMode ( &l_mode );
 
       /* Si le mode 1 fil n'est pas actif */
@@ -556,13 +556,13 @@ static T_mkCode mk_qspi_n25q512a_singleModeInitializationSequence ( void )
 
 static T_mkCode mk_qspi_n25q512a_quadModeInitializationSequence ( void )
 {
-   /* Déclaration de la variable de retour */
+   /* DÃ©claration de la variable de retour */
    T_mkCode l_result;
 
-   /* Déclaration d'une variable stockant le mode de fonctionnement de la mémoire */
+   /* DÃ©claration d'une variable stockant le mode de fonctionnement de la mÃ©moire */
    uint32_t l_mode = K_MK_QSPI_MODE_QUAD;
 
-   /* Récupération du mode de fonctionnement de la mémoire */
+   /* RÃ©cupÃ©ration du mode de fonctionnement de la mÃ©moire */
    l_result = mk_qspi_n25q512a_getMode ( &l_mode );
 
    /* Si aucune erreur ne s'est produite */
@@ -581,8 +581,8 @@ static T_mkCode mk_qspi_n25q512a_quadModeInitializationSequence ( void )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Configuration de la mémoire de manière à la faire fonctionner en mode 4 fils */
-      /* à chaque démarrage */
+      /* Configuration de la mÃ©moire de maniÃ¨re Ã  la faire fonctionner en mode 4 fils */
+      /* Ã  chaque dÃ©marrage */
       l_result = mk_qspi_n25q512a_enableQuadModeNV ( l_mode );
    }
 
@@ -608,7 +608,7 @@ static T_mkCode mk_qspi_n25q512a_quadModeInitializationSequence ( void )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Activation du mode 4 fils (si non configuré) */
+      /* Activation du mode 4 fils (si non configurÃ©) */
       l_result = mk_qspi_n25q512a_enableQuadMode ( l_mode );
    }
 
@@ -621,7 +621,7 @@ static T_mkCode mk_qspi_n25q512a_quadModeInitializationSequence ( void )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Activation de l'adressage étendu */
+      /* Activation de l'adressage Ã©tendu */
       l_result = mk_qspi_n25q512a_enableExtendedMode ( l_mode );
    }
 
@@ -634,8 +634,8 @@ static T_mkCode mk_qspi_n25q512a_quadModeInitializationSequence ( void )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Le mode 4 fils a été activé et configuré dans les séquences précédentes */
-      /* On vérifie la prise en compte de celui-ci en lisant l'identifiant du fabricant */
+      /* Le mode 4 fils a Ã©tÃ© activÃ© et configurÃ© dans les sÃ©quences prÃ©cÃ©dentes */
+      /* On vÃ©rifie la prise en compte de celui-ci en lisant l'identifiant du fabricant */
       l_result = mk_qspi_n25q512a_getMode ( &l_mode );
 
       /* Si le mode 4 fils n'est pas actif */
@@ -689,13 +689,13 @@ static T_mkCode mk_qspi_n25q512a_quadModeInitializationSequence ( void )
 
 static T_mkCode mk_qspi_n25q512a_singleModeProgrammingSequence ( void )
 {
-   /* Déclaration de la variable de retour */
+   /* DÃ©claration de la variable de retour */
    T_mkCode l_result;
 
-   /* Déclaration d'une variable stockant le mode de fonctionnement de la mémoire */
+   /* DÃ©claration d'une variable stockant le mode de fonctionnement de la mÃ©moire */
    uint32_t l_mode = K_MK_QSPI_MODE_SINGLE;
 
-   /* Récupération du mode de fonctionnement de la mémoire */
+   /* RÃ©cupÃ©ration du mode de fonctionnement de la mÃ©moire */
    l_result = mk_qspi_n25q512a_getMode ( &l_mode );
 
    /* Si aucune erreur ne s'est produite */
@@ -727,8 +727,8 @@ static T_mkCode mk_qspi_n25q512a_singleModeProgrammingSequence ( void )
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
    {
-      /* Le mode 1 fil a été activé et configuré dans les séquences précédentes */
-      /* On vérifie la prise en compte de celui-ci en lisant l'identifiant du fabricant */
+      /* Le mode 1 fil a Ã©tÃ© activÃ© et configurÃ© dans les sÃ©quences prÃ©cÃ©dentes */
+      /* On vÃ©rifie la prise en compte de celui-ci en lisant l'identifiant du fabricant */
       l_result = mk_qspi_n25q512a_getMode ( &l_mode );
 
       /* Si le mode 4 fils n'est pas actif */
@@ -763,22 +763,22 @@ static T_mkCode mk_qspi_n25q512a_singleModeProgrammingSequence ( void )
 
 static void mk_qspi_n25q512a_enableQSPI ( void )
 {
-   /* Désactivation du périphérique QUADSPI */
+   /* DÃ©sactivation du pÃ©riphÃ©rique QUADSPI */
    qspi_disable ( );
 
-   /* Désactivation de la DMA */
+   /* DÃ©sactivation de la DMA */
    qspi_disableDma ( );
 
-   /* Désactivation de toutes les interruptions */
+   /* DÃ©sactivation de toutes les interruptions */
    qspi_disableInterrupt ( K_QSPI_ALL_INTERRUPT );
 
-   /* Configuration de la fréquence de l'horloge QUADSPI */
-   /* Une fréquence supérieure entraine des erreurs de lecture ponctuelle. */
+   /* Configuration de la frÃ©quence de l'horloge QUADSPI */
+   /* Une frÃ©quence supÃ©rieure entraine des erreurs de lecture ponctuelle. */
    /* F_CLOCK = F_AHB / 4 */
    qspi_setClock ( 5 );
 
    /* Activation du mode 'SingleFlash' */
-   /* Adressage de la FLASH numéro 1 */
+   /* Adressage de la FLASH numÃ©ro 1 */
    qspi_enableSingleFlashMode ( K_QSPI_FLASH1 );
 
    /* Configuration du nombre de cycles d'horloge entre deux commandes */
@@ -787,17 +787,17 @@ static void mk_qspi_n25q512a_enableQSPI ( void )
    /* Configuration du niveau de repos de l'horloge */
    qspi_setIdleClockState ( K_QSPI_IDLE_CLOCK_HIGH );
 
-   /* Configuration du point d'acquisation des données */
+   /* Configuration du point d'acquisation des donnÃ©es */
    qspi_setSampleEdge ( K_QSPI_DEFAULT_EDGE );
 
-   /* Configuration du seuil de déclenchement de l'interruption FIFO */
+   /* Configuration du seuil de dÃ©clenchement de l'interruption FIFO */
    qspi_setFifoThresholdLevel ( 1 );
 
    /* Configuration de la taille de la FLASH */
-   /* Mémoire de 64 MB */
+   /* mÃ©moire de 64 MB */
    qspi_setFlashSize ( 25 );
 
-   /* Activation du périphérique QUADSPI */
+   /* Activation du pÃ©riphÃ©rique QUADSPI */
    qspi_enable ( );
 
    /* Attente 10ms */
@@ -815,48 +815,46 @@ static void mk_qspi_n25q512a_enableQSPI ( void )
 
 T_mkCode mk_qspi_n25q512a_init ( uint32_t p_mode )
 {
-   /* Déclaration de la variable de retour */
+   /* DÃ©claration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
 
-   /* Activation du périphérique QSPI */
+   /* Activation du pÃ©riphÃ©rique QSPI */
    mk_qspi_n25q512a_enableQSPI ( );
 
-   /* Si le mode 1 fil doit être activé (obligatoire pour la programmation de la QSPI) */
+   /* Si le mode 1 fil doit Ãªtre activÃ© (obligatoire pour la programmation de la QSPI) */
    if ( p_mode == K_MK_QSPI_MODE_SINGLE )
    {
-      /* Initialisation de la mémoire QSPI en mode 1 fil */
+      /* Initialisation de la mÃ©moire QSPI en mode 1 fil */
       l_result = mk_qspi_n25q512a_singleModeInitializationSequence ( );
    }
 
    /* Sinon */
    else if ( p_mode == K_MK_QSPI_MODE_QUAD )
    {
-      /* Initialisation de la mémoire QSPI en mode 4 fils */
+      /* Initialisation de la mÃ©moire QSPI en mode 4 fils */
       l_result = mk_qspi_n25q512a_quadModeInitializationSequence ( );
    }
 
    /* Sinon */
    else
    {
-      /* La programmation de la mémoire QSPI est réalisée directement par la sonde de programmation */
-      /* Le script Startup.JLinkScript doit être exécuté au démarrage. */
-      /* La méthodologie pour exécuter ce script est décrite à l'intérieur du fichier Startup.JLinkScript. */
-      /* Si le message ERROR: Failed to erase sectors 0 @ address 0x90000000 (erase error) apparait alors la mémoire */
-      /* n'est pas en mode 1 fil ou le script n'a pas été exécuté (2 options nécessaires -jlinkscriptfile et -JLinkDevicesXMLPath). */
-      /* Le fichier exécutable contenant le code RAM déployé lors de la programmation est STM32F746G_QSPI.elf */
+      /* La programmation de la mÃ©moire QSPI est rÃ©alisÃ©e directement par la sonde de programmation */
+      /* Le script Startup.JLinkScript doit Ãªtre exÃ©cutÃ© au dÃ©marrage. */
+      /* La mÃ©thodologie pour exÃ©cuter ce script est dÃ©crite Ã  l'intÃ©rieur du fichier Startup.JLinkScript. */
+      /* Si le message ERROR: Failed to erase sectors 0 @ address 0x90000000 (erase error) apparait alors la mÃ©moire */
+      /* n'est pas en mode 1 fil ou le script n'a pas Ã©tÃ© exÃ©cutÃ© (2 options nÃ©cessaires -jlinkscriptfile et -JLinkDevicesXMLPath). */
+      /* Le fichier exÃ©cutable contenant le code RAM dÃ©ployÃ© lors de la programmation est STM32F746G_QSPI.elf */
 
-      /* Le code ci-dessous doit être exécutée 1 fois pour configurer la mémoire QSPI. Deux programmation sont donc nécessaires. */
+      /* Le code ci-dessous doit Ãªtre exÃ©cutÃ©e 1 fois pour configurer la mÃ©moire QSPI. Deux programmation sont donc nÃ©cessaires. */
 
-      /* Initialisation de la mémoire QSPI en mode 1 fils */
+      /* Initialisation de la mÃ©moire QSPI en mode 1 fils */
       ( void ) mk_qspi_n25q512a_singleModeProgrammingSequence ( );
 
-      /* Ne pas retirer cette instruction (sinon la programmation échoue) */
-      /* On retourne un KO explicite car la fenêtre QSPI n'est pas initialisée. */
+      /* Ne pas retirer cette instruction (sinon la programmation Ã©choue) */
+      /* On retourne un KO explicite car la fenÃªtre QSPI n'est pas initialisÃ©e. */
       l_result = K_MK_ERROR_PARAM;
    }
 
    /* Retour */
    return ( l_result );
 }
-
-

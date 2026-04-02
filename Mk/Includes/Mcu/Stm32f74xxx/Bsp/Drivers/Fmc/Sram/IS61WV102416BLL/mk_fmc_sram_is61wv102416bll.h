@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_fmc_sram_is61wv102416bll.h
-* @brief Déclaration des fonctions dédiées à la mémoire IS61WV102416BLL.
+* @brief DÃ©claration des fonctions dÃ©diÃ©es Ã  la mÃ©moire IS61WV102416BLL.
 * @date 23 mars 2026
 *
 */
@@ -39,7 +39,7 @@
 
 /**
  * @fn void mk_fmc_sram_is61wv102416bll_init ( void );
- * @brief Cette fonction initialise la mémoire IS61WV102416BLL.
+ * @brief Cette fonction initialise la mÃ©moire IS61WV102416BLL.
  * @return Sans objet.
  *
  */
@@ -51,5 +51,3 @@ void mk_fmc_sram_is61wv102416bll_init ( void );
  */
 
 #endif
-
-

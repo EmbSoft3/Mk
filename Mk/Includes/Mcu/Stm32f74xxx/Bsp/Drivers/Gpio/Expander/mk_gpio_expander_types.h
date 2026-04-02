@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_gpio_expander_types.h
-* @brief Déclaration des types dédiés aux expanders GPIO.
+* @brief DÃ©claration des types dÃ©diÃ©s aux expanders GPIO.
 * @date 16 mars 2026
 *
 */

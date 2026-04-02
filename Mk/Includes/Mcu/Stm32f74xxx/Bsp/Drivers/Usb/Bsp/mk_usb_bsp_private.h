@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_usb_bsp_private.h
-* @brief Déclaration des fonctions privées dédiées aux BSP USB.
+* @brief DÃ©claration des fonctions privÃ©es dÃ©diÃ©es aux BSP USB.
 * @date 18 mars 2026
 *
 */
@@ -40,17 +40,17 @@
 /**
  * @fn T_mkCode mk_usb_bsp_init ( T_mkAddr p_usb );
  * @brief Cette fonction initialise le BSP SD/MMC.
- * @param[in] p_usb Ce paramètre contient l'adresse de base d'un périphérique USB. Les constantes suivantes peuvent
- *                  être utilisés : \n \ref K_USB_OTGHS et \ref K_USB_OTGFS
+ * @param[in] p_usb Ce paramÃ¨tre contient l'adresse de base d'un pÃ©riphÃ©rique USB. Les constantes suivantes peuvent
+ *                  Ãªtre utilisÃ©s : \n \ref K_USB_OTGHS et \ref K_USB_OTGFS
  * 
  * @return Cette fonction retourne une des valeurs suivantes :
- *         \li \ref K_MK_OK            : l'initialisation du BSP a été exécutée sans renconter d'erreur.
- *         \li \ref K_MK_ERROR_PARAM   : l'initialisation du BSP a échouée car au moins un paramètre est invalide.
- *         \li \ref K_MK_ERROR_TIMEOUT : l'initialisation du BSP a échouée car la messagerie GPIO est pleine.
- *         \li \ref K_MK_ERROR_ISR     : l'initialisation du BSP a échouée car la fonction a été exécutée depuis un vecteur d'interruption.
- *         \li \ref K_MK_ERROR_COMM    : l'initialisation du BSP a échouée car une erreur de communication s'est produite.
- *         \li \ref K_MK_ERROR_TIMEOUT : l'initialisation du BSP a échouée car un timeout de communication s'est produit.
- *         \li \ref K_MK_ERROR_RIGHT   : l'initialisation du BSP a échouée car une tâche non privilégiée ne peut pas modifier une broche protégée.
+ *         \li \ref K_MK_OK            : l'initialisation du BSP a Ã©tÃ© exÃ©cutÃ©e sans renconter d'erreur.
+ *         \li \ref K_MK_ERROR_PARAM   : l'initialisation du BSP a Ã©chouÃ©e car au moins un paramÃ¨tre est invalide.
+ *         \li \ref K_MK_ERROR_TIMEOUT : l'initialisation du BSP a Ã©chouÃ©e car la messagerie GPIO est pleine.
+ *         \li \ref K_MK_ERROR_ISR     : l'initialisation du BSP a Ã©chouÃ©e car la fonction a Ã©tÃ© exÃ©cutÃ©e depuis un vecteur d'interruption.
+ *         \li \ref K_MK_ERROR_COMM    : l'initialisation du BSP a Ã©chouÃ©e car une erreur de communication s'est produite.
+ *         \li \ref K_MK_ERROR_TIMEOUT : l'initialisation du BSP a Ã©chouÃ©e car un timeout de communication s'est produit.
+ *         \li \ref K_MK_ERROR_RIGHT   : l'initialisation du BSP a Ã©chouÃ©e car une tÃ¢che non privilÃ©giÃ©e ne peut pas modifier une broche protÃ©gÃ©e.
  *
  */
 
@@ -61,5 +61,3 @@ T_mkCode mk_usb_bsp_init ( T_mkAddr p_usb );
  */
 
 #endif
-
-

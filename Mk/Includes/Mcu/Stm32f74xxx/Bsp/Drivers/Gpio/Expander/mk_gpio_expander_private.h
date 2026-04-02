@@ -29,7 +29,7 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 * @file mk_gpio_expander_private.h
-* @brief Déclaration des fonctions privées dédiées aux expanders GPIO.
+* @brief DÃ©claration des fonctions privÃ©es dÃ©diÃ©es aux expanders GPIO.
 * @date 16 mars 2026
 *
 */
