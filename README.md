@@ -6,7 +6,7 @@ ecosystem: a preemptive kernel, a dynamic ELF loader, a FAT file system, a multi
 a graphical engine with Unicode support, and an interactive shell — all written in C and ARM
 assembly, with no external dependencies.
 
-> ⚠️ This project is under active development. Some features and documentation sections are still
+> ⚠️ This project is under development. Some features and documentation sections are still
 > being completed.
 
 ## Features
@@ -117,35 +117,41 @@ Mk is organized into three layers: Foundation for core hardware and OS services,
 
 ### Hardware targets
 
-| Branch | Board | MCU |
-|--------|-------|-----|
-| `main` | STM32F746G-Eval2 | STM32F746NG |
-| `stm32f746g-disco` | STM32F746G-DISCO REV.C | STM32F746NG |
-
 ### Requirements
 
 - [GNU Arm Embedded Toolchain 10.3-2021.10](https://developer.arm.com/downloads/-/gnu-rm)
-- GNU Make 4.x
+- CMake ≥ 3.25
+- Ninja
+
+### Build system
+
+The project uses **CMake** with **presets** defined in `CMakePresets.json`. Four presets are
+available:
+
+| Preset | Board | Type |
+|--------|-------|------|
+| `release-eval2` | STM32F746G-Eval2 | Release (`-Ofast`) |
+| `debug-eval2` | STM32F746G-Eval2 | Debug (`-O0 -g3`) |
+| `release-disco` | STM32F746G-DISCO REV.C | Release (`-Ofast`) |
+| `debug-disco` | STM32F746G-DISCO REV.C | Debug (`-O0 -g3`) |
 
 ### Steps
 
-1. Open `Mk/Make/makefile` and set `TOOLCHAIN_PATH` to your ARM toolchain installation directory.
-2. Clean any previous build artifacts:
+1. Configure the project using the desired preset:
    ```
-   make clean
+   cmake --preset debug-eval2
    ```
-3. Build the firmware:
-   ```
-   make all
-   ```
-   This produces `Mk.elf` (debug symbols) and `Mk-Strip.elf` (stripped, ready to flash), along with
-   `Mk.srec` containing the embedded symbol table.
 
-> **Note:** The default build configuration uses `-Ofast`. Use the `Debug` target for a `-O0`
-> build with full debug symbols:
-> ```
-> make Debug
-> ```
+2. Build the firmware:
+   ```
+   cmake --build --preset debug-eval2
+   ```
+
+   This produces in `build/<preset>/`:
+   - `Mk.elf` — full debug symbols
+   - `Mk-Strip.elf` — stripped binary
+   - `Mk.srec` — S-Record with embedded symbol table
+   - `Mk.map` — linker map file
 
 ### Compiler versions used
 
@@ -153,12 +159,19 @@ Mk is organized into three layers: Foundation for core hardware and OS services,
 |------|---------|
 | `arm-none-eabi-gcc` | 10.3.1 20210824 (GNU Arm Embedded Toolchain 10.3-2021.10) |
 | `arm-none-eabi-g++` | 10.3.1 20210824 (GNU Arm Embedded Toolchain 10.3-2021.10) |
-| `make` | GNU Make 4.4.1 (Windows32) |
+| CMake | ≥ 3.25 |
+| Ninja | latest |
 
-### Flashing
+### Flashing and debugging
 
-A J-Link script is provided in `Mk/Flasher/Jlink/`. Connect the STM32F746G-Eval2 board and run it
-with J-Link Commander.
+Debug configurations for **VS Code** is included in the repository:
+
+- **VS Code**: `.vscode/launch.json` — configured for J-Link via the
+  [Cortex-Debug](https://github.com/Marus/cortex-debug) extension, with separate configurations
+  for each board preset
+
+Configuration require a J-Link probe (or a ST-Link flashed with the J-Link firmware) and
+the [J-Link Software](https://www.segger.com/downloads/jlink/) installed.
 
 ---
 
@@ -192,23 +205,9 @@ This list is not exhaustive, and includes only the main features.
 
 ---
 
-## Roadmap
-
-The following features are planned for future releases:
-
-- [ ] File system access rights
-- [ ] Touch input support in the graphical engine
-- [ ] Audio output via USB isochronous transfers
-- [ ] TCP/IP networking stack
-
----
-
 ## License
 
 Copyright © 2024 **Mathieu Renard**. All rights reserved.
 
 This project is licensed under the **BSD 3-Clause License** — see the [LICENSE](LICENSE) file for
 details.
-
-
-
