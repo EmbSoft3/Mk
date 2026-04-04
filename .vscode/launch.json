@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Mk — EVAL2 (J-Link)",
+      "name": "Debug Mk — EVAL2 (J-Link)",
       "type": "cortex-debug",
       "request": "launch",
       "servertype": "jlink",
@@ -15,7 +15,7 @@
       "runToEntryPoint": "_vector_resetHandler"
     },
     {
-      "name": "Mk — DISCO (J-Link)",
+      "name": "Debug Mk — DISCO (J-Link)",
       "type": "cortex-debug",
       "request": "launch",
       "servertype": "jlink",
@@ -25,6 +25,30 @@
       "executable": "./build/debug-disco/Mk.elf",
       "loadFiles": ["./build/debug-disco/Mk.srec"],
       "symbolFiles": [{"file": "./build/debug-disco/Mk.elf"}],
+      "runToEntryPoint": "_vector_resetHandler"
+    },
+    {
+      "name": "Release Mk — DISCO (J-Link)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "jlink",
+      "device": "STM32F746NG",
+      "interface": "SWD",
+      "speed": 4000,
+      "executable": "./build/release-disco/Mk.srec",
+      "loadFiles": ["./build/release-disco/Mk.srec"],
+      "runToEntryPoint": "_vector_resetHandler"
+    },
+    {
+      "name": "Release Mk — EVAL2 (J-Link)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "jlink",
+      "device": "STM32F746NG",
+      "interface": "SWD",
+      "speed": 4000,
+      "executable": "./build/release-eval2/Mk.elf",
+      "loadFiles": ["./build/release-eval2/Mk.srec"],
       "runToEntryPoint": "_vector_resetHandler"
     }
   ]

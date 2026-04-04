@@ -117,6 +117,14 @@ Mk is organized into three layers: Foundation for core hardware and OS services,
 
 ### Hardware targets
 
+Both boards are supported from the `main` branch. The target is selected at build time via the
+CMake preset:
+
+| Preset | Board | MCU |
+|--------|-------|-----|
+| `release-eval2` / `debug-eval2` | STM32F746G-Eval2 | STM32F746NG |
+| `release-disco` / `debug-disco` | STM32F746G-DISCO REV.C | STM32F746NG |
+
 ### Requirements
 
 - [GNU Arm Embedded Toolchain 10.3-2021.10](https://developer.arm.com/downloads/-/gnu-rm)
@@ -164,13 +172,28 @@ available:
 
 ### Flashing and debugging
 
-Debug configurations for **VS Code** is included in the repository:
+Debug configurations for **VS Code** are included in the repository in `.vscode/launch.json`,
+using the [Cortex-Debug](https://github.com/Marus/cortex-debug) extension with J-Link:
 
-- **VS Code**: `.vscode/launch.json` — configured for J-Link via the
-  [Cortex-Debug](https://github.com/Marus/cortex-debug) extension, with separate configurations
-  for each board preset
+| Configuration | Board | Type | Binary flashed |
+|---|---|---|---|
+| `Debug Mk — EVAL2 (J-Link)` | STM32F746G-Eval2 | Debug | `build/debug-eval2/Mk.srec` |
+| `Debug Mk — DISCO (J-Link)` | STM32F746G-DISCO REV.C | Debug | `build/debug-disco/Mk.srec` |
+| `Release Mk — EVAL2 (J-Link)` | STM32F746G-Eval2 | Release | `build/release-eval2/Mk.srec` |
+| `Release Mk — DISCO (J-Link)` | STM32F746G-DISCO REV.C | Release | `build/release-disco/Mk.srec` |
 
-Configuration require a J-Link probe (or a ST-Link flashed with the J-Link firmware) and
+Debug configurations load symbols from `Mk.elf` via GDB. Release configurations flash `Mk.srec`
+only — no debug symbols are loaded.
+
+> ⚠️ **It is critical to flash `Mk.srec` and not `Mk.elf`.**
+> The [sym2srec](https://github.com/EmbSoft3/Sym2srec/wiki) tool embeds the kernel symbol table
+> directly into the S-Record binary at a fixed address (`0x002C0000`). This symbol table is
+> required at runtime by the dynamic ELF loader to resolve application symbols against the kernel
+> API. Flashing `Mk.elf` instead of `Mk.srec` would produce a firmware without the embedded
+> symbol table, causing dynamic loading to fail. Debug symbols are loaded separately from
+> `Mk.elf` by GDB and do not need to be flashed.
+
+All configurations require a J-Link probe (or a ST-Link flashed with the J-Link firmware) and
 the [J-Link Software](https://www.segger.com/downloads/jlink/) installed.
 
 ---
