@@ -187,7 +187,6 @@
 #include "mk_gpio_constants.h"
 #include "mk_gpio_pool_types.h"
 #include "mk_gpio_types.h"
-#include "mk_gpio_bsp_types.h"
 #include "mk_gpio.h"
 
 #include "mk_mmc_cmd_types.h"

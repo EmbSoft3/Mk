@@ -132,6 +132,38 @@ struct T_mkGPIOPinHandler
  */
 
 /**
+ * @enum T_mkGPIOPinID
+ * @brief Déclaration de l'énumération T_mkGPIOPinID.
+ *
+ */
+
+typedef enum T_mkGPIOPinID
+{
+   K_MK_GPIO_PIN_JOYSTICK_SEL = 0,         /*!< Définition de l'identifiant de la broche JOY_SEL. */
+   K_MK_GPIO_PIN_JOYSTICK_DOWN = 1,        /*!< Définition de l'identifiant de la broche JOY_DOWN. */
+   K_MK_GPIO_PIN_JOYSTICK_LEFT = 2,        /*!< Définition de l'identifiant de la broche JOY_LEFT. */
+   K_MK_GPIO_PIN_JOYSTICK_RIGHT = 3,       /*!< Définition de l'identifiant de la broche JOY_RIGHT. */
+   K_MK_GPIO_PIN_JOYSTICK_UP = 4,          /*!< Définition de l'identifiant de la broche JOY_UP. */
+   K_MK_GPIO_PIN_AUDIO_INTERRUPT = 5,      /*!< Définition de l'identifiant de la broche AUDIO_INT. */
+   K_MK_GPIO_PIN_OTGFS1_OVERCURRENT = 6,   /*!< Définition de l'identifiant de la broche OTGFS1_OVERCURRENT. */
+   K_MK_GPIO_PIN_OTGFS1_POWERSWITCHON = 7, /*!< Définition de l'identifiant de la broche OTGFS1_POWERSWITCHON. */
+   K_MK_GPIO_PIN_OTGFS2_OVERCURRENT = 8,   /*!< Définition de l'identifiant de la broche OTGFS2_OVERCURRENT. */
+   K_MK_GPIO_PIN_OTGFS2_POWERSWITCHON = 9, /*!< Définition de l'identifiant de la broche OTGFS2_POWERSWITCHON. */
+   K_MK_GPIO_PIN_OTGHS_OVERCURRENT = 8,    /*!< Définition de l'identifiant de la broche OTGHS_OVERCURRENT (alias de OTGFS2_OVERCURRENT). */
+   K_MK_GPIO_PIN_OTGHS_POWERSWITCHON = 9,  /*!< Définition de l'identifiant de la broche OTGHS_POWERSWITCHON (alias de OTGFS2_POWERSWITCHON). */
+   K_MK_GPIO_PIN_CAMERA_XSDN = 10,         /*!< Définition de l'identifiant de la broche CAMERA_XSDN. */
+   K_MK_GPIO_PIN_CAMERA_RSTI = 11,         /*!< Définition de l'identifiant de la broche CAMERA_RSTI. */
+   K_MK_GPIO_PIN_CAMERA_PLUG = 12,         /*!< Définition de l'identifiant de la broche CAMERA_PLUG. */
+   K_MK_GPIO_PIN_MII_INTERRUPT = 13,       /*!< Définition de l'identifiant de la broche MII_INT. */
+   K_MK_GPIO_PIN_LCD_INTERRUPT = 14,       /*!< Définition de l'identifiant de la broche LDC_INT. */
+   K_MK_GPIO_PIN_SDCARD_DETECT = 15,       /*!< Définition de l'identifiant de la broche SDCARD_DETECT. */
+   K_MK_GPIO_PIN_LED1 = 16,                /*!< Définition de l'identifiant de la broche LED1. */
+   K_MK_GPIO_PIN_LED2 = 17,                /*!< Définition de l'identifiant de la broche LED2. */
+   K_MK_GPIO_PIN_PUSHBUTTON1 = 18,         /*!< Définition de l'identifiant de la broche PUSHBUTTON1. */
+   K_MK_GPIO_NUMBER_OF_PINS = 19           /*!< Définition du nombre d'identifiants. */
+} T_mkGPIOPinID;
+
+/**
  * @enum T_mkGPIOPort
  * @brief Déclaration de l'énumération T_mkGPIOPort.
  *
@@ -152,7 +184,8 @@ typedef enum T_mkGPIOPort
    K_MK_GPIO_PORTI = 10,                                             /*!< Définition de l'identifiant du port I. */
    K_MK_GPIO_PORTJ = 11,                                             /*!< Définition de l'identifiant du port J. */
    K_MK_GPIO_PORTK = 12,                                             /*!< Définition de l'identifiant du port K. */
-   K_MK_GPIO_NUMBER_OF_PORTS = 13                                    /*!< Définition du nombre d'identifiants. */
+   K_MK_GPIO_NUMBER_OF_PORTS = 13,                                   /*!< Définition du nombre d'identifiants. */
+   K_MK_GPIO_NOT_IMPLEMENTED = 14                                    /*!< Définition de l'identifiant indiquant que le port n'est pas implémenté pour un BSP donné. */
 } T_mkGPIOPort;
 
 /**
@@ -211,8 +244,8 @@ typedef enum T_mkGPIOResistor
 
 typedef enum T_mkGPIOLevel
 {
-   K_MK_GPIO_LOW = 0,                                                /*!< Définition d'une constante permettant de positionner une broche au niveau logique HIGH. */
-   K_MK_GPIO_HIGH = 1                                                /*!< Définition d'une constante permettant de positionner une broche au niveau logique LOW. */
+   K_MK_GPIO_LOW = 0,                                                /*!< Définition d'une constante permettant de positionner une broche au niveau logique LOW. */
+   K_MK_GPIO_HIGH = 1                                                /*!< Définition d'une constante permettant de positionner une broche au niveau logique HIGH. */
 } T_mkGPIOLevel;
 
 /**

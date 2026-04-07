@@ -237,7 +237,8 @@ static T_mkCode mk_gpio_handleEvent ( T_mkGPIOHandler* p_handler )
       for ( l_counter = 0; l_counter < K_MK_GPIO_NUMBER_OF_PINS; l_counter++ )
       {
          /* Si la broche est une entrée */
-         if ( g_mkGPIOPinTable [ l_counter ].type == K_MK_GPIO_INPUT )
+         if ( ( g_mkGPIOPinTable [ l_counter ].type == K_MK_GPIO_INPUT ) && 
+              ( g_mkGPIOPinTable [ l_counter ].port != K_MK_GPIO_NOT_IMPLEMENTED ) )
          {
             /* Si la broche n'est pas une broche native (expander, ...) */
             if ( g_mkGPIOPinTable [ l_counter ].port == K_MK_GPIO_EXTERNAL )
