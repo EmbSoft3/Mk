@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -37,7 +37,7 @@
 #ifndef MK_DISPLAY_CONSTANTS_H
 #define MK_DISPLAY_CONSTANTS_H
 
-/* Si carte EVAL2 */
+/* Si compilation pour la carte EVAL2 */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
@@ -230,7 +230,7 @@
  *
  */
 
-/* Si carte DISCO_REV_C */
+/* Sinon si compilation pour la carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**
@@ -422,6 +422,13 @@
  */
 
 #define K_MK_DISPLAY_FRAME_BUFFER_BANK2_BASE_ADDR K_FMC_BANK5_BASE_ADDR + ( K_MK_DISPLAY_FRAME_BUFFER_NUMBER * K_MK_DISPLAY_FRAME_BUFFER_SIZE )
+
+/**
+ *
+ */
+
+/* Sinon si compilation d'une application externe */
+#elif defined ( MK_EXTERNAL_APPS )
 
 /**
  *

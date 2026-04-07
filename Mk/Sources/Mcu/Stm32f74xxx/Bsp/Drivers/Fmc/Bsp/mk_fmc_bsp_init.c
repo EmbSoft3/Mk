@@ -36,7 +36,7 @@
 
 #include "mk_fmc_api.h"
 
-/* Si carte EVAL2 */
+/* Si compilation pour la carte EVAL2 */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
@@ -423,7 +423,7 @@ T_mkCode mk_fmc_bsp_init ( void )
    return ( l_result );
 }
 
-/* Si carte DISCO_REV_C */
+/* Sinon si compilation pour la carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**

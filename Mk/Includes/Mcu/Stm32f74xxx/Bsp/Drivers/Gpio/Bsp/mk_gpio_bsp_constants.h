@@ -37,7 +37,7 @@
 #ifndef MK_GPIO_BSP_CONSTANTS_H
 #define MK_GPIO_BSP_CONSTANTS_H
 
-/* Si carte EVAL2 */
+/* Si compilation pour la carte EVAL2 */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
@@ -47,7 +47,7 @@
 
 #define K_MK_GPIO_TERMIO_LIST ( K_MK_TERMIO_FLAG_I2C1 | K_MK_TERMIO_FLAG_DISPATCHER )
 
-/* Si carte DISCO_REV_C */
+/* Sinon si compilation pour la carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**
@@ -56,6 +56,13 @@
  */
 
 #define K_MK_GPIO_TERMIO_LIST ( K_MK_TERMIO_FLAG_DISPATCHER )
+
+/**
+ *
+ */
+
+/* Sinon si compilation d'une application externe */
+#elif defined ( MK_EXTERNAL_APPS )
 
 /* Sinon erreur de compilation */
 #else

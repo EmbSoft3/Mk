@@ -41,7 +41,7 @@
  *
  */
 
-/* Si carte EVAL2 */
+/* Si compilation pour la carte EVAL2 */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
@@ -92,7 +92,7 @@
  *
  */
 
-/* Si carte DISCO_REV_C */
+/* Sinon si compilation pour la carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**
@@ -138,6 +138,13 @@
  */
 
 #define K_MK_BSP_PAGE_LARGE_BLOCK_SIZE ( K_MK_DISPLAY_FRAME_BUFFER_SIZE * 4 )
+
+/**
+ *
+ */
+
+/* Sinon si compilation d'une application externe */
+#elif defined ( MK_EXTERNAL_APPS )
 
 /**
  *

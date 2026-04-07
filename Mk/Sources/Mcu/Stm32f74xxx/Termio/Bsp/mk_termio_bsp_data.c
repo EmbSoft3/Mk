@@ -41,7 +41,7 @@
  *
  */
 
-/* Si carte EVAL2 */
+/* Si compilation pour la carte EVAL2 */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
@@ -70,7 +70,7 @@ const T_mkTermioCtrlBlock g_mkTermioCtrlBlock [ K_MK_TERMIO_NUMBER ] =
    { K_MK_TERMIO_NO,                K_MK_TERMIO_TASK_PRIORITY,       K_MK_NULL,               K_MK_NULL,                     0 }
 };
 
-/* Si carte DISCO_REV_C */
+/* Sinon si compilation pour la carte DISCO_REV_C */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**

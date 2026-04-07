@@ -37,7 +37,7 @@
 #ifndef MK_I2C_BSP_CONSTANTS_H
 #define MK_I2C_BSP_CONSTANTS_H
 
-/* Si carte EVAL2 ou DISCO_REV_C */
+/* Si compilation pour les cartes EVAL2 ou DISCO_REV_C */
 #if ( defined ( MK_BOARD_EVAL2 ) || defined ( MK_BOARD_DISCO_REV_C ) )
 
 /**
@@ -220,7 +220,14 @@
 
 #define K_MK_I2C4_GPIO_DATA_MULTIPLEXER K_GPIO_AF4
 
- /* Sinon erreur de compilation */
+/**
+ *
+ */
+
+/* Sinon si compilation d'une application externe */
+#elif defined ( MK_EXTERNAL_APPS )
+
+/* Sinon erreur de compilation */
 #else
 #error "No board defined. Use BOARD=EVAL2 or BOARD=DISCO_REV_C in the Makefile"
 #endif

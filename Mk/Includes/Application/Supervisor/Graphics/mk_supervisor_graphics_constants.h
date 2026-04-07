@@ -37,7 +37,7 @@
 #ifndef MK_SUPERVISOR_GRAPHICS_CONSTANTS_H
 #define MK_SUPERVISOR_GRAPHICS_CONSTANTS_H
 
-/* Si carte EVAL2 (résolution 640x480) */
+/* Si compilation pour la carte EVAL2 (résolution 640x480) */
 #if defined ( MK_BOARD_EVAL2 )
 
 /**
@@ -183,7 +183,7 @@
  *
  */
 
-/* Si carte DISCO_REV_C (résolution 480x272) */
+/* Sinon si compilation pour la carte DISCO_REV_C (résolution 480x272) */
 #elif defined ( MK_BOARD_DISCO_REV_C )
 
 /**
@@ -323,6 +323,13 @@
 */
 
 #define K_MK_SUPERVISOR_CPU_LOAD_HEIGHT 25
+
+/**
+ *
+ */
+
+/* Sinon si compilation d'une application externe */
+#elif defined ( MK_EXTERNAL_APPS )
 
 /**
  *
