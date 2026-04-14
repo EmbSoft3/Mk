@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -100,7 +100,7 @@ T_mkCode mk_shell_application_terminate ( T_mkConsole* p_console, T_str8 p_str, 
             if ( l_result == K_MK_OK )
             {
                /* Affichage d'un message dans la console */
-               l_result = mk_console_print ( p_console, ( T_str8 ) MK_SHELL_MESSAGE_TERMINATE_SUCCEES );
+               l_result = mk_console_print ( p_console, ( T_str8 ) MK_SHELL_MESSAGE_TERMINATE_SUCCESS );
             }
 
             /* Sinon */

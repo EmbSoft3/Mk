@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -45,7 +45,7 @@
 #define MK_SHELL_MESSAGE_INSTALL_HELP_MESSAGE \
 "\n\
 Descr: installs an application on the system\n\
-Usage: install elf-file <option(s)>\n\
+Usage: install <elf-file> [option(s)]\n\
 Option(s) are:\n\
 \t -s set arguments of the application\n\
 \t -l launch the application after installation\n\n"
@@ -58,7 +58,7 @@ Option(s) are:\n\
 #define MK_SHELL_MESSAGE_INSTALL_INVALID_CMD_LINE \
 "\n\
 install: Warning: Nothing to do.\n\
-Usage: install elf-file <option(s)>\n\
+Usage: install <elf-file> [option(s)]\n\
 Option(s) are:\n\
 \t -s set arguments of the application\n\
 \t -l launch the application after installation\n\n"
@@ -71,7 +71,7 @@ Option(s) are:\n\
 #define MK_SHELL_MESSAGE_INSTALL_FILE_NOT_FOUND \
 "\n\
 install: Warning: File not found.\n\
-Usage: install elf-file <option(s)>\n\
+Usage: install <elf-file> [option(s)]\n\
 Option(s) are:\n\
 \t -s set arguments of the application\n\
 \t -l launch the application after installation\n\n"
@@ -95,11 +95,11 @@ install: Unexpected: Could not launch the application.\n\n"
 install: Warning: invalid path length.\n\n"
 
 /**
- * @def MK_SHELL_MESSAGE_INSTALL_FILE_NOT_FOUND
+ * @def MK_SHELL_MESSAGE_INSTALL_SUCCESS
  * @brief Définition du message "SUCCESS" de la commande "install".
  */
 
-#define MK_SHELL_MESSAGE_INSTALL_SUCCEES \
+#define MK_SHELL_MESSAGE_INSTALL_SUCCESS \
 "\n\
 install: the application has been installed successfully.\n\n"
 
@@ -117,7 +117,7 @@ install: the application has been installed successfully.\n\n"
 Descr: uninstalls an application on the system\n\
 Usage: uninstall <pid>\n\
 Parameter(s) are:\n\
-\t <PID> pid of the application to uninstall\n\n"
+\t <pid> pid of the application to uninstall\n\n"
 
 /**
  * @def MK_SHELL_MESSAGE_UNINSTALL_APP_NOT_FOUND
@@ -129,7 +129,7 @@ Parameter(s) are:\n\
 uninstall: Warning: Application not found.\n\
 Usage: uninstall <pid>\n\
 Parameter(s) are:\n\
-\t <PID> pid of the application to uninstall\n\n"
+\t <pid> pid of the application to uninstall\n\n"
 
 /**
  * @def MK_SHELL_MESSAGE_UNINSTALL_APP_STATIC
@@ -141,14 +141,14 @@ Parameter(s) are:\n\
 uninstall: Warning: Application type not valid (static).\n\
 Usage: uninstall <pid>\n\
 Parameter(s) are:\n\
-\t <PID> pid of the application to uninstall\n\n"
+\t <pid> pid of the application to uninstall\n\n"
 
 /**
- * @def MK_SHELL_MESSAGE_UNINSTALL_SUCCEES
+ * @def MK_SHELL_MESSAGE_UNINSTALL_SUCCESS
  * @brief Définition du message "SUCCESS" de la commande "uninstall".
  */
 
-#define MK_SHELL_MESSAGE_UNINSTALL_SUCCEES \
+#define MK_SHELL_MESSAGE_UNINSTALL_SUCCESS \
 "\n\
 uninstall: the application has been uninstalled successfully.\n\n"
 
@@ -166,7 +166,7 @@ uninstall: the application has been uninstalled successfully.\n\n"
 Descr: run an installed application\n\
 Usage: launch <pid>\n\
 Parameter(s) are:\n\
-\t <PID> pid of the application to launch\n\n"
+\t <pid> pid of the application to launch\n\n"
 
 /**
  * @def MK_SHELL_MESSAGE_LAUNCH_APP_NOT_FOUND
@@ -178,7 +178,7 @@ Parameter(s) are:\n\
 launch: Warning: Application not found.\n\
 Usage: launch <pid>\n\
 Parameter(s) are:\n\
-\t <PID> pid of the application to launch\n\n"
+\t <pid> pid of the application to launch\n\n"
 
 /**
  * @def MK_SHELL_MESSAGE_LAUNCH_ALREADY_RUNNING
@@ -187,19 +187,19 @@ Parameter(s) are:\n\
 
 #define MK_SHELL_MESSAGE_LAUNCH_ALREADY_RUNNING \
 "\n\
-launch: Warning: Application already ready.\n\
+launch: Warning: Application already running.\n\
 Usage: launch <pid>\n\
 Parameter(s) are:\n\
-\t <PID> pid of the application to launch\n\n"
+\t <pid> pid of the application to launch\n\n"
 
 /**
- * @def MK_SHELL_MESSAGE_LAUNCH_SUCCEES
+ * @def MK_SHELL_MESSAGE_LAUNCH_SUCCESS
  * @brief Définition du message "SUCCESS" de la commande "launch".
  */
 
-#define MK_SHELL_MESSAGE_LAUNCH_SUCCEES \
+#define MK_SHELL_MESSAGE_LAUNCH_SUCCESS \
 "\n\
-launch: the application has been launch successfully.\n\n"
+launch: the application has been launched successfully.\n\n"
 
 /**
  *
@@ -215,7 +215,7 @@ launch: the application has been launch successfully.\n\n"
 Descr: ends the execution of an application\n\
 Usage: terminate <pid>\n\
 Parameter(s) are:\n\
-\t <PID> pid of the application to terminate\n\n"
+\t <pid> pid of the application to terminate\n\n"
 
 /**
  * @def MK_SHELL_MESSAGE_TERMINATE_APP_NOT_FOUND
@@ -227,7 +227,7 @@ Parameter(s) are:\n\
 terminate: Warning: Application not found.\n\
 Usage: terminate <pid>\n\
 Parameter(s) are:\n\
-\t <PID> pid of the application to terminate\n\n"
+\t <pid> pid of the application to terminate\n\n"
 
 /**
  * @def MK_SHELL_MESSAGE_TERMINATE_NOT_RUNNING
@@ -239,16 +239,16 @@ Parameter(s) are:\n\
 terminate: Warning: Application not running.\n\
 Usage: terminate <pid>\n\
 Parameter(s) are:\n\
-\t <PID> pid of the application to terminate\n\n"
+\t <pid> pid of the application to terminate\n\n"
 
 /**
- * @def MK_SHELL_MESSAGE_TERMINATE_SUCCEES
+ * @def MK_SHELL_MESSAGE_TERMINATE_SUCCESS
  * @brief Définition du message "SUCCESS" de la commande "terminate".
  */
 
-#define MK_SHELL_MESSAGE_TERMINATE_SUCCEES \
+#define MK_SHELL_MESSAGE_TERMINATE_SUCCESS \
 "\n\
-terminate: the application has been terminate successfully.\n\n"
+terminate: the application has been terminated successfully.\n\n"
 
 /**
  *
@@ -262,9 +262,9 @@ terminate: the application has been terminate successfully.\n\n"
 #define MK_SHELL_MESSAGE_GETAPPS_HELP_MESSAGE \
 "\n\
 Descr: list all installed applications\n\
-Usage: get-apps <option(s)>\n\
-Option(s) are:\n\
-\t <PID> pid of the application to display\n\
+Usage: get-apps [pid]\n\
+Parameter(s) are:\n\
+\t [pid] pid of the application to display\n\
 \t       omit this parameter to list all applications\n\n"
 
 /**
@@ -275,9 +275,9 @@ Option(s) are:\n\
 #define MK_SHELL_MESSAGE_GETAPPS_APP_NOT_FOUND \
 "\n\
 get-apps: Warning: Application not found.\n\
-Usage: get-apps <option(s)>\n\
-Option(s) are:\n\
-\t <PID> pid of the application to display\n\
+Usage: get-apps [pid]\n\
+Parameter(s) are:\n\
+\t [pid] pid of the application to display\n\
 \t       omit this parameter to list all applications\n\n"
 
 /**
@@ -328,7 +328,7 @@ Usage: reset\n\n"
 
 /**
  * @def MK_SHELL_MESSAGE_RESTART_HELP_MESSAGE
- * @brief Définition du message "HELP_RESET" de la commande "restart".
+ * @brief Définition du message "HELP_RESTART" de la commande "restart".
  */
 
 #define MK_SHELL_MESSAGE_RESTART_HELP_MESSAGE \
@@ -414,7 +414,7 @@ Usage: cd <path>\n\n"
 
 #define MK_SHELL_MESSAGE_FILESYSTEM_LS_DIRECTORY_NOT_FOUND \
 "ls: Warning: directory not found.\n\
-Usage: cd <path>\n\n"
+Usage: ls <path>\n\n"
 
 /**
  *
