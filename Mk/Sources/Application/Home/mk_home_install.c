@@ -56,9 +56,9 @@ static T_mkCode mk_home_createPong ( void )
    T_mkVolume* l_volume = mk_supervisor_getVolume ( );
 
    /* Installation de l'application Pong */
-   l_result = mk_application_installDynamic ( &l_application, ( T_str8 ) "mk/apps/pong/pongGameRelease.elf",
+   l_result = mk_application_installDynamic ( &l_application, ( T_str8 ) "mk/apps/pong/pong.elf",
                                               K_MK_NULL, l_volume, K_MK_NULL );
-
+   
    /* Retour */
    return ( l_result );
 }
@@ -81,7 +81,7 @@ static T_mkCode mk_home_createShell ( void )
    T_mkVolume* l_volume = mk_supervisor_getVolume ( );
 
    /* Installation de l'application Pong */
-   l_result = mk_application_installDynamic ( &l_application, ( T_str8 ) "mk/apps/shell/shellRelease.elf",
+   l_result = mk_application_installDynamic ( &l_application, ( T_str8 ) "mk/apps/shell/shell.elf",
                                               K_MK_NULL, l_volume, K_MK_NULL );
 
    /* Retour */
@@ -106,7 +106,7 @@ static T_mkCode mk_home_createBlinkLed ( void )
    T_mkVolume* l_volume = mk_supervisor_getVolume ( );
 
    /* Installation de l'application BlinkLed */
-   l_result = mk_application_installDynamic ( &l_application, ( T_str8 ) "mk/apps/blinkLed/blinkLedRelease.elf",
+   l_result = mk_application_installDynamic ( &l_application, ( T_str8 ) "mk/apps/blinkLed/blinkLed.elf",
                                               ( T_mkAddr ) "1000", l_volume, K_MK_NULL );
 
    /* Retour */
