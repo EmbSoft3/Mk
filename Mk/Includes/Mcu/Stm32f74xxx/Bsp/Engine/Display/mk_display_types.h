@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -59,7 +59,8 @@ typedef enum T_mkDisplayEngineRequestType
    K_MK_DISPLAY_REQUEST_TYPE_DISABLE_BACKGROUND = 0x1,                  /*!< Définition de l'identifiant d'une requête de type 'DisableBackground'. */
    K_MK_DISPLAY_REQUEST_TYPE_ENABLE_FOREGROUND = 0x2,                   /*!< Définition de l'identifiant d'une requête de type 'EnableForeground'. */
    K_MK_DISPLAY_REQUEST_TYPE_DISABLE_FOREGROUND = 0x3,                  /*!< Définition de l'identifiant d'une requête de type 'DisableForeground'. */
-   K_MK_DISPLAY_REQUEST_TYPE_NEXT_FRAME = 0x4                           /*!< Définition de l'identifiant d'une requête de type 'NextFrame'. */
+   K_MK_DISPLAY_REQUEST_TYPE_NEXT_FRAME = 0x4,                          /*!< Définition de l'identifiant d'une requête de type 'NextFrame'. */
+   K_MK_DISPLAY_REQUEST_TYPE_STREAM = 0x5                               /*!< Définition de l'identifiant d'une requête de type 'Stream'. */
 } T_mkDisplayEngineRequestType;
 
 /**
@@ -152,6 +153,18 @@ struct T_mkDisplayApplication
 };
 
 /**
+ * @struct T_mkDisplayStream
+ * @brief Déclaration de la structure T_mkDisplayStream.
+ */
+
+typedef struct T_mkDisplayStream T_mkDisplayStream;
+struct T_mkDisplayStream
+{
+   uint32_t randomNumber [ 4 ];                                         /*!< Ce membre contient le nombre aléatoire écrit dans le chemin où seront enregistrés les screenshot du stream. */
+   uint32_t counter;                                                    /*!< Ce membre contient le numéro du prochain screenshot à enregistrer. */
+};
+
+/**
  * @struct T_mkDisplayStatus
  * @brief Déclaration de la structure T_mkDisplayStatus.
  */
@@ -159,11 +172,12 @@ struct T_mkDisplayApplication
 typedef volatile struct T_mkDisplayStatus T_mkDisplayStatus;
 struct T_mkDisplayStatus
 {
-   unsigned_t wakeup:1;                                                 /*!< Ce bit indique au moteur de réveiller (1) la tâche de peinture non (0). */
+   unsigned_t wakeup:1;                                                 /*!< Ce bit indique au moteur de réveiller (1) la tâche de peinture ou non (0). */
+   unsigned_t stream:1;                                                 /*!< Ce bit indique au moteur d'activer un stream (1) ou non (0). */
    unsigned_t criticalLock:1;                                           /*!< Ce bit indique au moteur d'exécuter uniquement les fonctions d'écoutes présentes dans le container critique (1) ou non (0). */
    unsigned_t listenerLock:1;                                           /*!< Ce bit indique que la boucle des listeners non privilégiés a été bloquée pendant plus de \ref K_MK_DISPLAY_TASK_UNPRIVILEGED_TASK_TIMEOUT millisecondes (1) ou non (0). */
    unsigned_t painterLock:1;                                            /*!< Ce bit indique que la boucle des painters non privilégiés a été bloquée pendant plus de \ref K_MK_DISPLAY_TASK_UNPRIVILEGED_TASK_TIMEOUT millisecondes (1) ou non (0). */
-   unsigned_t reserved:28;                                              /*!< Ces bits sont réservés pour un usage ultérieur. */
+   unsigned_t reserved:27;                                              /*!< Ces bits sont réservés pour un usage ultérieur. */
 };
 
 /**
@@ -278,6 +292,7 @@ struct T_mkDisplay
    T_mkDisplayFont defaultFont;                                         /*!< Ce membre contient les caractéristiques de la police de caractères par défaut. */
    T_mkDisplayFont defaultFixedFont;                                    /*!< Ce membre contient les caractéristiques de la police de caractères de taille fixe par défaut. */
    T_mkDisplayApplication application;                                  /*!< Ce membre contient la liste des applications. */
+   T_mkDisplayStream stream;                                            /*!< Ce membre contient les données relatives au flux d'enregistrement vidéo. */
    T_mkFactory privilegedFactory;                                       /*!< Ce membre contient la liste des containers privilégiés. */
    T_mkFactory unprivilegedFactory;                                     /*!< Ce membre contient la liste des containers non privilégiés. */
    T_mkContainer* criticalContainer;                                    /*!< Ce membre contient le container utilisé par le système pour afficher les objets critiques. */

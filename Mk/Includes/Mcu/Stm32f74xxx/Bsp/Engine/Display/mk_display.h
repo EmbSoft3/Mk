@@ -157,7 +157,7 @@ T_mkCode mk_display_exitCritical ( void );
 T_mkCode mk_display_refreshFields ( void );
 
 /**
- * @fn T_mkCode mk_display_screenshot ( uint32_t p_layer, uint32_t* p_bitmap, T_mkVect2D p_v1, uint32_t p_column, uint32_t p_row );
+ * @fn T_mkCode mk_display_screenshot (  );
  * @brief Cette fonction enregistre un screenshot sur le système de fichier.
  *
  * @return Cette fonction retourne une des valeurs suivantes :
@@ -169,6 +169,21 @@ T_mkCode mk_display_refreshFields ( void );
  */
 
 T_mkCode mk_display_screenshot ( void );
+
+/**
+ * @fn T_mkCode mk_display_stream ( uint32_t p_layer, uint32_t* p_bitmap, T_mkVect2D p_v1, uint32_t p_column, uint32_t p_row );
+ * @brief Cette fonction active ou désactive l'enregistrement du flux vidéo sur le système de fichier.
+ *        Celui-ci est réalisé sous la forme de screenshots successifs.
+ *
+ * @return Cette fonction retourne une des valeurs suivantes :
+ *         \li \ref K_MK_OK            : l'activation ou la désactivation du flux vidéo a réussi.
+ *         \li \ref K_MK_ERROR_PARAM   : l'activation ou la désactivation du flux vidéo a échouée car au moins un paramètre est invalide.
+ *         \li \ref K_MK_ERROR_ISR     : l'activation ou la désactivation du flux vidéo a échouée car la fonction a été exécutée depuis un vecteur d'interruption.
+ *         \li \ref K_MK_ERROR_TIMEOUT : l'activation ou la désactivation du flux vidéo a échouée car un timeout s'est produit.
+ *
+ */
+
+T_mkCode mk_display_stream ( void );
 
 /**
  * @fn void mk_display_setWidth ( uint32_t p_width );

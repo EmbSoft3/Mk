@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2022 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2022-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -128,7 +128,7 @@ T_mkCode mk_chromart_handleRequest ( T_mkTask* p_task, T_mkChromartRequest* p_re
    /* Sinon si la requête est de type SCREENSHOT */
    else if ( p_request->id == K_MK_DISPLAY_REQUEST_CHROMART_SCREENSHOT )
    {
-      l_result = mk_chromart_screenshot ( );
+      l_result = mk_chromart_screenshot ( K_MK_NULL );
    }
 
    /* Sinon */

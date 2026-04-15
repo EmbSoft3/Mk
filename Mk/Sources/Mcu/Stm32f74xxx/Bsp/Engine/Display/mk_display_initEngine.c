@@ -1,6 +1,6 @@
  /**
 *
-* @copyright Copyright (C) 2019-2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -50,11 +50,15 @@ static void mk_display_initRegisters ( void )
    g_mkDisplay.status.painterLock = 0;
    g_mkDisplay.status.listenerLock = 0;
    g_mkDisplay.status.criticalLock = 0;
+   g_mkDisplay.status.stream = 0;
 
    /* Initialisation des variables de calcul du frameRate */
    g_mkDisplay.framerate.value = K_MK_DISPLAY_FRAMERATE;
    g_mkDisplay.framerate.period = 0;
    g_mkDisplay.framerate.counter = 0;
+
+   /* Initialisation des variables relatives à l'enregistrement vidéo */
+   g_mkDisplay.stream.counter = 0;
 
    /* Retour */
    return;

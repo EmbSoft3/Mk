@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2022 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2022-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -47,21 +47,55 @@ static T_mkCode mk_display_handleEngineRequest ( T_mkDisplayEngineRequest* p_req
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
 
-   /* Si touts les dessins de la frame courante ont été traitées */
+   /* Si tous les dessins de la frame courante ont été traités */
    if ( p_request->id == K_MK_DISPLAY_REQUEST_TYPE_NEXT_FRAME )
    {
       /* Actualisation du drapeau de validité du buffer */
       g_mkDisplay.pnt.currentBufferUpdated->validity = 1;
 
+      /* Si le flux vidéo doit être enregistré */
+      if ( g_mkDisplay.status.stream == 1 )
+      {
+         /* Enregistrement d'un screenshot */
+         l_result = mk_chromart_stream ( );
+      }
+
+      /* Sinon */
+      else
+      {
+         /* Ne rien faire */
+      }
+      
       /* Configuration de l'adresse du prochain buffer */
       g_mkDisplay.pnt.currentBufferUpdated = g_mkDisplay.pnt.currentBufferUpdated->next;
    }
 
-   /* Sinon le layer de premier plan doit être activé */
+   /* Sinon si le layer de premier plan doit être activé */
    else if (p_request->id == K_MK_DISPLAY_REQUEST_TYPE_ENABLE_FOREGROUND )
    {
       /* Passage du drapeau à 1 pour que le layer soit activé à la fin de la trame courante */
       g_mkDisplay.pnt.currentBufferUpdated->status.foregroundLayer = 1;
+   }
+
+   /* Sinon si un stream doit être activé */
+   else if ( p_request->id == K_MK_DISPLAY_REQUEST_TYPE_STREAM )
+   {
+      /* Si l'enregistrement du flux vidéo doit être activé */
+      if ( g_mkDisplay.status.stream == 0 )
+      {
+         /* Réinitialisation du compteur de screenshot */
+         g_mkDisplay.stream.counter = 0;
+
+         /* Activation de l'enregistrement du flux vidéo*/
+         g_mkDisplay.status.stream = 1;
+      }
+
+      /* Sinon */
+      else
+      {
+         /* Désactivation de l'enregistrement du flux vidéo*/
+         g_mkDisplay.status.stream = 0;
+      }
    }
 
    /* Sinon */

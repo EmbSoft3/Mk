@@ -379,7 +379,7 @@ static T_mkCode mk_chromart_writeBitmap ( T_mkFile* p_file, uint32_t* p_page )
  * @endinternal
  */
 
-static T_mkCode mk_chromart_createBitmapFile ( T_mkFile** p_file )
+static T_mkCode mk_chromart_createBitmapFile ( T_mkFile** p_file, T_str8 p_path )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
@@ -390,17 +390,43 @@ static T_mkCode mk_chromart_createBitmapFile ( T_mkFile** p_file )
    /* Déclaration d'une chaine de caractères */
    char8_t l_randomFileName [ 62 ] = { 0 };
 
-   /* Effectue */
-   do
+   /* Si aucun nom de fichier ne doit être généré */
+   if ( p_path != K_MK_NULL )
    {
-      /* Récupération d'un nom de fichier aléatoire */
-      l_ret = mk_utils_getRandomString ( ( T_str8 ) l_randomFileName, ( T_str8 ) "mk/screenshot/screenshot_", ( T_str8 ) ".bmp" );
+      /* Création du fichier bitmap avec le nom fourni en paramètre */
+      l_result = mk_file_open ( K_MK_NULL, p_file, p_path, K_MK_FS_OPEN_CREATE | K_MK_FS_OPEN_READ | K_MK_FS_OPEN_WRITE, K_MK_NULL );
+   }
 
-      /* Si aucune erreur ne s'est produite */
-      if ( l_ret == 0 )
+   /* Sinon */
+   else
+   {
+      /* Effectue */
+      do
       {
-         /* Test de l'existance du fichier à créer */
-         l_result = mk_file_stat ( K_MK_NULL, ( T_str8 ) l_randomFileName, K_MK_NULL );
+         /* Récupération d'un nom de fichier aléatoire */
+         l_ret = mk_utils_getRandomString ( ( T_str8 ) l_randomFileName, ( T_str8 ) "mk/screenshot/screenshot_", ( T_str8 ) ".bmp" );
+
+         /* Si aucune erreur ne s'est produite */
+         if ( l_ret == 0 )
+         {
+            /* Test de l'existance du fichier à créer */
+            l_result = mk_file_stat ( K_MK_NULL, ( T_str8 ) l_randomFileName, K_MK_NULL );
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Ne rien faire */
+         }
+
+      /* Tant que le fichier existe et tant qu'aucune erreur ne s'est produite */
+      } while ( ( l_result == K_MK_OK ) );
+
+      /* Si un nom de fichier unique a été trouvé */
+      if ( l_result == K_MK_ERROR_NOT_FOUND )
+      {
+         /* Création d'un nouveau fichier */
+         l_result = mk_file_open ( K_MK_NULL, p_file, l_randomFileName, K_MK_FS_OPEN_CREATE | K_MK_FS_OPEN_READ | K_MK_FS_OPEN_WRITE, K_MK_NULL );
       }
 
       /* Sinon */
@@ -408,22 +434,9 @@ static T_mkCode mk_chromart_createBitmapFile ( T_mkFile** p_file )
       {
          /* Ne rien faire */
       }
-
-   /* Tant que le fichier existe et tant qu'aucune erreur ne s'est produite */
-   } while ( ( l_result == K_MK_OK ) );
-
-   /* Si un nom de fichier unique a été trouvé */
-   if ( l_result == K_MK_ERROR_NOT_FOUND )
-   {
-      /* Création d'un nouveau fichier */
-      l_result = mk_file_open ( K_MK_NULL, p_file, l_randomFileName, K_MK_FS_OPEN_CREATE | K_MK_FS_OPEN_READ | K_MK_FS_OPEN_WRITE, K_MK_NULL );
    }
 
-   /* Sinon */
-   else
-   {
-      /* Ne rien faire */
-   }
+   
 
    /* Retour */
    return ( l_result );
@@ -435,7 +448,7 @@ static T_mkCode mk_chromart_createBitmapFile ( T_mkFile** p_file )
  * @endinternal
  */
 
-T_mkCode mk_chromart_screenshot ( void )
+T_mkCode mk_chromart_screenshot ( T_str8 p_path )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
@@ -453,7 +466,7 @@ T_mkCode mk_chromart_screenshot ( void )
    if ( ( l_result == K_MK_OK ) && ( l_page != K_MK_NULL ) )
    {
       /* Création du nouveau fichier */
-      l_result = mk_chromart_createBitmapFile ( &l_file );
+      l_result = mk_chromart_createBitmapFile ( &l_file, p_path );
 
       /* Si aucune erreur ne s'est produite */
       if ( l_result == K_MK_OK )
@@ -486,6 +499,20 @@ T_mkCode mk_chromart_screenshot ( void )
 
       /* Désallocation de la page mémoire */
       l_result |= mk_page_free ( K_MK_PAGE_ID_LARGE, l_page );
+   }
+
+   /* Sinon */
+   else
+   {
+      /* Ne rien faire */
+   }
+
+   /* Dans la situation où il n'y a pas assez d'espace sur le disque, on bypass l'erreur */
+   /* pour ne pas basculer le gestionnaire de requête en erreur */
+   if ( l_result == K_MK_ERROR_FULL )
+   {
+      /* Actualisation de la variable de retour */
+      l_result = K_MK_OK;
    }
 
    /* Sinon */
