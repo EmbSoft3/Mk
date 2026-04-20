@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -174,6 +174,7 @@ T_mkCode mk_display_screenshot ( void );
  * @fn T_mkCode mk_display_stream ( uint32_t p_layer, uint32_t* p_bitmap, T_mkVect2D p_v1, uint32_t p_column, uint32_t p_row );
  * @brief Cette fonction active ou désactive l'enregistrement du flux vidéo sur le système de fichier.
  *        Celui-ci est réalisé sous la forme de screenshots successifs.
+ * @param[in] p_framerate Ce paramètre contient la fréquence d'enregistrement des frames (0 = désactivé, 1 = 1 frame / 1, 2 = 1 frame / 2, 3 = 1 frame / 3, etc.).
  *
  * @return Cette fonction retourne une des valeurs suivantes :
  *         \li \ref K_MK_OK            : l'activation ou la désactivation du flux vidéo a réussi.
@@ -183,7 +184,7 @@ T_mkCode mk_display_screenshot ( void );
  *
  */
 
-T_mkCode mk_display_stream ( void );
+T_mkCode mk_display_stream ( uint32_t p_framerate );
 
 /**
  * @fn void mk_display_setWidth ( uint32_t p_width );

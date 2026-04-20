@@ -81,10 +81,13 @@ static T_mkCode mk_display_handleEngineRequest ( T_mkDisplayEngineRequest* p_req
    else if ( p_request->id == K_MK_DISPLAY_REQUEST_TYPE_STREAM )
    {
       /* Si l'enregistrement du flux vidéo doit être activé */
-      if ( g_mkDisplay.status.stream == 0 )
+      if ( p_request->framerate != 0 )
       {
          /* Réinitialisation du compteur de screenshot */
          g_mkDisplay.stream.counter = 0;
+         /* Configuration de la fréquence d'enregistrement */
+         g_mkDisplay.stream.rate = p_request->framerate;
+         g_mkDisplay.stream.currentValue = 0;
 
          /* Activation de l'enregistrement du flux vidéo*/
          g_mkDisplay.status.stream = 1;
@@ -95,6 +98,10 @@ static T_mkCode mk_display_handleEngineRequest ( T_mkDisplayEngineRequest* p_req
       {
          /* Désactivation de l'enregistrement du flux vidéo*/
          g_mkDisplay.status.stream = 0;
+
+         /* Configuration de la fréquence d'enregistrement */
+         g_mkDisplay.stream.rate = 0;
+         g_mkDisplay.stream.currentValue = 0;
       }
    }
 

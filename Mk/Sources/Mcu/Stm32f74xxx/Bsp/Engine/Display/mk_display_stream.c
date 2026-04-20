@@ -28,8 +28,8 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_display_screenshot.c
-* @brief Définition de la fonction mk_display_screenshot.
+* @file mk_display_stream.c
+* @brief Définition de la fonction mk_display_stream.
 * @date 13 août 2024
 *
 */
@@ -42,7 +42,7 @@
  * @endinternal
  */
 
-T_mkCode mk_display_stream ( void )
+T_mkCode mk_display_stream ( uint32_t p_framerate )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
@@ -50,6 +50,9 @@ T_mkCode mk_display_stream ( void )
    /* Déclaration d'une requête */
    T_mkDisplayRequest l_request = { K_MK_DISPLAY_REQUEST_TYPE_ENGINE,
          { { K_MK_DISPLAY_REQUEST_TYPE_STREAM, { 0, 0, 0, 0 }, { { 0 } } } } };
+
+   /* Configuration de la requête */
+   l_request.content.engine.framerate = p_framerate; 
 
    /* Transmission de la requête */
    l_result = mk_display_postRequest ( &l_request );

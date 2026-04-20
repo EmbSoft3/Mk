@@ -387,6 +387,9 @@ static T_mkCode mk_chromart_createBitmapFile ( T_mkFile** p_file, T_str8 p_path 
    /* Déclaration d'une variable de retour locale */
    int32_t l_ret = 0;
 
+   /* Déclaration d'un compteur */
+   uint32_t l_counter = 0;
+
    /* Déclaration d'une chaine de caractères */
    char8_t l_randomFileName [ 62 ] = { 0 };
 
@@ -411,6 +414,20 @@ static T_mkCode mk_chromart_createBitmapFile ( T_mkFile** p_file, T_str8 p_path 
          {
             /* Test de l'existance du fichier à créer */
             l_result = mk_file_stat ( K_MK_NULL, ( T_str8 ) l_randomFileName, K_MK_NULL );
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Actualisation du compteur */
+            l_counter = ( uint32_t ) ( l_counter + 1 );
+         }
+
+         /* Si le nombre aléatoire n'arrive pas à être généré */
+         if ( l_counter >= 100 )
+         {
+            /* Positionnement de la variable de retour à K_MK_ERROR_UNEXPECTED */
+            l_result = K_MK_ERROR_UNEXPECTED;
          }
 
          /* Sinon */

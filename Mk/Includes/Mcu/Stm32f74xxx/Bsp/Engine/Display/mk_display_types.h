@@ -72,6 +72,7 @@ typedef struct T_mkDisplayEngineRequest T_mkDisplayEngineRequest;
 struct T_mkDisplayEngineRequest
 {
    T_mkDisplayEngineRequestType id;                                     /*!< Ce membre contient l'identifiant d'une requête de type 'Engine'. */
+   uint32_t framerate;                                                  /*!< Ce membre contient la fréquence d'enregistrement des frames (2 = 1 frame / 2, 3 = 1 frame / 3, etc.). */
 };
 
 /**
@@ -161,7 +162,9 @@ typedef struct T_mkDisplayStream T_mkDisplayStream;
 struct T_mkDisplayStream
 {
    uint32_t randomNumber [ 4 ];                                         /*!< Ce membre contient le nombre aléatoire écrit dans le chemin où seront enregistrés les screenshot du stream. */
-   uint32_t counter;                                                    /*!< Ce membre contient le numéro du prochain screenshot à enregistrer. */
+   uint32_t counter;                                                    /*!< Ce membre contient le numéro du prochain screenshot à enregistrer sur le système de fichiers. */
+   uint32_t rate;                                                       /*!< Ce membre contient la fréquence d'enregistrement des frames (0 = désactivé, 1 = 1 frame / 1, 2 = 1 frame / 2, 3 = 1 frame / 3, etc.). */
+   uint32_t currentValue;                                               /*!< Ce membre contient la valeur du compteur de frames utilisée pour déterminer si une frame doit être enregistrée ou non. */
 };
 
 /**

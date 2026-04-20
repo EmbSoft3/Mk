@@ -148,8 +148,8 @@ static T_mkCode mk_supervisor_handleApplicationKeyboardInputs ( T_mkSupervisor* 
       /* Sinon si le flux video doit être activé */
       else if ( ( p_ctrlId & 0xFF ) == K_MK_KEYBOARD_F11 )
       {
-         /* Enregistrement d'un screenhot sur le système de stockage */
-         l_result = mk_display_stream ( );
+         /* Enregistrement d'un stream sur le système de stockage */
+         l_result = mk_display_stream ( K_MK_DISPLAY_FRAME_BUFFER_NUMBER );
       }
 
       /* Sinon */

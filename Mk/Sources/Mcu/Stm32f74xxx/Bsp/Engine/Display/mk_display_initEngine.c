@@ -59,6 +59,8 @@ static void mk_display_initRegisters ( void )
 
    /* Initialisation des variables relatives à l'enregistrement vidéo */
    g_mkDisplay.stream.counter = 0;
+   g_mkDisplay.stream.rate = 0;
+   g_mkDisplay.stream.currentValue = 0;
 
    /* Retour */
    return;

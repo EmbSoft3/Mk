@@ -28,8 +28,8 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_display_stream.c
-* @brief Définition de la fonction mk_display_stream.
+* @file mk_chromart_stream.c
+* @brief Définition de la fonction mk_chromart_stream.
 * @date 15 avril 2026
 *
 */
@@ -84,6 +84,9 @@ static T_mkCode mk_chromart_createBitmapPath ( T_str8 p_path )
    /* Déclaration d'une variable de retour locale */
    int32_t l_ret = 0;
 
+   /* Déclaration d'un compteur */
+   uint32_t l_counter = 0;
+
    /* Si un nombre aléatoire doit être généré (premier enregistrement) */
    if ( g_mkDisplay.stream.counter == 0 )
    {
@@ -101,6 +104,20 @@ static T_mkCode mk_chromart_createBitmapPath ( T_str8 p_path )
             
             /* Test de l'existance du fichier à créer */
             l_result = mk_file_stat ( K_MK_NULL, ( T_str8 ) p_path, K_MK_NULL );
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Actualisation du compteur */
+            l_counter = ( uint32_t ) ( l_counter + 1 );
+         }
+
+         /* Si le nombre aléatoire n'arrive pas à être généré */
+         if ( l_counter >= 100 )
+         {
+            /* Positionnement de la variable de retour à K_MK_ERROR_UNEXPECTED */
+            l_result = K_MK_ERROR_UNEXPECTED;
          }
 
          /* Sinon */
@@ -149,32 +166,46 @@ T_mkCode mk_chromart_stream ( void )
    T_mkCode l_result = K_MK_OK;
 
    /* Déclaration d'une chaine de caractères */
-   char8_t l_filePath [ 74 ] = { 0 };
+   char8_t l_filePath [ 80 ] = { 0 };
 
    /* Génération d'un nom de fichier aléatoire */
-   /* "mk/stream/stream_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/screenshot_yyyyyyyy.bmp" */
+   /* "mk/stream/stream_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/screenshot_yyyyyyyyyy.bmp" */
    l_result = mk_chromart_createBitmapPath ( l_filePath );
 
    /* Si le nom de fichier a été généré correctement */
    if ( l_result == K_MK_OK )
    {
-      /* Déclenchement du screenshot */
-      l_result = mk_chromart_screenshot ( l_filePath );
-
-      /* Actualisation du compteur de screenshot*/
-      g_mkDisplay.stream.counter = ( uint32_t ) ( g_mkDisplay.stream.counter + 1 );
-
-      /* Si le compteur a fait un rollback, on stoppe l'enregistrement */
-      if ( g_mkDisplay.stream.counter == 0 )
+      /* Si une trame doit être enregistrée */
+      if ( g_mkDisplay.stream.currentValue == ( g_mkDisplay.stream.rate - 1 ) )
       {
-         /* Arrêt du flux d'enregistrement */
-         g_mkDisplay.status.stream = 0;
+         /* Déclenchement du screenshot */
+         l_result = mk_chromart_screenshot ( l_filePath );
+
+         /* Actualisation du compteur de screenshot*/
+         g_mkDisplay.stream.counter = ( uint32_t ) ( g_mkDisplay.stream.counter + 1 );
+
+         /* Si le compteur a fait un rollback, on stoppe l'enregistrement */
+         if ( g_mkDisplay.stream.counter == 0 )
+         {
+            /* Arrêt du flux d'enregistrement */
+            g_mkDisplay.status.stream = 0;
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Ne rien faire */
+         }
+         
+         /* Réinitialisation de la valeur du compteur de frames */
+         g_mkDisplay.stream.currentValue = 0;
       }
 
       /* Sinon */
       else
       {
-         /* Ne rien faire */
+         /* Incrémentation de la valeur du compteur de frames */
+         g_mkDisplay.stream.currentValue = ( uint32_t ) ( g_mkDisplay.stream.currentValue + 1 );
       }
    }
 
