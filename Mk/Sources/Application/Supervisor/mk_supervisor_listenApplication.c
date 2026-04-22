@@ -50,6 +50,9 @@ static T_mkCode mk_supervisor_handleApplicationKeyboardInputs ( T_mkSupervisor* 
    /* Déclaration d'un pointeur d'application */
    T_mkApplication* l_currentApplication = K_MK_NULL;
 
+   /* Déclaration d'une variable contenant l'état du stream */
+   static uint32_t l_streamState = K_MK_DISPLAY_FRAME_BUFFER_NUMBER;
+
    /* Si une touche a été appuyée */
    if ( p_evtCtrl == K_MK_EVENT_KEY_DOWN )
    {
@@ -148,8 +151,24 @@ static T_mkCode mk_supervisor_handleApplicationKeyboardInputs ( T_mkSupervisor* 
       /* Sinon si le flux video doit être activé */
       else if ( ( p_ctrlId & 0xFF ) == K_MK_KEYBOARD_F11 )
       {
-         /* Enregistrement d'un stream sur le système de stockage */
-         l_result = mk_display_stream ( K_MK_DISPLAY_FRAME_BUFFER_NUMBER );
+         /* Activation ou désactivation du flux d'enregistrement */
+         l_result = mk_display_stream ( l_streamState );
+
+         /* Si le stream doit être désactivé au prochain appui */
+         if ( l_streamState == K_MK_DISPLAY_FRAME_BUFFER_NUMBER )
+         {
+            /* Mise à jour de la variable d'état */
+            /* La valeur 0 désactive le stream */
+            l_streamState = 0;
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Activation du stream, on enregistre une frame sur K_MK_DISPLAY_FRAME_BUFFER_NUMBER */
+            /* Pas de perte de données*/
+            l_streamState = K_MK_DISPLAY_FRAME_BUFFER_NUMBER;
+         }
       }
 
       /* Sinon */
