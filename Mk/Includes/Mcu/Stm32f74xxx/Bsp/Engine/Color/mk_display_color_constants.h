@@ -146,7 +146,7 @@
  * @brief Définition de la valeur de la couleur gris sombre.
  */
 
-#define K_MK_COLOR_ARGB_DARKEST_GRAY 0xFF101010
+#define K_MK_COLOR_ARGB_DARKEST_GRAY 0xFF202020
 
 /**
  * @def K_MK_COLOR_ARGB_MAROON
