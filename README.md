@@ -196,6 +196,44 @@ only — no debug symbols are loaded.
 All configurations require a J-Link probe (or a ST-Link flashed with the J-Link firmware) and
 the [J-Link Software](https://www.segger.com/downloads/jlink/) installed.
 
+### SD card setup
+
+Before running Mk for the first time, prepare the SD card as follows:
+
+- Create one or more FAT32 partitions.
+- The main partition must be named `MK_SYSTEM`.
+- A minimum size of 512 MB per partition is required.
+- Supported cluster sizes range from 512 to 65,536 bytes.
+
+Once the card is partitioned and formatted, copy the contents of the
+[Storage](https://github.com/EmbSoft3/Mk/tree/main/Mk/Storage) directory onto the `MK_SYSTEM`
+partition. This directory contains the file system tree expected by the kernel at runtime (built-in application binaries, configuration files, etc.).
+
+---
+
+## Controls
+
+The table below lists the keyboard and mouse controls available in the **Home** and **Supervisor**
+applications. A full description is available in the
+[gui.md](https://github.com/EmbSoft3/Mk/edit/main/Mk/Storage/mk/apps/home/gui.md) file.
+
+| Key / Action | Description |
+|---|---|
+| `PRINTSCREEN` | Saves a screenshot to the file system |
+| `ALT` + `S` | Shows or hides the supervisor console |
+| `ALT` + `F` | Displays the framerate and CPU load on the foreground layer |
+| `ALT` + `B` | Displays the framerate and CPU load on the background layer |
+| `ALT` + `F4` | Closes the running application |
+| `LEFTGUI` | Opens the application manager |
+| `LEFTGUI` + `UP` | Switches between running applications |
+| `LEFTGUI` + `DOWN` | Switches between running applications |
+| `LEFTGUI` + `DELETE` | Closes the running application |
+| `LEFT` | Navigates between installed applications |
+| `RIGHT` | Navigates between installed applications |
+| `ENTER` | Launches the selected application |
+| Mouse scroll | Navigates between installed applications |
+| Mouse click | Launches the selected application |
+
 ---
 
 ## Screenshots
