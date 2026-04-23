@@ -348,6 +348,7 @@ static void mk_home_initMainFields ( T_mkHomeApplication* p_home )
    for ( l_counter = 0 ; l_counter < K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_NUMBER ; l_counter++ )
    {
       /* Initialisation du bouton image */
+      /* Le positionnement des boutons est effectué de manière dynamique dans le fichier mk_home_main_setVisibility */
       mk_buttonImage_init ( &p_home->view.main.applicationList.app [ l_counter ].button );
       mk_buttonImage_setPosition ( &p_home->view.main.applicationList.app [ l_counter ].button, ( real32_t ) ( K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_X + l_dx ), ( real32_t ) ( K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_Y + 10 ) );
       mk_buttonImage_setDimension ( &p_home->view.main.applicationList.app [ l_counter ].button, K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_WIDTH, K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_HEIGHT );

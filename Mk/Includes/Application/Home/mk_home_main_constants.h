@@ -173,7 +173,7 @@
  * @brief Définition de la largeur [en pxl] des boutons applicatifs.
  */
 
-#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_WIDTH 120
+#define K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_WIDTH 110
 
 /**
  * @def K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_HEIGHT

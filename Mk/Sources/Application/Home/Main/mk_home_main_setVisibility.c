@@ -125,10 +125,8 @@ void mk_home_main_setVisibility ( T_mkHomeApplication* p_home )
    l_index = ( uint32_t ) ( l_counter - p_home->view.main.applicationList.shiftIndex );
 
    /* Calcul de l'origine des boutons applicatifs */
-   /* On centre les boutons sur l'axe horizontal de l'écran */
-   l_x = K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_X +
-         ( ( ( K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_BOTTOMRIGHT_X - K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_X ) -
-         ( l_index * K_MK_HOME_MAINVIEW_APPLICATIONLIST_BUTTON_WIDTH ) ) >> 1 );
+   /* Celle-ci est située au début de la zone d'application */
+   l_x = K_MK_HOME_MAINVIEW_APPLICATIONLIST_AREA_TOPLEFT_X;
 
    /* Configuration de la position des boutons applicatifs */
    for ( l_counter = 0 ; l_counter < l_index ; l_counter++ )
