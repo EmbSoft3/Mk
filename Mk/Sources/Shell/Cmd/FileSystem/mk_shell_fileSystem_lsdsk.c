@@ -56,8 +56,8 @@ static void mk_shell_fileSystem_lsdskGetSize ( uint64_t p_size, T_str8 p_str, ui
    /* Si la taille du disque est supérieur 1TiB */
    if ( p_size > 0x10000000000 )
    {
-      /* Division par 1GiB */
-      p_size = p_size >> 30 ;
+      /* Division par 1TiB */
+      p_size = p_size >> 40 ;
 
       /* Conversion en chaine de caractères */
       mk_utils_itoa ( ( uint32_t ) p_size, ( T_str8 ) l_strSize, 10, 0 );
@@ -65,7 +65,7 @@ static void mk_shell_fileSystem_lsdskGetSize ( uint64_t p_size, T_str8 p_str, ui
       mk_utils_strcat ( &p_str [ p_length - l_length - 5 ], ( T_str8 ) l_strSize, ( T_str8 ) " TiB" );
    }
 
-   /* Sinon si la taille du disque est supérieur 1MB */
+   /* Sinon si la taille du disque est supérieur 1MiB */
    else if ( p_size > 0x100000 )
    {
       /* Division par 1MiB */
@@ -77,10 +77,10 @@ static void mk_shell_fileSystem_lsdskGetSize ( uint64_t p_size, T_str8 p_str, ui
       mk_utils_strcat ( &p_str [ p_length - l_length - 5 ], ( T_str8 ) l_strSize, ( T_str8 ) " MiB" );
    }
 
-   /* Sinon si la taille du disque est supérieur 1KB */
+   /* Sinon si la taille du disque est supérieur 1KiB */
    else if ( p_size > 0x400 )
    {
-      /* Division par 1KB */
+      /* Division par 1KiB */
       p_size = p_size >> 10 ;
 
       /* Conversion en chaine de caractères */
