@@ -6,7 +6,7 @@ ecosystem: a preemptive kernel, a dynamic ELF loader, a FAT file system, a multi
 a graphical engine with Unicode support, and an interactive shell — all written in C and ARM
 assembly, with no external dependencies.
 
-![welcome](screenshots/welcome.gif)
+![welcome](Screenshots/welcome.gif)
 
 > ⚠️ This project is under development. Some features and documentation sections are still
 > being completed.
