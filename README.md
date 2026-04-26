@@ -80,7 +80,7 @@ Mk is organized into three layers: Foundation for core hardware and OS services,
 ║                                                                     ║
 ║   ┌─────────────┐             ┌──────────┐              ┌────────┐  ║
 ║   │  Supervisor │             │   Home   │              │ Shell  │  ║
-║   │   (faults)  │             │   screen)│              │        │  ║
+║   │   (faults)  │             │   screen │              │        │  ║
 ║   └─────────────┘             └──────────┘              └────────┘  ║
 ╠═════════════════════════════════════════════════════════════════════╣
 ║  SUBSYSTEMS                                                         ║
@@ -222,6 +222,7 @@ applications. A full description is available in the
 | Key / Action | Description |
 |---|---|
 | `PRINTSCREEN` | Saves a screenshot to the file system |
+| `F11` | Toggles screenshot streaming on/off |
 | `ALT` + `S` | Shows or hides the supervisor console |
 | `ALT` + `F` | Displays the framerate and CPU load on the foreground layer |
 | `ALT` + `B` | Displays the framerate and CPU load on the background layer |
