@@ -5,6 +5,7 @@ The table below lists the controls available in the **Home** and **Supervisor** 
 | Key / Action      | Description |
 |-------------------|-------------|
 | PRINTSCREEN       | Saves a screenshot to the file system |
+| F11               | Toggles screenshot streaming on/off |
 | ALT + S           | Shows or hides the supervisor console |
 | ALT + F           | Displays the framerate and CPU load on the foreground layer |
 | ALT + B           | Displays the framerate and CPU load on the background layer |

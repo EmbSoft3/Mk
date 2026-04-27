@@ -53,6 +53,19 @@ static T_mkCode mk_home_loadRessource ( T_mkBMPFile* p_bmp, T_str8 p_directoryPa
    /* Récupération de l'adresse de la partition système */
    T_mkVolume* l_volume = mk_supervisor_getVolume ( );
 
+   /* Si l'utilisateur a spécifié un répertoire */
+   if ( p_directoryPath != K_MK_NULL )
+   {
+      /* Le pointeur l_volume doit être nulle */
+      l_volume = K_MK_NULL;
+   }
+
+   /* Sinon */
+   else
+   {
+      /* Ne rien faire */
+   }
+   
    /* Si le fichier n'a pas été ouvert */
    if ( p_bmp->file == K_MK_NULL )
    {

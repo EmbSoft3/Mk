@@ -152,7 +152,7 @@ static T_mkCode mk_supervisor_handleApplicationKeyboardInputs ( T_mkSupervisor* 
       else if ( ( p_ctrlId & 0xFF ) == K_MK_KEYBOARD_F11 )
       {
          /* Activation ou désactivation du flux d'enregistrement */
-         l_result = mk_display_stream ( l_streamState );
+         l_result = mk_display_stream ( 4 * l_streamState );
 
          /* Si le stream doit être désactivé au prochain appui */
          if ( l_streamState == K_MK_DISPLAY_FRAME_BUFFER_NUMBER )

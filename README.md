@@ -6,6 +6,8 @@ ecosystem: a preemptive kernel, a dynamic ELF loader, a FAT file system, a multi
 a graphical engine with Unicode support, and an interactive shell — all written in C and ARM
 assembly, with no external dependencies.
 
+![welcome](Screenshots/welcome.gif)
+
 > ⚠️ This project is under development. Some features and documentation sections are still
 > being completed.
 
@@ -78,7 +80,7 @@ Mk is organized into three layers: Foundation for core hardware and OS services,
 ║                                                                     ║
 ║   ┌─────────────┐             ┌──────────┐              ┌────────┐  ║
 ║   │  Supervisor │             │   Home   │              │ Shell  │  ║
-║   │   (faults)  │             │   screen)│              │        │  ║
+║   │   (faults)  │             │   screen │              │        │  ║
 ║   └─────────────┘             └──────────┘              └────────┘  ║
 ╠═════════════════════════════════════════════════════════════════════╣
 ║  SUBSYSTEMS                                                         ║
@@ -220,6 +222,7 @@ applications. A full description is available in the
 | Key / Action | Description |
 |---|---|
 | `PRINTSCREEN` | Saves a screenshot to the file system |
+| `F11` | Toggles screenshot streaming on/off |
 | `ALT` + `S` | Shows or hides the supervisor console |
 | `ALT` + `F` | Displays the framerate and CPU load on the foreground layer |
 | `ALT` + `B` | Displays the framerate and CPU load on the background layer |
