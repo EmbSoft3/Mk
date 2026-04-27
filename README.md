@@ -232,6 +232,7 @@ applications. A full description is available in the
 | `LEFTGUI` + `UP` | Switches between running applications |
 | `LEFTGUI` + `DOWN` | Switches between running applications |
 | `LEFTGUI` + `DELETE` | Closes the running application |
+| `LEFTGUI` + `TAB` | Moves the focus to the next field |
 | `LEFT` | Navigates between installed applications |
 | `RIGHT` | Navigates between installed applications |
 | `ENTER` | Launches the selected application |

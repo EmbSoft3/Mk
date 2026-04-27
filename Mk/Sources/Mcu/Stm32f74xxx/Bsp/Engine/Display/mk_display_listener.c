@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -76,49 +76,124 @@ static T_mkCode mk_display_getDispatcherChild ( T_mkDispatcherHandler** p_handle
  * @endinternal
  */
 
-static void mk_display_handleFocus ( T_mkMouse* p_mouse, T_mkField* p_field, T_mkCtrlEvent p_mainEvtCtrl )
+static void mk_display_handleFocus ( T_mkMouse* p_mouse, T_mkContainer* p_container, T_mkCtrlEvent p_mainEvtCtrl, uint32_t p_mainCtrlId )
 {
    /* Déclaration d'une variable de travail */
    uint32_t l_currentState;
 
-   /* Analyse de la position du curseur par rapport au champ */
-   l_currentState = mk_field_inside ( p_field, p_mouse->axis.x, p_mouse->axis.y );
+   /* Déclaration d'une variable de travail */
+   T_mkField* l_field = p_container->first;
+   T_mkField* l_visibleField = K_MK_NULL;
+   T_mkField* l_focusField = K_MK_NULL; 
 
    /* Si un clic s'est produit  */
    if ( p_mainEvtCtrl == K_MK_EVENT_CLICK )
    {
-      /* Si le clic s'est produite dans le champ et si le champ n'est pas déjà sélectionné */
-      if ( ( p_field->focus == K_MK_FIELD_STATE_IDLE ) && ( l_currentState == 1 ) )
+      /* Parcours de l'intégralité du container */
+      while ( l_field != K_MK_NULL )
       {
-         /* Le champ gagne le focus */
-         mk_field_setFocus ( p_field, K_MK_FIELD_STATE_FOCUS );
+         /* Analyse de la position du curseur par rapport au champ */
+         l_currentState = mk_field_inside ( l_field, p_mouse->axis.x, p_mouse->axis.y );
+         
+         /* Si le clic s'est produite dans le champ et si le champ n'est pas déjà sélectionné */
+         if ( ( l_field->focus == K_MK_FIELD_STATE_IDLE ) && ( l_currentState == 1 ) )
+         {
+            /* Le champ gagne le focus */
+            mk_field_setFocus ( l_field, K_MK_FIELD_STATE_FOCUS );
+         }
+
+         /* Sinon si le clic s'est produit à l'extérieur du champ et si le champ en cours d'analyse a le focus */
+         else if ( ( l_field->focus == K_MK_FIELD_STATE_FOCUS ) && ( l_currentState == 0 ) )
+         {
+            /* Le champ perd le focus */
+            mk_field_setFocus ( l_field, K_MK_FIELD_STATE_IDLE );
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Ne rien faire */
+         }
+
+         /* Passage au prochain champ */
+         l_field = l_field->next;
+      }
+   }
+
+   /* Sinon si la combinaison de touches LEFTGUI+TAB a été appuyée */
+   else if ( ( p_mainEvtCtrl == K_MK_EVENT_KEY_DOWN ) && 
+   ( p_mainCtrlId == ( K_MK_KEYBOARD_LEFTGUI | K_MK_KEYBOARD_TABULATION ) ) )
+   {
+      /* Récupération du premier champ dans le container */
+      l_visibleField = p_container->first;
+
+      /* On cherche dans un premier temps si au moins un champ est visible */
+      while ( ( l_visibleField != K_MK_NULL ) && ( l_visibleField->visibility == K_MK_FIELD_INVISIBLE ) )
+      {
+         /* Passage au prochain champ */
+         l_visibleField = l_visibleField->next;
       }
 
-      /* Sinon si le clic s'est produit à l'extérieur du champ et si le champ en cours d'analyse a le focus */
-      else if ( ( p_field->focus == K_MK_FIELD_STATE_FOCUS ) && ( l_currentState == 0 ) )
+      /* Si au moins un champ est visible */
+      if ( l_visibleField != K_MK_NULL )
       {
-         /* Le champ perd le focus */
-         mk_field_setFocus ( p_field, K_MK_FIELD_STATE_IDLE );
+         /* Récupération du premier champ dans le container */
+         l_focusField = p_container->first;
+
+         /* On recherche le champ qui possède le focus */
+         while ( ( l_focusField != K_MK_NULL ) && ( l_focusField->focus == K_MK_FIELD_STATE_IDLE ) )
+         {
+            /* Passage au prochain champ */
+            l_focusField = l_focusField->next;
+         }
+
+         /* Si aucun champ n'a le focus */
+         if ( l_focusField == K_MK_NULL )
+         {
+            /* Le premier champ visible gagne le focus */
+            mk_field_setFocus ( l_visibleField, K_MK_FIELD_STATE_FOCUS );
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Le champ avec le focus le perd */
+            mk_field_setFocus ( l_focusField, K_MK_FIELD_STATE_IDLE );
+
+            /* Effectue une recherche du prochain champ */
+            do
+            {
+               /* Passage au prochain champ */
+               l_focusField = l_focusField->next;
+
+               /* Si le prochain champ est en fin de liste */
+               if ( l_focusField == K_MK_NULL )
+               {
+                  /* On continue l'analyse depuis le début du container */
+                  l_focusField = p_container->first;
+               }
+
+               /* Sinon */
+               else
+               {
+                  /* Ne rien faire */
+               }
+            }
+            /* Tant que le prochain champ est invisible */
+            while ( l_focusField->visibility == K_MK_FIELD_INVISIBLE );
+            
+            /* On sort de la boucle lorsqu'un champ visible a été trouvé */
+            /* Ce champ gagne le focus */
+            mk_field_setFocus ( l_focusField, K_MK_FIELD_STATE_FOCUS );
+         }
       }
 
       /* Sinon */
       else
       {
          /* Ne rien faire */
-      }
-   }
-
-   /* Sinon */
-   else
-   {
-      /* Ne rien faire */
-   }
-
-   /* Si le champ en cours d'analyse a le focus et si ce champ est devenu invisible */
-   if ( ( p_field->focus == K_MK_FIELD_STATE_FOCUS ) && ( p_field->visibility == K_MK_FIELD_INVISIBLE ) )
-   {
-      /* Le champ perd le focus */
-      mk_field_setFocus ( p_field, K_MK_FIELD_STATE_IDLE );
+         /* Aucun champ n'a le focus */
+      }  
    }
 
    /* Sinon */
@@ -297,22 +372,22 @@ static T_mkCode mk_display_listenContainer ( T_mkContainer* p_container, T_mkLis
    /* Déclaration d'une variable de travail */
    T_mkField* l_tmp = p_container->first;
 
+   /* Si un évènment en relation avec la souris ou le clavier s'est produit */
+   if ( ( p_message->appCtrlID == K_MK_CONTROL_MOUSE ) || ( p_message->appCtrlID == K_MK_CONTROL_KEYBOARD ) )
+   {
+      /* Lancement de la procédure de gestion du focus */
+      mk_display_handleFocus ( ( T_mkMouse* ) p_message->appCtrl, p_container, ( T_mkCtrlEvent ) p_message->ctrlEvt, ( uint32_t )p_message->ctrlId );
+   }
+
+   /* Sinon */
+   else
+   {
+      /* Ne rien faire */
+   }
+
    /* Pour tous les champs présents dans le container */
    while ( ( l_tmp != K_MK_NULL ) && ( l_result == K_MK_OK) )
    {
-      /* Si un évènment en relation avec une souris s'est produit */
-      if ( p_message->appCtrlID == K_MK_CONTROL_MOUSE )
-      {
-         /* Gestion du focus des champs */
-         mk_display_handleFocus ( ( T_mkMouse* ) p_message->appCtrl, l_tmp, ( T_mkCtrlEvent ) p_message->ctrlEvt );
-      }
-
-      /* Sinon */
-      else
-      {
-         /* Ne rien faire */
-      }
-
       /* Si le champ possède une fonction d'écoute  */
       if ( ( l_tmp->listener != K_MK_NULL ) && ( l_tmp->activity == K_MK_FIELD_ACTIF ) )
       {
@@ -321,6 +396,19 @@ static T_mkCode mk_display_listenContainer ( T_mkContainer* p_container, T_mkLis
 
          /* Traitement de l'événement principal */
          l_result |= l_tmp->listener ( p_container, l_tmp, p_message->appCtrlID, p_message->appCtrl, p_message->ctrlEvt, ( uint32_t ) p_message->ctrlId );
+      }
+
+      /* Sinon */
+      else
+      {
+         /* Ne rien faire */
+      }
+
+      /* Si le champ en cours d'analyse a le focus et si ce champ est devenu invisible */
+      if ( ( l_tmp->focus == K_MK_FIELD_STATE_FOCUS ) && ( l_tmp->visibility == K_MK_FIELD_INVISIBLE ) )
+      {
+         /* Le champ doit perdre le focus */
+         mk_field_setFocus ( l_tmp, K_MK_FIELD_STATE_IDLE );
       }
 
       /* Sinon */
