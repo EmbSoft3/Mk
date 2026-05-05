@@ -259,13 +259,13 @@ applications. A full description is available in the
 
 ## Future developments
 
-Given the scope of the project, it was published without all the desired 
-features. Below is a list of features that will be added in the future :
+Given the scope of the project, it was released without all the planned features. The following features will be added in the future:
 
- - Add file system access rights
- - Add sound to the graphics engine (USB isochronous transfers)
- - Add touch events to the graphics engine
- - Add a TCP/IP stack
+ - Writing documentation
+ - Adding file system access permissions
+ - Adding sound support to the graphics engine (USB isochronous transfers)
+ - Adding touch event support to the graphics engine
+ - Implementing a TCP/IP stack
 
 This list is not exhaustive, and includes only the main features.
 
