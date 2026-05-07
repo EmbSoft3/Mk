@@ -1,5 +1,6 @@
 # Mk
 ![License](https://img.shields.io/badge/license-BSD%203--Clause-blue) ![Platform](https://img.shields.io/badge/platform-STM32F746G--Eval2%20%7C%20DISCO-orange) ![Architecture](https://img.shields.io/badge/arch-Cortex--M7-green) ![Toolchain](https://img.shields.io/badge/toolchain-arm--none--eabi--gcc%2010.3-lightgrey) ![Language](https://img.shields.io/badge/language-C%20%2B%20ARM%20ASM-yellow) ![CI](https://github.com/EmbSoft3/Mk/actions/workflows/main.yml/badge.svg)
+
 **Mk** is a bare-metal operating system built from scratch for the **STM32F746G-Eval2** and 
 **STM32F746G-DISCO REV.C** boards.
 It targets the **STM32F74xxx** and **STM32F75xxx** MCU families and provides a complete software
