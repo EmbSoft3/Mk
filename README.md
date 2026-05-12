@@ -215,8 +215,9 @@ partition. This directory contains the file system tree expected by the kernel a
 
 ---
 
-## Controls
+### Controls
 
+Connect a **USB 2.0 Hub** to the **USB HS** port, then plug in a **USB Keyboard** and a **USB Mouse** to interact with the OS and the graphical interface.
 The table below lists the keyboard and mouse controls available in the **Home** and **Supervisor**
 applications. A full description is available in the
 [gui.md](https://github.com/EmbSoft3/Mk/edit/main/Mk/Storage/mk/apps/home/gui.md) file.
@@ -255,6 +256,14 @@ applications. A full description is available in the
 | File manager (2) | Pong |
 |------------------|------|
 | ![manager2](Screenshots/screenshot_manager_2.bmp) | ![pong](Screenshots/screenshot_pong.bmp) |
+
+---
+
+## Video Demonstration
+
+For a complete overview of the system booting, the shell interaction, and dynamic application loading, watch the full video:
+
+[![Mk](https://img.youtube.com/vi/cj7DHqhJ5gc/0.jpg)](https://www.youtube.com/watch?v=cj7DHqhJ5gcO)
 
 ---
 
