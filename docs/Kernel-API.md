@@ -103,16 +103,6 @@ The consequence of this design on ISR system calls:
   another ISR at priority 0–7 could preempt mid-call and overwrite the shared
   `g_mkSVCObject`, causing corruption.
 
-The effect of `BASEPRI = 7` on each exception class during a critical section:
-
-| Exception | Priority | Masked by BASEPRI = 7? |
-| --- | --- | --- |
-| SVC | 7 | **No** — equal value is not masked; only strictly greater values are blocked |
-| User ISRs (priority < 8) | 0–7 | **No** — not blocked |
-| User ISRs (priority ≥ 8) | 8–15 | **Yes** — blocked |
-| SysTick | 15 | **Yes** — blocked |
-| PendSV | 15 | **Yes** — blocked |
-
 The previous BASEPRI value is saved before each `_mk_scheduler_mask()` call and
 restored by `_mk_scheduler_unmask()`. Critical sections are therefore safely nestable.
 
