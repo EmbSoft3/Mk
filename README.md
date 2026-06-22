@@ -28,8 +28,8 @@ assembly, with no external dependencies.
 
 ### Dynamic ELF Loader
 Mk can load and execute external `.elf` files at runtime, relocated into 64 KB pages of external
-SDRAM. Programs reference Mk's own API symbols directly via `extern` — the full kernel symbol table
-is embedded in the firmware at a fixed address — so external applications require no copy of the
+SDRAM. Programs reference Mk's own API symbols directly. The full kernel symbol table
+is embedded in the firmware at a fixed address, so external applications require no copy of the
 kernel API in their own binary. Shared libraries can be added to overcome the 64 KB page limit.
 
 See the [sym2srec](https://github.com/EmbSoft3/Sym2srec/wiki) tool for details on the symbol
