@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -76,10 +76,19 @@ void mk_call_createMail ( T_mkSVCObject* p_mkObject )
    /* Déclaration d'une variable stockant l'adresse de la zone mémoire associée à la pool */
    T_mkPoolArea* l_area = p_mkObject->data [ K_MK_OFFSET_AREA ];
 
+   /* Déclaration des variables de travail */
+   uint64_t l_bytesNeeded = 0, l_bytesAvailable = 0;
+
+   /* Déclaration d'une variable de travail */
+   uint32_t l_privilegedArea;
+
    /* Déclaration des variables stockant les caractéristiques de la pool */
    uint32_t l_type = ( uint32_t ) p_mkObject->data [ K_MK_OFFSET_AREA_TYPE ];
    uint32_t l_msgSize = ( uint32_t ) p_mkObject->data [ K_MK_OFFSET_CHUNK_SIZE ];
    uint32_t l_msgNumber = ( uint32_t ) p_mkObject->data [ K_MK_OFFSET_CHUNK_COUNT ];
+
+   /* Déclaration d'une variable stockant le niveau d'exécution de la tâche courante*/
+   uint32_t l_right = _mk_scheduler_privileged ( );
 
    /* Actualisation de la variable de retour */
    p_mkObject->result = K_MK_OK;
@@ -87,24 +96,68 @@ void mk_call_createMail ( T_mkSVCObject* p_mkObject )
    /* Si les paramètres sont valides */
    if ( ( l_area != K_MK_NULL ) && ( l_msgSize != 0 ) && ( l_msgNumber != 0 ) )
    {
-      /* Allocation d'une pool dans l'espace privilégié */
-      l_mail = mk_pool_alloc ( &g_mkMailPool.pool, K_MK_POOL_CLEAR );
-
-      /* Si aucune erreur ne s'est produite */
-      if ( l_mail != K_MK_NULL )
+      /* Récupération du type de la zone où la pool sera créée*/
+      l_privilegedArea = _mk_memory_isPrivilegedArea ( ( uint32_t* ) l_area->currentAddr );
+      l_privilegedArea |= _mk_memory_isPrivilegedArea ( ( uint32_t* ) l_area->lastAddr );
+      
+      /* Si la pool est dans une zone privilégiée et si l'appel système a été réalisé par une tâche non privilégiée */
+      if ( ( l_right == K_MK_MODE_THREAD ) && ( l_privilegedArea == K_MK_AREA_PROTECTED ) )
       {
-         /* Initialisation de la boite de messages */
-         mk_call_initMail ( l_mail, l_type, l_msgSize );
+         /* Déclenchement de la routine gérant les conflits */
+         mk_handler_rightFault ( );
 
-         /* Initialisation des éléments et des sous-éléments de la boite de messages */
-         l_mail->unused.item = l_area->currentAddr;
+         /* Actualisation de la variable de retour */
+         p_mkObject->result = K_MK_ERROR_RIGHT;
       }
 
       /* Sinon */
       else
       {
-         /* Actualisation de la variable de retour */
-         p_mkObject->result = K_MK_ERROR_MALLOC;
+         /* Si la zone mémoire peut être allouée */
+         if ( l_area->currentAddr <= l_area->lastAddr )
+         {
+            /* Vérification des arguments de l'utilisateur */
+            l_bytesNeeded    = ( uint64_t ) 4 * ( uint64_t ) l_msgSize * ( uint64_t ) l_msgNumber;
+            l_bytesAvailable = ( uint64_t ) ( ( ( uint8_t* ) l_area->lastAddr - ( uint8_t* ) l_area->currentAddr ) + 4 );
+
+            /* Si la zone mémoire peut être allouée */
+            if ( l_bytesAvailable >= l_bytesNeeded )
+            {
+               /* Allocation d'une pool dans l'espace privilégié */
+               l_mail = mk_pool_alloc ( &g_mkMailPool.pool, K_MK_POOL_CLEAR );
+
+               /* Si aucune erreur ne s'est produite */
+               if ( l_mail != K_MK_NULL )
+               {
+                  /* Initialisation de la boite de messages */
+                  mk_call_initMail ( l_mail, l_type, l_msgSize );
+
+                  /* Initialisation des éléments et des sous-éléments de la boite de messages */
+                  l_mail->unused.item = l_area->currentAddr;
+               }
+
+               /* Sinon */
+               else
+               {
+                  /* Actualisation de la variable de retour */
+                  p_mkObject->result = K_MK_ERROR_MALLOC;
+               }
+            }
+
+            /* Sinon */
+            else
+            {
+               /* Actualisation de la variable de retour */
+               p_mkObject->result = K_MK_ERROR_MALLOC;
+            }   
+         }
+
+         /* Sinon */
+         else
+         {
+            /* Actualisation de la variable de retour */
+            p_mkObject->result = K_MK_ERROR_MALLOC;
+         }
       }
    }
 
