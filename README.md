@@ -10,14 +10,11 @@ assembly, with no external dependencies.
 
 ![welcome](Screenshots/welcome.gif)
 
-> ⚠️ This project is under development. Some features and documentation sections are still
-> being completed.
-
 ## Features
 
 ### Kernel
 - Preemptive, priority-based multitasking scheduler (fixed-priority, O(1) selection via CLZ)
-- Trusted Execution Environment (TEE) using the Cortex-M7 MPU:
+- Hardware-enforced privilege isolation using the Cortex-M7 MPU:
   - **Handler mode** (privileged): full access to protected memory and system resources
   - **Thread mode (privileged)**: used by kernel and system tasks — full memory access, unrestricted use of protected instructions (MSR/MRS on BASEPRI, etc.)
   - **Thread mode (unprivileged)**: used by user applications — restricted memory access enforced by the MPU; any violation triggers a fault and terminates the offending task
@@ -105,7 +102,7 @@ Mk is organized into three layers: Foundation for core hardware and OS services,
 ║  │       Kernel         │   │ BSP Drivers  │   │  Binary · Math │   ║
 ║  │  Scheduler · Mutex   │   │  GPIO · I2C  │   │  Vect 2D · ASM │   ║
 ║  │  Event · Mail · Pool │   │  USB · MMC   │   │                │   ║
-║  │  SVC · TEE · MPU     │   │  QSPI        │   │                │   ║
+║  │  SVC · MPU           │   │  QSPI        │   │                │   ║
 ║  └──────────────────────┘   └──────────────┘   └────────────────┘   ║
 ║                                                                     ║
 ║  ┌──────────────────────────────────────────────────────────────┐   ║
