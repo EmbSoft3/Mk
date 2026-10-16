@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -49,6 +49,9 @@ static void mk_setPriority ( void )
 
    /* Configuration de la priorité du gestionnaire pendsv */
    nvic_setExceptionPriority ( K_NVIC_PRIORITY_PENDSV, K_MK_SCHEDULER_BASE_PRIORITY );
+
+   /* Configuration de la priorité du gestionnaire memFault */
+   nvic_setExceptionPriority ( K_NVIC_PRIORITY_MEMFAULT, K_MK_SCHEDULER_MASK_PRIORITY );
 
    /* Configuration de la priorité du gestionnaire svcall */
    nvic_setExceptionPriority ( K_NVIC_PRIORITY_SVCALL, K_MK_SCHEDULER_SVC_PRIORITY );
@@ -159,6 +162,9 @@ static void mk_initIdleTask ( void )
    g_mkScheduler.idle.stack.top  = g_mkScheduler.idle.stack.base;
    g_mkScheduler.idle.stack.size = K_MK_TASK_IDLE_STACK_SIZE;
 
+   /* Initialisation du pointeur SVC */
+   g_mkScheduler.idle.svc = ( T_mkAddr ) &g_mkSVCIdleObject;
+
    /* Initialisation du pointeur de pool */
    g_mkScheduler.idle.pool = K_MK_NULL;
 
@@ -203,6 +209,7 @@ static void mk_initKernelCallback ( void )
    g_mkKernelCallback.stackFault = K_MK_NULL;
    g_mkKernelCallback.usageFault = K_MK_NULL;
    g_mkKernelCallback.fpuFault = K_MK_NULL;
+   g_mkKernelCallback.callbackFault = K_MK_NULL;
 
    /* Retour */
    return;
