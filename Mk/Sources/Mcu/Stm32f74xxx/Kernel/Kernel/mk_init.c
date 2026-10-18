@@ -209,7 +209,6 @@ static void mk_initKernelCallback ( void )
    g_mkKernelCallback.stackFault = K_MK_NULL;
    g_mkKernelCallback.usageFault = K_MK_NULL;
    g_mkKernelCallback.fpuFault = K_MK_NULL;
-   g_mkKernelCallback.callbackFault = K_MK_NULL;
 
    /* Retour */
    return;

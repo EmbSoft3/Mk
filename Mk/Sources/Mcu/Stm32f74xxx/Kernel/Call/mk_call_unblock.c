@@ -137,8 +137,11 @@ static uint32_t mk_call_synchroniseTask ( T_mkSVCObject* p_mkObject, T_mkTask* p
  * @endinternal
  */
 
-static void mk_call_executeUnblock ( T_mkSVCObject* p_mkObject, uint32_t p_mkStatus )
+static T_mkCode mk_call_executeUnblock ( T_mkSVCObject* p_mkObject, uint32_t p_mkStatus )
 {
+   /* Déclaration de la variable de retour */
+   T_mkCode l_result = K_MK_OK;
+   
    /* Récupération de l'adresse de la liste bloquée */
    T_mkList* l_blockedList = ( T_mkList* ) ( ( T_mkAddr* ) p_mkObject->data [ K_MK_OFFSET_SYNC_HANDLE ] + 3 );
 
@@ -155,19 +158,19 @@ static void mk_call_executeUnblock ( T_mkSVCObject* p_mkObject, uint32_t p_mkSta
    uint32_t l_type = mk_call_type ( p_mkObject->data [ K_MK_OFFSET_SYNC_HANDLE ] );
 
    /* Analyse des droits de la tâche qui a exécutée l'appel système */
-   uint32_t l_result = mk_call_isProtectedArea ( l_type, p_mkStatus );
+   uint32_t l_localResult = mk_call_isProtectedArea ( l_type, p_mkStatus );
 
    /* Si l'appel système peut être exécutée */
-   if ( l_result == K_MK_AREA_UNPROTECTED )
+   if ( l_localResult == K_MK_AREA_UNPROTECTED )
    {
       /* Actualisation du type de l'objet de synchronisation */
       l_type = l_type & K_MK_ID_MASK;
 
       /* Désynchronisation de la tâche détentrice de l'objet de synchronisation */
-      l_result = mk_call_unsynchroniseTask ( p_mkObject, p_mkStatus );
+      l_localResult = mk_call_unsynchroniseTask ( p_mkObject, p_mkStatus );
 
       /* Si l'objet de synchronisation est disponible */
-      if ( l_result == K_MK_SYNC_OK )
+      if ( l_localResult == K_MK_SYNC_OK )
       {
          /* Déshéritage de priorité (mutex uniquement) */
          mk_call_disinheritTask ( p_mkObject, l_currentTask );
@@ -195,10 +198,10 @@ static void mk_call_executeUnblock ( T_mkSVCObject* p_mkObject, uint32_t p_mkSta
                l_task = l_task->next [ K_MK_LIST_SYNC ];
 
                /* Tentative de synchronisation de la tâche */
-               l_result = mk_call_synchroniseTask ( p_mkObject, l_task->previous [ K_MK_LIST_SYNC ], p_mkStatus );
+               l_localResult = mk_call_synchroniseTask ( p_mkObject, l_task->previous [ K_MK_LIST_SYNC ], p_mkStatus );
 
                /* Si la tâche bloquée est synchronisée */
-               if ( l_result == K_MK_SYNC_OK )
+               if ( l_localResult == K_MK_SYNC_OK )
                {
                   /* Si la tâche doit être suspendue */
                   if ( ( l_task->previous [ K_MK_LIST_SYNC ]->attribute.state & K_MK_STATE_SUSPENDED ) == K_MK_STATE_SUSPENDED )
@@ -219,7 +222,7 @@ static void mk_call_executeUnblock ( T_mkSVCObject* p_mkObject, uint32_t p_mkSta
                }
 
                /* Sinon si aucune synchronisation n'est requise */
-               else if ( l_result == K_MK_SYNC_INHIB )
+               else if ( l_localResult == K_MK_SYNC_INHIB )
                {
                   /* Ne rien faire */
                }
@@ -244,6 +247,22 @@ static void mk_call_executeUnblock ( T_mkSVCObject* p_mkObject, uint32_t p_mkSta
          }
       }
 
+      /* Sinon, l'objet de synchronisation n'est pas libéré en raison d'un problème de permissions */
+      /* K_MK_SYNC_RIGHT, code dédié aux pools */
+      else if ( l_localResult == K_MK_SYNC_RIGHT )
+      {
+         /* Actualisation de la variable de retour */
+         l_result = K_MK_ERROR_RIGHT;
+      }
+
+      /* Sinon, l'objet de synchronisation n'est pas libéré en raison d'un problème de paramètre */
+      /* K_MK_SYNC_RIGHT, code dédié aux pools */
+      else if ( l_localResult == K_MK_SYNC_PARAM )
+      {
+         /* Actualisation de la variable de retour */
+         l_result = K_MK_ERROR_PARAM;
+      }
+
       /* Sinon */
       else
       {
@@ -259,7 +278,7 @@ static void mk_call_executeUnblock ( T_mkSVCObject* p_mkObject, uint32_t p_mkSta
    }
 
    /* Retour */
-   return;
+   return ( l_result );
 }
 
 /**
@@ -281,7 +300,7 @@ static T_mkCode mk_call_handleSemaphore ( T_mkSVCObject* p_mkObject, uint32_t p_
                                       sizeof ( T_mkSemaphore ), p_mkObject->data [ K_MK_OFFSET_SYNC_HANDLE ] );
 
    /* Si le sémaphore est valide */
-   if ( l_result == K_MK_OK )
+   if ( ( l_result == K_MK_OK ) && ( l_semaphore->type != K_MK_ID_NO ) )
    {
       /* Si un jeton peut-être libéré */
       if ( ( l_semaphore != K_MK_NULL ) && ( l_semaphore->token != 0 ) )
@@ -291,7 +310,7 @@ static T_mkCode mk_call_handleSemaphore ( T_mkSVCObject* p_mkObject, uint32_t p_
          p_mkObject->data [ K_MK_OFFSET_UNSYNC_FUNCTION ] = ( T_mkAddr ) _mk_call_semaphoreToAddr ( mk_semaphore_unlock );
 
          /* Exécution de la séquence de déblocage */
-         mk_call_executeUnblock ( p_mkObject, p_mkStatus );
+         l_result = mk_call_executeUnblock ( p_mkObject, p_mkStatus );
       }
 
       /* Sinon */
@@ -305,7 +324,8 @@ static T_mkCode mk_call_handleSemaphore ( T_mkSVCObject* p_mkObject, uint32_t p_
    /* Sinon */
    else
    {
-      /* Ne rien faire */
+      /* Actualisation de la variable de retour */
+      l_result = K_MK_ERROR_PARAM;
    }
 
    /* Retour */
@@ -331,7 +351,7 @@ static T_mkCode mk_call_handleMutex ( T_mkSVCObject* p_mkObject, uint32_t p_mkSt
                                       sizeof ( T_mkMutex ), ( T_mkAddr ) l_mutex );
 
    /* Si le mutex est valide */
-   if ( l_result == K_MK_OK )
+   if ( ( l_result == K_MK_OK ) && ( l_mutex->type != K_MK_ID_NO ) )
    {
       /* Si la tâche est propriétaire du mutex et si le mutex est vérrouillé */
       if ( ( l_mutex->owner == g_mkScheduler.currentTask ) && ( l_mutex->lock == 1 ) )
@@ -341,7 +361,7 @@ static T_mkCode mk_call_handleMutex ( T_mkSVCObject* p_mkObject, uint32_t p_mkSt
          p_mkObject->data [ K_MK_OFFSET_UNSYNC_FUNCTION ] = ( T_mkAddr ) _mk_call_mutexToAddr ( mk_mutex_unlock );
 
          /* Exécution de la séquence de déblocage */
-         mk_call_executeUnblock ( p_mkObject, p_mkStatus );
+         l_result = mk_call_executeUnblock ( p_mkObject, p_mkStatus );
       }
 
       /* Sinon */
@@ -355,7 +375,8 @@ static T_mkCode mk_call_handleMutex ( T_mkSVCObject* p_mkObject, uint32_t p_mkSt
    /* Sinon */
    else
    {
-      /* Ne rien faire */
+      /* Actualisation de la variable de retour */
+      l_result = K_MK_ERROR_PARAM;
    }
 
    /* Retour */
@@ -368,34 +389,38 @@ static T_mkCode mk_call_handleMutex ( T_mkSVCObject* p_mkObject, uint32_t p_mkSt
  * @endinternal
  */
 
-static void mk_call_handlePool ( T_mkSVCObject* p_mkObject, uint32_t p_mkStatus )
+static T_mkCode mk_call_handlePool ( T_mkSVCObject* p_mkObject, uint32_t p_mkStatus )
 {
    /* Déclaration d'une variable de retour */
    T_mkCode l_result;
+
+   /* Déclaration d'un pointeur d'événements */
+   T_mkPool* l_pool = ( T_mkPool* ) p_mkObject->data [ K_MK_OFFSET_SYNC_HANDLE ];
 
    /* Vérification de l'alignement de l'adresse */
    l_result = mk_call_isValidHandle ( ( T_mkAddr ) &g_mkAreaPool.poolArea [ 0 ], K_MK_SCHEDULER_MAX_NUMBER_OF_POOLS,
                                       sizeof ( T_mkPool ), p_mkObject->data [ K_MK_OFFSET_SYNC_HANDLE ] );
 
    /* Si la pool est valide */
-   if ( l_result == K_MK_OK )
+   if ( ( l_result == K_MK_OK ) && ( l_pool->type != K_MK_ID_NO ) )
    {
       /* Configuration des pointeurs de fonction */
       p_mkObject->data [ K_MK_OFFSET_SYNC_FUNCTION ] = ( T_mkAddr ) _mk_call_poolTakeToAddr ( mk_pool_take );
       p_mkObject->data [ K_MK_OFFSET_UNSYNC_FUNCTION ] = ( T_mkAddr ) _mk_call_poolReleaseToAddr ( mk_pool_release );
 
       /* Exécution de la séquence de déblocage */
-      mk_call_executeUnblock ( p_mkObject, p_mkStatus );
+      l_result = mk_call_executeUnblock ( p_mkObject, p_mkStatus );
    }
 
    /* Sinon */
    else
    {
-      /* Ne rien faire */
+      /* Actualisation de la variable de retour */
+      l_result = K_MK_ERROR_PARAM;
    }
 
    /* Retour */
-   return;
+   return ( l_result );
 }
 
 /**
@@ -404,17 +429,20 @@ static void mk_call_handlePool ( T_mkSVCObject* p_mkObject, uint32_t p_mkStatus 
  * @endinternal
  */
 
-static void mk_call_handleEvent ( T_mkSVCObject* p_mkObject, uint32_t p_mkStatus )
+static T_mkCode mk_call_handleEvent ( T_mkSVCObject* p_mkObject, uint32_t p_mkStatus )
 {
    /* Déclaration d'une variable de retour */
    T_mkCode l_result;
+
+   /* Déclaration d'un pointeur d'événements */
+   T_mkEvent* l_event = ( T_mkEvent* ) p_mkObject->data [ K_MK_OFFSET_SYNC_HANDLE ];
 
    /* Vérification de l'alignement de l'adresse */
    l_result = mk_call_isValidHandle ( ( T_mkAddr ) &g_mkEventPool.event [ 0 ], K_MK_SCHEDULER_MAX_NUMBER_OF_EVENTS,
                                       sizeof ( T_mkEvent ), p_mkObject->data [ K_MK_OFFSET_SYNC_HANDLE ] );
 
    /* Si le champ d'événements est valide */
-   if ( l_result == K_MK_OK )
+   if ( ( l_result == K_MK_OK ) && ( l_event->type != K_MK_ID_NO ) )
    {
       /* Configuration des pointeurs de fonction */
       p_mkObject->data [ K_MK_OFFSET_SYNC_FUNCTION ] =  ( T_mkAddr ) _mk_call_eventToAddr ( mk_event_check );
@@ -424,17 +452,18 @@ static void mk_call_handleEvent ( T_mkSVCObject* p_mkObject, uint32_t p_mkStatus
       p_mkObject->data [ K_MK_OFFSET_PARAM_OBJECT ] = ( T_mkAddr ) ( ( uint32_t ) p_mkObject->data [ K_MK_OFFSET_PARAM_OBJECT ] & ( ~K_MK_EVENT_MASK ) ) ;
 
       /* Exécution de la séquence de déblocage */
-      mk_call_executeUnblock ( p_mkObject, p_mkStatus );
+      l_result = mk_call_executeUnblock ( p_mkObject, p_mkStatus );
    }
 
    /* Sinon */
    else
    {
-      /* Ne rien faire */
+      /* Actualisation de la variable de retour */
+      l_result = K_MK_ERROR_PARAM;
    }
 
    /* Retour */
-   return;
+   return ( l_result );
 }
 
 /**
@@ -466,21 +495,21 @@ void mk_call_unblock ( T_mkSVCObject* p_mkObject, uint32_t p_mkStatus )
    else if ( p_mkObject->type == K_MK_SYSCALL_UNBLOCK_EVENT_SET_FUNCTION )
    {
       /* Analyse et configuration des attributs de l'appel système */
-      mk_call_handleEvent ( p_mkObject, p_mkStatus );
+      p_mkObject->result = mk_call_handleEvent ( p_mkObject, p_mkStatus );
    }
 
    /* Sinon si l'appel système a été exécuté par la fonction mk_pool_freeSafe */
    else if ( p_mkObject->type == K_MK_SYSCALL_UNBLOCK_POOL_DELETE_FUNCTION )
    {
       /* Analyse et configuration des attributs de l'appel système */
-      mk_call_handlePool ( p_mkObject, p_mkStatus );
+      p_mkObject->result = mk_call_handlePool ( p_mkObject, p_mkStatus );
    }
 
    /* Sinon */
    else
    {
       /* Exécution de la séquence de déblocage */
-      mk_call_executeUnblock ( p_mkObject, p_mkStatus );
+      p_mkObject->result = mk_call_executeUnblock ( p_mkObject, p_mkStatus );
    }
 
    /* Retour */
