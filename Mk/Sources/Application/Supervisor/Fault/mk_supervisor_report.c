@@ -1078,22 +1078,22 @@ static T_str8 mk_supervisor_reportRegister ( T_mkSupervisorDumpRegister* p_reg, 
    p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "R11 : 0x", p_reg->r11, ( T_str8 ) ";\n", 16, 8 );
    p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "R12 : 0x", p_reg->r12, ( T_str8 ) ";\n", 16, 8 );
 
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S16 : 0x", ( uint32_t ) p_reg->s16, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S17 : 0x", ( uint32_t ) p_reg->s17, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S18 : 0x", ( uint32_t ) p_reg->s18, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S19 : 0x", ( uint32_t ) p_reg->s19, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S20 : 0x", ( uint32_t ) p_reg->s20, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S21 : 0x", ( uint32_t ) p_reg->s21, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S22 : 0x", ( uint32_t ) p_reg->s22, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S23 : 0x", ( uint32_t ) p_reg->s23, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S24 : 0x", ( uint32_t ) p_reg->s24, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S25 : 0x", ( uint32_t ) p_reg->s25, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S26 : 0x", ( uint32_t ) p_reg->s26, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S27 : 0x", ( uint32_t ) p_reg->s27, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S28 : 0x", ( uint32_t ) p_reg->s28, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S29 : 0x", ( uint32_t ) p_reg->s29, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S30 : 0x", ( uint32_t ) p_reg->s30, ( T_str8 ) ";\n", 16, 8 );
-   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S31 : 0x", ( uint32_t ) p_reg->s31, ( T_str8 ) ";\n\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S16 : 0x",  p_reg->s16, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S17 : 0x",  p_reg->s17, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S18 : 0x",  p_reg->s18, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S19 : 0x",  p_reg->s19, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S20 : 0x",  p_reg->s20, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S21 : 0x",  p_reg->s21, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S22 : 0x",  p_reg->s22, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S23 : 0x",  p_reg->s23, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S24 : 0x",  p_reg->s24, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S25 : 0x",  p_reg->s25, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S26 : 0x",  p_reg->s26, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S27 : 0x",  p_reg->s27, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S28 : 0x",  p_reg->s28, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S29 : 0x",  p_reg->s29, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S30 : 0x",  p_reg->s30, ( T_str8 ) ";\n", 16, 8 );
+   p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "S31 : 0x",  p_reg->s31, ( T_str8 ) ";\n\n", 16, 8 );
 
    /* Retour */
    return ( p_str );

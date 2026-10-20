@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -128,22 +128,22 @@ struct T_mkSupervisorDumpRegister
    uint32_t reserved7;                                         /*!< Ce membre est reservé pour un usage ultérieur. */
    uint32_t reserved8;                                         /*!< Ce membre est reservé pour un usage ultérieur. */
    uint32_t fpscr;                                             /*!< Ce membre contient la valeur du registre FPSCR.*/
-   real32_t s16;                                               /*!< Ce membre contient la valeur du registre S16.*/
-   real32_t s17;                                               /*!< Ce membre contient la valeur du registre S17.*/
-   real32_t s18;                                               /*!< Ce membre contient la valeur du registre S18.*/
-   real32_t s19;                                               /*!< Ce membre contient la valeur du registre S19.*/
-   real32_t s20;                                               /*!< Ce membre contient la valeur du registre S20.*/
-   real32_t s21;                                               /*!< Ce membre contient la valeur du registre S21.*/
-   real32_t s22;                                               /*!< Ce membre contient la valeur du registre S22.*/
-   real32_t s23;                                               /*!< Ce membre contient la valeur du registre S23.*/
-   real32_t s24;                                               /*!< Ce membre contient la valeur du registre S24.*/
-   real32_t s25;                                               /*!< Ce membre contient la valeur du registre S25.*/
-   real32_t s26;                                               /*!< Ce membre contient la valeur du registre S26.*/
-   real32_t s27;                                               /*!< Ce membre contient la valeur du registre S27.*/
-   real32_t s28;                                               /*!< Ce membre contient la valeur du registre S28.*/
-   real32_t s29;                                               /*!< Ce membre contient la valeur du registre S29.*/
-   real32_t s30;                                               /*!< Ce membre contient la valeur du registre S30.*/
-   real32_t s31;                                               /*!< Ce membre contient la valeur du registre S31.*/
+   uint32_t s16;                                               /*!< Ce membre contient la valeur du registre S16.*/
+   uint32_t s17;                                               /*!< Ce membre contient la valeur du registre S17.*/
+   uint32_t s18;                                               /*!< Ce membre contient la valeur du registre S18.*/
+   uint32_t s19;                                               /*!< Ce membre contient la valeur du registre S19.*/
+   uint32_t s20;                                               /*!< Ce membre contient la valeur du registre S20.*/
+   uint32_t s21;                                               /*!< Ce membre contient la valeur du registre S21.*/
+   uint32_t s22;                                               /*!< Ce membre contient la valeur du registre S22.*/
+   uint32_t s23;                                               /*!< Ce membre contient la valeur du registre S23.*/
+   uint32_t s24;                                               /*!< Ce membre contient la valeur du registre S24.*/
+   uint32_t s25;                                               /*!< Ce membre contient la valeur du registre S25.*/
+   uint32_t s26;                                               /*!< Ce membre contient la valeur du registre S26.*/
+   uint32_t s27;                                               /*!< Ce membre contient la valeur du registre S27.*/
+   uint32_t s28;                                               /*!< Ce membre contient la valeur du registre S28.*/
+   uint32_t s29;                                               /*!< Ce membre contient la valeur du registre S29.*/
+   uint32_t s30;                                               /*!< Ce membre contient la valeur du registre S30.*/
+   uint32_t s31;                                               /*!< Ce membre contient la valeur du registre S31.*/
 };
 
 /**
