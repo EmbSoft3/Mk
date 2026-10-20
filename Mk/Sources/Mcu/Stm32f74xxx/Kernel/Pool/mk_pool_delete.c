@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -51,7 +51,7 @@ static T_mkSVCObject* mk_pool_call ( T_mkPool* p_mkPool )
    T_mkSVCObject* l_result;
 
    /* Ecriture du type de l'appel système dans le gestionnaire SVC */
-   l_svc.type = K_MK_SYSCALL_DELETE_MUTEX_FUNCTION;
+   l_svc.type = K_MK_SYSCALL_DELETE_POOL_FUNCTION;
 
    /* Ecriture de l'instance de la pool */
    l_svc.data [ K_MK_OFFSET_SYNC_HANDLE ] = ( T_mkAddr ) ( p_mkPool );
