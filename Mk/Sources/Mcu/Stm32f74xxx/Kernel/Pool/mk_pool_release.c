@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -44,6 +44,12 @@
 
 uint32_t mk_pool_release ( T_mkTask* p_mkUnused1, T_mkPool* p_mkPool, T_mkAddr p_mkUnused2, T_mkAddr p_mkAddr, uint32_t p_mkUnused3 )
 {
+   /* Déclaration de la variable de retour */
+   uint32_t l_result = K_MK_SYNC_OK;
+   
+   /* Déclaration d'une variable de retour local */
+   T_mkCode l_localResult = K_MK_OK;
+
    /* Enregistrement de l'adresse du bloc mémoire à désallouer */
    uint32_t* l_next = ( uint32_t* ) p_mkAddr;
 
@@ -53,13 +59,30 @@ uint32_t mk_pool_release ( T_mkTask* p_mkUnused1, T_mkPool* p_mkPool, T_mkAddr p
    ( void ) p_mkUnused2;
    ( void ) p_mkUnused3;
 
-   /* Ajout de l'élément libéré en tête de liste */
-   *l_next = ( uint32_t ) ( p_mkPool->current );
-   p_mkPool->current = p_mkAddr;
+   /* Test de la validité de l'adresse */
+   /* On réinitialise le bit 0 car on ne souhaite pas retourner une erreur de droit si */
+   /* la mémoire a déjà été désallouée */
+   l_localResult = mk_call_isValidHandle ( p_mkPool->baseAddr, p_mkPool->number, 
+      ( p_mkPool->size << 2 ), p_mkAddr );
 
-   /* Actualisation du nombre de blocs mémoires disponibles dans le pool */
-   p_mkPool->count = ( uint32_t ) ( p_mkPool->count + 1 );
+   /* Si la mémoire à désallouer n'est pas dans le buffer de la pool ou si l'alignement est mauvais */
+   if ( l_localResult != K_MK_OK )
+   {
+      /* Actualisation de la variable de retour */
+      l_result = K_MK_SYNC_PARAM;
+   }
+
+   /* Sinon */
+   else
+   {
+      /* Ajout de l'élément libéré en tête de liste */
+      *l_next = ( uint32_t ) ( p_mkPool->current );
+      p_mkPool->current = p_mkAddr;
+
+      /* Actualisation du nombre de blocs mémoires disponibles dans le pool */
+      p_mkPool->count = ( uint32_t ) ( p_mkPool->count + 1 );
+   }     
 
    /* Retour */
-   return ( K_MK_SYNC_OK );
+   return ( l_result );
 }

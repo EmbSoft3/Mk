@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -42,10 +42,13 @@
  * @endinternal
  */
 
-static void mk_pool_call ( T_mkPool* p_mkPool, T_mkAddr p_mkAddr )
+static T_mkSVCObject* mk_pool_call ( T_mkPool* p_mkPool, T_mkAddr p_mkAddr )
 {
    /* Déclaration d'un gestionnaire SVC */
    T_mkSVCObject l_svc;
+
+   /* Déclaration de la variable de retour */
+   T_mkSVCObject* l_result;
 
    /* Ecriture du type de l'appel système dans le gestionnaire SVC */
    l_svc.type = K_MK_SYSCALL_UNBLOCK_POOL_DELETE_FUNCTION;
@@ -57,13 +60,13 @@ static void mk_pool_call ( T_mkPool* p_mkPool, T_mkAddr p_mkAddr )
    l_svc.data [ K_MK_OFFSET_MESSAGE ] = ( T_mkAddr* ) ( p_mkAddr );
 
    /* Référencement de l'appel système dans le gestionnaire SVC */
-   ( void ) mk_svc_set ( &l_svc );
+   l_result = mk_svc_set ( &l_svc );
 
    /* Déclenchement d'un appel système */
    _mk_svc_call ( );
 
    /* Retour */
-   return;
+   return ( l_result );
 }
 
 /**
@@ -79,6 +82,9 @@ T_mkCode mk_pool_freeSafe ( T_mkPool* p_mkPool, T_mkAddr p_mkAddr )
 
    /* Déclaration des variables de travail */
    uint32_t l_isr, l_right;
+
+   /* Déclaration d'un pointeur SVC */
+   T_mkSVCObject* l_svcPnt;
 
    /* Si le paramètre est valide */
    if ( ( p_mkPool != K_MK_NULL ) && ( p_mkAddr != K_MK_NULL ) )
@@ -97,7 +103,10 @@ T_mkCode mk_pool_freeSafe ( T_mkPool* p_mkPool, T_mkAddr p_mkAddr )
             ( ( p_mkPool->type & K_MK_AREA_PROTECTED ) == K_MK_AREA_UNPROTECTED ) ) )
          {
             /* Déclenchement d'une requête SVC */
-            mk_pool_call ( p_mkPool, p_mkAddr );
+            l_svcPnt = mk_pool_call ( p_mkPool, p_mkAddr );
+
+            /* Actualisation de la variable de retour */
+            l_result = l_svcPnt->result;
          }
 
          /* Sinon */
