@@ -70,6 +70,6 @@ K_MK_UNPRIVILEGED_MEMORY uint32_t g_mkUnprivilegedListenerStackBuf [ K_MK_DISPLA
  *
  */
 
-K_MK_PRIVILEGED_DMA_MEMORY uint32_t g_mkUnprivilegedHandlerMessageHeap [ K_MK_DISPLAY_REQUEST_AREA_SIZE ];
+K_MK_UNPRIVILEGED_DMA_MEMORY uint32_t g_mkUnprivilegedHandlerMessageHeap [ K_MK_DISPLAY_REQUEST_AREA_SIZE ];
 
 
