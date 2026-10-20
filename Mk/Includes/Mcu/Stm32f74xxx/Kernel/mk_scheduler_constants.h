@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2018-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -99,6 +99,15 @@
  */
 
 #define K_MK_SCHEDULER_MAX_NUMBER_OF_MAILS 48
+
+/**
+ * @def K_MK_SCHEDULER_MAX_NUMBER_OF_ITEMS
+ * @brief Cette constante définit le nombre total d'items de boites de messages pouvant être allouées.
+ *        Cette constante peut être modifiée par l'utilisateur. Elle doit être différente de la
+ *        valeur 0 et supérieure à \ref K_MK_SCHEDULER_MAX_NUMBER_OF_MAILS.
+ */
+
+#define K_MK_SCHEDULER_MAX_NUMBER_OF_ITEMS 500
 
 /**
  * @def K_MK_SCHEDULER_MAX_NUMBER_OF_EVENTS

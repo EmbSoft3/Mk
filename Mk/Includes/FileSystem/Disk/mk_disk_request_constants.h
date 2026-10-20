@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2021 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2021-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -56,7 +56,7 @@
  * @brief Définition de la taille de la messagerie dédiée aux disques. [en multiple de mots 32bits].
  */
 
-#define K_MK_DISK_REQUEST_AREA_SIZE ( ( MK_MAIL_ITEM_SIZE + K_MK_DISK_REQUEST_SIZE ) * K_MK_DISK_REQUEST_NUMBER )
+#define K_MK_DISK_REQUEST_AREA_SIZE ( K_MK_DISK_REQUEST_SIZE * K_MK_DISK_REQUEST_NUMBER )
 
 /**
  *

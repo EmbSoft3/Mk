@@ -126,7 +126,7 @@
  * @brief Définition de la taille de la messagerie du système de fichiers.
  */
 
-#define K_MK_FILE_MESSAGE_AREA_SIZE ( ( MK_MAIL_ITEM_SIZE + K_MK_FILE_MESSAGE_SIZE ) * K_MK_FILE_MESSAGE_NUMBER )
+#define K_MK_FILE_MESSAGE_AREA_SIZE ( K_MK_FILE_MESSAGE_SIZE * K_MK_FILE_MESSAGE_NUMBER )
 
 /**
  *

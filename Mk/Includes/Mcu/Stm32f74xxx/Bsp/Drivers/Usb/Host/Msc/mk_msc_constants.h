@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -93,7 +93,7 @@
  * @brief Définition de la taille de la messagerie MSC [en multiple de mots 32bits].
  */
 
-#define K_MK_MSC_MESSAGE_AREA_SIZE ( ( MK_MAIL_ITEM_SIZE + K_MK_MSC_MESSAGE_SIZE ) * K_MK_HCD_MAX_DEVICE_NUMBER )
+#define K_MK_MSC_MESSAGE_AREA_SIZE ( K_MK_MSC_MESSAGE_SIZE * K_MK_HCD_MAX_DEVICE_NUMBER )
 
 /**
  *

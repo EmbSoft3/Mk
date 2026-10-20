@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -55,7 +55,6 @@
 #include "mk_task_types.h"
 #include "mk_list_types.h"
 #include "mk_event_types.h"
-#include "mk_mail_constants.h"
 #include "mk_mail_types.h"
 #include "mk_callback_constants.h"
 #include "mk_callback_types.h"

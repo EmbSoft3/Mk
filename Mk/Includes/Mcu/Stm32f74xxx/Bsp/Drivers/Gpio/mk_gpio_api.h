@@ -68,7 +68,6 @@
 #include "mk_event_constants.h"
 #include "mk_event_types.h"
 #include "mk_event.h"
-#include "mk_mail_constants.h"
 #include "mk_mail_types.h"
 #include "mk_mail.h"
 #include "mk_callback_constants.h"

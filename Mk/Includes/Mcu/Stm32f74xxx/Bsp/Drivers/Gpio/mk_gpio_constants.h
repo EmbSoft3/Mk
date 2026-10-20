@@ -78,7 +78,7 @@
  * @brief Définition de la taille de la messagerie GPIO [en multiple de mots 32bits].
  */
 
-#define K_MK_GPIO_MESSAGE_AREA_SIZE ( ( MK_MAIL_ITEM_SIZE + K_MK_GPIO_MESSAGE_SIZE ) * K_MK_GPIO_MESSAGE_NUMBER )
+#define K_MK_GPIO_MESSAGE_AREA_SIZE ( K_MK_GPIO_MESSAGE_SIZE * K_MK_GPIO_MESSAGE_NUMBER )
 
 /**
  *

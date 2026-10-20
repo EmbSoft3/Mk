@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -76,7 +76,6 @@
 #include "mk_event.h"
 #include "mk_semaphore_types.h"
 #include "mk_semaphore.h"
-#include "mk_mail_constants.h"
 #include "mk_mail_types.h"
 #include "mk_mail.h"
 #include "mk_callback_constants.h"

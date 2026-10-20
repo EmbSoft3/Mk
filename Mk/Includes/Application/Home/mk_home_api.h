@@ -60,7 +60,6 @@
 #include "mk_event_types.h"
 #include "mk_mutex_types.h"
 #include "mk_semaphore_types.h"
-#include "mk_mail_constants.h"
 #include "mk_mail_types.h"
 #include "mk_callback_constants.h"
 #include "mk_callback_types.h"

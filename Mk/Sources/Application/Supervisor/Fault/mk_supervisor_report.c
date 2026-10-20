@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -813,7 +813,7 @@ static T_str8 mk_supervisor_reportMail ( T_str8 p_str )
       {
          /* Ecriture des attributs de la boite dans le rapport */
          p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "## Mail : 0x", ( uint32_t ) &g_mkMailPool.mail [ l_counter ], ( T_str8 ) ";\n\n", 16, 8 );
-         p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "Mail.size : 0x", ( uint32_t ) g_mkMailPool.mail [ l_counter ].size, ( T_str8 ) ";\n", 16, 8 );
+         p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "Mail.size : 0x", ( uint32_t ) g_mkMailPool.mail [ l_counter ].msgSize, ( T_str8 ) ";\n", 16, 8 );
          p_str = mk_supervisor_cat ( p_str, ( T_str8 ) "Mail.unused.item : 0x", ( uint32_t ) g_mkMailPool.mail [ l_counter ].unused.item, ( T_str8 ) ";\n\n", 16, 8 );
 
          /* Poster */
@@ -834,7 +834,7 @@ static T_str8 mk_supervisor_reportMail ( T_str8 p_str )
          /* Tant que tous les items de la chaine n'ont pas été enregistré */
          while ( l_item != K_MK_NULL )
          {
-            p_str = mk_supervisor_reportMailItem ( l_item, p_str, g_mkMailPool.mail [ l_counter ].size );
+            p_str = mk_supervisor_reportMailItem ( l_item, p_str, g_mkMailPool.mail [ l_counter ].msgSize );
             l_item = l_item->next;
          }
 
@@ -844,7 +844,7 @@ static T_str8 mk_supervisor_reportMail ( T_str8 p_str )
          /* Tant que tous les items de la chaine n'ont pas été enregistré */
          while ( l_item != K_MK_NULL )
          {
-            p_str = mk_supervisor_reportMailItem ( l_item, p_str, g_mkMailPool.mail [ l_counter ].size );
+            p_str = mk_supervisor_reportMailItem ( l_item, p_str, g_mkMailPool.mail [ l_counter ].msgSize );
             l_item = l_item->next;
          }
       }

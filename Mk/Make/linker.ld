@@ -42,7 +42,7 @@ K_STACK_BASE_ADDR = 0x2001FC00 ;
 K_MK_PRIVILEGED_DMA_DATA_BASE_ADDR = 0x20021000 ;
 
 /* Définition de l'adresse de base des données priviligiées */
-K_MK_PRIVILEGED_DATA_BASE_ADDR = 0x2004C000 ;
+K_MK_PRIVILEGED_DATA_BASE_ADDR = 0x20000000 ;
 
 /* Définition de l'adresse de base de la zone contenant les symboles */
 K_MK_INTERNAL_SYMBOLS_BASE_ADDR = 0x002C0000 ;
@@ -277,7 +277,7 @@ SECTIONS
        
        *( .mk_privileged_memory )
            
-    } > K_SRAM2  
+    } > K_DTCM_RAM  
     
     
     /* ********************************************************************* */

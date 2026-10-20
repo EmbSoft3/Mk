@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -83,7 +83,7 @@
  * @brief Définition de la taille de la messagerie des gestionnaires de commandes [en multiple de mots 32bits].
  */
 
-#define K_MK_SHELL_INCOMING_MESSAGE_AREA_SIZE ( ( MK_MAIL_ITEM_SIZE + K_MK_SHELL_INCOMING_MESSAGE_SIZE ) * K_MK_SHELL_MESSAGE_NUMBER )
+#define K_MK_SHELL_INCOMING_MESSAGE_AREA_SIZE ( K_MK_SHELL_INCOMING_MESSAGE_SIZE * K_MK_SHELL_MESSAGE_NUMBER )
 
 /**
  *

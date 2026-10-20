@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -92,21 +92,21 @@
  * @brief Définition de la taille de la messagerie entrante [en multiple de mots 32bits].
  */
 
-#define K_MK_DISPATCHER_INCOMING_MESSAGE_AREA_SIZE ( ( MK_MAIL_ITEM_SIZE + K_MK_DISPATCHER_INCOMING_MESSAGE_SIZE ) * K_MK_DISPATCHER_MESSAGE_NUMBER )
+#define K_MK_DISPATCHER_INCOMING_MESSAGE_AREA_SIZE ( K_MK_DISPATCHER_INCOMING_MESSAGE_SIZE * K_MK_DISPATCHER_MESSAGE_NUMBER )
 
 /**
  * @def K_MK_DISPATCHER_LISTENER_MESSAGE_AREA_SIZE
  * @brief Définition de la taille de la messagerie sortante [en multiple de mots 32bits].
  */
 
-#define K_MK_DISPATCHER_LISTENER_MESSAGE_AREA_SIZE ( ( MK_MAIL_ITEM_SIZE + K_MK_DISPATCHER_LISTENER_MESSAGE_SIZE ) * K_MK_DISPATCHER_MESSAGE_NUMBER )
+#define K_MK_DISPATCHER_LISTENER_MESSAGE_AREA_SIZE ( K_MK_DISPATCHER_LISTENER_MESSAGE_SIZE * K_MK_DISPATCHER_MESSAGE_NUMBER )
 
 /**
  * @def K_MK_DISPATCHER_INCOMING_MESSAGE_AREA_SIZE
  * @brief Définition de la taille de la messagerie HID [en multiple de mots 32bits].
  */
 
-#define K_MK_DISPATCHER_HID_MESSAGE_AREA_SIZE ( ( MK_MAIL_ITEM_SIZE + K_MK_DISPATCHER_HID_MESSAGE_SIZE ) * K_MK_DISPATCHER_MESSAGE_NUMBER )
+#define K_MK_DISPATCHER_HID_MESSAGE_AREA_SIZE ( K_MK_DISPATCHER_HID_MESSAGE_SIZE * K_MK_DISPATCHER_MESSAGE_NUMBER )
 
 /**
  *
