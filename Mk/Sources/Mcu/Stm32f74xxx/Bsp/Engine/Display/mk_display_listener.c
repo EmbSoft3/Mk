@@ -405,7 +405,8 @@ static T_mkCode mk_display_listenContainer ( T_mkContainer* p_container, T_mkLis
       }
 
       /* Si le champ en cours d'analyse a le focus et si ce champ est devenu invisible */
-      if ( ( l_tmp->focus == K_MK_FIELD_STATE_FOCUS ) && ( l_tmp->visibility == K_MK_FIELD_INVISIBLE ) )
+      if ( ( l_tmp->focus == K_MK_FIELD_STATE_FOCUS ) && ( l_tmp->visibility == K_MK_FIELD_INVISIBLE ) && 
+           ( l_tmp->userVisibility == K_MK_FIELD_INVISIBLE ) )
       {
          /* Le champ doit perdre le focus */
          mk_field_setFocus ( l_tmp, K_MK_FIELD_STATE_IDLE );
