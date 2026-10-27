@@ -53,6 +53,12 @@ T_mkAddr mk_pool_available ( T_mkPool* p_mkPool )
       /* Actualisation du résultat */
       l_result = p_mkPool->current;
    }
+
+   /* Sinon */
+   else
+   {
+      /* Ne rien faire */
+   }
    
    /* Retour */
    return ( l_result );
