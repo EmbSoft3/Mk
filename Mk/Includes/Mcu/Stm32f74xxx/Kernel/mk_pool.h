@@ -105,8 +105,8 @@ uint32_t mk_pool_count ( T_mkPool* p_mkPool );
  * @param[in,out] p_mkPool  Ce paramètre contient l'adresse d'une structure de type \ref T_mkPool.
  * @param[in]     p_mkClear Ce paramètre indique si le bloc alloué doit être initialisé (\ref K_MK_POOL_CLEAR) ou non (\ref K_MK_POOL_NO_CLEAR).
  *
- * @return Cette fonction retourne la valeur \ref K_MK_NULL si aucun bloc de taille fixe n'est disponible ou l'adresse du bloc de taille fixe alloué. Si le paramètre
- *         est invalide, la valeur \ref K_MK_NULL est renvoyée.
+ * @return Cette fonction retourne la valeur \ref K_MK_NULL si aucun bloc de taille fixe n'est disponible, si la pool est corrompu, si au moins un paramètre
+ *         est invalide ou si une tâche non privilégiée tente de manipulée une pool protégée.
  *
  * @note Cette fonction n'est pas de type "ThreadSafe".
  *
@@ -124,6 +124,7 @@ T_mkAddr mk_pool_alloc ( T_mkPool* p_mkPool, uint32_t p_mkClear );
  * @return Cette fonction retourne un des codes suivants :
  *         \li \ref K_MK_OK          : le bloc de taille fixe a été désalloué.
  *         \li \ref K_MK_ERROR_PARAM : le bloc de taille fixe n'a pas été désalloué car au moins un paramètre est invalide.
+ *         \li \ref K_MK_ERROR_RIGHT : le bloc de taille fixe n'a pas été désalloué car une tâche non privilégiée ne peut pas manipuler une pool protégée.
  *
  * @note Le bloc de taille fixe doit être désallouer dans le gestionnaire d'allocation de type \ref T_mkPool d'où il est originaire.
  * @note Cette fonction n'est pas de type "ThreadSafe".
