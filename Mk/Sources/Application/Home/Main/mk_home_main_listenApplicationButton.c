@@ -146,7 +146,7 @@ static T_mkCode mk_home_main_handleApplicationButtonMouseInputs ( T_mkContainer*
  * @endinternal
  */
 
-static T_mkCode mk_home_main_handleApplicationButtonKeyboardInputs ( T_mkContainer* p_container, uint32_t p_ctrlId )
+static T_mkCode mk_home_main_handleApplicationButtonKeyboardInputs ( T_mkContainer* p_container, T_mkCtrlEvent p_evtCtrl, uint32_t p_ctrlId )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result = K_MK_OK;
@@ -158,7 +158,7 @@ static T_mkCode mk_home_main_handleApplicationButtonKeyboardInputs ( T_mkContain
    T_mkHomeApplication* l_home = ( T_mkHomeApplication* ) mk_application_getArg ( l_application );
 
    /* Si la touche entrée a été appuyée */
-   if ( p_ctrlId == K_MK_KEYBOARD_ENTER )
+   if ( ( p_ctrlId == K_MK_KEYBOARD_ENTER ) && ( p_evtCtrl == K_MK_EVENT_KEY_DOWN ) )
    {
       /* Démarrage de l'application associée au bouton */
       l_result = mk_home_main_handleApplication ( l_home, &l_home->view.main.applicationList.app [ l_home->view.main.applicationList.appIndex ] );
@@ -202,7 +202,7 @@ T_mkCode mk_home_main_listenApplicationButton ( T_mkContainer* p_container, T_mk
    else if ( p_appCtrlId == K_MK_CONTROL_KEYBOARD )
    {
       /* Gestion de l'événement relatif au clavier */
-      l_result = mk_home_main_handleApplicationButtonKeyboardInputs ( p_container, p_ctrlId );
+      l_result = mk_home_main_handleApplicationButtonKeyboardInputs ( p_container, p_evtCtrl, p_ctrlId );
    }
 
    /* Sinon */
