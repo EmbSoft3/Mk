@@ -47,6 +47,9 @@ T_mkCode mk_hcd_handleHostMode ( T_mkAddr p_termio, T_mkHCDHandler* p_handler )
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
 
+   /* Déclaration d'un compteur */
+   uint32_t l_counter = 0;
+
    /* Désactivation de l'alimentation du bus */
    usb_disablePower ( p_handler->bus );
 
@@ -62,6 +65,18 @@ T_mkCode mk_hcd_handleHostMode ( T_mkAddr p_termio, T_mkHCDHandler* p_handler )
       /* Création d'un nouveau terminal (gestion mode device) */
       l_result |= mk_termio_create ( K_MK_NULL, K_MK_TERMIO_HCD_OTGHS_ID, K_MK_TERMIO_TASK_PRIORITY,
                                       mk_usbhs_taskDeviceMode, g_mkUSBHSDeviceStackAddr, K_MK_USBHS_DEVICE_STACK_SIZE );
+
+      /* Destruction du champ d'événements dédié au port USB */
+      l_result |= mk_event_delete ( p_handler->portEvent );
+      
+      /* Destruction des champs d'événements dédié aux canaux de communication */
+      for ( l_counter = K_USB_CHANNEL0 ; ( l_counter < K_MK_USB_CHANNEL_NUMBER ) && ( l_result == K_MK_OK ) ; l_counter++ )
+      {
+         l_result |= mk_event_delete ( p_handler->channelEvent [ l_counter ] );
+      }
+
+      /* Destruction du mutex dédié aux canaux de communication */
+      l_result |= mk_mutex_delete ( p_handler->channelMutex );
    }
 
    /* Sinon (FS) */

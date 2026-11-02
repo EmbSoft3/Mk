@@ -177,6 +177,9 @@ T_mkCode mk_hcd_deleteTree ( T_mkHCDList* p_list, T_mkHCDDevice* p_device, uint3
       /* Si le périphérique doit être supprimé */
       if ( p_mode == K_MK_HCD_DELETE_ALL )
       {
+         /* Destruction du champ d'événements */
+         l_result |= mk_event_delete ( p_device->flag.event );
+         
          /* Si le périphérique n'est pas en tête de liste */
          if ( p_device->previousDevice != K_MK_NULL )
          {
@@ -213,7 +216,7 @@ T_mkCode mk_hcd_deleteTree ( T_mkHCDList* p_list, T_mkHCDDevice* p_device, uint3
          {
             /* Ne rien faire */
          }
-
+      
          /* Désallocation du périphérique */
          l_result |= mk_pool_freeSafe ( g_mkHCDPool.devicePool, ( T_mkAddr ) p_device );
       }
