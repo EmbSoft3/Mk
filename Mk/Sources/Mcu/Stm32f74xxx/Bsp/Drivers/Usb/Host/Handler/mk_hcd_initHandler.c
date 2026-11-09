@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -54,7 +54,7 @@ static T_mkCode mk_hcd_initHostHandler ( T_mkHCDHandler* p_handler )
    p_handler->resetTick = K_MK_USB_RESET_TICK;
 
    /* Initialisation du champ d'événements dédié au port USB */
-   l_result = mk_event_create ( &p_handler->portEvent, K_MK_ID_EVENT_FLAG, K_MK_AREA_PROTECTED, 0 );
+   l_result = mk_event_create ( &p_handler->portEvent, K_MK_ID_EVENT_SINGLE, K_MK_AREA_PROTECTED, 0 );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
@@ -65,7 +65,7 @@ static T_mkCode mk_hcd_initHostHandler ( T_mkHCDHandler* p_handler )
       /* Initialisation des champs d'événements dédiés aux canaux de communication */
       for ( l_counter = K_USB_CHANNEL0 ; ( l_counter < K_MK_USB_CHANNEL_NUMBER ) && ( l_result == K_MK_OK ) ; l_counter++ )
       {
-         l_result = mk_event_create ( &p_handler->channelEvent [ l_counter ], K_MK_ID_EVENT_FLAG, K_MK_AREA_PROTECTED, 0 );
+         l_result = mk_event_create ( &p_handler->channelEvent [ l_counter ], K_MK_ID_EVENT_SINGLE, K_MK_AREA_PROTECTED, 0 );
       }
    }
 

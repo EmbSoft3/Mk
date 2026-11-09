@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -48,7 +48,7 @@ static T_mkCode mk_termio_initEvent ( void )
    T_mkCode l_result;
 
    /* Initialisation du champ d'événement permettant la synchronisation entre les terminaux et le dispatcher */
-   l_result = mk_event_create ( &g_mkTermioSync.event, K_MK_ID_EVENT_SIGNAL, K_MK_AREA_PROTECTED, 0 );
+   l_result = mk_event_create ( &g_mkTermioSync.event, K_MK_ID_EVENT_MULTI, K_MK_AREA_PROTECTED, 0 );
 
    /* Retour */
    return ( l_result );

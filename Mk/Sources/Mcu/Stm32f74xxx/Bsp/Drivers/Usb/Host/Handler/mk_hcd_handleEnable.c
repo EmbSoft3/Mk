@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -94,7 +94,7 @@ static T_mkCode mk_termio_enumerateFirstDevice ( T_mkHCDHandler* p_handler, T_mk
       mk_hcd_initFirstDevice ( p_handler, p_handler->device );
 
       /* Initialisation du champ d'événements du périphérique */
-      l_result = mk_event_create ( &p_handler->device->flag.event, K_MK_ID_EVENT_SIGNAL, K_MK_AREA_PROTECTED, 0 );
+      l_result = mk_event_create ( &p_handler->device->flag.event, K_MK_ID_EVENT_MULTI, K_MK_AREA_PROTECTED, 0 );
 
       /* Si aucune erreur ne s'est produite */
       if ( l_result == K_MK_OK )

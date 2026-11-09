@@ -252,9 +252,9 @@ static T_mkCode mk_display_initPainter ( void )
    l_result = mk_semaphore_create ( &g_mkDisplay.painter.semaphore, K_MK_AREA_PROTECTED, 1, 0 );
    l_result |= mk_semaphore_create ( &g_mkDisplay.painter.unprivilegedSemaphore, K_MK_AREA_UNPROTECTED, 1, 0 );
    /* Initialisation de l'objet synchronisant la tâche de peinture privilégiée et l'interruption LTDC (Frame) */
-   l_result |= mk_event_create ( &g_mkDisplay.painter.frameEvent, K_MK_ID_EVENT_FLAG, K_MK_AREA_PROTECTED, 0 );
+   l_result |= mk_event_create ( &g_mkDisplay.painter.frameEvent, K_MK_ID_EVENT_SINGLE, K_MK_AREA_PROTECTED, 0 );
    /* Initialisation de l'objet synchronisant les deux tâches de peinture (privilégiée et non privilégiée) */
-   l_result |= mk_event_create ( &g_mkDisplay.painter.taskEvent, K_MK_ID_EVENT_SIGNAL, K_MK_AREA_UNPROTECTED, 0 );
+   l_result |= mk_event_create ( &g_mkDisplay.painter.taskEvent, K_MK_ID_EVENT_MULTI, K_MK_AREA_UNPROTECTED, 0 );
 
    /* Initialisation de la tâche de peinture privilégiée */
    /* Ecriture d'un pattern dans la stack de la tâche */
@@ -299,7 +299,7 @@ static T_mkCode mk_display_initListener ( void )
    l_result = mk_semaphore_create ( &g_mkDisplay.listener.semaphore, K_MK_AREA_PROTECTED, 1, 0 );
    l_result |= mk_semaphore_create ( &g_mkDisplay.listener.unprivilegedSemaphore, K_MK_AREA_UNPROTECTED, 1, 0 );
    /* Initialisation de l'objet synchronisant  les tâches d'écoute (privilégiée et non privilégiée) */
-   l_result |= mk_event_create ( &g_mkDisplay.listener.taskEvent, K_MK_ID_EVENT_SIGNAL, K_MK_AREA_UNPROTECTED, 0 );
+   l_result |= mk_event_create ( &g_mkDisplay.listener.taskEvent, K_MK_ID_EVENT_MULTI, K_MK_AREA_UNPROTECTED, 0 );
 
    /* Initialisation de la tâche d'écoute privilégiée */
    /* Ecriture d'un pattern dans la stack de la tâche */
@@ -340,7 +340,7 @@ static T_mkCode mk_display_initHandler ( void )
    T_mkTaskCtrlBlock l_taskCtrlBlock;
 
    /* Initialisation de l'objet de synchronisation entre le gestionnaire de requêtes et l'accélérateur graphique (chromart) */
-   l_result = mk_event_create ( &g_mkDisplay.handler.event, K_MK_ID_EVENT_FLAG, K_MK_AREA_PROTECTED, 0 );
+   l_result = mk_event_create ( &g_mkDisplay.handler.event, K_MK_ID_EVENT_SINGLE, K_MK_AREA_PROTECTED, 0 );
    /* Initialisation de la zone mémoire dédiées à la messagerie du gestionnaire de requêtes */
    l_result |= mk_pool_initArea ( &g_mkDisplay.handler.area, g_mkUnprivilegedHandlerMessageHeap, K_MK_DISPLAY_REQUEST_AREA_SIZE );
    /* Initialisation de la boite de messages du gestionnaire de requêtes. */

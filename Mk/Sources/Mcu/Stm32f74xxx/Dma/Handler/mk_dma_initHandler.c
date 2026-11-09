@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -89,7 +89,7 @@ T_mkCode mk_dma_initHandler ( void )
    mk_dma_initRequest ( );
 
    /* Initialisation du registre d'événement */
-   l_result = mk_event_create ( &g_mkDMAHandler.event, K_MK_ID_EVENT_SIGNAL, K_MK_AREA_PROTECTED, K_MK_DMA_EVENT_INIT_VALUE );
+   l_result = mk_event_create ( &g_mkDMAHandler.event, K_MK_ID_EVENT_MULTI, K_MK_AREA_PROTECTED, K_MK_DMA_EVENT_INIT_VALUE );
 
    /* Si aucune erreur ne s'est produite */
    if ( l_result == K_MK_OK )
@@ -104,7 +104,7 @@ T_mkCode mk_dma_initHandler ( void )
             _writeWords ( &g_mkDMAPipe [ l_dmaCounter ] [ l_streamCounter ], 0, sizeof ( T_mkDMAPipe ) >> 2 );
 
             /* Initialisation du registre d'événement */
-            l_result |= mk_event_create ( &g_mkDMAPipe [ l_dmaCounter ] [ l_streamCounter ].event, K_MK_ID_EVENT_SIGNAL, K_MK_AREA_PROTECTED, 0 );
+            l_result |= mk_event_create ( &g_mkDMAPipe [ l_dmaCounter ] [ l_streamCounter ].event, K_MK_ID_EVENT_MULTI, K_MK_AREA_PROTECTED, 0 );
          }
       }
    }

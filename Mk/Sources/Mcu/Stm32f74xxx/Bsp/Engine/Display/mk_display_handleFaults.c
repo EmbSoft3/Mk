@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -366,15 +366,15 @@ static T_mkCode mk_display_reinitObjects ( void )
    l_result |= mk_semaphore_delete ( g_mkDisplay.painter.unprivilegedSemaphore );
    l_result |= mk_semaphore_create ( &g_mkDisplay.painter.unprivilegedSemaphore, K_MK_AREA_UNPROTECTED, 1, 0 );
    l_result |= mk_event_delete ( g_mkDisplay.painter.taskEvent );
-   l_result |= mk_event_create ( &g_mkDisplay.painter.taskEvent, K_MK_ID_EVENT_SIGNAL, K_MK_AREA_UNPROTECTED, 0 );
+   l_result |= mk_event_create ( &g_mkDisplay.painter.taskEvent, K_MK_ID_EVENT_MULTI, K_MK_AREA_UNPROTECTED, 0 );
    l_result |= mk_semaphore_delete ( g_mkDisplay.listener.semaphore );
    l_result |= mk_semaphore_create ( &g_mkDisplay.listener.semaphore, K_MK_AREA_PROTECTED, 1, 0 );
    l_result |= mk_semaphore_delete ( g_mkDisplay.listener.unprivilegedSemaphore );
    l_result |= mk_semaphore_create ( &g_mkDisplay.listener.unprivilegedSemaphore, K_MK_AREA_UNPROTECTED, 1, 0 );
    l_result |= mk_event_delete ( g_mkDisplay.listener.taskEvent );
-   l_result |= mk_event_create ( &g_mkDisplay.listener.taskEvent, K_MK_ID_EVENT_SIGNAL, K_MK_AREA_UNPROTECTED, 0 );
+   l_result |= mk_event_create ( &g_mkDisplay.listener.taskEvent, K_MK_ID_EVENT_MULTI, K_MK_AREA_UNPROTECTED, 0 );
    l_result |= mk_event_delete ( g_mkDisplay.handler.event );
-   l_result |= mk_event_create ( &g_mkDisplay.handler.event, K_MK_ID_EVENT_FLAG, K_MK_AREA_PROTECTED, 0 );
+   l_result |= mk_event_create ( &g_mkDisplay.handler.event, K_MK_ID_EVENT_SINGLE, K_MK_AREA_PROTECTED, 0 );
    l_result |= mk_pool_initArea ( &g_mkDisplay.handler.area, g_mkUnprivilegedHandlerMessageHeap, K_MK_DISPLAY_REQUEST_AREA_SIZE );
    l_result |= mk_mail_delete ( g_mkDisplay.handler.mail );
    l_result |= mk_mail_create ( &g_mkDisplay.handler.mail, K_MK_AREA_UNPROTECTED, &g_mkDisplay.handler.area, K_MK_DISPLAY_REQUEST_SIZE, K_MK_DISPLAY_REQUEST_NUMBER );

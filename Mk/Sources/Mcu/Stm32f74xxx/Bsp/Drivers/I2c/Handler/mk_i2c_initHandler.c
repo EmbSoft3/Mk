@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -48,7 +48,7 @@ static T_mkCode mk_i2c_initEvent ( T_mkI2CHandler* p_handler )
    T_mkCode l_result;
 
    /* Initialisation du champ d'événements du terminal I2C */
-   l_result = mk_event_create ( &p_handler->portEvent, K_MK_ID_EVENT_FLAG, K_MK_AREA_PROTECTED, 0 );
+   l_result = mk_event_create ( &p_handler->portEvent, K_MK_ID_EVENT_SINGLE, K_MK_AREA_PROTECTED, 0 );
 
    /* Retour */
    return ( l_result );
