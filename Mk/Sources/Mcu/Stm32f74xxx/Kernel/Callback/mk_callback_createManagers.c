@@ -57,14 +57,14 @@ static T_mkCode mk_callback_createMail ( T_mkCallbackManager* p_mkHandler, uint3
       if ( p_mkRight == K_MK_TYPE_PRIVILEGED )
       {
          /* Initialisation d'une boite de messages protégée */
-         l_result = mk_mail_create ( &p_mkHandler->mail, K_MK_AREA_PROTECTED, &p_mkHandler->mailArea, K_MK_CALLBACK_MESSAGE_SIZE, K_MK_CALLBACK_MESSAGE_NUMBER );
+         l_result = mk_mail_create ( &p_mkHandler->mail, K_MK_AREA_PROTECTED, &p_mkHandler->mailArea, K_MK_CALLBACK_MESSAGE_SIZE, K_MK_CALLBACK_MESSAGES_NUMBER );
       }
 
       /* Sinon */
       else
       {
          /* Initialisation d'une boite de messages non protégée */
-         l_result = mk_mail_create ( &p_mkHandler->mail, K_MK_AREA_UNPROTECTED, &p_mkHandler->mailArea, K_MK_CALLBACK_MESSAGE_SIZE, K_MK_CALLBACK_MESSAGE_NUMBER );
+         l_result = mk_mail_create ( &p_mkHandler->mail, K_MK_AREA_UNPROTECTED, &p_mkHandler->mailArea, K_MK_CALLBACK_MESSAGE_SIZE, K_MK_CALLBACK_MESSAGES_NUMBER );
       }
    }
 

@@ -878,7 +878,7 @@ static T_str8 mk_supervisor_reportCallbackFunction ( T_str8 p_str )
    T_mkCallback* l_unused = K_MK_NULL;
 
    /* Pour le nombre de fonctions de rappel disponibles */
-   for ( l_counter = 0 ; l_counter < K_MK_SCHEDULER_MAX_NUMBER_OF_CALLBACK_FUNCTION ; l_counter++ )
+   for ( l_counter = 0 ; l_counter < K_MK_SCHEDULER_MAX_NUMBER_OF_CALLBACK_FUNCTIONS ; l_counter++ )
    {
       /* Tant que l'analyse des fonctions de rappel non utilisées n'est pas terminée */
       for ( l_unused = g_mkCallbackFunctionPool.pool.current ; ( l_unused != K_MK_NULL ) && ( l_itemUnused == 0 ) ; )
@@ -940,7 +940,7 @@ static T_str8 mk_supervisor_reportCallbackHandler ( T_str8 p_str )
    T_mkCallbackHandler* l_unused = K_MK_NULL;
 
    /* Pour le nombre de gestionnaires de rappel disponibles */
-   for ( l_counter = 0 ; l_counter < K_MK_SCHEDULER_MAX_NUMBER_OF_CALLBACK_HANDLER ; l_counter++ )
+   for ( l_counter = 0 ; l_counter < K_MK_SCHEDULER_MAX_NUMBER_OF_CALLBACK_HANDLERS ; l_counter++ )
    {
       /* Tant que l'analyse des gestionnaires de rappel non utilisés n'est pas terminée */
       for ( l_unused = g_mkCallbackHandlerPool.pool.current ; ( l_unused != K_MK_NULL ) && ( l_itemUnused == 0 ) ; )
