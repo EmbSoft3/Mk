@@ -81,6 +81,7 @@
 #include "mk_callback_constants.h"
 #include "mk_callback_types.h"
 #include "mk_callback_private.h"
+#include "mk_callback.h"
 #include "mk_scheduler_constants.h"
 #include "mk_scheduler_types.h"
 #include "mk_scheduler_data.h"

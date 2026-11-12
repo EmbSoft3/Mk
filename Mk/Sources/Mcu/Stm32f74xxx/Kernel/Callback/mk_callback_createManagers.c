@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,8 +28,8 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_callback_init.c
-* @brief Définition de la fonction mk_callback_init.
+* @file mk_callback_createManagers.c
+* @brief Définition de la fonction mk_callback_createManagers.
 * @date 6 sept. 2020
 *
 */
@@ -165,30 +165,41 @@ static T_mkCode mk_callback_createManager ( T_mkCallbackManager* p_mkHandler, ui
  * @endinternal
  */
 
-T_mkCode mk_callback_init ( uint32_t p_mkStackType )
+T_mkCode mk_callback_createManagers ( uint32_t p_mkStackType )
 {
    /* Déclaration de la variable de retour */
    T_mkCode l_result;
 
-   /* Suppression des droits privilégiés. On ne conserve que le type (flottant, non flottant) */
-   p_mkStackType = ( uint32_t ) ( p_mkStackType & ( uint32_t ) ( ~K_MK_TYPE_PRIVILEGED ) );
-
-   /* Création du manager privilégié */
-   l_result = mk_callback_createManager ( &g_mkPrivilegedCallbackManager,
-                                          K_MK_TASK_ID_CALLBACK_PRIVILEGED, K_MK_TYPE_PRIVILEGED | p_mkStackType, p_mkStackType, K_MK_CALLBACK_PRIVILEGED_PRIORITY );
-
-   /* Si aucune erreur ne s'est produite */
-   if ( l_result == K_MK_OK )
+   /* Si l'ordonnanceur est initialisé */
+   if ( g_mkScheduler.statusRegister.initialized == 1 )
    {
-      /* Création du manager non privilégié */
-      l_result = mk_callback_createManager ( &g_mkUnPrivilegedCallbackManager,
-                                             K_MK_TASK_ID_CALLBACK_UNPRIVILEGED, K_MK_TYPE_DEFAULT | p_mkStackType, p_mkStackType, K_MK_CALLBACK_UNPRIVILEGED_PRIORITY );
+      /* Suppression des droits privilégiés. On ne conserve que le type (flottant, non flottant) */
+      p_mkStackType = ( uint32_t ) ( p_mkStackType & ( uint32_t ) ( ~K_MK_TYPE_PRIVILEGED ) );
+
+      /* Création du manager privilégié */
+      l_result = mk_callback_createManager ( &g_mkPrivilegedCallbackManager,
+                                             K_MK_TASK_ID_CALLBACK_PRIVILEGED, K_MK_TYPE_PRIVILEGED | p_mkStackType, p_mkStackType, K_MK_CALLBACK_PRIVILEGED_PRIORITY );
+
+      /* Si aucune erreur ne s'est produite */
+      if ( l_result == K_MK_OK )
+      {
+         /* Création du manager non privilégié */
+         l_result = mk_callback_createManager ( &g_mkUnPrivilegedCallbackManager,
+                                                K_MK_TASK_ID_CALLBACK_UNPRIVILEGED, K_MK_TYPE_DEFAULT | p_mkStackType, p_mkStackType, K_MK_CALLBACK_UNPRIVILEGED_PRIORITY );
+      }
+
+      /* Sinon */
+      else
+      {
+         /* Ne rien faire */
+      }
    }
 
    /* Sinon */
    else
    {
-      /* Ne rien faire */
+      /* Actualisation de la variable de retour */
+      l_result = K_MK_ERROR_INIT;
    }
 
    /* Retour */
