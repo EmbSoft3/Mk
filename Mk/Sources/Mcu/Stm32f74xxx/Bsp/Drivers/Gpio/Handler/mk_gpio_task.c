@@ -165,7 +165,7 @@ static T_mkCode mk_gpio_handleCallback ( T_mkTask* p_task, T_mkGPIOMessage* p_me
       l_callbackParams.param1 = ( T_mkAddr ) p_code;
 
       /* Déclenchement de la fonction de rappel */
-      l_result = mk_callback_trig ( p_message->callback->handler, p_message->callback, &l_callbackParams );
+      l_result = mk_callback_trig ( p_message->callback, &l_callbackParams );
    }
 
    /* Sinon */

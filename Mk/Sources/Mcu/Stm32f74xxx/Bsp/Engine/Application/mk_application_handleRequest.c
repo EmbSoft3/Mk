@@ -852,7 +852,7 @@ T_mkCode mk_application_handleRequest ( T_mkTask* p_task, T_mkApplicationRequest
       l_callbackParams.param1 = ( T_mkAddr ) l_result;
 
       /* Déclenchement de la fonction de rappel */
-      l_result = mk_callback_trig ( p_request->callback->handler, p_request->callback, &l_callbackParams );
+      l_result = mk_callback_trig ( p_request->callback, &l_callbackParams );
    }
 
    /* Sinon */

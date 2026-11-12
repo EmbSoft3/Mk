@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -234,7 +234,7 @@ static T_mkCode mk_i2c_handleCallbackFunction ( T_mkTask* p_task, T_mkI2CMessage
       l_callbackParams.param3 = ( T_mkAddr ) p_statusParam;
 
       /* Déclenchement de la fonction de rappel */
-      l_result = mk_callback_trig ( p_message->callback->handler, p_message->callback, &l_callbackParams );
+      l_result = mk_callback_trig ( p_message->callback, &l_callbackParams );
    }
 
    /* Sinon */

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2022-2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2022-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -635,7 +635,7 @@ T_mkCode mk_container_handleRequest ( T_mkTask* p_task, T_mkContainerRequest* p_
       l_callbackParams.param1 = ( T_mkAddr ) l_result;
 
       /* Déclenchement de la fonction de rappel */
-      l_result = mk_callback_trig ( p_request->callback->handler, p_request->callback, &l_callbackParams );
+      l_result = mk_callback_trig ( p_request->callback, &l_callbackParams );
    }
 
    /* Sinon */

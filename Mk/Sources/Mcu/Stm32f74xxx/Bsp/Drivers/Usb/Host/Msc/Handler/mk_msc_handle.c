@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2020 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2020-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -60,7 +60,7 @@ static T_mkCode mk_msc_handleCallback ( T_mkTask* p_task, T_mkDiskRequest* p_mes
       l_callbackParams.param4 = ( T_mkAddr ) p_message->lowNumberOfBytesTransfered;
 
       /* Déclenchement de la fonction de rappel */
-      l_result = mk_callback_trig ( p_message->callback->handler, p_message->callback, &l_callbackParams );
+      l_result = mk_callback_trig ( p_message->callback, &l_callbackParams );
    }
 
    /* Sinon */

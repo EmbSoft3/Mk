@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2021 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2021-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -116,7 +116,7 @@ static T_mkCode mk_file_handleSharedEvents ( T_mkTermio* p_termio )
             l_callbackParams.param1 = ( T_mkAddr ) l_result;
 
             /* Déclenchement de la fonction de rappel */
-            l_result = mk_callback_trig ( l_message.callback->handler, l_message.callback, &l_callbackParams );
+            l_result = mk_callback_trig ( l_message.callback, &l_callbackParams );
          }
 
          /* Sinon */
