@@ -118,11 +118,12 @@ void mk_callback ( T_mkAddr p_mkParam )
          /* Ne rien faire */
       }
 
-      /* Si une erreur s'est produite */
+      /* Si aucune erreur s'est produite */
       if ( l_result != K_MK_OK )
       {
-         /* Exécution du gestionnaire d'erreur */
-         mk_handler_callbackFault ( );
+         /* Une erreur grave vient de se produire */
+         /* La gestion de l'erreur est de la responsabilité du superviseur. */
+         ( void ) mk_callback_report ( l_result );
       }
 
       /* Sinon */
