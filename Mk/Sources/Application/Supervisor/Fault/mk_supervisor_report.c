@@ -296,7 +296,7 @@ static T_str8 mk_supervisor_reportDescription ( T_mkSupervisorFault p_fault, T_s
    }
 
    /* Sinon si l'erreur est de type KERNELFAULT */
-   else if ( p_fault == K_MK_SUPERVISOR_SVCFAULT )
+   else if ( p_fault == K_MK_SUPERVISOR_KERNELFAULT )
    {
       p_str = mk_supervisor_catString ( ( T_str8 ) p_str, ( T_str8 ) "Type : ", ( T_str8 ) "[KernelFault]\n" );
    }
@@ -1337,7 +1337,7 @@ static T_mkCode mk_supervisor_editReport ( T_mkSupervisorMessage* p_message, T_s
          l_str = mk_supervisor_reportScheduler ( &p_message->scheduler, l_str );
 
          /* Si l'erreur détectée est de type KERNEL_FAULT */
-         if ( p_message->fault == K_MK_SUPERVISOR_SVCFAULT )
+         if ( p_message->fault == K_MK_SUPERVISOR_KERNELFAULT )
          {
             /* Ecriture des registres du gestionnaire SVC dans le rapport */
             l_str = mk_supervisor_reportSVC ( p_message->svc.fault, &p_message->svc.object, p_message->svc.isr, l_str );
@@ -1485,8 +1485,8 @@ T_mkCode mk_supervisor_report ( T_mkSupervisor* p_supervisor, T_mkSupervisorMess
          l_result |= mk_supervisor_logErr ( p_supervisor, p_message, ( T_str8 ) "[HandleFault]" );
       }
 
-      /* Sinon si l'erreur est de type SVCFault */
-      else if ( p_message->fault == K_MK_SUPERVISOR_SVCFAULT )
+      /* Sinon si l'erreur est de type KernelFault */
+      else if ( p_message->fault == K_MK_SUPERVISOR_KERNELFAULT )
       {
          /* Signalisation de l'erreur à l'utilisateur */
          l_result |= mk_supervisor_logErr ( p_supervisor, p_message, ( T_str8 ) "[KernelFault]" );

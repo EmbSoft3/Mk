@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -57,7 +57,7 @@ void mk_supervisor_svcFault ( T_mkAddr p_mkCode, T_mkAddr p_mkObject, T_mkAddr p
    _copy ( ( T_mkAddr ) &l_message.svc.object, ( T_mkAddr ) p_mkObject, sizeof ( T_mkSVCObject ) );
 
    /* Transmission d'un message au superviseur afin qu'il édite un rapport d'erreur. */
-   ( void ) mk_supervisor_post ( K_MK_SUPERVISOR_SVCFAULT, &l_message );
+   ( void ) mk_supervisor_post ( K_MK_SUPERVISOR_KERNELFAULT, &l_message );
 
    /* Retour */
    return;

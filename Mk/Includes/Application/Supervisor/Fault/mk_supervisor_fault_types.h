@@ -68,7 +68,7 @@ typedef enum T_mkSupervisorFault
    K_MK_SUPERVISOR_BUSFAULT = 0x04,                            /*!< Identifiant d'une erreur matérielle de type BUS_FAULT (déclenché suite à un événement matériel). */
    K_MK_SUPERVISOR_USAGEFAULT = 0x05,                          /*!< Identifiant d'une erreur matérielle de type USAGE_FAULT (déclenché suite à un événement matériel). */
    K_MK_SUPERVISOR_HANDLEFAULT = 0x06,                         /*!< Identifiant d'une erreur logicielle de type HANDLE_FAULT (déclenché suite à la détection d'une instance invalide). */
-   K_MK_SUPERVISOR_SVCFAULT = 0x07,                            /*!< Identifiant d'une erreur logicielle de type SVC_FAULT (déclenché suite à une erreur critique dans le noyau). */
+   K_MK_SUPERVISOR_KERNELFAULT = 0x07,                         /*!< Identifiant d'une erreur logicielle de type SVC_FAULT (déclenché suite à une erreur critique dans le noyau). */
    K_MK_SUPERVISOR_RIGHTFAULT = 0x08,                          /*!< Identifiant d'une erreur logicielle de type RIGHT_FAULT (déclenché suite un accès non autorisé sur une ressource protégée). */
    K_MK_SUPERVISOR_STACKFAULT = 0x09,                          /*!< Identifiant d'une erreur logicielle de type STACK_FAULT (déclenché suite à un débordement de la stack d'une tâche). */
    K_MK_SUPERVISOR_FPUFAULT = 0x0A,                            /*!< Identifiant d'une erreur matérielle de type FPU_FAULT (déclenché suite à un événement matériel). */
@@ -155,7 +155,7 @@ struct T_mkSupervisorDumpRegister
 typedef struct T_mkSupervisorSVCFault T_mkSupervisorSVCFault;
 struct T_mkSupervisorSVCFault
 {
-   T_mkSVCError fault;                                         /*!< Ce membre contient l'identifiant d'une erreur de type SVC (\ref K_MK_SUPERVISOR_SVCFAULT).*/
+   T_mkSVCError fault;                                         /*!< Ce membre contient l'identifiant d'une erreur de type SVC (\ref K_MK_SUPERVISOR_KERNELFAULT).*/
    T_mkSVCObject object;                                       /*!< Ce membre contient le contenu de la requête qui a provoqué l'erreur SVC.*/
    uint32_t isr;                                               /*!< Ce membre contient un registre indiquant si la requête SVC a été déclenchée par un vecteur d'interruption (1) ou non (0).*/
 };
@@ -173,7 +173,7 @@ struct T_mkSupervisorMessage
    T_mkTask* task;                                             /*!< Ce membre contient l'enregistrement de l'adresse de la tâche courante au moment où l'erreur a été détectée. */
    T_mkScheduler scheduler;                                    /*!< Ce membre contient l'enregistrement des registres de l'ordonnanceur au moment où l'erreur a été détectée. */
    T_mkSupervisorDumpRegister dump;                            /*!< Ce membre contient l'enregistrement des registres principaux du CPU au moment où l'erreur a été détectée. */
-   T_mkSupervisorSVCFault svc;                                 /*!< Ce membre contient les caractéristiques d'une erreur SVC. Il est dédié aux erreurs de type \ref K_MK_SUPERVISOR_SVCFAULT. */
+   T_mkSupervisorSVCFault svc;                                 /*!< Ce membre contient les caractéristiques d'une erreur SVC. Il est dédié aux erreurs de type \ref K_MK_SUPERVISOR_KERNELFAULT. */
    T_mkCode returnValue;                                       /*!< Ce membre contient la valeur d'un code de retour. Il est dédié aux erreurs de type \ref K_MK_SUPERVISOR_TASKFAULT. */
 };
 
