@@ -1105,7 +1105,7 @@ static T_str8 mk_supervisor_reportRegister ( T_mkSupervisorDumpRegister* p_reg, 
  * @endinternal
  */
 
-static T_str8 mk_supervisor_reportSVC ( T_mkSVCError p_error, T_mkSVCObject* p_svc, uint32_t p_isr, T_str8 p_str )
+static T_str8 mk_supervisor_reportSVC ( T_mkKernelError p_error, T_mkSVCObject* p_svc, uint32_t p_isr, T_str8 p_str )
 {
    /* Déclaration d'un compteur */
    uint32_t l_counter = 0;

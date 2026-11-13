@@ -155,7 +155,7 @@ struct T_mkSupervisorDumpRegister
 typedef struct T_mkSupervisorSVCFault T_mkSupervisorSVCFault;
 struct T_mkSupervisorSVCFault
 {
-   T_mkSVCError fault;                                         /*!< Ce membre contient l'identifiant d'une erreur de type SVC (\ref K_MK_SUPERVISOR_KERNELFAULT).*/
+   T_mkKernelError fault;                                      /*!< Ce membre contient l'identifiant d'une erreur de type SVC (\ref K_MK_SUPERVISOR_KERNELFAULT).*/
    T_mkSVCObject object;                                       /*!< Ce membre contient le contenu de la requête qui a provoqué l'erreur SVC.*/
    uint32_t isr;                                               /*!< Ce membre contient un registre indiquant si la requête SVC a été déclenchée par un vecteur d'interruption (1) ou non (0).*/
 };

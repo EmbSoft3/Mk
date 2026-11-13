@@ -51,7 +51,7 @@ void mk_supervisor_svcFault ( T_mkAddr p_mkCode, T_mkAddr p_mkObject, T_mkAddr p
    l_message.svc.isr = ( uint32_t ) p_mkStatus;
 
    /* Récupération de l'identifiant de l'erreur */
-   l_message.svc.fault = ( T_mkSVCError ) p_mkCode;
+   l_message.svc.fault = ( T_mkKernelError ) p_mkCode;
 
    /* Récupération de la valeur du gestionnaire SVC */
    _copy ( ( T_mkAddr ) &l_message.svc.object, ( T_mkAddr ) p_mkObject, sizeof ( T_mkSVCObject ) );

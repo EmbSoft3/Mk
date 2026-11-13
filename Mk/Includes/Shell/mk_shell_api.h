@@ -60,6 +60,7 @@
 #include "mk_list_types.h"
 #include "mk_svc_constants.h"
 #include "mk_svc_types.h"
+#include "mk_handler_types.h"
 #include "mk_event_types.h"
 #include "mk_semaphore_types.h"
 #include "mk_mail_types.h"

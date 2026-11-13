@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -262,7 +262,7 @@ void mk_supervisor_handleFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAdd
  * @brief Cette fonction est déclenchée lorsqu'une erreur de type SVC_FAULT se produit. Elle réalise un ensemble
  *        d'enregistrements puis transmet un message au superviseur.
  *
- * @param[in] p_mkCode   Ce paramètre contient l'identifiant d'une erreur de type SVC (\ref T_mkSVCError).
+ * @param[in] p_mkCode   Ce paramètre contient l'identifiant d'une erreur de type SVC (\ref T_mkKernelError).
  * @param[in] p_mkObject Ce paramètre contient les caractéristiques de la requête ayant produit
  *                       l'erreur SVC (\ref T_mkSVCObject).
  * @param[in] p_mkStatus Ce paramètre contient un registre indiquant si la requête SVC a été déclenchée par
