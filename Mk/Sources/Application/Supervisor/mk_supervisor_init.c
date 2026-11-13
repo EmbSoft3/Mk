@@ -55,7 +55,7 @@ static void mk_supervisor_initKernelHandler ( void )
    l_kernelCallback.memFault = mk_supervisor_memFault;
    l_kernelCallback.fpuFault = mk_supervisor_fpuFault;
    l_kernelCallback.handleFault = mk_supervisor_handleFault;
-   l_kernelCallback.svcFault = mk_supervisor_svcFault;
+   l_kernelCallback.kernelFault = mk_supervisor_svcFault;
    l_kernelCallback.rightFault = mk_supervisor_rightFault;
    l_kernelCallback.stackFault = mk_supervisor_stackFault;
    mk_handler_set ( &l_kernelCallback );
