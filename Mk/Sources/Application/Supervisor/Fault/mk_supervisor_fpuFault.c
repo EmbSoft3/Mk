@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -42,13 +42,10 @@
  * @endinternal
  */
 
-void mk_supervisor_fpuFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 )
+void mk_supervisor_fpuFault ( void )
 {
    /* Déclaration d'un message */
    K_MK_PRIVILEGED_STATIC_MEMORY T_mkSupervisorMessage l_message = { 0 };
-
-   /* Suppression warnings */
-   ( void ) p_unused1 ; ( void ) p_unused2 ; ( void ) p_unused3 ;
 
    /* Transmission d'un message au superviseur afin qu'il édite un rapport d'erreur. */
    ( void ) mk_supervisor_post ( K_MK_SUPERVISOR_FPUFAULT, &l_message );

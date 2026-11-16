@@ -42,7 +42,7 @@
  * @endinternal
  */
 
-void mk_supervisor_svcFault ( T_mkAddr p_mkCode, T_mkAddr p_mkObject, T_mkAddr p_mkStatus )
+void mk_supervisor_svcFault ( T_mkKernelError p_mkCode, T_mkSVCObject* p_mkObject, uint32_t p_mkStatus )
 {
    /* Déclaration d'un message */
    K_MK_PRIVILEGED_STATIC_MEMORY T_mkSupervisorMessage l_message = { 0 };

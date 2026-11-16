@@ -73,6 +73,7 @@
 #include "mk_mail.h"
 #include "mk_handler_types.h"
 #include "mk_handler_private.h"
+#include "mk_handler.h"
 #include "mk_callback_constants.h"
 #include "mk_callback_types.h"
 #include "mk_scheduler_constants.h"

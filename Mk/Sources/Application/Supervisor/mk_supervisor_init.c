@@ -42,8 +42,11 @@
  * @endinternal
  */
 
-static void mk_supervisor_initKernelHandler ( void )
+static T_mkCode mk_supervisor_initKernelHandler ( void )
 {
+   /* Déclaration de la variable de retour */
+   T_mkCode l_result;
+   
    /* Déclaration d'une variable de travail */
    T_mkKernelCallback l_kernelCallback;
 
@@ -58,10 +61,10 @@ static void mk_supervisor_initKernelHandler ( void )
    l_kernelCallback.kernelFault = mk_supervisor_svcFault;
    l_kernelCallback.rightFault = mk_supervisor_rightFault;
    l_kernelCallback.stackFault = mk_supervisor_stackFault;
-   mk_handler_set ( &l_kernelCallback );
+   l_result = mk_handler_set ( &l_kernelCallback );
 
    /* Retour */
-   return;
+   return ( l_result );
 }
 
 /**
@@ -396,7 +399,7 @@ T_mkCode mk_supervisor_init ( T_mkSupervisor* p_supervisor )
    if ( l_result == K_MK_OK )
    {
       /* Initialisation des gestionnaires d'interruption du noyau */
-      mk_supervisor_initKernelHandler ( );
+      l_result = mk_supervisor_initKernelHandler ( );
    }
 
    /* Sinon */

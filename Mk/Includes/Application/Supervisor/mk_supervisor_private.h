@@ -123,142 +123,99 @@ void mk_supervisor_recovery ( T_mkSupervisor* p_supervisor, T_mkSupervisorCode p
 T_mkCode mk_supervisor_mount ( T_mkSupervisor* p_supervisor );
 
 /**
- * @fn void mk_supervisor_nmiFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+ * @fn void mk_supervisor_nmiFault ( void );
  * @brief Cette fonction est déclenchée lorsqu'une erreur de type NMI_FAULT se produit. Elle réalise un ensemble
  *        d'enregistrements puis transmet un message au superviseur.
- *
- * @param[in] p_unused1 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused2 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused3 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- *
  * @return Sans objet.
  *
  */
 
-void mk_supervisor_nmiFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+void mk_supervisor_nmiFault ( void );
 
 /**
- * @fn void mk_supervisor_hardFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+ * @fn void mk_supervisor_hardFault ( void );
  * @brief Cette fonction est déclenchée lorsqu'une erreur de type HARD_FAULT se produit. Elle réalise un ensemble
  *        d'enregistrements puis transmet un message au superviseur.
- *
- * @param[in] p_unused1 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused2 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused3 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- *
  * @return Sans objet.
  *
  */
 
-void mk_supervisor_hardFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+void mk_supervisor_hardFault ( void );
 
 /**
- * @fn void mk_supervisor_memFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+ * @fn void mk_supervisor_memFault ( void );
  * @brief Cette fonction est déclenchée lorsqu'une erreur de type MEM_FAULT se produit. Elle réalise un ensemble
  *        d'enregistrements puis transmet un message au superviseur.
- *
- * @param[in] p_unused1 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused2 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused3 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- *
  * @return Sans objet.
  *
  */
 
-void mk_supervisor_memFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+void mk_supervisor_memFault ( void );
 
 /**
- * @fn void mk_supervisor_busFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+ * @fn void mk_supervisor_busFault ( void );
  * @brief Cette fonction est déclenchée lorsqu'une erreur de type BUS_FAULT se produit. Elle réalise un ensemble
  *        d'enregistrements puis transmet un message au superviseur.
- *
- * @param[in] p_unused1 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused2 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused3 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- *
  * @return Sans objet.
  *
  */
 
-void mk_supervisor_busFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+void mk_supervisor_busFault ( void );
 
 /**
- * @fn void mk_supervisor_usageFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+ * @fn void mk_supervisor_usageFault ( void );
  * @brief Cette fonction est déclenchée lorsqu'une erreur de type USAGE_FAULT se produit. Elle réalise un ensemble
  *        d'enregistrements puis transmet un message au superviseur.
- *
- * @param[in] p_unused1 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused2 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused3 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- *
  * @return Sans objet.
  *
  */
 
-void mk_supervisor_usageFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+void mk_supervisor_usageFault ( void );
 
 /**
- * @fn void mk_supervisor_fpuFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+ * @fn void mk_supervisor_fpuFault ( void );
  * @brief Cette fonction est déclenchée lorsqu'une erreur de type FPU_FAULT se produit. Elle réalise un ensemble
  *        d'enregistrements puis transmet un message au superviseur.
- *
- * @param[in] p_unused1 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused2 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused3 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- *
  * @return Sans objet.
  *
  */
 
-void mk_supervisor_fpuFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+void mk_supervisor_fpuFault ( void );
 
 /**
- * @fn void mk_supervisor_rightFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+ * @fn void mk_supervisor_rightFault ( void );
  * @brief Cette fonction est déclenchée lorsqu'une erreur de type RIGHT_FAULT se produit. Elle réalise un ensemble
  *        d'enregistrements puis transmet un message au superviseur.
- *
- * @param[in] p_unused1 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused2 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused3 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- *
  * @return Sans objet.
  *
  */
 
-void mk_supervisor_rightFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+void mk_supervisor_rightFault ( void );
 
 /**
- * @fn void mk_supervisor_stackFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+ * @fn void mk_supervisor_stackFault ( void );
  * @brief Cette fonction est déclenchée lorsqu'une erreur de type STACK_FAULT se produit. Elle réalise un ensemble
  *        d'enregistrements puis transmet un message au superviseur.
- *
- * @param[in] p_unused1 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused2 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused3 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- *
  * @return Sans objet.
  *
  */
 
-void mk_supervisor_stackFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+void mk_supervisor_stackFault ( void );
 
 /**
- * @fn void mk_supervisor_handleFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+ * @fn void mk_supervisor_handleFault ( T_mkAddr p_mkHandle );
  * @brief Cette fonction est déclenchée lorsqu'une erreur de type HANDLE_FAULT se produit. Elle réalise un ensemble
  *        d'enregistrements puis transmet un message au superviseur.
- *
- * @param[in] p_unused1 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused2 Ce paramètre n'est pas utilisé pour ce type d'erreur.
- * @param[in] p_unused3 Ce paramètre n'est pas utilisé pour ce type d'erreur.
+ * @param[in] p_unused1 Ce paramètre contient l'instance de l'adresse invalide.
  *
  * @return Sans objet.
  *
  */
 
-void mk_supervisor_handleFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAddr p_unused3 );
+void mk_supervisor_handleFault ( T_mkAddr p_mkHandle );
 
 /**
- * @fn void mk_supervisor_svcFault ( T_mkAddr p_mkCode, T_mkAddr p_mkObject, T_mkAddr p_mkStatus );
+ * @fn void mk_supervisor_svcFault ( T_mkKernelError p_mkCode, T_mkSVCObject* p_mkObject, uint32_t p_mkStatus );
  * @brief Cette fonction est déclenchée lorsqu'une erreur de type SVC_FAULT se produit. Elle réalise un ensemble
  *        d'enregistrements puis transmet un message au superviseur.
  *
@@ -272,7 +229,7 @@ void mk_supervisor_handleFault ( T_mkAddr p_unused1, T_mkAddr p_unused2, T_mkAdd
  *
  */
 
-void mk_supervisor_svcFault ( T_mkAddr p_mkCode, T_mkAddr p_mkObject, T_mkAddr p_mkStatus );
+void mk_supervisor_svcFault ( T_mkKernelError p_mkCode, T_mkSVCObject* p_mkObject, uint32_t p_mkStatus );
 
 /**
  * @fn T_mkCode mk_supervisor_post ( T_mkSupervisorFault p_fault, T_mkSupervisorMessage* p_message );

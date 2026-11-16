@@ -100,7 +100,7 @@ void mk_callback ( T_mkAddr p_mkParam )
             else
             {
                /* Déclenchement de la routine gérant les instances invalides */
-               mk_handler_handleFault ( );
+               mk_handler_handleFault ( ( T_mkAddr ) l_message.callback );
             }
          }
          
