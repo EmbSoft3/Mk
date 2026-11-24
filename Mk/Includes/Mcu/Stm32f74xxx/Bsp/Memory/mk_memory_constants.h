@@ -86,7 +86,7 @@
  *        L'adresse de cette section peut être modifiée dans le fichier d'édition de lien.
  */
 
-#define K_MK_UNPRIVILEGED_MEMORY __attribute__ ((section(".mk_unprivileged_memory"), aligned(4), used))
+#define K_MK_UNPRIVILEGED_BSS_MEMORY __attribute__ ((section(".mk_unprivileged_memory"), aligned(4), used))
 
 /**
  * @def K_MK_UNPRIVILEGED_DMA_MEMORY

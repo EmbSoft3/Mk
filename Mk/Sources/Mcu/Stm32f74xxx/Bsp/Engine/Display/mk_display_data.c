@@ -54,7 +54,7 @@ K_MK_PRIVILEGED_DMA_MEMORY T_mkDisplay g_mkDisplay;
  *
  */
 
-K_MK_UNPRIVILEGED_MEMORY uint32_t g_mkUnprivilegedPainterStackBuf [ K_MK_DISPLAY_TASK_UNPRIVILEGED_PAINTER_STACK_SIZE ];
+K_MK_UNPRIVILEGED_BSS_MEMORY uint32_t g_mkUnprivilegedPainterStackBuf [ K_MK_DISPLAY_TASK_UNPRIVILEGED_PAINTER_STACK_SIZE ];
 
 /**
  * @fn uint32_t g_mkUnprivilegedListenerStackBuf [ K_MK_DISPLAY_TASK_UNPRIVILEGED_LISTENER_STACK_SIZE ];
@@ -62,7 +62,7 @@ K_MK_UNPRIVILEGED_MEMORY uint32_t g_mkUnprivilegedPainterStackBuf [ K_MK_DISPLAY
  *
  */
 
-K_MK_UNPRIVILEGED_MEMORY uint32_t g_mkUnprivilegedListenerStackBuf [ K_MK_DISPLAY_TASK_UNPRIVILEGED_LISTENER_STACK_SIZE ];
+K_MK_UNPRIVILEGED_BSS_MEMORY uint32_t g_mkUnprivilegedListenerStackBuf [ K_MK_DISPLAY_TASK_UNPRIVILEGED_LISTENER_STACK_SIZE ];
 
 /**
  * @fn uint32_t g_mkUnprivilegedHandlerMessageHeap [ K_MK_DISPLAY_REQUEST_AREA_SIZE ];
