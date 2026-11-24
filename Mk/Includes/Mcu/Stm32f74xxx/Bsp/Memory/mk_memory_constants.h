@@ -39,12 +39,12 @@
 #define MK_MEMORY_CONSTANTS_H
 
 /**
- * @def K_MK_PRIVILEGED_MEMORY
+ * @def K_MK_PRIVILEGED_BSS_MEMORY
  * @brief Cette constante définit la zone mémoire où les données priviligiées doivent être allouées. \n
  *        L'adresse de cette section peut être modifiée dans le fichier d'édition de lien.
  */
 
-#define K_MK_PRIVILEGED_MEMORY __attribute__ ((section(".mk_privileged_memory"), aligned(4), used))
+#define K_MK_PRIVILEGED_BSS_MEMORY __attribute__ ((section(".mk_privileged_memory"), aligned(4), used))
 
 /**
  * @def K_MK_PRIVILEGED_STATIC_MEMORY
@@ -81,7 +81,7 @@
 #define K_MK_PRIVILEGED_QSPI_MEMORY __attribute__ ((section(".mk_privileged_qspi_memory"), aligned(4), used))
 
 /**
- * @def K_MK_PRIVILEGED_MEMORY
+ * @def K_MK_PRIVILEGED_BSS_MEMORY
  * @brief Cette constante définit la zone mémoire où les données non priviligiées doivent être allouées. \n
  *        L'adresse de cette section peut être modifiée dans le fichier d'édition de lien.
  */

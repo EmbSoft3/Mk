@@ -43,8 +43,8 @@
 
 #include "mk_types.h"
 #include "mk_binary.h"
-#include "mk_peripheral_nvic_constants.h"
-#include "mk_peripheral_nvic.h"
+#include "mk_nvic_constants.h"
+#include "mk_nvic.h"
 #include "mk_peripheral_gpio_constants.h"
 #include "mk_peripheral_gpio.h"
 #include "mk_peripheral_fmc_constants.h"
@@ -52,7 +52,7 @@
 #include "mk_peripheral_dma2d.h"
 #include "mk_peripheral_ltdc_constants.h"
 #include "mk_peripheral_ltdc.h"
-#include "mk_peripheral_core.h"
+#include "mk_core.h"
 #include "mk_peripheral_rtc.h"
 #include "mk_peripheral_math.h"
 

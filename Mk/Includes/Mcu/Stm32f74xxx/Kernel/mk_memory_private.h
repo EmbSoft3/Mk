@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2024-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,53 +28,31 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file cortex_core_enableInstructionCache.asm
-* @brief Définition de la fonction _cortex_enableInstructionCache.
-* @date 25 févr. 2018
+* @file mk_memory_private.h
+* @brief Déclaration des fonctions privées de gestion de la mémoire.
+* @date 15 févr. 2024
 *
 */
 
-.include "mk_peripheral_core_constants.asm"
+#ifndef MK_MEMORY_PRIVATE_H
+#define MK_MEMORY_PRIVATE_H
 
 /**
- * @internal
- * @brief
- * @endinternal
+ * @fn uint32_t _mk_memory_isPrivilegedArea ( T_mkAddr p_mkHandle );
+ * @brief Cette fonction vérifie si une adresse mémoire est dans un espace privilégié ou non.
+ * @param[in] p_mkHandle Ce paramètre contient une adresse 32bits.
+ *
+ * @return Cette fonction retourne une des valeurs suivantes :
+ *         \li La valeur \ref K_MK_AREA_UNPROTECTED si l'instance est située dans l'espace non privilégié.
+ *         \li La valeur \ref K_MK_AREA_PROTECTED si l'instance est située dans l'espace privilégié.
+ *
  */
 
-.cpu cortex-m7
-.syntax unified
+uint32_t _mk_memory_isPrivilegedArea ( T_mkAddr p_mkHandle );
 
-.thumb
-.thumb_func
+/**
+ *
+ */
 
-.align 4
-.global _cortex_enableInstructionCache
-_cortex_enableInstructionCache:
+#endif
 
-   /* Enregistrement de l'adresse du registre ICIALLU */
-   LDR R0, =K_ICIALLU
-
-   /* Invalidation du cache d'instruction */
-   MOV R1, #0x0
-   STR R1, [R0]
-
-   /* La demande de nettoyage a été effectuée. */
-   /* On attent la complétion de l'opération de maintenance, */
-   /* puis on flush la pipeline d'exécution. */
-   DSB
-   ISB
-
-   /* Activation du cache d'instruction */
-   LDR R0, =K_CCR
-   LDR R1, [R0]
-   ORR R1, R1, #0x20000
-   STR R1, [R0]
-
-   /* On s'assure que le cache soit actif avant de continuer */
-   /* l'exécution */
-   DSB
-   ISB
-
-   /* Retour */
-   BX LR

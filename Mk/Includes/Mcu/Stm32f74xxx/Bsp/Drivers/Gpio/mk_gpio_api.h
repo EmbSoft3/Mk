@@ -43,8 +43,8 @@
 
 #include "mk_types.h"
 #include "mk_binary.h"
-#include "mk_peripheral_nvic_constants.h"
-#include "mk_peripheral_nvic.h"
+#include "mk_nvic_constants.h"
+#include "mk_nvic.h"
 #include "mk_peripheral_gpio_constants.h"
 #include "mk_peripheral_gpio.h"
 #include "mk_peripheral_i2c_constants.h"

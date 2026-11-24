@@ -42,7 +42,7 @@
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkCallbackManager g_mkPrivilegedCallbackManager;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkCallbackManager g_mkPrivilegedCallbackManager;
 
 /**
  * @fn T_mkCallbackManager g_mkUnPrivilegedCallbackManager

@@ -1,6 +1,11 @@
 ﻿################################################################################
-# CMakeLists.txt — ARM Cortex-M7 bare-metal project
+# CMakeLists.txt — OS Mk, ARM Cortex-M7 bare-metal project
 #
+# The kernel (mk-kernel) is integrated as a git submodule in Mk/Kernel/:
+#
+#   git submodule add <url-mk-kernel> Mk/Kernel
+#   git clone --recurse-submodules <url-os>
+#   git submodule update --init --recursive      (after a plain clone)
 #
 # Requirements:
 #   - arm-none-eabi-gcc in PATH (Linux/macOS)
@@ -49,6 +54,20 @@ endif()
 message(STATUS "Board : ${BOARD}  (${BOARD_DEFINE})")
 
 ################################################################################
+# Kernel (git submodule)
+################################################################################
+
+set(KERNEL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Mk/Kernel")
+
+if(NOT EXISTS "${KERNEL_PATH}/CMakeLists.txt")
+    message(FATAL_ERROR
+        "Kernel submodule missing or empty: '${KERNEL_PATH}'.\n"
+        "Run: git submodule update --init --recursive")
+endif()
+
+add_subdirectory(Mk/Kernel)
+
+################################################################################
 # Paths
 ################################################################################
 
@@ -59,17 +78,17 @@ set(SYMBOL_BASE_ADDR "0x002C0000")
 
 # Sanity checks
 if(NOT EXISTS "${SOURCES_PATH}")
-    message(FATAL_ERROR "SOURCES_PATH '${SOURCES_PATH}' introuvable.")
+    message(FATAL_ERROR "SOURCES_PATH '${SOURCES_PATH}' not found.")
 endif()
 if(NOT EXISTS "${INCLUDES_PATH}")
-    message(FATAL_ERROR "INCLUDES_PATH '${INCLUDES_PATH}' introuvable.")
+    message(FATAL_ERROR "INCLUDES_PATH '${INCLUDES_PATH}' not found.")
 endif()
 if(NOT EXISTS "${LD_SCRIPT}")
-    message(FATAL_ERROR "Linker script '${LD_SCRIPT}' introuvable.")
+    message(FATAL_ERROR "Linker script '${LD_SCRIPT}' not found.")
 endif()
 
 ################################################################################
-# Sources
+# Sources (OS-specific: the kernel is built by mk_kernel)
 ################################################################################
 
 # Recursively collect .c and .asm files
@@ -119,6 +138,13 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIRS})
 target_compile_definitions(${PROJECT_NAME} PRIVATE ${BOARD_DEFINE})
 
+# Link ALL kernel objects (OBJECT library, not a .a archive):
+# required so every function exported to ELF applications is present
+# in the image and therefore in the symbol table (sym2srec),
+# even if neither the kernel nor the OS calls it. Also inherits kernel
+# headers (mk_api.h) and the board definition as PUBLIC.
+target_link_libraries(${PROJECT_NAME} PRIVATE mk_kernel)
+
 ################################################################################
 # C dialect compilation options
 ################################################################################
@@ -136,6 +162,8 @@ set(CDIAL_OPTIONS
 
 ################################################################################
 # ARM options
+#
+# Must be kept strictly identical to those of the kernel (same ABI, same FPU).
 ################################################################################
 
 set(ARM_OPTIONS
@@ -193,7 +221,7 @@ set(COMMON_OPTIONS
 # we disable its default flags (CACHE "") and manage our own.
 ################################################################################
 
-# Suppression des drapeaux CMake par défaut pour ne pas interférer
+# Clear default CMake flags to avoid interference
 set(CMAKE_C_FLAGS_DEBUG          "" CACHE STRING "" FORCE)
 set(CMAKE_C_FLAGS_RELEASE        "" CACHE STRING "" FORCE)
 set(CMAKE_C_FLAGS_RELWITHDEBINFO "" CACHE STRING "" FORCE)
@@ -204,7 +232,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
         -g3 -ggdb -fno-eliminate-unused-debug-symbols
         -O0 -fno-inline-functions -fno-short-enums -fno-move-loop-invariants
     )
-else()  # Release (défaut)
+else()  # Release (default)
     set(BUILD_OPT_OPTIONS
         -Ofast -fno-inline-functions -fno-short-enums -fno-move-loop-invariants
     )
@@ -215,7 +243,7 @@ endif()
 ################################################################################
 
 target_compile_options(${PROJECT_NAME} PRIVATE
-    # Options C uniquement (appliquées aux .c)
+    # C-only options (applied to .c files)
     $<$<COMPILE_LANGUAGE:C>:
         ${CDIAL_OPTIONS}
         ${COMMON_OPTIONS}
@@ -223,7 +251,7 @@ target_compile_options(${PROJECT_NAME} PRIVATE
         ${WARN_OPTIONS}
         -x c
     >
-    # Options ASM (les -x assembler-with-cpp sont dans set_source_files_properties)
+    # ASM options (-x assembler-with-cpp is set in set_source_files_properties)
     $<$<COMPILE_LANGUAGE:ASM>:
         ${COMMON_OPTIONS}
         ${BUILD_OPT_OPTIONS}
@@ -236,14 +264,14 @@ target_compile_options(${PROJECT_NAME} PRIVATE
 ################################################################################
 
 target_link_options(${PROJECT_NAME} PRIVATE
-    # Options de liaison
+    # Linker options
     -nostartfiles
     -nodefaultlibs
     -nolibc
     -nostdlib
     -no-pie
     -export-dynamic
-    # Script linker
+    # Linker script
     -T "${LD_SCRIPT}"
     # Map file
     -Wl,-Map=${CMAKE_BINARY_DIR}/${PROJECT_NAME}.map
@@ -266,7 +294,7 @@ endif()
 
 # Ensure binary exists
 if(NOT EXISTS "${SYM2SREC}")
-    message(FATAL_ERROR "sym2srec introuvable : ${SYM2SREC}")
+    message(FATAL_ERROR "sym2srec not found: ${SYM2SREC}")
 endif()
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
@@ -296,6 +324,7 @@ add_custom_target(print
 ################################################################################
 
 message(STATUS "Build type   : ${CMAKE_BUILD_TYPE}")
+message(STATUS "Kernel       : ${KERNEL_PATH} (submodule)")
 message(STATUS "Sources      : ${SOURCES_PATH}")
 message(STATUS "Includes     : ${INCLUDES_PATH}")
 message(STATUS "Linker script: ${LD_SCRIPT}")

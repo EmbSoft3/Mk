@@ -43,9 +43,9 @@
 
 #include "mk_types.h"
 #include "mk_binary.h"
-#include "mk_peripheral_core_constants.h"
-#include "mk_peripheral_core.h"
-#include "mk_peripheral_nvic_constants.h"
+#include "mk_core_constants.h"
+#include "mk_core.h"
+#include "mk_nvic_constants.h"
 #include "mk_peripheral_rtc.h"
 
 /**

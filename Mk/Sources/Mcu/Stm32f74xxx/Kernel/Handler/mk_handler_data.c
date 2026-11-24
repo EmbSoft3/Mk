@@ -42,5 +42,5 @@
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkKernelCallback g_mkKernelCallback ;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkKernelCallback g_mkKernelCallback ;
 

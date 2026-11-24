@@ -42,7 +42,7 @@
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkPagehandler g_mkSmallPageHandler;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkPagehandler g_mkSmallPageHandler;
 
 /**
  * @fn T_mkPagehandler g_mkLargePageHandler;
@@ -50,6 +50,6 @@ K_MK_PRIVILEGED_MEMORY T_mkPagehandler g_mkSmallPageHandler;
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkPagehandler g_mkLargePageHandler;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkPagehandler g_mkLargePageHandler;
 
 

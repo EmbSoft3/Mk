@@ -43,7 +43,7 @@
 
 #include "mk_types.h"
 #include "mk_binary.h"
-#include "mk_peripheral_core.h"
+#include "mk_core.h"
 
 /**
  *

@@ -42,6 +42,6 @@
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkScheduler g_mkScheduler;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkScheduler g_mkScheduler;
 
 

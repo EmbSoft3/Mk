@@ -42,7 +42,7 @@
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkTaskPool g_mkTaskPool ;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkTaskPool g_mkTaskPool ;
 
 /**
  * @fn T_mkAreaPool g_mkAreaPool;
@@ -50,7 +50,7 @@ K_MK_PRIVILEGED_MEMORY T_mkTaskPool g_mkTaskPool ;
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkAreaPool g_mkAreaPool ;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkAreaPool g_mkAreaPool ;
 
 /**
  * @fn T_mkMailPool g_mkMailPool;
@@ -58,7 +58,7 @@ K_MK_PRIVILEGED_MEMORY T_mkAreaPool g_mkAreaPool ;
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkMailPool g_mkMailPool ;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkMailPool g_mkMailPool ;
 
 /**
  * @fn T_mkMailItemPool g_mkMailItemPool;
@@ -66,7 +66,7 @@ K_MK_PRIVILEGED_MEMORY T_mkMailPool g_mkMailPool ;
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkMailItemPool g_mkMailItemPool ;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkMailItemPool g_mkMailItemPool ;
 
 /**
  * @fn T_mkEventPool g_mkEventPool;
@@ -74,7 +74,7 @@ K_MK_PRIVILEGED_MEMORY T_mkMailItemPool g_mkMailItemPool ;
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkEventPool g_mkEventPool ;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkEventPool g_mkEventPool ;
 
 /**
  * @fn T_mkMutexPool g_mkMutexPool;
@@ -82,7 +82,7 @@ K_MK_PRIVILEGED_MEMORY T_mkEventPool g_mkEventPool ;
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkMutexPool g_mkMutexPool ;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkMutexPool g_mkMutexPool ;
 
 /**
  * @fn T_mkSemaphorePool g_mkSemaphorePool;
@@ -90,7 +90,7 @@ K_MK_PRIVILEGED_MEMORY T_mkMutexPool g_mkMutexPool ;
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkSemaphorePool g_mkSemaphorePool ;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkSemaphorePool g_mkSemaphorePool ;
 
 /**
  * @fn T_mkCallbackFunctionPool g_mkCallbackFunctionPool;
@@ -98,7 +98,7 @@ K_MK_PRIVILEGED_MEMORY T_mkSemaphorePool g_mkSemaphorePool ;
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkCallbackFunctionPool g_mkCallbackFunctionPool ;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkCallbackFunctionPool g_mkCallbackFunctionPool ;
 
 /**
  * @fn T_mkCallbackHandlerPool g_mkCallbackHandlerPool;
@@ -106,5 +106,5 @@ K_MK_PRIVILEGED_MEMORY T_mkCallbackFunctionPool g_mkCallbackFunctionPool ;
  *
  */
 
-K_MK_PRIVILEGED_MEMORY T_mkCallbackHandlerPool g_mkCallbackHandlerPool ;
+K_MK_PRIVILEGED_BSS_MEMORY T_mkCallbackHandlerPool g_mkCallbackHandlerPool ;
 
