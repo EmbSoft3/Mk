@@ -273,6 +273,8 @@ target_link_options(${PROJECT_NAME} PRIVATE
     -export-dynamic
     # Linker script
     -T "${LD_SCRIPT}"
+    # Kernel script
+    -Wl,-L${CMAKE_CURRENT_SOURCE_DIR}/Mk/Kernel/Mk/Make
     # Map file
     -Wl,-Map=${CMAKE_BINARY_DIR}/${PROJECT_NAME}.map
 )

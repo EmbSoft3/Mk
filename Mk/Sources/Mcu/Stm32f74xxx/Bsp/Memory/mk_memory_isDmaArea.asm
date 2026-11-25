@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2023 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2023-2026 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -52,8 +52,8 @@ _mk_memory_isDmaArea:
 
    /* Récupération des limites de l'espace DMA */
    /* privilégié */
-   LDR R1, =K_DMA_PRIVILEGED_MEMORY_START_ADDR
-   LDR R2, =K_DMA_PRIVILEGED_MEMORY_END_ADDR
+   LDR R1, =K_PRIVILEGED_DMA_MEMORY_START_ADDR
+   LDR R2, =K_PRIVILEGED_DMA_MEMORY_END_ADDR
 
    /* Configuration de la valeur de retour */
    MOV R3, R0
@@ -65,22 +65,10 @@ _mk_memory_isDmaArea:
    CMP R3, R2
    BGE 1f
 
-   /* Récupération des limites de l'espace DMA */
-   /* non privilégié */
-   LDR R1, =K_DMA_UNPRIVILEGED_MEMORY_START_ADDR
-   LDR R2, =K_DMA_UNPRIVILEGED_MEMORY_END_ADDR
-
-   /* Branche si l'instance n'est pas dans l'espace DMA */
-   CMP R3, R1
-   BLO 1f
-   CMP R3, R2
-   BGE 1f
-
    /* L'adresse analysée est située dans l'espace DMA */
    MOV R0, #0x00
 
-   /* Retourne la valeur 0 si espace DMA privilégié, sinon la valeur de */
-   /* R0. */
+   /* Retourne la valeur 0 si espace DMA sinon R0 */
 
    1:
    /* Retour */
