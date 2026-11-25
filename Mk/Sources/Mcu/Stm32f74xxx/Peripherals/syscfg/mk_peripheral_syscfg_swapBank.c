@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2024 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,38 +28,25 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_peripheral_vectors_types.h
-* @brief Déclaration des types dédiés aux vecteurs d'interruption.
-* @date 18 mai 2024
+* @file mk_peripheral_syscfg_swapBank.c
+* @brief Définition de la fonction syscfg_swapBank.
+* @date 26 févr. 2019
 *
 */
 
-#ifndef MK_PERIPHERAL_VECTORS_TYPES_H
-#define MK_PERIPHERAL_VECTORS_TYPES_H
+#include "mk_peripheral_api.h"
 
 /**
- * @typedef T_mkStackPointer
- * @brief Création du type T_mkStackPointer. Ce type est privé et ne doit pas être utilisé.
+ * @internal
+ * @brief
+ * @endinternal
  */
 
-typedef uint32_t T_mkStackPointer;
+void syscfg_swapBank ( uint32_t p_mode )
+{
+   /* Ecriture du registre SYSCFG_MEMRMP */
+   _writeField ( K_SYSCFG_MEMRMP, 0x00000C00, p_mode );
 
-/**
- * @typedef T_mkVectorsTable
- * @brief Création du type T_mkVectorsTable. Ce type est privé et ne doit pas être utilisé.
- */
-
-typedef uint32_t T_mkVectorsTable;
-
-/**
- * @typedef T_mkVectorHandler
- * @brief Création du type T_mkVectorHandler. Ce type est privé et ne doit pas être utilisé.
- */
-
-typedef uint32_t T_mkVectorHandler;
-
-/**
- *
- */
-
-#endif
+   /* Retour */
+   return;
+}

@@ -1,6 +1,6 @@
 /**
 *
-* @copyright Copyright (C) 2018 RENARD Mathieu. All rights reserved.
+* @copyright Copyright (C) 2019 RENARD Mathieu. All rights reserved.
 *
 * This file is part of Mk.
 *
@@ -28,26 +28,42 @@
 * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @file mk_peripheral_vectors_constants.h
-* @brief Déclaration des constantes dédiées aux vecteurs d'interruption.
-* @date 13 janv. 2018
+* @file mk_peripheral_syscfg_cellCompensation.c
+* @brief Définition de la fonction syscfg_cellCompensation.
+* @date 26 févr. 2019
 *
 */
 
-#ifndef MK_PERIPHERAL_VECTORS_CONSTANTS_H
-#define MK_PERIPHERAL_VECTORS_CONSTANTS_H
+#include "mk_peripheral_api.h"
 
 /**
- * @def K_MK_VECTORS_NUMBER
- * @brief Définition du nombre de vecteurs d'interruption du système.
+ * @internal
+ * @brief
+ * @endinternal
  */
 
-#define K_MK_VECTORS_NUMBER 114
+uint32_t syscfg_cellCompensation ( uint32_t p_mode, uint32_t p_timeout )
+{
+   /* Déclaration de la variable de retour */
+   uint32_t l_result = K_SYSCFG_COMPENSATION_DISABLED;
 
-/**
- *
- */
+   /* Ecriture du registre SYSCFG_CMPCR */
+   _writeField ( K_SYSCFG_CMPCR, 1, p_mode );
 
-#endif
+   /* Effectue */
+   do
+   {
+      /* Lecture du registre SYSCFG_CMPCR */
+      l_result = _getField ( K_SYSCFG_CMPCR, 1, 8 ) ;
+
+      /* Décrémentation du timeout */
+      p_timeout--;
+
+   /* Tant que le timeout n'est pas arrivé à échéance */
+   } while ( ( l_result != p_mode ) && ( p_timeout != 0 ) );
+
+   /* Retour */
+   return ( l_result );
+}
 
 
