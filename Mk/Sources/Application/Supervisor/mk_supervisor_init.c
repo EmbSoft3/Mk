@@ -61,6 +61,7 @@ static T_mkCode mk_supervisor_initKernelHandler ( void )
    l_kernelCallback.kernelFault = mk_supervisor_svcFault;
    l_kernelCallback.rightFault = mk_supervisor_rightFault;
    l_kernelCallback.stackFault = mk_supervisor_stackFault;
+   l_kernelCallback.callbackFault = mk_supervisor_callbackFault;
    l_result = mk_handler_set ( &l_kernelCallback );
 
    /* Retour */

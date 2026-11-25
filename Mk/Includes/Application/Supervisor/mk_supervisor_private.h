@@ -215,6 +215,18 @@ void mk_supervisor_stackFault ( void );
 void mk_supervisor_handleFault ( T_mkAddr p_mkHandle );
 
 /**
+ * @fn void mk_supervisor_callbackFault ( T_mkCode p_code );
+ * @brief Cette fonction est déclenchée lorsqu'une erreur de type CALLBACK_FAULT se produit. Elle réalise un ensemble
+ *        d'enregistrements puis transmet un message au superviseur.
+ * @param[in] p_unused1 Ce paramètre contient la valeur du code retour en erreur.
+ *
+ * @return Sans objet.
+ *
+ */
+
+void mk_supervisor_callbackFault ( T_mkCode p_code );
+
+/**
  * @fn void mk_supervisor_svcFault ( T_mkKernelError p_mkCode, T_mkSVCObject* p_mkObject, uint32_t p_mkStatus );
  * @brief Cette fonction est déclenchée lorsqu'une erreur de type SVC_FAULT se produit. Elle réalise un ensemble
  *        d'enregistrements puis transmet un message au superviseur.
