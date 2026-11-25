@@ -38,6 +38,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Update references
+      - name: Git Submodule Update
+        run: |
+          git submodule update --remote --recursive
+
       # -----------------------------------------------------------------------
       # Step 2 - Install the ARM GCC toolchain
       # Installs the ARM GNU compiler used to build the firmware.
