@@ -35,7 +35,7 @@
 *
 */
 
-#ifndef MK_MEMORY_CONSTANTS_H
+/*#ifndef MK_MEMORY_CONSTANTS_H*/
 #define MK_MEMORY_CONSTANTS_H
 
 /**
@@ -118,6 +118,6 @@
  *
  */
 
-#endif
+/*#endif*/
 
 
