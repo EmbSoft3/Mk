@@ -1,9 +1,9 @@
 ﻿################################################################################
 # CMakeLists.txt — OS Mk, ARM Cortex-M7 bare-metal project
 #
-# The kernel (mk-kernel) is integrated as a git submodule in Mk/Kernel/:
+# The kernel (mk-kernel) is integrated as a git submodule in Mk/Libs/Kernel/:
 #
-#   git submodule add <url-mk-kernel> Mk/Kernel
+#   git submodule add <url-mk-kernel> Mk/Libs/Kernel
 #   git clone --recurse-submodules <url-os>
 #   git submodule update --init --recursive      (after a plain clone)
 #
@@ -57,7 +57,7 @@ message(STATUS "Board : ${BOARD}  (${BOARD_DEFINE})")
 # Kernel (git submodule)
 ################################################################################
 
-set(KERNEL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Mk/Kernel")
+set(KERNEL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Mk/Libs/Kernel")
 
 if(NOT EXISTS "${KERNEL_PATH}/CMakeLists.txt")
     message(FATAL_ERROR
@@ -65,7 +65,7 @@ if(NOT EXISTS "${KERNEL_PATH}/CMakeLists.txt")
         "Run: git submodule update --init --recursive")
 endif()
 
-add_subdirectory(Mk/Kernel)
+add_subdirectory(Mk/Libs/Kernel)
 
 ################################################################################
 # Paths
@@ -274,7 +274,7 @@ target_link_options(${PROJECT_NAME} PRIVATE
     # Linker script
     -T "${LD_SCRIPT}"
     # Kernel script
-    -Wl,-L${CMAKE_CURRENT_SOURCE_DIR}/Mk/Kernel/Mk/Make
+    -Wl,-L${CMAKE_CURRENT_SOURCE_DIR}/Mk/Libs/Kernel/Mk/Make
     # Map file
     -Wl,-Map=${CMAKE_BINARY_DIR}/${PROJECT_NAME}.map
 )
